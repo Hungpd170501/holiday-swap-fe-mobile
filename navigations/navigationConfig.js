@@ -25,6 +25,11 @@ function Navigation() {
         <Stack.Screen name="VerifyOTP" component={VerifyOPTScreen} />
         <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
         <Stack.Screen name="CreateNewPassword" component={CreateNewPassword} />
+        <Stack.Screen name="SignInScreen" component={SignInScreen} />
+        <Stack.Screen
+          name="CreateAccountScreen"
+          component={CreateAccountScreen}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

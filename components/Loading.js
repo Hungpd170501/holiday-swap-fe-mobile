@@ -5,6 +5,7 @@ import {
   StyleSheet,
   Text,
   ActivityIndicator,
+  Image,
 } from "react-native";
 
 const styles = StyleSheet.create({
@@ -15,8 +16,9 @@ const styles = StyleSheet.create({
   },
 
   loading: {
-    width: 200,
-    height: 200,
+    width: 80,
+    height: 80,
+    marginTop: 550,
   },
 });
 
@@ -24,7 +26,10 @@ export default function Loading() {
   return (
     <View style={styles.root}>
       <StatusBar hidden />
-      <ActivityIndicator color="black" size="large" style={styles.loading} />
+      <Image
+        source={require("../assets/images/LoadingGif.gif")}
+        style={styles.loading}
+      />
     </View>
   );
 }
