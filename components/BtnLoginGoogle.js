@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { Text } from "react-native";
 import { Image } from "react-native";
@@ -5,6 +6,8 @@ import { TouchableOpacity } from "react-native";
 import { View } from "react-native";
 
 export default function BtnLoginGoogle() {
+  const navigation = useNavigation();
+
   return (
     <View className="flex items-center">
       <TouchableOpacity className=" items-center justify-center border-[1px] border-collapse border-black w-[317] h-[58] rounded-3xl mb-[20px]">
@@ -29,7 +32,9 @@ export default function BtnLoginGoogle() {
       </TouchableOpacity>
       <View className="flex-row mt-5">
         <Text style={{ fontSize: 16 }}>Dont’t have an account?</Text>
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("CreateAccountScreen")}
+        >
           <Text style={{ fontSize: 16, color: "#2196F3", marginLeft: 3 }}>
             Sign Up
           </Text>
