@@ -6,7 +6,11 @@ module.exports = {
     "./screens/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundColor: {
+        button: "#2196F3",
+      },
+    },
   },
   plugins: [],
 };
