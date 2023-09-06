@@ -5,6 +5,7 @@ import LoadingScreen from "../screens/LoadingScreen";
 import WelcomeScreen from "../screens/WelcomeScreen";
 import WelcomeBackScreen from "../screens/WelcomeBackScreen";
 import SignInScreen from "../screens/SignInScreen";
+import CreateAccountScreen from "../screens/CreateAccountScreen";
 
 const Stack = createStackNavigator();
 
@@ -19,6 +20,10 @@ function Navigation() {
         <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
         <Stack.Screen name="WelcomeBackScreen" component={WelcomeBackScreen} />
         <Stack.Screen name="SignInScreen" component={SignInScreen} />
+        <Stack.Screen
+          name="CreateAccountScreen"
+          component={CreateAccountScreen}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

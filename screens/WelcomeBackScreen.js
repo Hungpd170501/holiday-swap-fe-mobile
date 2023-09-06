@@ -3,6 +3,7 @@ import { TextInput, TouchableOpacity } from "react-native";
 import { Text } from "react-native";
 import { View } from "react-native";
 import BtnLoginGoogle from "../components/BtnLoginGoogle";
+import InputEmail from "../components/InputEmail";
 
 export default function WelcomeBackScreen({ navigation }) {
   return (
@@ -15,14 +16,7 @@ export default function WelcomeBackScreen({ navigation }) {
       </View>
       <View className="bg-white w-full h-full rounded-t-[35px] flex items-center ">
         <View>
-          <Text className="mt-10 mb-1 text-lg ">Email:</Text>
-          <View>
-            <Text className="ml-2 opacity-25"></Text>
-          </View>
-          <TextInput
-            className=" p-[10px] opacity-75 w-[317px] h-[58px] bg-[#ECF0FC] mb-[15px] rounded-3xl flex justify-center "
-            placeholder="Enter your email address"
-          />
+          <InputEmail />
           <TouchableOpacity
             className="w-[317px] h-[58px] bg-[#2196F3] mb-[13px] rounded-3xl flex justify-center items-center"
             onPress={() => navigation.replace("SignInScreen")}
