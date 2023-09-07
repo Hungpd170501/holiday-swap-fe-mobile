@@ -12,7 +12,7 @@ export default function ListDestinationScreen() {
       </View>
       <ScrollView>
         <TouchableOpacity>
-          <View className=" pr-[330px] ">
+          <View className=" pr-[30px] ">
             <Text className="bg-[#2196F3]  rounded-md">All</Text>
           </View>
         </TouchableOpacity>
