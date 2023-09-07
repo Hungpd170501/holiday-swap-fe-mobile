@@ -23,7 +23,7 @@ function Navigation() {
     <NavigationContainer>
       <Stack.Navigator
         // initialRouteName="Loading"
-        initialRouteName="Home"
+        initialRouteName="ListDestinationScreen"
         // initialRouteName="Home"
         screenOptions={{ headerShown: false }}
       >
