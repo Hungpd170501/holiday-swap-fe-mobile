@@ -14,6 +14,7 @@ import OTPInputField from "../components/OTPInputField";
 import Button from "../components/Button";
 import { useNavigation } from "@react-navigation/native";
 import ModalConfirm from "../components/ModalConfirm";
+import ButtonBack from "../components/ButtonBack";
 
 const VerifyOPTScreen = () => {
   const navigation = useNavigation();
@@ -28,14 +29,7 @@ const VerifyOPTScreen = () => {
       <SafeAreaView className="flex-1 bg-white">
         <ScrollView>
           {/* Button back */}
-          <View className="relative py-6">
-            <TouchableOpacity
-              onPress={() => navigation.goBack()}
-              className="absolute top-4 left-4 bg-[#ECECEC] p-3 rounded-full shadow"
-            >
-              <Icon.ArrowLeft strokeWidth={3} stroke={"#AAAAAA"} />
-            </TouchableOpacity>
-          </View>
+          <ButtonBack navigation={navigation} />
 
           {/* Title */}
           <View className="justify-center items-center flex w-full py-3">

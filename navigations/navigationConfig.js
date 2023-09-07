@@ -8,6 +8,8 @@ import SignUpScreen from "../screens/SignUpScreen";
 import VerifyOPTScreen from "../screens/VerifyOPTScreen";
 import ForgotPasswordScreen from "../screens/ForgotPasswordScreen";
 import CreateNewPassword from "../screens/CreateNewPassword";
+import CreateAccountScreen from "../screens/CreateAccountScreen";
+import SignInScreen from "../screens/SignInScreen";
 
 const Stack = createStackNavigator();
 
