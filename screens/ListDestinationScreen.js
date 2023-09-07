@@ -6,16 +6,18 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default function ListDestinationScreen() {
   return (
-    <View>
-      <View>
+    <View className="flex-1">
+      <View className="pt-6 pb-4">
         <SearchBar />
       </View>
-      <ScrollView>
-        <TouchableOpacity>
-          <View className=" pr-[330px] ">
-            <Text className="bg-[#2196F3]  rounded-md">All</Text>
-          </View>
-        </TouchableOpacity>
+      <ScrollView className="flex-1">
+        <View className="flex-row mx-4">
+          <TouchableOpacity className="px-4 py-2 bg-[#2196F3] rounded-md">
+            <Text className="rounded-md text-white font-medium text-lg">
+              All
+            </Text>
+          </TouchableOpacity>
+        </View>
       </ScrollView>
     </View>
   );
