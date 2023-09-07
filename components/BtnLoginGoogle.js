@@ -35,7 +35,10 @@ export default function BtnLoginGoogle() {
         <TouchableOpacity
           onPress={() => navigation.navigate("CreateAccountScreen")}
         >
-          <Text style={{ fontSize: 16, color: "#2196F3", marginLeft: 3 }}>
+          <Text
+            onPress={() => navigation.navigate("SignUp")}
+            style={{ fontSize: 16, color: "#2196F3", marginLeft: 3 }}
+          >
             Sign Up
           </Text>
         </TouchableOpacity>
