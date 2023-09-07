@@ -9,6 +9,8 @@ import VerifyOPTScreen from "../screens/VerifyOPTScreen";
 import ForgotPasswordScreen from "../screens/ForgotPasswordScreen";
 import CreateNewPassword from "../screens/CreateNewPassword";
 import CreateAccountScreen from "../screens/CreateAccountScreen";
+import ProfileScreen from "../screens/ProfileScreen";
+import HotelDetailScreen from "../screens/HotelDetailScreen";
 import SignInScreen from "../screens/SignInScreen";
 
 const Stack = createStackNavigator();
@@ -17,7 +19,8 @@ function Navigation() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Loading"
+        // initialRouteName="Loading"
+        initialRouteName="HotelDetailScreen"
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="Loading" component={LoadingScreen} />
@@ -28,6 +31,8 @@ function Navigation() {
         <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
         <Stack.Screen name="CreateNewPassword" component={CreateNewPassword} />
         <Stack.Screen name="SignInScreen" component={SignInScreen} />
+        <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
+        <Stack.Screen name="HotelDetailScreen" component={HotelDetailScreen} />
         <Stack.Screen
           name="CreateAccountScreen"
           component={CreateAccountScreen}
