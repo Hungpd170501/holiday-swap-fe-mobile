@@ -3,14 +3,13 @@ import { TouchableOpacity } from "react-native";
 import { Image } from "react-native";
 import { ScrollView, View, Text, SafeAreaView } from "react-native";
 import * as Icon from "react-native-feather";
-import Input from "../components/Input";
-import { TextInput } from "react-native";
 import SearchBar from "../components/SearchBar";
+import FrequentlyVisited from "../components/FrequentlyVisited";
 
 const HomeScreen = () => {
   return (
-    <SafeAreaView className="flex-1 bg-white">
-      <ScrollView className="py-6">
+    <SafeAreaView className="flex-1 px-2 bg-white">
+      <ScrollView showsVerticalScrollIndicator={false} className="py-6">
         {/* Avatar, Bell icon */}
         <View className="flex-row justify-between mt-8">
           {/* Avatar */}
@@ -44,6 +43,16 @@ const HomeScreen = () => {
         <SearchBar />
 
         {/* Frequently visited */}
+        <Text className="text-xl font-bold mt-2 mx-2">Frequently visited</Text>
+        <ScrollView
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          className="flex row"
+        >
+          <FrequentlyVisited />
+          <FrequentlyVisited />
+          <FrequentlyVisited />
+        </ScrollView>
       </ScrollView>
     </SafeAreaView>
   );
