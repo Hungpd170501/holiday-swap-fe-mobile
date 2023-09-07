@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { Text, TextInput, View } from "react-native";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 const Input = ({ type, label, onChangeText, value, placeholder, secure }) => {
   return (
