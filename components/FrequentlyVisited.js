@@ -5,7 +5,7 @@ import * as Icon from "react-native-feather";
 
 const FrequentlyVisited = () => {
   return (
-    <View className="px-2 mt-3">
+    <View className="px-2 ">
       <View className="mt-3">
         <View className="flex">
           <Image
