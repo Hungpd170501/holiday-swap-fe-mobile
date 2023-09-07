@@ -16,7 +16,8 @@ function Navigation() {
     <NavigationContainer>
       <Stack.Navigator
         // initialRouteName="Loading"
-        initialRouteName="HotelDetailScreen"
+        // initialRouteName="HotelDetailScreen"
+        initialRouteName="ProfileScreen"
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="Loading" component={LoadingScreen} />
