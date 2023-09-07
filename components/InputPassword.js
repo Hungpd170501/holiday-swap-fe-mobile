@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 
-function InputPassword() {
+function InputPassword({ text }) {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
@@ -12,7 +12,7 @@ function InputPassword() {
 
   return (
     <View>
-      <Text className=" mb-4 text-lg  ">Password:</Text>
+      <Text className="mb-4 text-lg">{text}</Text>
       <View
         style={{
           flexDirection: "row",
