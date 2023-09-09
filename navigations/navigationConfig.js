@@ -14,7 +14,7 @@ import HotelDetailScreen from "../screens/HotelDetailScreen";
 import SignInScreen from "../screens/SignInScreen";
 import HomeScreen from "../screens/HomeScreen";
 import ListDestinationScreen from "../screens/ListDestinationScreen";
-import AllScreen from "../screens/DestinationScreen/AllScreen";
+// import AllScreen from "../screens/DestinationScreen/AllScreen";
 
 const Stack = createStackNavigator();
 
@@ -23,7 +23,8 @@ function Navigation() {
     <NavigationContainer>
       <Stack.Navigator
         // initialRouteName="Loading"
-        initialRouteName="ListDestinationScreen"
+        // initialRouteName="ListDestinationScreen"
+        initialRouteName="HotelDetailScreen"
         // initialRouteName="Home"
         screenOptions={{ headerShown: false }}
       >
