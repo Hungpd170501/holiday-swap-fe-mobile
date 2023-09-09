@@ -14,8 +14,8 @@ const FrequentlyVisited = () => {
           />
           <Text className="text-gray-800 text-lg font-bold">Vinh Ha Long</Text>
           <View className="flex-row gap-2">
-            <Icon.MapPin stroke={"#AAAAAA"} strokeWidth={2.5} />
-            <Text className="text-gray-400 text-base">Quan Ninh, Viet Nam</Text>
+            <Icon.MapPin stroke={"#AAAAAA"} strokeWidth={2} />
+            <Text className="text-gray-400 text-sm">Quan Ninh, Viet Nam</Text>
           </View>
         </View>
       </View>
