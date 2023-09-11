@@ -14,6 +14,8 @@ import HotelDetailScreen from "../screens/HotelDetailScreen";
 import SignInScreen from "../screens/SignInScreen";
 import HomeScreen from "../screens/HomeScreen";
 import ListDestinationScreen from "../screens/ListDestinationScreen";
+import TabNavigation from "./navigationBottomTab";
+import SearchDestinationScreen from "../screens/SearchDestinationScreen";
 // import AllScreen from "../screens/DestinationScreen/AllScreen";
 
 const Stack = createStackNavigator();
@@ -23,8 +25,9 @@ function Navigation() {
     <NavigationContainer>
       <Stack.Navigator
         // initialRouteName="Loading"
+        // initialRouteName="Loading"
         // initialRouteName="ListDestinationScreen"
-        initialRouteName="HotelDetailScreen"
+        initialRouteName="SearchDestinationScreen"
         // initialRouteName="Home"
         screenOptions={{ headerShown: false }}
       >
@@ -46,7 +49,12 @@ function Navigation() {
           name="CreateAccountScreen"
           component={CreateAccountScreen}
         />
+        <Stack.Screen
+          name="SearchDestinationScreen"
+          component={SearchDestinationScreen}
+        />
         <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="root" component={TabNavigation} />
       </Stack.Navigator>
     </NavigationContainer>
   );

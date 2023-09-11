@@ -111,8 +111,8 @@ export default function ListDestinationScreen() {
           </View>
         </ScrollView>
       </View>
-      <View className="pb-[350px] ">
-        <ScrollView>
+      <View className="pb-[350px] flex justify-between items-center w-full">
+        <ScrollView showsVerticalScrollIndicator={false}>
           <View className="flex-col">
             <View className="flex-1 flex-row  ">
               <FrequentlyVisited />
