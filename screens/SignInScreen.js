@@ -17,7 +17,7 @@ export default function SignInScreen() {
 
   return (
     <View className="flex justify-center items-center">
-      <View className="flex-row items-center justify-center mt-[20px]">
+      <View className="flex-row items-center justify-center mt-[70px]">
         <View className="-ml-[130px] mr-[70px]">
           <TouchableOpacity
             className="w-[55px] h-[55px] bg-[#D9D5D5] rounded-full flex justify-center items-center "

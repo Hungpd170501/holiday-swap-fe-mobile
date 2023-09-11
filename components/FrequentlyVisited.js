@@ -1,11 +1,18 @@
+import { useNavigation } from "@react-navigation/core";
 import React from "react";
+import { TouchableOpacity } from "react-native";
 import { Image } from "react-native";
 import { View, Text } from "react-native";
 import * as Icon from "react-native-feather";
 
 const FrequentlyVisited = () => {
+  const navigation = useNavigation();
+
   return (
-    <View className="px-2 ">
+    <TouchableOpacity
+      className="px-2 "
+      onPress={() => navigation.navigate("HotelDetailScreen")}
+    >
       <View className="mt-3">
         <View className="flex">
           <Image
@@ -19,7 +26,7 @@ const FrequentlyVisited = () => {
           </View>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
