@@ -18,6 +18,7 @@ import TabNavigation from "./navigationBottomTab";
 import SearchDestinationScreen from "../screens/SearchDestinationScreen";
 import ChatScreen from "../screens/ChatScreen";
 import ChatItemScreen from "../screens/ChatItemScreen";
+import ResortList from "../screens/resort/ResortList";
 // import AllScreen from "../screens/DestinationScreen/AllScreen";
 
 const Stack = createStackNavigator();
@@ -27,10 +28,9 @@ function Navigation() {
     <NavigationContainer>
       <Stack.Navigator
         // initialRouteName="Loading"
-        initialRouteName="Loading"
         // initialRouteName="ListDestinationScreen"
         // initialRouteName="ChatItemScreen"
-        // initialRouteName="Home"
+        initialRouteName="Home"
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="Loading" component={LoadingScreen} />
@@ -45,6 +45,7 @@ function Navigation() {
         <Stack.Screen name="HotelDetailScreen" component={HotelDetailScreen} />
         <Stack.Screen name="ChatScreen" component={ChatScreen} />
         <Stack.Screen name="ChatItemScreen" component={ChatItemScreen} />
+        <Stack.Screen name="ResortList" component={ResortList} />
         <Stack.Screen
           name="ListDestinationScreen"
           component={ListDestinationScreen}

@@ -2,45 +2,33 @@ import React from "react";
 import { TouchableOpacity } from "react-native";
 import { Image } from "react-native";
 import { ScrollView, View, Text, SafeAreaView } from "react-native";
-import * as Icon from "react-native-feather";
 import SearchBar from "../components/SearchBar";
 import FrequentlyVisited from "../components/FrequentlyVisited";
+import InputDate from "../components/Home/InputDate";
+import InputRoomGuest from "../components/Home/InputRoomGuest";
+import CardExplore from "../components/Home/cardExplore/CardExplore";
+import AvtHeader from "../components/Home/AvtHeader";
 
 const HomeScreen = () => {
   return (
-    <SafeAreaView className="flex-1 px-2 bg-white">
-      <ScrollView showsVerticalScrollIndicator={false} className="py-6">
+    <SafeAreaView className="flex-1 bg-white">
+      <ScrollView showsVerticalScrollIndicator={false} className="">
         {/* Avatar, Bell icon */}
-        <View className="flex-row justify-between mt-8">
-          {/* Avatar */}
-          <View className="mx-6 flex-row">
-            <Image
-              source={require("../assets/images/avatar.png")}
-              className="w-16 h-16"
-            />
-            <View className="flex">
-              <Text className="text-2xl font-bold mx-2">Hi, Andy</Text>
-              <View className="flex-row">
-                <Icon.MapPin
-                  stroke={"#AAAAAA"}
-                  strokeWidth={2}
-                  className="mx-2 my-1"
-                />
-                <Text className="my-1 text-slate-600">Vinh Ha Long</Text>
-              </View>
-            </View>
-          </View>
-
-          {/* Bell icon */}
-          <TouchableOpacity className="mx-6 mt-2">
-            <View className="p-3 border border-slate-300 rounded-full">
-              <Icon.Bell stroke={"#AAAAAA"} strokeWidth={2} />
-            </View>
-          </TouchableOpacity>
-        </View>
-
+        <AvtHeader />
         {/* Search */}
-        <SearchBar />
+        <View>
+          <SearchBar />
+          <InputDate />
+          <InputRoomGuest />
+
+          <View className="px-4 flex flex-row items-center w-full justify-center">
+            <TouchableOpacity>
+              <Text className="w-full bg-blue-500 px-40 py-3 text-white mt-2  border border-gray-300 ">
+                Search
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
 
         {/* Frequently visited */}
         <Text className="text-xl font-bold mt-2 mx-2">Frequently visited</Text>
@@ -50,9 +38,13 @@ const HomeScreen = () => {
           className="flex row"
         >
           <FrequentlyVisited />
-          <FrequentlyVisited />
-          <FrequentlyVisited />
         </ScrollView>
+        <View>
+          <Text className="text-xl font-bold mt-2 mx-2">Explore further</Text>
+          <View>
+            <CardExplore />
+          </View>
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
