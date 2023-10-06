@@ -7,7 +7,7 @@ export default function InputDateComponents() {
     <View className="w-full h-[500px]">
       <Calendar
         startDate="2023-05-10"
-        endDate=""
+        endDate="2023-06-10"
         onChange={({ startDate, endDate }) =>
           console.log({ startDate, endDate })
         }

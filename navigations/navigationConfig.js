@@ -19,6 +19,7 @@ import SearchDestinationScreen from "../screens/SearchDestinationScreen";
 import ChatScreen from "../screens/ChatScreen";
 import ChatItemScreen from "../screens/ChatItemScreen";
 import ResortList from "../screens/resort/ResortList";
+import DetailResort from "../screens/detailResort.js/DetailResort";
 // import AllScreen from "../screens/DestinationScreen/AllScreen";
 
 const Stack = createStackNavigator();
@@ -46,6 +47,7 @@ function Navigation() {
         <Stack.Screen name="ChatScreen" component={ChatScreen} />
         <Stack.Screen name="ChatItemScreen" component={ChatItemScreen} />
         <Stack.Screen name="ResortList" component={ResortList} />
+        <Stack.Screen name="DetailResort" component={DetailResort} />
         <Stack.Screen
           name="ListDestinationScreen"
           component={ListDestinationScreen}
