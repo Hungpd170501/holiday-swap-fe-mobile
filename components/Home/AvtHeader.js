@@ -6,7 +6,7 @@ import { TouchableOpacity } from "react-native";
 
 export default function AvtHeader() {
   return (
-    <View className="flex-row justify-between  bg-blue-500 w-full py-6">
+    <View className="flex-row justify-between  bg-blue-500 w-full py-6 fixed">
       {/* Avatar */}
       <View className="mx-6 flex-row">
         <Image
