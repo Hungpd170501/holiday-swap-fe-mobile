@@ -53,7 +53,7 @@ export default function CardListResort() {
               <Ionicons name="leaf-outline" size={25} color="gray" />
               <Text className="text-[13px]">Sustainable Tourism </Text>
             </View>
-            <Text className="bg-green-800 text-white text-center w-full my-3 ml-1">
+            <Text className="bg-blue-500 text-white text-center w-full my-3 ml-1">
               Limited time offer
             </Text>
           </View>
@@ -75,7 +75,7 @@ export default function CardListResort() {
               <FontAwesome5 name="coins" size={25} color="orange" />
             </View>
           </View>
-          <TouchableOpacity className="w-full flex flex-row justify-center items-center bg-blue-500 ml-1 py-2 rounded-md my-2">
+          <TouchableOpacity className="w-full flex flex-row justify-center items-center bg-blue-500 ml-1 py-2 rounded-md mb-2">
             <Text className="text-white font-semibold">Booking</Text>
           </TouchableOpacity>
         </View>
@@ -111,7 +111,7 @@ export default function CardListResort() {
               <Ionicons name="leaf-outline" size={25} color="gray" />
               <Text className="text-[13px]">Sustainable Tourism </Text>
             </View>
-            <Text className="bg-green-800 text-white text-center w-full my-3 ml-1">
+            <Text className="bg-blue-500 text-white text-center w-full my-3 ml-1">
               Limited time offer
             </Text>
           </View>
@@ -133,7 +133,7 @@ export default function CardListResort() {
               <FontAwesome5 name="coins" size={25} color="orange" />
             </View>
           </View>
-          <TouchableOpacity className="w-full flex flex-row justify-center items-center bg-blue-500 ml-1 py-2 rounded-md my-2">
+          <TouchableOpacity className="w-full flex flex-row justify-center items-center bg-blue-500 ml-1 py-2 rounded-md mb-2">
             <Text className="text-white font-semibold">Booking</Text>
           </TouchableOpacity>
         </View>
@@ -167,7 +167,7 @@ export default function CardListResort() {
               <Ionicons name="leaf-outline" size={25} color="gray" />
               <Text className="text-[13px]">Sustainable Tourism </Text>
             </View>
-            <Text className="bg-green-800 text-white text-center w-full my-3 ml-1">
+            <Text className="bg-blue-500 text-white text-center w-full my-3 ml-1">
               Limited time offer
             </Text>
           </View>
@@ -189,7 +189,7 @@ export default function CardListResort() {
               <FontAwesome5 name="coins" size={25} color="orange" />
             </View>
           </View>
-          <TouchableOpacity className="w-full flex flex-row justify-center items-center bg-blue-500 ml-1 py-2 rounded-md my-2">
+          <TouchableOpacity className="w-full flex flex-row justify-center items-center bg-blue-500 ml-1 py-2 rounded-md mb-2">
             <Text className="text-white font-semibold">Booking</Text>
           </TouchableOpacity>
         </View>
@@ -223,7 +223,7 @@ export default function CardListResort() {
               <Ionicons name="leaf-outline" size={25} color="gray" />
               <Text className="text-[13px]">Sustainable Tourism </Text>
             </View>
-            <Text className="bg-green-800 text-white text-center w-full my-3 ml-1">
+            <Text className="bg-blue-500 text-white text-center w-full my-3 ml-1">
               Limited time offer
             </Text>
           </View>
@@ -245,7 +245,7 @@ export default function CardListResort() {
               <FontAwesome5 name="coins" size={25} color="orange" />
             </View>
           </View>
-          <TouchableOpacity className="w-full flex flex-row justify-center items-center bg-blue-500 ml-1 py-2 rounded-md my-2">
+          <TouchableOpacity className="w-full flex flex-row justify-center items-center bg-blue-500 ml-1 py-2 rounded-md mb-2">
             <Text className="text-white font-semibold">Booking</Text>
           </TouchableOpacity>
         </View>
