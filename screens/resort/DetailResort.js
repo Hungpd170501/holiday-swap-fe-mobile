@@ -11,11 +11,13 @@ import {
   MaterialIcons,
 } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native";
-import Maps from "../../components/Map";
 import { ScrollView } from "react-native";
 import MapDetailResorts from "../../components/detailResort/Map";
+import { useNavigation } from "@react-navigation/native";
 
 export default function DetailResort() {
+  const navigation = useNavigation();
+
   return (
     <>
       <View>
@@ -318,7 +320,10 @@ export default function DetailResort() {
         </View>
       </ScrollView>
       <View>
-        <TouchableOpacity className="bg-blue-700">
+        <TouchableOpacity
+          onPress={() => navigation.navigate("ListApartment")}
+          className="bg-blue-700"
+        >
           <Text className="text-center text-white font-bold py-4">
             Vacant apartments
           </Text>
