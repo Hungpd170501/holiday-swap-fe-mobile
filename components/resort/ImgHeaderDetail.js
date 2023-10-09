@@ -5,7 +5,7 @@ import { View } from "react-native-animatable";
 
 export default function ImgHeaderDetail() {
   return (
-    <View className=" py-2">
+    <View>
       <View className="flex flex-col ">
         <View className="flex flex-row gap-1 justify-between">
           <Image

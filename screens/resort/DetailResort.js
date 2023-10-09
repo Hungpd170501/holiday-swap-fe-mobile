@@ -2,7 +2,7 @@ import React from "react";
 import { Image, Text } from "react-native";
 import { View } from "react-native-animatable";
 import AvtHeader from "../../components/Home/AvtHeader";
-import ImgHeaderDetail from "../../components/detailResort/ImgHeaderDetail";
+import ImgHeaderDetail from "../../components/resort/ImgHeaderDetail";
 import {
   AntDesign,
   Entypo,
@@ -12,7 +12,7 @@ import {
 } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native";
 import { ScrollView } from "react-native";
-import MapDetailResorts from "../../components/detailResort/Map";
+import MapDetailResorts from "../../components/resort/Map";
 import { useNavigation } from "@react-navigation/native";
 
 export default function DetailResort() {
@@ -25,12 +25,12 @@ export default function DetailResort() {
       </View>
       <ScrollView className="flex-1 ">
         <View className="bg-white">
-          <View className="pr-4 pl-3">
+          <View className="">
             <View>
               <ImgHeaderDetail />
             </View>
-            <View>
-              <Text>
+            <View className="px-3 pt-1">
+              <Text className="font-bold text-[15px]">
                 Landmark 81 - Luxury Resort - Stay in the Top of Vietnam
               </Text>
               <View className="flex flex-row items-center  py-2 ">
@@ -77,7 +77,7 @@ export default function DetailResort() {
             <Text className="text-[30px] font-thin">{">"}</Text>
           </TouchableOpacity>
         </TouchableOpacity>
-        <View className="bg-white mt-2 pr-3 pl-4 flex flex-row">
+        <View className="bg-white mt-2 pr-3 pl-4 py-3 flex flex-row">
           <AntDesign size={20} name="creditcard" />
           <View>
             <Text className="text-[15px] font-bold ml-2">
@@ -174,9 +174,9 @@ export default function DetailResort() {
           <Text className="font-bold text-[20px] pb-3">
             visitors' questions
           </Text>
-          <View className="flex flex-row">
+          <View className="flex flex-row ">
             <AntDesign size={15} name="message1" />
-            <Text className="ml-2 -mt-1 w-[330px]">
+            <Text className="ml-1 -mt-1 pr-3 ">
               Hello! I have some days off next week. I’m going to travel
               somewhere but I don’t have any good ideas. Could you recommend me
               some beautiful places in Viet Nam?
@@ -202,9 +202,9 @@ export default function DetailResort() {
             Usually respond within a few hours
           </Text>
         </View>
-        <View className="bg-white pl-4 mt-2">
+        <View className="bg-white mt-2 px-4">
           <Text className="text-[20px] font-bold">Describe</Text>
-          <Text>
+          <Text className="">
             Landmark 81 - Luxury Resort - Stay in the Top of Vietnam features
             spa faciliities and wellness packages, as well as air-conditioned
             accommodation w...

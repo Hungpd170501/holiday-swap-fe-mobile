@@ -2,17 +2,16 @@ import React, { useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import AvtHeader from "../../components/Home/AvtHeader";
 import { ScrollView } from "react-native";
-import Carosel from "../../components/detailApartment/Carosel";
+import Carosel from "../../components/apartment/Carosel";
 import {
   FontAwesome5,
   Ionicons,
   MaterialCommunityIcons,
   MaterialIcons,
-  FontAwesome6Brands,
   FontAwesome,
   AntDesign,
 } from "@expo/vector-icons";
-import { Feather } from "react-native-feather";
+import ChoseApartment from "../../components/apartment/ChoseApartment";
 
 export default function DetailApartment() {
   const [showMore, setShowMore] = useState(false);
@@ -108,10 +107,8 @@ export default function DetailApartment() {
               </View>
             </View>
             <Text className="text-[15px]">Only one 1 on HolidaySwap</Text>
-            <TouchableOpacity className="border border-blue-300 w-full my-3 rounded-sm">
-              <Text className="text-center py-4 text-blue-700 font-bold">
-                CHOSE
-              </Text>
+            <TouchableOpacity>
+              <ChoseApartment />
             </TouchableOpacity>
           </View>
         </View>
@@ -137,9 +134,9 @@ export default function DetailApartment() {
         </View>
         <View className="px-4 bg-white mt-2 py-3">
           <Text className="text-[20px] font-bold">Meals</Text>
-          <View className="flex flex-row py-3">
+          <View className="flex flex-row py-3 ">
             <Ionicons size={20} name="restaurant-outline" />
-            <Text className="ml-2  font-bold text-[17px]">
+            <Text className="pr-3 pl-1  font-bold text-[17px]">
               This room rate does not include any meal options
             </Text>
           </View>
