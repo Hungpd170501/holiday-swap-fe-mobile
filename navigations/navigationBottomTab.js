@@ -5,6 +5,7 @@ import HomeScreen from "../screens/HomeScreen";
 import ListDestinationScreen from "../screens/ListDestinationScreen";
 import { Entypo } from "@expo/vector-icons";
 import LoadingScreen from "../screens/LoadingScreen";
+import ProfileScreen from "../screens/ProfileScreen";
 import OnboardingScreen from "../screens/WelcomeScreen";
 import WelcomeBackScreen from "../screens/WelcomeBackScreen";
 import SignUpScreen from "../screens/SignUpScreen";
@@ -12,9 +13,15 @@ import VerifyOPTScreen from "../screens/VerifyOPTScreen";
 import ForgotPasswordScreen from "../screens/ForgotPasswordScreen";
 import CreateNewPassword from "../screens/CreateNewPassword";
 import SignInScreen from "../screens/SignInScreen";
-import ProfileScreen from "../screens/ProfileScreen";
 import HotelDetailScreen from "../screens/HotelDetailScreen";
 import CreateAccountScreen from "../screens/CreateAccountScreen";
+import ChatScreen from "../screens/ChatScreen";
+import ChatItemScreen from "../screens/ChatItemScreen";
+import ResortList from "../screens/resort/ResortList";
+import DetailResort from "../screens/resort/DetailResort";
+import ListApartment from "../screens/apartment/ListApartment";
+import DetailApartment from "../screens/apartment/DetailApartment";
+import SearchDestinationScreen from "../screens/SearchDestinationScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -52,33 +59,7 @@ const TabNavigation = () => {
         {() => (
           <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen name="Homes" component={HomeScreen} />
-            <Stack.Screen name="Loading" component={LoadingScreen} />
-            {/* <Stack.Screen name="WelcomeScreen" component={OnboardingScreen} />
-            <Stack.Screen
-              name="WelcomeBackScreen"
-              component={WelcomeBackScreen}
-            />
-            <Stack.Screen name="SignUp" component={SignUpScreen} />
-            <Stack.Screen name="VerifyOTP" component={VerifyOPTScreen} />
-            <Stack.Screen
-              name="ForgotPassword"
-              component={ForgotPasswordScreen}
-            />
-            <Stack.Screen
-              name="CreateNewPassword"
-              component={CreateNewPassword}
-            />
-            <Stack.Screen name="SignInScreen" component={SignInScreen} />
             <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
-            <Stack.Screen
-              name="HotelDetailScreen"
-              component={HotelDetailScreen}
-            />
-
-            <Stack.Screen
-              name="CreateAccountScreen"
-              component={CreateAccountScreen}
-            /> */}
           </Stack.Navigator>
         )}
       </Tab.Screen>

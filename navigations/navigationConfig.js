@@ -33,18 +33,10 @@ function Navigation() {
         // initialRouteName="Loading"
         // initialRouteName="ListDestinationScreen"
         // initialRouteName="ChatItemScreen"
-        initialRouteName="Home"
+        // initialRouteName="Home"
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="Loading" component={LoadingScreen} />
-        <Stack.Screen name="WelcomeScreen" component={OnboardingScreen} />
-        <Stack.Screen name="WelcomeBackScreen" component={WelcomeBackScreen} />
-        <Stack.Screen name="SignUp" component={SignUpScreen} />
-        <Stack.Screen name="VerifyOTP" component={VerifyOPTScreen} />
-        <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
-        <Stack.Screen name="CreateNewPassword" component={CreateNewPassword} />
-        <Stack.Screen name="SignInScreen" component={SignInScreen} />
-        <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
         <Stack.Screen name="HotelDetailScreen" component={HotelDetailScreen} />
         <Stack.Screen name="ChatScreen" component={ChatScreen} />
         <Stack.Screen name="ChatItemScreen" component={ChatItemScreen} />
@@ -64,7 +56,14 @@ function Navigation() {
           name="SearchDestinationScreen"
           component={SearchDestinationScreen}
         />
-        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Homes" component={HomeScreen} />
+        <Stack.Screen name="WelcomeScreen" component={OnboardingScreen} />
+        <Stack.Screen name="WelcomeBackScreen" component={WelcomeBackScreen} />
+        <Stack.Screen name="SignUp" component={SignUpScreen} />
+        <Stack.Screen name="VerifyOTP" component={VerifyOPTScreen} />
+        <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
+        <Stack.Screen name="CreateNewPassword" component={CreateNewPassword} />
+        <Stack.Screen name="SignInScreen" component={SignInScreen} />
         <Stack.Screen name="root" component={TabNavigation} />
       </Stack.Navigator>
     </NavigationContainer>

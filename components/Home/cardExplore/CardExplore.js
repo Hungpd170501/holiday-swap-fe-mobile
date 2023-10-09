@@ -9,11 +9,11 @@ export default function CardExplore() {
       <View className="flex flex-row w-full justify-between ">
         <View
           style={styles.shadow}
-          className="bg-white w-[175px] h-auto rounded-lg "
+          className="bg-white w-[48%] h-auto rounded-lg "
         >
           <Image
             source={require("../../../assets/images/explore1.jpg")}
-            className="w-[175px] h-48 rounded-t-lg"
+            className="w-full h-48 rounded-t-lg"
           />
           <View className="px-1 py-2">
             <Text className="font-bold text-[18px]">
@@ -26,11 +26,11 @@ export default function CardExplore() {
         </View>
         <View
           style={styles.shadow}
-          className="bg-white w-[175px] h-auto rounded-lg "
+          className="bg-white w-[48%] h-auto rounded-lg "
         >
           <Image
             source={require("../../../assets/images/explore2.jpg")}
-            className="w-[175px] h-48 rounded-t-lg"
+            className="w-full h-48 rounded-t-lg"
           />
           <View className="px-1 py-2">
             <Text className="font-bold text-[18px]">Long stay</Text>
@@ -40,14 +40,14 @@ export default function CardExplore() {
           </View>
         </View>
       </View>
-      <View className="flex flex-row w-full justify-between mt-4 ">
+      <View className="flex flex-row w-full justify-between ">
         <View
           style={styles.shadow}
-          className="bg-white w-[175px] h-auto rounded-lg "
+          className="bg-white w-[48%] h-auto rounded-lg "
         >
           <Image
             source={require("../../../assets/images/explore3.jpg")}
-            className="w-[175px] h-48 rounded-t-lg"
+            className="w-full h-48 rounded-t-lg"
           />
           <View className="px-1 py-2">
             <Text className="font-bold text-[18px]">
@@ -60,11 +60,11 @@ export default function CardExplore() {
         </View>
         <View
           style={styles.shadow}
-          className="bg-white w-[175px] h-auto rounded-lg "
+          className="bg-white w-[48%] h-auto rounded-lg "
         >
           <Image
             source={require("../../../assets/images/explore4.jpg")}
-            className="w-[175px] h-48 rounded-t-lg"
+            className="w-full h-48 rounded-t-lg"
           />
           <View className="px-1 py-2">
             <Text className="font-bold text-[18px]">Long stay</Text>

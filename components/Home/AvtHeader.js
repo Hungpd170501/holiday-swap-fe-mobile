@@ -14,14 +14,16 @@ export default function AvtHeader() {
           className="w-16 h-16"
         />
         <View className="flex">
-          <Text className="text-2xl  text-white font-bold mx-2">Hi, Andy</Text>
+          <Text className="text-2xl  text-white font-bold mx-2">
+            Hi, Thuc Bui
+          </Text>
           <View className="flex-row">
             <Icon.MapPin
               stroke={"#AAAAAA"}
               strokeWidth={2}
               className="mx-1 my-1"
             />
-            <Text className="my-1  text-white">Vinh Ha Long</Text>
+            <Text className="my-1  text-white">Dak Lak</Text>
           </View>
         </View>
       </View>

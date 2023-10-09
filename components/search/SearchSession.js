@@ -1,19 +1,13 @@
 import React from "react";
 import { View } from "react-native-animatable";
 import AntDesign from "@expo/vector-icons/AntDesign";
-import EvilIcons from "@expo/vector-icons/EvilIcons";
-import Ionicons from "@expo/vector-icons/Ionicons";
-import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import { Text } from "react-native";
 import { TouchableOpacity } from "react-native";
-import { Image } from "react-native";
 import { ScrollView } from "react-native";
-import { StyleSheet } from "react-native";
-import CardListResort from "../listresort/CardListResort";
 
 export default function SearchSession() {
   return (
-    <ScrollView className="px-4 py-4 mb-[230px] bg-gray-100">
+    <ScrollView className="px-4 py-4  bg-gray-100">
       <View className="w-full">
         <View className=" bg-gray-50">
           <View className="bg-white border-[4px] border-orange-300 rounded-lg ">
@@ -28,7 +22,6 @@ export default function SearchSession() {
               </View>
             </View>
           </View>
-          <CardListResort />
         </View>
       </View>
     </ScrollView>

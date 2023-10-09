@@ -20,10 +20,9 @@ const HomeScreen = () => {
           <SearchBar />
           <InputDate />
           <InputRoomGuest />
-
-          <View className="px-4 flex flex-row items-center w-full justify-center">
-            <TouchableOpacity>
-              <Text className="w-full bg-blue-500 px-40 py-3 text-white mt-2  border border-gray-300 ">
+          <View className="flex flex-row items-center w-full justify-center">
+            <TouchableOpacity className="px-4 w-full">
+              <Text className=" bg-blue-500 text-center py-3 text-white mt-2 font-bold  border border-gray-300 ">
                 Search
               </Text>
             </TouchableOpacity>

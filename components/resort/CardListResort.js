@@ -17,21 +17,21 @@ export default function CardListResort() {
   const navigation = useNavigation();
 
   return (
-    <ScrollView>
+    <View className="px-3">
       <View className="py-3">
         <Text>3034 Resort</Text>
       </View>
       <TouchableOpacity
         onPress={() => navigation.replace("DetailResort")}
         style={styles.shadow}
-        className="bg-white flex flex-row mb-3 rounded-md "
+        className="bg-white flex flex-row mb-3 rounded-md"
       >
         <Image
           className="w-[150px] h-full rounded-tl-md rounded-bl-md"
           source={require("../../assets/images/landmark.jpg")}
         />
-        <View className=" px-2 w-[200px] ">
-          <Text className="text-[15px]   font-bold">
+        <View className="flex flex-1 flex-col px-2">
+          <Text className="text-[15px] font-bold">
             Landmark 81 - Luxury Resort - Stay in the Top of Vietnam
           </Text>
           <View className="flex flex-row gap-1 py-1 items-center">
@@ -43,17 +43,17 @@ export default function CardListResort() {
             <Text className="text-[12px]">4 Reviews</Text>
           </View>
           <View>
-            <View className="flex flex-row ">
+            <View className="flex flex-row">
               <EvilIcons name="location" size={25} color="gray" />
-              <Text className="text-[13px]">
+              <Text className="text-[13px] pr-5">
                 Binh Thanh district, 4km from the center
               </Text>
             </View>
-            <View className="flex flex-row items-center ">
+            <View className="flex flex-row items-center">
               <Ionicons name="leaf-outline" size={25} color="gray" />
               <Text className="text-[13px]">Sustainable Tourism </Text>
             </View>
-            <Text className="bg-blue-500 text-white text-center w-full my-3 ml-1">
+            <Text className="bg-blue-500 text-white text-center w-full px-3 my-3">
               Limited time offer
             </Text>
           </View>
@@ -61,7 +61,7 @@ export default function CardListResort() {
             <Text>30 Apartment - 54m2 </Text>
             <Text>Price for 9 nights for 2 adults</Text>
           </View>
-          <View className="  my-3">
+          <View className="my-3">
             <View className="flex flex-row justify-end">
               <Text className="text-red-500 line-through px-1 justify-end text-[15px]">
                 25000
@@ -75,11 +75,14 @@ export default function CardListResort() {
               <FontAwesome5 name="coins" size={25} color="orange" />
             </View>
           </View>
-          <TouchableOpacity className="w-full flex flex-row justify-center items-center bg-blue-500 ml-1 py-2 rounded-md mb-2">
-            <Text className="text-white font-semibold">Booking</Text>
+          <TouchableOpacity className="w-full  bg-blue-500  py-2 rounded-md mb-2">
+            <Text className="text-white text-center font-semibold">
+              Booking
+            </Text>
           </TouchableOpacity>
         </View>
       </TouchableOpacity>
+
       <TouchableOpacity
         style={styles.shadow}
         className="bg-white flex flex-row mb-3 rounded-md "
@@ -88,7 +91,7 @@ export default function CardListResort() {
           className="w-[150px] h-full rounded-tl-md rounded-bl-md"
           source={require("../../assets/images/buivien.jpg")}
         />
-        <View className=" px-2 w-[200px] ">
+        <View className="flex flex-1 flex-col px-2 ">
           <Text className="text-[15px]   font-bold">
             Bliss Boutique Saigon - Bui Vien Walking Street
           </Text>
@@ -101,17 +104,17 @@ export default function CardListResort() {
             <Text className="text-[12px]">4 Reviews</Text>
           </View>
           <View>
-            <View className="flex flex-row ">
+            <View className="flex flex-row">
               <EvilIcons name="location" size={25} color="gray" />
-              <Text className="text-[13px]">
+              <Text className="text-[13px] pr-5">
                 Binh Thanh district, 4km from the center
               </Text>
             </View>
-            <View className="flex flex-row items-center ">
+            <View className="flex flex-row items-center">
               <Ionicons name="leaf-outline" size={25} color="gray" />
               <Text className="text-[13px]">Sustainable Tourism </Text>
             </View>
-            <Text className="bg-blue-500 text-white text-center w-full my-3 ml-1">
+            <Text className="bg-blue-500 text-white text-center w-full px-3 my-3">
               Limited time offer
             </Text>
           </View>
@@ -133,7 +136,7 @@ export default function CardListResort() {
               <FontAwesome5 name="coins" size={25} color="orange" />
             </View>
           </View>
-          <TouchableOpacity className="w-full flex flex-row justify-center items-center bg-blue-500 ml-1 py-2 rounded-md mb-2">
+          <TouchableOpacity className="w-full flex flex-row justify-center items-center bg-blue-500  py-2 rounded-md mb-2">
             <Text className="text-white font-semibold">Booking</Text>
           </TouchableOpacity>
         </View>
@@ -146,7 +149,7 @@ export default function CardListResort() {
           className="w-[150px] h-full rounded-tl-md rounded-bl-md"
           source={require("../../assets/images/haanresort.jpg")}
         />
-        <View className=" px-2 w-[200px] ">
+        <View className="flex flex-1 flex-col px-2">
           <Text className="text-[15px]   font-bold">HAAN Resort & Golf</Text>
           <View className="flex flex-row gap-1 py-1 items-center">
             <AntDesign name="star" color="orange" />
@@ -157,17 +160,17 @@ export default function CardListResort() {
             <Text className="text-[12px]">4 Reviews</Text>
           </View>
           <View>
-            <View className="flex flex-row ">
+            <View className="flex flex-row">
               <EvilIcons name="location" size={25} color="gray" />
-              <Text className="text-[13px]">
+              <Text className="text-[13px] pr-5">
                 Binh Thanh district, 4km from the center
               </Text>
             </View>
-            <View className="flex flex-row items-center ">
+            <View className="flex flex-row items-center">
               <Ionicons name="leaf-outline" size={25} color="gray" />
               <Text className="text-[13px]">Sustainable Tourism </Text>
             </View>
-            <Text className="bg-blue-500 text-white text-center w-full my-3 ml-1">
+            <Text className="bg-blue-500 text-white text-center w-full px-3 my-3">
               Limited time offer
             </Text>
           </View>
@@ -189,20 +192,20 @@ export default function CardListResort() {
               <FontAwesome5 name="coins" size={25} color="orange" />
             </View>
           </View>
-          <TouchableOpacity className="w-full flex flex-row justify-center items-center bg-blue-500 ml-1 py-2 rounded-md mb-2">
+          <TouchableOpacity className="w-full flex flex-row justify-center items-center bg-blue-500  py-2 rounded-md mb-2">
             <Text className="text-white font-semibold">Booking</Text>
           </TouchableOpacity>
         </View>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.shadow}
-        className="bg-white flex flex-row mb-3 rounded-md "
+        className="bg-white flex flex-row mb-32 rounded-md "
       >
         <Image
           className="w-[150px] h-full rounded-tl-md rounded-bl-md"
           source={require("../../assets/images/seahorse.jpg")}
         />
-        <View className=" px-2 w-[200px] ">
+        <View className="flex flex-1 flex-col px-2">
           <Text className="text-[15px]   font-bold">Seahorse Resort</Text>
           <View className="flex flex-row gap-1 py-1 items-center">
             <AntDesign name="star" color="orange" />
@@ -213,17 +216,17 @@ export default function CardListResort() {
             <Text className="text-[12px]">4 Reviews</Text>
           </View>
           <View>
-            <View className="flex flex-row ">
+            <View className="flex flex-row">
               <EvilIcons name="location" size={25} color="gray" />
-              <Text className="text-[13px]">
+              <Text className="text-[13px] pr-5">
                 Binh Thanh district, 4km from the center
               </Text>
             </View>
-            <View className="flex flex-row items-center ">
+            <View className="flex flex-row items-center">
               <Ionicons name="leaf-outline" size={25} color="gray" />
               <Text className="text-[13px]">Sustainable Tourism </Text>
             </View>
-            <Text className="bg-blue-500 text-white text-center w-full my-3 ml-1">
+            <Text className="bg-blue-500 text-white text-center w-full px-3 my-3">
               Limited time offer
             </Text>
           </View>
@@ -245,12 +248,12 @@ export default function CardListResort() {
               <FontAwesome5 name="coins" size={25} color="orange" />
             </View>
           </View>
-          <TouchableOpacity className="w-full flex flex-row justify-center items-center bg-blue-500 ml-1 py-2 rounded-md mb-2">
+          <TouchableOpacity className="w-full flex flex-row justify-center items-center bg-blue-500  py-2 rounded-md mb-2">
             <Text className="text-white font-semibold">Booking</Text>
           </TouchableOpacity>
         </View>
       </TouchableOpacity>
-    </ScrollView>
+    </View>
   );
 }
 const styles = StyleSheet.create({

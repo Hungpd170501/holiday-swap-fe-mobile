@@ -50,7 +50,7 @@ export default function SignInScreen() {
         </View>
       </View>
       <TouchableOpacity
-        onPress={() => navigation.navigate("Home")}
+        onPress={() => navigation.navigate("root")}
         className="w-[317px] h-[58px] bg-[#2196F3] mb-[13px] rounded-3xl flex justify-center items-center"
       >
         <Text className="text-white text-lg font-bold">Sign In</Text>
