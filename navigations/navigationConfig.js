@@ -26,6 +26,9 @@ import ImageFullResort from "../screens/resort/ImageFullResort";
 import ImageFullApartment from "../screens/apartment/ImageFullApartment";
 import InputInfomationScreen from "../screens/paymentProcess/InputInfomationScreen";
 import PaymentScreen from "../screens/paymentProcess/PaymentScreen";
+import BookingConfirm from "../screens/bookingConfirm/BookingConfirm";
+import BookedApartment from "../screens/bookedApartment/BookedApartment";
+import ManageRevervation from "../screens/ManageRevervation/ManageRevervation";
 // import AllScreen from "../screens/DestinationScreen/AllScreen";
 
 const Stack = createStackNavigator();
@@ -34,12 +37,15 @@ function Navigation() {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="Loading" component={LoadingScreen} />
+        <Stack.Screen name="ManageRevervation" component={ManageRevervation} />
+        <Stack.Screen name="BookedApartment" component={BookedApartment} />
+        <Stack.Screen name="BookingConfirm" component={BookingConfirm} />
+        <Stack.Screen name="PaymentScreen" component={PaymentScreen} />
         <Stack.Screen
           name="InputInfomationScreen"
           component={InputInfomationScreen}
         />
-        <Stack.Screen name="PaymentScreen" component={PaymentScreen} />
-        <Stack.Screen name="Loading" component={LoadingScreen} />
         <Stack.Screen name="ImageFullResort" component={ImageFullResort} />
         <Stack.Screen
           name="ImageFullApartment"

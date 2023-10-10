@@ -4,12 +4,11 @@ import { StyleSheet } from "react-native";
 import { Text } from "react-native";
 import { View } from "react-native-animatable";
 import { BottomSheet } from "react-native-btr";
-import InputDateComponents from "../dateInput/InputDateComponents";
-import AntDesign from "@expo/vector-icons/AntDesign";
-import { TextInput } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 export default function ChoseApartment() {
+  const navigation = useNavigation();
   const [visible, setVisible] = useState(false);
 
   const toggleBottomNavigationView = () => {
@@ -46,7 +45,10 @@ export default function ChoseApartment() {
                   </View>
                   <Text>Taxes and fees included</Text>
                 </View>
-                <TouchableOpacity className="bg-blue-500 px-16 rounded-md">
+                <TouchableOpacity
+                  onPress={() => navigation.navigate("InputInfomationScreen")}
+                  className="bg-blue-500 px-16 rounded-md"
+                >
                   <Text className="p-3 text-white font-bold text-[23px]">
                     Book
                   </Text>
