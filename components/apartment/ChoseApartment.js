@@ -7,6 +7,7 @@ import { BottomSheet } from "react-native-btr";
 import InputDateComponents from "../dateInput/InputDateComponents";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { TextInput } from "react-native";
+import { FontAwesome5 } from "@expo/vector-icons";
 
 export default function ChoseApartment() {
   const [visible, setVisible] = useState(false);
@@ -36,8 +37,22 @@ export default function ChoseApartment() {
               justifyContent: "space-between",
             }}
           >
-            <View style={{ flex: 1, flexDirection: "row" }}></View>
-            <View style={{ flex: 1, flexDirection: "row" }}></View>
+            <View style={{ flex: 1, flexDirection: "row" }}>
+              <View className="w-full flex flex-row justify-around items-center ">
+                <View className="flex flex-col items-center gap-1">
+                  <View className="flex flex-row items-center gap-1">
+                    <Text className="text-[35px] font-bold">15000</Text>
+                    <FontAwesome5 name="coins" size={25} color="orange" />
+                  </View>
+                  <Text>Taxes and fees included</Text>
+                </View>
+                <TouchableOpacity className="bg-blue-500 px-16 rounded-md">
+                  <Text className="p-3 text-white font-bold text-[23px]">
+                    Book
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
           </View>
         </View>
       </BottomSheet>
@@ -50,6 +65,6 @@ const styles = StyleSheet.create({
   bottomNavigationView: {
     backgroundColor: "#fff",
     width: "100%",
-    height: "20%",
+    height: "13%",
   },
 });

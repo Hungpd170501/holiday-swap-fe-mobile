@@ -25,7 +25,7 @@ export default function MapDetailResorts() {
             longitude: 106.810473,
           }}
           title="Thức Bui"
-          description="Thuc Dep Trai"
+          description="T"
           pinColor={"red"}
         />
       </MapView>

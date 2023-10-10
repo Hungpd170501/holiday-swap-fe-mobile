@@ -1,4 +1,6 @@
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
+import { TouchableOpacity } from "react-native";
 import { View } from "react-native";
 import Carousel from "react-native-swipeable-carousel";
 
@@ -14,9 +16,10 @@ const data = [
 ];
 
 export default function Carosel() {
+  const navigation = useNavigation();
   return (
-    <View>
+    <TouchableOpacity onPress={() => navigation.navigate("ImageFullApartment")}>
       <Carousel images={data} enableGestureSwipe={true} />
-    </View>
+    </TouchableOpacity>
   );
 }

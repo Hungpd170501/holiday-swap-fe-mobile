@@ -1,6 +1,5 @@
 import React from "react";
-import { TouchableOpacity } from "react-native";
-import { Image } from "react-native";
+import { StatusBar, TouchableOpacity } from "react-native";
 import { ScrollView, View, Text, SafeAreaView } from "react-native";
 import SearchBar from "../components/SearchBar";
 import FrequentlyVisited from "../components/FrequentlyVisited";
@@ -12,6 +11,7 @@ import AvtHeader from "../components/Home/AvtHeader";
 const HomeScreen = () => {
   return (
     <SafeAreaView className="flex-1 bg-white">
+      <StatusBar backgroundColor="#61dafb" />
       <ScrollView showsVerticalScrollIndicator={false} className="">
         {/* Avatar, Bell icon */}
         <AvtHeader />

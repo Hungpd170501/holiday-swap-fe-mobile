@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Text, View } from "react-native";
+import { Text, View, StatusBar } from "react-native";
 import Loading from "../components/Loading";
 import { useNavigation } from "@react-navigation/native";
 
@@ -16,6 +16,7 @@ export default function LoadingScreen() {
 
   return (
     <View className="flex flex-col items-center justify-center w-full h-full bg-sky-500">
+      <StatusBar backgroundColor="#ffffff" />
       <View className="w-[220px] h-[220px] absolute bg-sky-400 rounded-full flex items-center justify-center">
         <Text className="text-white text-[32px] font-bold">HolidaySwap</Text>
         <Text className="text-white text-base font-normal">
