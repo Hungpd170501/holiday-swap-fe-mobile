@@ -22,6 +22,10 @@ import ResortList from "../screens/resort/ResortList";
 import DetailResort from "../screens/resort/DetailResort";
 import ListApartment from "../screens/apartment/ListApartment";
 import DetailApartment from "../screens/apartment/DetailApartment";
+import ImageFullResort from "../screens/resort/ImageFullResort";
+import ImageFullApartment from "../screens/apartment/ImageFullApartment";
+import InputInfomationScreen from "../screens/paymentProcess/InputInfomationScreen";
+import PaymentScreen from "../screens/paymentProcess/PaymentScreen";
 // import AllScreen from "../screens/DestinationScreen/AllScreen";
 
 const Stack = createStackNavigator();
@@ -29,14 +33,19 @@ const Stack = createStackNavigator();
 function Navigation() {
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        // initialRouteName="Loading"
-        // initialRouteName="ListDestinationScreen"
-        // initialRouteName="ChatItemScreen"
-        // initialRouteName="Home"
-        screenOptions={{ headerShown: false }}
-      >
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen
+          name="InputInfomationScreen"
+          component={InputInfomationScreen}
+        />
+        <Stack.Screen name="PaymentScreen" component={PaymentScreen} />
         <Stack.Screen name="Loading" component={LoadingScreen} />
+        <Stack.Screen name="ImageFullResort" component={ImageFullResort} />
+        <Stack.Screen
+          name="ImageFullApartment"
+          component={ImageFullApartment}
+        />
+        <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="HotelDetailScreen" component={HotelDetailScreen} />
         <Stack.Screen name="ChatScreen" component={ChatScreen} />
         <Stack.Screen name="ChatItemScreen" component={ChatItemScreen} />
@@ -56,7 +65,6 @@ function Navigation() {
           name="SearchDestinationScreen"
           component={SearchDestinationScreen}
         />
-        <Stack.Screen name="Homes" component={HomeScreen} />
         <Stack.Screen name="WelcomeScreen" component={OnboardingScreen} />
         <Stack.Screen name="WelcomeBackScreen" component={WelcomeBackScreen} />
         <Stack.Screen name="SignUp" component={SignUpScreen} />

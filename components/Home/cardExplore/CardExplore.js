@@ -40,7 +40,7 @@ export default function CardExplore() {
           </View>
         </View>
       </View>
-      <View className="flex flex-row w-full justify-between ">
+      <View className="flex flex-row w-full justify-between mt-4 ">
         <View
           style={styles.shadow}
           className="bg-white w-[48%] h-auto rounded-lg "
