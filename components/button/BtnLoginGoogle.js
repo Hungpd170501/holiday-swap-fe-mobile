@@ -14,7 +14,7 @@ export default function BtnLoginGoogle() {
         <View className="flex-row items-center">
           <Image
             className="-ml-[22px]"
-            source={require("../assets/images/Google.png")}
+            source={require("../../assets/images/Google.png")}
           />
           <Text className="text-[16px] font-medium">Continue with Google</Text>
         </View>
@@ -23,14 +23,14 @@ export default function BtnLoginGoogle() {
         <View className="flex-row items-center ">
           <Image
             className="mr-[8px]"
-            source={require("../assets/images/Facebook.png")}
+            source={require("../../assets/images/Facebook.png")}
           />
           <Text className="text-[16px] font-medium">
             Continue with Facebook
           </Text>
         </View>
       </TouchableOpacity>
-      <View className="flex-row mt-5">
+      <View className="flex-row py-3">
         <Text style={{ fontSize: 16 }}>Dont’t have an account?</Text>
         <TouchableOpacity
           onPress={() => navigation.navigate("CreateAccountScreen")}

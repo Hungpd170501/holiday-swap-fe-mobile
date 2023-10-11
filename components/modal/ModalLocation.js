@@ -3,7 +3,7 @@ import { View, Modal, TouchableOpacity } from "react-native";
 import { Text } from "react-native";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import EvilIcons from "react-native-vector-icons/EvilIcons";
-import SearchBar from "../components/SearchBar";
+import SearchBar from "../search/SearchBar";
 import { ScrollView } from "react-native";
 
 const ModalLocation = ({ modalVisibleLocation, setModalVisibleLocation }) => {

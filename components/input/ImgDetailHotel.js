@@ -17,28 +17,28 @@ const COLORS = { primary: "#fff", black: "#2196F3" };
 const slides = [
   {
     id: "1",
-    image: require("../assets/images/image1.png"),
+    image: require("../../assets/images/image1.png"),
     title: "Best travel destinations \n in Vietnam",
     appName: "HolidaySwap",
     subtitle: "“Let us guide your adventure.”",
   },
   {
     id: "2",
-    image: require("../assets/images/image2.png"),
+    image: require("../../assets/images/image2.png"),
     title: "Meet the needs of the \n holidays",
     appName: "HolidaySwap",
     subtitle: "“Turn every trip into an amazing adventure.”",
   },
   {
     id: "3",
-    image: require("../assets/images/image3.png"),
+    image: require("../../assets/images/image3.png"),
     title: "Go on holiday with a \nsmile",
     appName: "HolidaySwap",
     subtitle: "“Easy, fast, and convenient exchange.”",
   },
   {
     id: "4",
-    image: require("../assets/images/image4.png"),
+    image: require("../../assets/images/image4.png"),
     title: "We are here to make your \nholiday easier",
     appName: "HolidaySwap",
     subtitle: "“Experience the world through our app.”",

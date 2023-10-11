@@ -1,9 +1,9 @@
 import React from "react";
 import { View, Modal, TouchableOpacity } from "react-native";
-import Button from "./Button";
+import Button from "../button/Button";
 import { Text } from "react-native";
 import * as Icon from "react-native-feather";
-import Date from "./Date";
+import Date from "../../components/dateInput/Date";
 
 const ModalDate = ({ modalVisibleDate, setModalVisibleDate }) => {
   const closeModal = () => {

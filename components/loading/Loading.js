@@ -27,7 +27,7 @@ export default function Loading() {
     <View style={styles.root}>
       <StatusBar hidden />
       <Image
-        source={require("../assets/images/LoadingGif.gif")}
+        source={require("../../assets/images/LoadingGif.gif")}
         style={styles.loading}
       />
     </View>

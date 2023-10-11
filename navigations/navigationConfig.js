@@ -1,23 +1,23 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import LoadingScreen from "../screens/LoadingScreen";
-import OnboardingScreen from "../screens/WelcomeScreen";
-import WelcomeBackScreen from "../screens/WelcomeBackScreen";
-import SignUpScreen from "../screens/SignUpScreen";
-import VerifyOPTScreen from "../screens/VerifyOPTScreen";
-import ForgotPasswordScreen from "../screens/ForgotPasswordScreen";
-import CreateNewPassword from "../screens/CreateNewPassword";
-import CreateAccountScreen from "../screens/CreateAccountScreen";
-import ProfileScreen from "../screens/ProfileScreen";
+import LoadingScreen from "../screens/loading/LoadingScreen";
+import OnboardingScreen from "../screens/welcome/WelcomeScreen";
+import WelcomeBackScreen from "../screens/welcome/WelcomeBackScreen";
+import SignUpScreen from "../screens/signup/SignUpScreen";
+import VerifyOPTScreen from "../screens/verifyOTP/VerifyOPTScreen";
+import ForgotPasswordScreen from "../screens/password/ForgotPasswordScreen";
+import CreateNewPassword from "../screens/password/CreateNewPassword";
+import CreateAccountScreen from "../screens/createaccount/CreateAccountScreen";
+import ProfileScreen from "../screens/profile/ProfileScreen";
 import HotelDetailScreen from "../screens/HotelDetailScreen";
-import SignInScreen from "../screens/SignInScreen";
-import HomeScreen from "../screens/HomeScreen";
+import SignInScreen from "../screens/signin/SignInScreen";
+import HomeScreen from "../screens/home/HomeScreen";
 import ListDestinationScreen from "../screens/ListDestinationScreen";
 import TabNavigation from "./navigationBottomTab";
 import SearchDestinationScreen from "../screens/SearchDestinationScreen";
-import ChatScreen from "../screens/ChatScreen";
-import ChatItemScreen from "../screens/ChatItemScreen";
+import ChatScreen from "../screens/chat/ChatScreen";
+import ChatItemScreen from "../screens/chat/ChatItemScreen";
 import ResortList from "../screens/resort/ResortList";
 import DetailResort from "../screens/resort/DetailResort";
 import ListApartment from "../screens/apartment/ListApartment";
@@ -29,6 +29,7 @@ import PaymentScreen from "../screens/paymentProcess/PaymentScreen";
 import BookingConfirm from "../screens/bookingConfirm/BookingConfirm";
 import BookedApartment from "../screens/bookedApartment/BookedApartment";
 import ManageRevervation from "../screens/ManageRevervation/ManageRevervation";
+import FavoriteScreen from "../screens/favorite/FavoriteScreen";
 // import AllScreen from "../screens/DestinationScreen/AllScreen";
 
 const Stack = createStackNavigator();
@@ -38,6 +39,9 @@ function Navigation() {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Loading" component={LoadingScreen} />
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Profile" component={ProfileScreen} />
+        <Stack.Screen name="Favorite" component={FavoriteScreen} />
         <Stack.Screen name="ManageRevervation" component={ManageRevervation} />
         <Stack.Screen name="BookedApartment" component={BookedApartment} />
         <Stack.Screen name="BookingConfirm" component={BookingConfirm} />
@@ -51,7 +55,6 @@ function Navigation() {
           name="ImageFullApartment"
           component={ImageFullApartment}
         />
-        <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="HotelDetailScreen" component={HotelDetailScreen} />
         <Stack.Screen name="ChatScreen" component={ChatScreen} />
         <Stack.Screen name="ChatItemScreen" component={ChatItemScreen} />

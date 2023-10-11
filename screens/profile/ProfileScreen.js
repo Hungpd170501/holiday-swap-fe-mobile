@@ -13,7 +13,7 @@ export default function ProfileScreen() {
         <View>
           <Image
             className="w-[50px] h-[50px] rounded-full"
-            source={require("../assets/images/avt.jpg")}
+            source={require("../../assets/images/avt.jpg")}
           />
         </View>
         <View className="ml-[5px]">

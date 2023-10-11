@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { ScrollView, Text } from "react-native";
 import { View } from "react-native-animatable";
-import SearchBar from "../components/SearchBar";
+import SearchBar from "../components/search/SearchBar";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import clsx from "clsx";
-import FrequentlyVisited from "../components/FrequentlyVisited";
+import FrequentlyVisited from "../components/Home/FrequentlyVisited";
 
 export default function ListDestinationScreen() {
   const [selectedTab, setSelectedTab] = useState("All");

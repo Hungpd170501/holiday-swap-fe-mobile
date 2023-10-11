@@ -1,20 +1,20 @@
 import React from "react";
 import { StatusBar, TouchableOpacity } from "react-native";
 import { ScrollView, View, Text, SafeAreaView } from "react-native";
-import SearchBar from "../components/SearchBar";
-import FrequentlyVisited from "../components/FrequentlyVisited";
-import InputDate from "../components/Home/InputDate";
-import InputRoomGuest from "../components/Home/InputRoomGuest";
-import CardExplore from "../components/Home/cardExplore/CardExplore";
-import AvtHeader from "../components/Home/AvtHeader";
+import SearchBar from "../../components/search/SearchBar";
+import FrequentlyVisited from "../../components/Home/FrequentlyVisited";
+import InputDate from "../../components/Home/InputDate";
+import InputRoomGuest from "../../components/Home/InputRoomGuest";
+import CardExplore from "../../components/Home/cardExplore/CardExplore";
+import AvtHeader from "../../components/Home/AvtHeader";
 
 const HomeScreen = () => {
   return (
     <SafeAreaView className="flex-1 bg-white">
       <StatusBar backgroundColor="#61dafb" />
+      <AvtHeader />
       <ScrollView showsVerticalScrollIndicator={false} className="">
         {/* Avatar, Bell icon */}
-        <AvtHeader />
         {/* Search */}
         <View>
           <SearchBar />

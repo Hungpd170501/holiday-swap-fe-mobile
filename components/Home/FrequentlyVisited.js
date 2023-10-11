@@ -17,7 +17,7 @@ const FrequentlyVisited = () => {
         <View className="mt-3">
           <View className="flex">
             <Image
-              source={require("../assets/images/hanoi.jpg")}
+              source={require("../../assets/images/hanoi.jpg")}
               className="h-40 w-44 rounded-lg"
             />
             <Text className="text-gray-800 text-lg font-bold">Ha Noi</Text>
@@ -35,7 +35,7 @@ const FrequentlyVisited = () => {
         <View className="mt-3">
           <View className="flex">
             <Image
-              source={require("../assets/images/vinhhalong.jpg")}
+              source={require("../../assets/images/vinhhalong.jpg")}
               className="h-40 w-44 rounded-lg"
             />
             <Text className="text-gray-800 text-lg font-bold">
@@ -55,7 +55,7 @@ const FrequentlyVisited = () => {
         <View className="mt-3">
           <View className="flex">
             <Image
-              source={require("../assets/images/daklak.jpg")}
+              source={require("../../assets/images/daklak.jpg")}
               className="h-40 w-44 rounded-lg"
             />
             <Text className="text-gray-800 text-lg font-bold">
