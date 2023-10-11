@@ -30,6 +30,8 @@ import BookingConfirm from "../screens/bookingConfirm/BookingConfirm";
 import BookedApartment from "../screens/bookedApartment/BookedApartment";
 import ManageRevervation from "../screens/ManageRevervation/ManageRevervation";
 import FavoriteScreen from "../screens/favorite/FavoriteScreen";
+import NotificationScreen from "../screens/notification/NotificationScreen";
+import Wallet from "../screens/wallet/Wallet";
 // import AllScreen from "../screens/DestinationScreen/AllScreen";
 
 const Stack = createStackNavigator();
@@ -39,6 +41,8 @@ function Navigation() {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Loading" component={LoadingScreen} />
+        <Stack.Screen name="Wallet" component={Wallet} />
+        <Stack.Screen name="Notification" component={NotificationScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
         <Stack.Screen name="Favorite" component={FavoriteScreen} />
