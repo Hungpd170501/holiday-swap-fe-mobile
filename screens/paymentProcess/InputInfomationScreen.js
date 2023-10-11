@@ -122,7 +122,7 @@ export default function InputInfomationScreen() {
           </View>
         </View>
       </ScrollView>
-      <View className=" bg-white border-t  border-gray-300 flex flex-row items-center justify-between px-3 h-16">
+      <View className="border-t  border-gray-300 flex flex-row items-center justify-between px-3 h-16">
         <View className="w-[48%]">
           <View className="flex flex-row items-center">
             <Text className="text-red-500 line-through mr-1 text-[20px] font-bold">

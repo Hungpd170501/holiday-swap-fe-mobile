@@ -1,10 +1,12 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
-import HomeScreen from "../screens/HomeScreen";
+import HomeScreen from "../screens/home/HomeScreen";
 import ListDestinationScreen from "../screens/ListDestinationScreen";
 import { Entypo } from "@expo/vector-icons";
-import ProfileScreen from "../screens/ProfileScreen";
+import { AntDesign } from "@expo/vector-icons";
+import ProfileScreen from "../screens/profile/ProfileScreen";
+import FavoriteScreen from "../screens/favorite/FavoriteScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -22,13 +24,15 @@ const TabNavigation = () => {
           if (route.name === "Home") {
             iconName = "home";
           } else if (route.name === "ListDestination") {
-            iconName = "shop";
+            iconName = "book";
           } else if (route.name === "Profile") {
             iconName = "user";
+          } else if (route.name === "Favorite") {
+            iconName = "hearto";
           }
 
           return (
-            <Entypo
+            <AntDesign
               name={iconName}
               size={size}
               color={iconColor}
@@ -43,9 +47,15 @@ const TabNavigation = () => {
           <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen name="Homes" component={HomeScreen} />
             <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
+            <Stack.Screen name="Favorite" component={FavoriteScreen} />
           </Stack.Navigator>
         )}
       </Tab.Screen>
+      <Tab.Screen
+        name="Favorite"
+        component={FavoriteScreen}
+        options={{ tabBarLabel: "" }}
+      />
       <Tab.Screen
         name="ListDestination"
         component={ListDestinationScreen}

@@ -1,10 +1,10 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { ScrollView, Text, View, SafeAreaView } from "react-native";
-import ButtonBack from "../components/ButtonBack";
+import ButtonBack from "../../components/button/ButtonBack";
 import { useNavigation } from "@react-navigation/native";
-import Input from "../components/Input";
-import Button from "../components/Button";
+import Input from "../../components/input/Input";
+import Button from "../../components/button/Button";
 
 const CreateNewPassword = () => {
   const navigation = useNavigation();

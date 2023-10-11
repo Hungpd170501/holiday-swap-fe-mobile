@@ -11,10 +11,8 @@ export default function ListApartment() {
 
   return (
     <>
+      <AvtHeader />
       <ScrollView>
-        <View>
-          <AvtHeader />
-        </View>
         <View className="px-4">
           <CardApartment />
         </View>

@@ -2,8 +2,8 @@ import React from "react";
 import { TextInput, TouchableOpacity } from "react-native";
 import { Text } from "react-native";
 import { View } from "react-native";
-import BtnLoginGoogle from "../components/BtnLoginGoogle";
-import InputEmail from "../components/InputEmail";
+import BtnLoginGoogle from "../../components/button/BtnLoginGoogle";
+import InputEmail from "../../components/input/InputEmail";
 import { Image } from "react-native";
 
 export default function CreateAccountScreen({ navigation }) {
@@ -36,7 +36,7 @@ export default function CreateAccountScreen({ navigation }) {
               <View className="flex-row items-center">
                 <Image
                   className="-ml-[22px]"
-                  source={require("../assets/images/Google.png")}
+                  source={require("../../assets/images/Google.png")}
                 />
                 <Text className="text-[16px] font-medium">
                   Continue with Google
@@ -47,7 +47,7 @@ export default function CreateAccountScreen({ navigation }) {
               <View className="flex-row items-center ">
                 <Image
                   className="mr-[8px]"
-                  source={require("../assets/images/Facebook.png")}
+                  source={require("../../assets/images/Facebook.png")}
                 />
                 <Text className="text-[16px] font-medium">
                   Continue with Facebook

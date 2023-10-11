@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { Text, TextInput, TouchableOpacity } from "react-native";
 import { View } from "react-native";
 import AntDesign from "@expo/vector-icons/AntDesign";
-import InputEmail from "../components/InputEmail";
-import InputPassword from "../components/InputPassword";
-import BtnLoginGoogle from "../components/BtnLoginGoogle";
+import InputEmail from "../../components/input/InputEmail";
+import InputPassword from "../../components/input/InputPassword";
+import BtnLoginGoogle from "../../components/button/BtnLoginGoogle";
 import { useNavigation } from "@react-navigation/native";
-import SearchBar from "../components/SearchBar";
+import SearchBar from "../../components/search/SearchBar";
 import { Image } from "react-native";
 import { ScrollView } from "react-native";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
@@ -32,7 +32,7 @@ export default function ChatItemScreen() {
       <View className="flex-row mb-[40px] mt-[40px]">
         <Image
           className="mr-[8px] rounded-full w-[60] h-[60] mb-[20px]  "
-          source={require("../assets/images/avtChat4.jpg")}
+          source={require("../../assets/images/avtChat4.jpg")}
         />
         <View className="w-auto h-auto bg-slate-200 px-6 py-10 rounded-2xl">
           <Text>Tôi có một khu nghỉ dưỡng cần trao đổi</Text>
@@ -44,13 +44,13 @@ export default function ChatItemScreen() {
         </View>
         <Image
           className="ml-[8px] rounded-full w-[60] h-[60] mb-[20px]  "
-          source={require("../assets/images/avtChat4.jpg")}
+          source={require("../../assets/images/avtChat4.jpg")}
         />
       </View>
       <View className="flex-row mb-[40px]">
         <Image
           className="ml-[8px] rounded-full w-[60] h-[60] mb-[20px]  "
-          source={require("../assets/images/avtChat4.jpg")}
+          source={require("../../assets/images/avtChat4.jpg")}
         />
         <View className="w-auto h-auto bg-slate-200 px-6 py-10 rounded-2xl">
           <Text>Tôi có một khu nghỉ dưỡng cần trao đổi</Text>
@@ -62,7 +62,7 @@ export default function ChatItemScreen() {
         </View>
         <Image
           className="ml-[8px] rounded-full w-[60] h-[60] mb-[20px]  "
-          source={require("../assets/images/avtChat4.jpg")}
+          source={require("../../assets/images/avtChat4.jpg")}
         />
       </View>
       <View className="flex-row items-center">
