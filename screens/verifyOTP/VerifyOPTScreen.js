@@ -10,11 +10,11 @@ import {
   Pressable,
 } from "react-native";
 import * as Icon from "react-native-feather";
-import OTPInputField from "../components/OTPInputField";
-import Button from "../components/Button";
+import OTPInputField from "../../components/input/OTPInputField";
+import Button from "../../components/button/Button";
 import { useNavigation } from "@react-navigation/native";
-import ModalConfirm from "../components/ModalConfirm";
-import ButtonBack from "../components/ButtonBack";
+import ModalConfirm from "../../components/modal/ModalConfirm";
+import ButtonBack from "../../components/button/ButtonBack";
 
 const VerifyOPTScreen = () => {
   const navigation = useNavigation();

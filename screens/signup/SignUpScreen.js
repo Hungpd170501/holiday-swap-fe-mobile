@@ -8,10 +8,10 @@ import {
   TouchableOpacity,
 } from "react-native";
 import * as Icon from "react-native-feather";
-import Input from "../components/Input";
-import Button from "../components/Button";
+import Input from "../../components/input/Input";
+import Button from "../../components/button/Button";
 import { useNavigation } from "@react-navigation/native";
-import ButtonBack from "../components/ButtonBack";
+import ButtonBack from "../../components/button/ButtonBack";
 
 const SignUpScreen = () => {
   const navigation = useNavigation();

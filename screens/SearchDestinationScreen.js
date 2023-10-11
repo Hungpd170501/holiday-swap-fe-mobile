@@ -4,12 +4,12 @@ import { View } from "react-native";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import EvilIcons from "@expo/vector-icons/EvilIcons";
 import { useNavigation } from "@react-navigation/native";
-import SearchBar from "../components/SearchBar";
-import ImgDetailHotel from "../components/ImgDetailHotel";
-import FrequentlyVisited from "../components/FrequentlyVisited";
+import SearchBar from "../components/search/SearchBar";
+import ImgDetailHotel from "../components/input/ImgDetailHotel";
+import FrequentlyVisited from "../components/Home/FrequentlyVisited";
 import { ScrollView } from "react-native";
-import ModalDate from "../components/ModalDate";
-import ModalLocation from "../components/ModalLocation";
+import ModalDate from "../components/modal/ModalDate";
+import ModalLocation from "../components/modal/ModalLocation";
 
 export default function SearchDestinationScreen() {
   const navigation = useNavigation();

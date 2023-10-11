@@ -12,6 +12,7 @@ import {
   TouchableOpacity,
   Dimensions,
 } from "react-native";
+import { ScrollView } from "react-native";
 
 const { width, height } = Dimensions.get("window");
 
@@ -20,28 +21,28 @@ const COLORS = { primary: "#fff", black: "#2196F3" };
 const slides = [
   {
     id: "1",
-    image: require("../assets/images/image1.png"),
+    image: require("../../assets/images/image1.png"),
     title: "Best travel destinations \n in Vietnam",
     appName: "HolidaySwap",
     subtitle: "“Let us guide your adventure.”",
   },
   {
     id: "2",
-    image: require("../assets/images/image2.png"),
+    image: require("../../assets/images/image2.png"),
     title: "Meet the needs of the \n holidays",
     appName: "HolidaySwap",
     subtitle: "“Turn every trip into an amazing adventure.”",
   },
   {
     id: "3",
-    image: require("../assets/images/image3.png"),
+    image: require("../../assets/images/image3.png"),
     title: "Go on holiday with a \nsmile",
     appName: "HolidaySwap",
     subtitle: "“Easy, fast, and convenient exchange.”",
   },
   {
     id: "4",
-    image: require("../assets/images/image4.png"),
+    image: require("../../assets/images/image4.png"),
     title: "We are here to make your \nholiday easier",
     appName: "HolidaySwap",
     subtitle: "“Experience the world through our app.”",
@@ -78,15 +79,6 @@ const OnboardingScreen = ({ navigation }) => {
     setCurrentSlideIndex(currentIndex);
   };
 
-  // const goToNextSlide = () => {
-  //   const nextSlideIndex = currentSlideIndex + 1;
-  //   if (nextSlideIndex != slides.length) {
-  //     const offset = nextSlideIndex * width;
-  //     ref?.current.scrollToOffset({ offset });
-  //     setCurrentSlideIndex(currentSlideIndex + 1);
-  //   }
-  // };
-
   const skip = () => {
     const lastSlideIndex = slides.length - 1;
     const offset = lastSlideIndex * width;
@@ -100,99 +92,102 @@ const OnboardingScreen = ({ navigation }) => {
         style={{
           height: height * 0.25,
           justifyContent: "space-between",
-          paddingHorizontal: 20,
         }}
       >
-        <View style={{ marginBottom: 20 }}>
-          {currentSlideIndex == slides.length - 1 ? (
-            <View
-              style={{
-                justifyContent: "center",
-                alignItems: "center",
-                marginTop: 70,
-              }}
-            >
-              <TouchableOpacity
+        <ScrollView>
+          <View style={{ marginBottom: 20 }}>
+            {currentSlideIndex == slides.length - 1 ? (
+              <View
                 style={{
-                  backgroundColor: "#2196F3",
-                  width: 315,
-                  height: 50,
                   justifyContent: "center",
                   alignItems: "center",
-                  borderRadius: 30,
+                  marginTop: 70,
                 }}
-                onPress={() => navigation.replace("WelcomeBackScreen")}
               >
-                <Text
+                <TouchableOpacity
                   style={{
-                    fontWeight: "bold",
-                    fontSize: 15,
-                    color: "white",
+                    backgroundColor: "#2196F3",
+                    width: 315,
+                    height: 50,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRadius: 30,
                   }}
+                  onPress={() => navigation.replace("WelcomeBackScreen")}
                 >
-                  GET STARTED
-                </Text>
-              </TouchableOpacity>
-              <View className="flex-row mt-5">
-                <Text style={{ fontSize: 16 }}>Dont’t have an account?</Text>
-                <TouchableOpacity>
                   <Text
-                    style={{ fontSize: 16, color: "#2196F3", marginLeft: 3 }}
+                    style={{
+                      fontWeight: "bold",
+                      fontSize: 15,
+                      color: "white",
+                    }}
                   >
-                    Register
+                    GET STARTED
                   </Text>
                 </TouchableOpacity>
+                <View className="flex-row mt-5">
+                  <Text style={{ fontSize: 16 }}>Dont’t have an account?</Text>
+                  <TouchableOpacity>
+                    <Text
+                      style={{ fontSize: 16, color: "#2196F3", marginLeft: 3 }}
+                    >
+                      Register
+                    </Text>
+                  </TouchableOpacity>
+                </View>
               </View>
-            </View>
-          ) : (
-            <View className="flex-row justify-between items-center mt-24">
-              <View className="flex-row items-center">
-                <TouchableOpacity
-                  activeOpacity={0.8}
-                  style={[styles.btn]}
-                  onPress={skip}
-                >
-                  <AntDesign name="right" size={20} color="#fff" />
-                </TouchableOpacity>
-                <Text style={{ marginLeft: 10 }}>Skip</Text>
+            ) : (
+              <View className="flex-row justify-between items-center mt-24 px-5">
+                <View className="flex-row items-center">
+                  <TouchableOpacity
+                    activeOpacity={0.8}
+                    style={[styles.btn]}
+                    onPress={skip}
+                  >
+                    <AntDesign name="right" size={20} color="#fff" />
+                  </TouchableOpacity>
+                  <Text style={{ marginLeft: 10 }}>Skip</Text>
+                </View>
+                <View className="flex-row ">
+                  {slides.map((_, index) => (
+                    <View
+                      key={index}
+                      style={[
+                        styles.indicator,
+                        currentSlideIndex == index && {
+                          backgroundColor: COLORS.black,
+                          width: 26,
+                          height: 8,
+                        },
+                      ]}
+                    />
+                  ))}
+                </View>
               </View>
-              <View className="flex-row ">
-                {slides.map((_, index) => (
-                  <View
-                    key={index}
-                    style={[
-                      styles.indicator,
-                      currentSlideIndex == index && {
-                        backgroundColor: COLORS.black,
-                        width: 26,
-                        height: 8,
-                      },
-                    ]}
-                  />
-                ))}
-              </View>
-            </View>
-          )}
-        </View>
+            )}
+          </View>
+        </ScrollView>
       </View>
     );
   };
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.primary }}>
-      <StatusBar backgroundColor={COLORS.primary} />
-      <FlatList
-        ref={ref}
-        onMomentumScrollEnd={updateCurrentSlideIndex}
-        contentContainerStyle={{ height: height * 0.75 }}
-        showsHorizontalScrollIndicator={false}
-        horizontal
-        data={slides}
-        pagingEnabled
-        renderItem={({ item }) => <Slide item={item} />}
-      />
-      <Footer />
-    </SafeAreaView>
+    <>
+      <ScrollView style={{ flex: 1, backgroundColor: COLORS.primary }}>
+        <StatusBar backgroundColor={COLORS.primary} />
+        <FlatList
+          ref={ref}
+          onMomentumScrollEnd={updateCurrentSlideIndex}
+          contentContainerStyle={{ height: height * 0.75 }}
+          showsHorizontalScrollIndicator={false}
+          horizontal
+          data={slides}
+          pagingEnabled
+          renderItem={({ item }) => <Slide item={item} />}
+        />
+        <Footer />
+      </ScrollView>
+    </>
   );
 };
 
