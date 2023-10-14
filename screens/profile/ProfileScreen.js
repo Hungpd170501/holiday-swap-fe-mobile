@@ -17,7 +17,9 @@ export default function ProfileScreen() {
   return (
     <View>
       <View className="bg-blue-500 w-full h-[90px] justify-end flex flex-row items-center px-5">
-        <AntDesign name="infocirlceo" size={20} color="white" />
+        <TouchableOpacity onPress={() => navigation.navigate("HelpCenter")}>
+          <AntDesign name="infocirlceo" size={20} color="white" />
+        </TouchableOpacity>
       </View>
       <ScrollView>
         <View className="flex flex-col h-[200px] w-full absolute bg-blue-500 items-center">
@@ -41,7 +43,9 @@ export default function ProfileScreen() {
               <Text className="py-3">
                 Upgrade your account easily and quickly at
               </Text>
-              <TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => navigation.navigate("GuestToMember")}
+              >
                 <Text className="text-blue-500 font-bold text-[20px]">
                   Upgrade
                 </Text>
@@ -111,7 +115,7 @@ export default function ProfileScreen() {
           <View className=" flex flex-col gap-1">
             <TouchableOpacity className="flex flex-row items-center gap-3">
               <MaterialCommunityIcons name="home-plus-outline" size={20} />
-              <Text>Posting apartment</Text>
+              <Text>Your apartment</Text>
             </TouchableOpacity>
             <TouchableOpacity className="flex flex-row items-center gap-3">
               <AntDesign color="red" name="logout" size={20} />
