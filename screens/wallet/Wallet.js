@@ -1,4 +1,5 @@
-import { AntDesign, FontAwesome5 } from "@expo/vector-icons";
+import { AntDesign, FontAwesome5, Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { TouchableOpacity } from "react-native";
 import { ScrollView } from "react-native";
@@ -7,22 +8,30 @@ import { Text } from "react-native";
 import { View } from "react-native";
 
 export default function Wallet() {
+  const navigation = useNavigation();
   return (
     <View>
-      <View className="flex flex-col justify-center h-[30%] w-full  bg-blue-500 items-center">
-        <Image
-          className="w-[80px] h-[80px] rounded-full"
-          source={require("../../assets/images/avt.jpg")}
-        />
-        <Text className="text-[30px] font-bold text-white py-2">
-          Bui Tri Thuc
-        </Text>
-
-        <Text className="text-yellow-400">Membership</Text>
+      <View className="bg-blue-500 w-full h-[100px]  flex flex-row items-center justify-start px-5">
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <AntDesign name="arrowleft" size={30} color="white" />
+        </TouchableOpacity>
+        <Text className="ml-8 text-[20px] text-white">Wallet</Text>
       </View>
+
       <ScrollView>
-        <View className="mb-52">
-          <View className="px-4 py-4 bg-white">
+        <View className="flex flex-col h-[200px] w-full  bg-blue-500 items-center">
+          <Image
+            className="w-[80px] h-[80px] rounded-full"
+            source={require("../../assets/images/avt.jpg")}
+          />
+          <Text className="text-[30px] font-bold text-white py-2">
+            Bui Tri Thuc
+          </Text>
+          <Text className="text-yellow-400">Membership</Text>
+        </View>
+
+        <View className="mb-28">
+          <View className="px-4  py-4 bg-white">
             <View className="flex flex-row items-center justify-between">
               <Text className="text-[30px] font-bold">Point</Text>
               <View className="flex flex-row items-center">
@@ -40,7 +49,7 @@ export default function Wallet() {
               <Text className="text-white">Recharge</Text>
             </TouchableOpacity>
           </View>
-          <View className="px-4 py-4 bg-white mt-3">
+          <View className="pr-6 pl-3 py-4 bg-white mt-3">
             <View className="flex flex-row justify-start">
               <Text className="font-bold">View transaction history</Text>
             </View>

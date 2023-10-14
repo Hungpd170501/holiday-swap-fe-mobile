@@ -13,7 +13,9 @@ export default function BookingConfirm() {
   return (
     <View className="flex-1">
       <View className="bg-blue-500 w-full h-[100px]  flex flex-row items-center justify-start px-5">
-        <Ionicons name="close-outline" size={30} color="white" />
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Ionicons name="close-outline" size={30} color="white" />
+        </TouchableOpacity>
         <Text className="ml-8 text-[20px] text-white">
           Confirm Booking apartment
         </Text>
@@ -37,7 +39,10 @@ export default function BookingConfirm() {
               </View>
             </View>
           </View>
-          <View className="border border-gray-400 rounded-md px-3 py-3 ">
+          <TouchableOpacity
+            onPress={() => navigation.navigate("DetailApartment")}
+            className="border border-gray-400 rounded-md px-3 py-3 "
+          >
             <View className="flex flex-row items-center ">
               <Image
                 className="w-[100px] h-[100px]"
@@ -78,7 +83,7 @@ export default function BookingConfirm() {
                 </Text>
               </TouchableOpacity>
             </View>
-          </View>
+          </TouchableOpacity>
         </View>
       </ScrollView>
     </View>

@@ -43,25 +43,25 @@ export default function CardListResort() {
             <Text className="text-[12px]">4 Reviews</Text>
           </View>
           <View>
-            <View className="flex flex-row">
+            <View className="flex flex-row mb-3">
               <EvilIcons name="location" size={25} color="gray" />
               <Text className="text-[13px] pr-5">
                 Binh Thanh district, 4km from the center
               </Text>
             </View>
-            <View className="flex flex-row items-center">
+            {/* <View className="flex flex-row items-center">
               <Ionicons name="leaf-outline" size={25} color="gray" />
               <Text className="text-[13px]">Sustainable Tourism </Text>
             </View>
             <Text className="bg-blue-500 text-white text-center w-full px-3 my-3">
               Limited time offer
-            </Text>
+            </Text> */}
           </View>
           <View>
             <Text>30 Apartment - 54m2 </Text>
             <Text>Price for 9 nights for 2 adults</Text>
           </View>
-          <View className="my-3">
+          <View className="my-1">
             <View className="flex flex-row justify-end">
               <Text className="text-red-500 line-through px-1 justify-end text-[15px]">
                 25000
@@ -69,7 +69,7 @@ export default function CardListResort() {
               <FontAwesome5 name="coins" size={20} color="orange" />
             </View>
             <View className="flex flex-row justify-end items-center">
-              <Text className="justify-end text-[20px] font-bold py-3 px-1">
+              <Text className="justify-end text-[20px] font-bold py-1 px-1">
                 15000
               </Text>
               <FontAwesome5 name="coins" size={25} color="orange" />
@@ -104,25 +104,25 @@ export default function CardListResort() {
             <Text className="text-[12px]">4 Reviews</Text>
           </View>
           <View>
-            <View className="flex flex-row">
+            <View className="flex flex-row mb-3">
               <EvilIcons name="location" size={25} color="gray" />
               <Text className="text-[13px] pr-5">
                 Binh Thanh district, 4km from the center
               </Text>
             </View>
-            <View className="flex flex-row items-center">
+            {/* <View className="flex flex-row items-center">
               <Ionicons name="leaf-outline" size={25} color="gray" />
               <Text className="text-[13px]">Sustainable Tourism </Text>
             </View>
             <Text className="bg-blue-500 text-white text-center w-full px-3 my-3">
               Limited time offer
-            </Text>
+            </Text> */}
           </View>
           <View>
             <Text>30 Apartment - 54m2 </Text>
             <Text>Price for 9 nights for 2 adults</Text>
           </View>
-          <View className="  my-3">
+          <View className="my-1">
             <View className="flex flex-row justify-end">
               <Text className="text-red-500 line-through px-1 justify-end text-[15px]">
                 10000
@@ -130,7 +130,7 @@ export default function CardListResort() {
               <FontAwesome5 name="coins" size={20} color="orange" />
             </View>
             <View className="flex flex-row justify-end items-center">
-              <Text className="justify-end text-[20px] font-bold py-3 px-1">
+              <Text className="justify-end text-[20px] font-bold py-1 px-1">
                 5000
               </Text>
               <FontAwesome5 name="coins" size={25} color="orange" />
@@ -160,25 +160,25 @@ export default function CardListResort() {
             <Text className="text-[12px]">4 Reviews</Text>
           </View>
           <View>
-            <View className="flex flex-row">
+            <View className="flex flex-row mb-3">
               <EvilIcons name="location" size={25} color="gray" />
               <Text className="text-[13px] pr-5">
                 Binh Thanh district, 4km from the center
               </Text>
             </View>
-            <View className="flex flex-row items-center">
+            {/* <View className="flex flex-row items-center">
               <Ionicons name="leaf-outline" size={25} color="gray" />
               <Text className="text-[13px]">Sustainable Tourism </Text>
             </View>
             <Text className="bg-blue-500 text-white text-center w-full px-3 my-3">
               Limited time offer
-            </Text>
+            </Text> */}
           </View>
           <View>
             <Text>30 Apartment - 54m2 </Text>
             <Text>Price for 9 nights for 2 adults</Text>
           </View>
-          <View className="  my-3">
+          <View className="my-1">
             <View className="flex flex-row justify-end">
               <Text className="text-red-500 line-through px-1 justify-end text-[15px]">
                 13000
@@ -186,7 +186,7 @@ export default function CardListResort() {
               <FontAwesome5 name="coins" size={20} color="orange" />
             </View>
             <View className="flex flex-row justify-end items-center">
-              <Text className="justify-end text-[20px] font-bold py-3 px-1">
+              <Text className="justify-end text-[20px] font-bold py-1 px-1">
                 4900
               </Text>
               <FontAwesome5 name="coins" size={25} color="orange" />
@@ -216,25 +216,25 @@ export default function CardListResort() {
             <Text className="text-[12px]">4 Reviews</Text>
           </View>
           <View>
-            <View className="flex flex-row">
+            <View className="flex flex-row mb-3">
               <EvilIcons name="location" size={25} color="gray" />
               <Text className="text-[13px] pr-5">
                 Binh Thanh district, 4km from the center
               </Text>
             </View>
-            <View className="flex flex-row items-center">
+            {/* <View className="flex flex-row items-center">
               <Ionicons name="leaf-outline" size={25} color="gray" />
               <Text className="text-[13px]">Sustainable Tourism </Text>
             </View>
             <Text className="bg-blue-500 text-white text-center w-full px-3 my-3">
               Limited time offer
-            </Text>
+            </Text> */}
           </View>
           <View>
             <Text>30 Apartment - 54m2 </Text>
             <Text>Price for 9 nights for 2 adults</Text>
           </View>
-          <View className="  my-3">
+          <View className="my-1">
             <View className="flex flex-row justify-end">
               <Text className="text-red-500 line-through px-1 justify-end text-[15px]">
                 14000
@@ -242,7 +242,7 @@ export default function CardListResort() {
               <FontAwesome5 name="coins" size={20} color="orange" />
             </View>
             <View className="flex flex-row justify-end items-center">
-              <Text className="justify-end text-[20px] font-bold py-3 px-1">
+              <Text className="justify-end text-[20px] font-bold py-1 px-1">
                 4200
               </Text>
               <FontAwesome5 name="coins" size={25} color="orange" />

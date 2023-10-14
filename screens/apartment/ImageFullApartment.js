@@ -5,8 +5,10 @@ import AvtHeader from "../../components/Home/AvtHeader";
 import { ScrollView } from "react-native";
 import { TouchableOpacity } from "react-native";
 import { Text } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 export default function ImageFullApartment() {
+  const navigation = useNavigation();
   return (
     <>
       <View>
@@ -89,9 +91,12 @@ export default function ImageFullApartment() {
         </View>
       </ScrollView>
       <View className="mx-3 my-2">
-        <TouchableOpacity className="w-full bg-blue-500 ">
+        <TouchableOpacity
+          onPress={() => navigation.navigate("DetailApartment")}
+          className="w-full bg-blue-500 "
+        >
           <Text className="text-center py-4 text-white text-[17px] font-bold">
-            See vacant apartments
+            Back to detail
           </Text>
         </TouchableOpacity>
       </View>
