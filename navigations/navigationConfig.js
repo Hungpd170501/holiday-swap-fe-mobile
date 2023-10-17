@@ -30,6 +30,14 @@ import BookingConfirm from "../screens/bookingConfirm/BookingConfirm";
 import BookedApartment from "../screens/bookedApartment/BookedApartment";
 import ManageRevervation from "../screens/ManageRevervation/ManageRevervation";
 import FavoriteScreen from "../screens/favorite/FavoriteScreen";
+import NotificationScreen from "../screens/notification/NotificationScreen";
+import Wallet from "../screens/wallet/Wallet";
+import HelpCenter from "../screens/helpCenter/HelpCenter";
+import GuestToMember from "../screens/guestToMember/GuestToMember";
+import Landing from "../screens/addApartment/Landing";
+import WellcomeBackAdd from "../screens/addApartment/WellcomeBackAdd";
+import StartAdd from "../screens/addApartment/StartAdd";
+import StepAdd1 from "../screens/addApartment/StepAdd1";
 // import AllScreen from "../screens/DestinationScreen/AllScreen";
 
 const Stack = createStackNavigator();
@@ -39,8 +47,19 @@ function Navigation() {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Loading" component={LoadingScreen} />
+        <Stack.Screen name="DetailApartment" component={DetailApartment} />
         <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Landing" component={Landing} />
+        <Stack.Screen name="StartAdd" component={StartAdd} />
+        <Stack.Screen name="StepAdd1" component={StepAdd1} />
+        <Stack.Screen name="WellcomeBackAdd" component={WellcomeBackAdd} />
+        <Stack.Screen name="GuestToMember" component={GuestToMember} />
+        <Stack.Screen name="ChatItemScreen" component={ChatItemScreen} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
+        <Stack.Screen name="ImageFullResort" component={ImageFullResort} />
+        <Stack.Screen name="HelpCenter" component={HelpCenter} />
+        <Stack.Screen name="Wallet" component={Wallet} />
+        <Stack.Screen name="Notification" component={NotificationScreen} />
         <Stack.Screen name="Favorite" component={FavoriteScreen} />
         <Stack.Screen name="ManageRevervation" component={ManageRevervation} />
         <Stack.Screen name="BookedApartment" component={BookedApartment} />
@@ -50,18 +69,15 @@ function Navigation() {
           name="InputInfomationScreen"
           component={InputInfomationScreen}
         />
-        <Stack.Screen name="ImageFullResort" component={ImageFullResort} />
         <Stack.Screen
           name="ImageFullApartment"
           component={ImageFullApartment}
         />
         <Stack.Screen name="HotelDetailScreen" component={HotelDetailScreen} />
         <Stack.Screen name="ChatScreen" component={ChatScreen} />
-        <Stack.Screen name="ChatItemScreen" component={ChatItemScreen} />
         <Stack.Screen name="ResortList" component={ResortList} />
         <Stack.Screen name="DetailResort" component={DetailResort} />
         <Stack.Screen name="ListApartment" component={ListApartment} />
-        <Stack.Screen name="DetailApartment" component={DetailApartment} />
         <Stack.Screen
           name="ListDestinationScreen"
           component={ListDestinationScreen}

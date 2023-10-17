@@ -16,7 +16,9 @@ export default function BookedApartment() {
   return (
     <View className="flex-1">
       <View className="bg-blue-500 w-full h-[100px]  flex flex-row items-center justify-start px-5">
-        <Ionicons name="close-outline" size={30} color="white" />
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Ionicons name="close-outline" size={30} color="white" />
+        </TouchableOpacity>
         <Text className="ml-8 text-[20px] text-white">
           Booking apartment for you
         </Text>
