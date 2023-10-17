@@ -4,7 +4,7 @@ import { Text } from "react-native";
 import { View } from "react-native";
 import AvtHeader from "../../components/Home/AvtHeader";
 import { ScrollView } from "react-native";
-import CardApartment from "./CardApartment";
+import CardApartment from "../../components/apartment/CardApartment";
 
 export default function ListApartment() {
   const navigation = useNavigation();

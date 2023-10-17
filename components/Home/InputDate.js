@@ -12,7 +12,6 @@ export default function InputDate() {
   const [visible, setVisible] = useState(false);
 
   const toggleBottomNavigationView = () => {
-    //Toggling the visibility state of the bottom sheet
     setVisible(!visible);
   };
   return (
@@ -31,13 +30,9 @@ export default function InputDate() {
       </TouchableOpacity>
       <BottomSheet
         visible={visible}
-        //setting the visibility state of the bottom shee
         onBackButtonPress={toggleBottomNavigationView}
-        //Toggling the visibility state on the click of the back botton
         onBackdropPress={toggleBottomNavigationView}
-        //Toggling the visibility state on the clicking out side of the sheet
       >
-        {/*Bottom Sheet inner View*/}
         <View style={styles.bottomNavigationView}>
           <View
             style={{

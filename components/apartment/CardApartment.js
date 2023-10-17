@@ -96,20 +96,6 @@ export default function CardApartment() {
         <Text className="pt-2">Only one on HolidaySwap</Text>
         <View className="w-full h-[1px] bg-gray-300 mt-2 mb-4"></View>
         <View>
-          <Text>Price for 0n1 night</Text>
-          <View className="flex flex-row items-center gap-4 py-2">
-            <View className="flex flex-row items-center">
-              <Text className="text-red-500 line-through mr-1 text-[15]">
-                2000
-              </Text>
-              <FontAwesome5 name="coins" size={15} color="orange" />
-            </View>
-            <View className="flex flex-row items-center">
-              <Text className="text-[25px] font-bold mr-1">1200</Text>
-              <FontAwesome5 name="coins" size={20} color="orange" />
-            </View>
-            <Text>Taxes and fees included</Text>
-          </View>
           <View>
             <TouchableOpacity className="px-2 w-full border border-blue-500 my-3">
               <Text className="text-blue-500 font-bold text-[20px] py-2 text-center">
@@ -197,20 +183,6 @@ export default function CardApartment() {
         <Text className="pt-2">Only one on HolidaySwap</Text>
         <View className="w-full h-[1px] bg-gray-300 mt-2 mb-4"></View>
         <View>
-          <Text>Price for 0n1 night</Text>
-          <View className="flex flex-row items-center gap-4 py-2">
-            <View className="flex flex-row items-center">
-              <Text className="text-red-500 line-through mr-1 text-[15]">
-                1000
-              </Text>
-              <FontAwesome5 name="coins" size={15} color="orange" />
-            </View>
-            <View className="flex flex-row items-center">
-              <Text className="text-[25px] font-bold mr-1">900</Text>
-              <FontAwesome5 name="coins" size={20} color="orange" />
-            </View>
-            <Text>Taxes and fees included</Text>
-          </View>
           <View>
             <TouchableOpacity className="px-2 w-full border border-blue-500 my-3">
               <Text className="text-blue-500 font-bold text-[20px] py-2 text-center">
@@ -298,20 +270,6 @@ export default function CardApartment() {
         <Text className="pt-2">Only one on HolidaySwap</Text>
         <View className="w-full h-[1px] bg-gray-300 mt-2 mb-4"></View>
         <View>
-          <Text>Price for 0n1 night</Text>
-          <View className="flex flex-row items-center gap-4 py-2">
-            <View className="flex flex-row items-center">
-              <Text className="text-red-500 line-through mr-1 text-[15]">
-                5000
-              </Text>
-              <FontAwesome5 name="coins" size={15} color="orange" />
-            </View>
-            <View className="flex flex-row items-center">
-              <Text className="text-[25px] font-bold mr-1">3000</Text>
-              <FontAwesome5 name="coins" size={20} color="orange" />
-            </View>
-            <Text>Taxes and fees included</Text>
-          </View>
           <View>
             <TouchableOpacity className="px-2 w-full border border-blue-500 my-3">
               <Text className="text-blue-500 font-bold text-[20px] py-2 text-center">

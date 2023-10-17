@@ -7,21 +7,26 @@ import InputDate from "../../components/Home/InputDate";
 import InputRoomGuest from "../../components/Home/InputRoomGuest";
 import CardExplore from "../../components/Home/cardExplore/CardExplore";
 import AvtHeader from "../../components/Home/AvtHeader";
+import CardListResort from "../../components/resort/CardListResort";
+import { useNavigation } from "@react-navigation/native";
+import RecommendResort from "../../components/Home/recommendResort/RecommendResort";
 
 const HomeScreen = () => {
+  const navigation = useNavigation();
   return (
     <SafeAreaView className="flex-1 bg-white">
       <StatusBar backgroundColor="#61dafb" />
       <AvtHeader />
       <ScrollView showsVerticalScrollIndicator={false} className="">
-        {/* Avatar, Bell icon */}
-        {/* Search */}
         <View>
           <SearchBar />
           <InputDate />
           <InputRoomGuest />
           <View className="flex flex-row items-center w-full justify-center">
-            <TouchableOpacity className="px-4 w-full">
+            <TouchableOpacity
+              onPress={() => navigation.navigate("ResortList")}
+              className="px-4 w-full"
+            >
               <Text className=" bg-blue-500 text-center py-3 text-white mt-2 font-bold  border border-gray-300 ">
                 Search
               </Text>
@@ -29,17 +34,12 @@ const HomeScreen = () => {
           </View>
         </View>
 
-        {/* Frequently visited */}
-        <Text className="text-xl font-bold mt-2 mx-2">Frequently visited</Text>
-        <ScrollView
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-          className="flex row"
-        >
-          <FrequentlyVisited />
-        </ScrollView>
+        <Text className="text-xl font-bold py-5 mx-2">
+          The most outstanding resort
+        </Text>
+        <RecommendResort />
         <View>
-          <Text className="text-xl font-bold mt-2 mx-2">Explore further</Text>
+          <Text className="text-xl font-bold  mx-2">Explore further</Text>
           <View>
             <CardExplore />
           </View>
