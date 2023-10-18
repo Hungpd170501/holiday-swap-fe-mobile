@@ -83,7 +83,10 @@ export default function GuestToMember() {
         </View>
       </ScrollView>
       <View className="bg-white w-full h-[13%] border-t border-gray-300 flex flex-col items-center justify-center">
-        <TouchableOpacity className="bg-blue-500 rounded-md px-8 ">
+        <TouchableOpacity
+          onPress={() => navigation.navigate("Landing")}
+          className="bg-blue-500 rounded-md px-8 "
+        >
           <Text className="text-center text-white font-bold py-4">
             Upgrade now
           </Text>

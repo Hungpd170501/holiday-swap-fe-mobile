@@ -19,11 +19,11 @@ export default function SignInScreen() {
   return (
     <ScrollView>
       <View className="flex justify-center items-center">
-        <View className="flex-row items-center justify-center py-10">
+        <View className="flex-row items-center justify-center pt-10">
           <View className="-ml-[130px] mr-[70px]">
             <TouchableOpacity
               className="w-[55px] h-[55px] bg-[#D9D5D5] rounded-full flex justify-center items-center "
-              onPress={() => navigation.navigate("WelcomeBackScreen")}
+              onPress={() => navigation.goBack()}
             >
               <AntDesign name="arrowleft" size={20} color="#AAAAAA" />
             </TouchableOpacity>

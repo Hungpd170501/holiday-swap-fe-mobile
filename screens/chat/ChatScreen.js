@@ -19,25 +19,25 @@ export default function ChatScreen() {
   };
 
   return (
-    <View className="flex justify-between items-center w-full">
-      <View className="flex-row items-center justify-center mt-[70px]">
-        <View className="-ml-[130px] mr-[70px]">
+    <View className="flex-1 bg-white">
+      <View className=" flex-row items-center justify-start px-4 gap-16 py-4">
+        <View>
           <TouchableOpacity
             className="w-[55px] h-[55px] bg-[#D9D5D5] rounded-full flex justify-center items-center "
-            onPress={() => navigation.navigate("WelcomeBackScreen")}
+            onPress={() => navigation.goBack()}
           >
             <AntDesign name="arrowleft" size={20} color="#AAAAAA" />
           </TouchableOpacity>
         </View>
-        <View>
-          <Text className="font-bold text-[24px]">Message</Text>
+        <View className=" flex flex-row items-center justify-center">
+          <Text className="font-bold text-[24px] ">Message</Text>
         </View>
       </View>
       <SearchBar />
 
       <ScrollView
         showsVerticalScrollIndicator={false}
-        className="w-96 mr-[33px] ml-[50px] my-[10px]"
+        className="px-4 w-[95%] py-3"
       >
         <View className="flex-row mr-[100px]">
           <View className="  py-[5px]">
@@ -51,7 +51,7 @@ export default function ChatScreen() {
               />
               <View>
                 <View className="flex-row items-center justify-between">
-                  <Text className="text-lg font-bold">Lụa Lã</Text>
+                  <Text className="text-lg font-bold">Nguyễn (Nguyen)</Text>
                 </View>
                 <Text>Tôi muốn trao đổi một kì nghỉ tại... </Text>
               </View>
@@ -70,7 +70,7 @@ export default function ChatScreen() {
               />
               <View>
                 <View className="flex-row items-center justify-between">
-                  <Text className="text-lg font-bold">Nguyễn Thị Làn</Text>
+                  <Text className="text-lg font-bold">Trần (Tran)</Text>
                 </View>
                 <Text>Tôi muốn trao đổi một kì nghỉ tại... </Text>
               </View>
@@ -89,7 +89,7 @@ export default function ChatScreen() {
               />
               <View>
                 <View className="flex-row items-center justify-between">
-                  <Text className="text-lg font-bold">Bùi Đức Thịnh</Text>
+                  <Text className="text-lg font-bold">Lê (Le)</Text>
                 </View>
                 <Text>Tôi muốn trao đổi một kì nghỉ tại... </Text>
               </View>
@@ -108,7 +108,7 @@ export default function ChatScreen() {
               />
               <View>
                 <View className="flex-row items-center justify-between">
-                  <Text className="text-lg font-bold">Bùi Duy Thưởng</Text>
+                  <Text className="text-lg font-bold">Phạm (Pham)</Text>
                 </View>
                 <Text>Tôi muốn trao đổi một kì nghỉ tại... </Text>
               </View>
@@ -127,7 +127,7 @@ export default function ChatScreen() {
               />
               <View>
                 <View className="flex-row items-center justify-between">
-                  <Text className="text-lg font-bold">Bùi Mạnh Hải</Text>
+                  <Text className="text-lg font-bold">Hoàng (Hoang)</Text>
                 </View>
                 <Text>Tôi muốn trao đổi một kì nghỉ tại... </Text>
               </View>
@@ -146,7 +146,7 @@ export default function ChatScreen() {
               />
               <View>
                 <View className="flex-row items-center justify-between">
-                  <Text className="text-lg font-bold">Nguyễn Hải Đăng</Text>
+                  <Text className="text-lg font-bold">Huỳnh (Huyhn)</Text>
                 </View>
                 <Text>Tôi muốn trao đổi một kì nghỉ tại... </Text>
               </View>
@@ -165,7 +165,7 @@ export default function ChatScreen() {
               />
               <View>
                 <View className="flex-row items-center justify-between">
-                  <Text className="text-lg font-bold">Bùi Thị Kim Yến</Text>
+                  <Text className="text-lg font-bold">Phan (Phan)</Text>
                 </View>
                 <Text>Tôi muốn trao đổi một kì nghỉ tại... </Text>
               </View>
@@ -184,7 +184,7 @@ export default function ChatScreen() {
               />
               <View>
                 <View className="flex-row items-center justify-between">
-                  <Text className="text-lg font-bold">Nguyễn Văn Sơn</Text>
+                  <Text className="text-lg font-bold">Vũ (Vu)</Text>
                 </View>
                 <Text>Tôi muốn trao đổi một kì nghỉ tại... </Text>
               </View>
@@ -203,7 +203,7 @@ export default function ChatScreen() {
               />
               <View>
                 <View className="flex-row items-center justify-between">
-                  <Text className="text-lg font-bold">Bùi Đức Thịnh</Text>
+                  <Text className="text-lg font-bold">Đặng (Dang)</Text>
                 </View>
                 <Text>Tôi muốn trao đổi một kì nghỉ tại... </Text>
               </View>
@@ -222,7 +222,7 @@ export default function ChatScreen() {
               />
               <View>
                 <View className="flex-row items-center justify-between">
-                  <Text className="text-lg font-bold">Bùi Trí Thức</Text>
+                  <Text className="text-lg font-bold">Dương (Duong)</Text>
                 </View>
                 <Text>Tôi muốn trao đổi một kì nghỉ tại... </Text>
               </View>
@@ -233,9 +233,6 @@ export default function ChatScreen() {
           </View>
         </View>
       </ScrollView>
-      <View className="w-[100px] h-[100px] rounded-full bg-slate-700">
-        <Text>asd</Text>
-      </View>
     </View>
   );
 }

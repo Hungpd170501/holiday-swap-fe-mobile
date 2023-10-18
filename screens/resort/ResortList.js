@@ -8,14 +8,14 @@ import { TouchableOpacity } from "react-native";
 import { ScrollView } from "react-native";
 export default function ResortList() {
   return (
-    <View>
+    <View className="flex-1">
       <View>
         <AvtHeader />
       </View>
+      <View>
+        <SearchSession />
+      </View>
       <ScrollView>
-        <View>
-          <SearchSession />
-        </View>
         <View>
           <CardListResort />
         </View>

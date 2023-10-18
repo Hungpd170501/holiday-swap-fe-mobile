@@ -13,14 +13,11 @@ import { View } from "react-native";
 import { ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-export default function CardListResort() {
+export default function RecommendResort() {
   const navigation = useNavigation();
 
   return (
     <View className="px-3">
-      <View className="py-3">
-        <Text>4 Resort</Text>
-      </View>
       <TouchableOpacity
         onPress={() => navigation.replace("DetailResort")}
         style={styles.shadow}
@@ -28,7 +25,7 @@ export default function CardListResort() {
       >
         <Image
           className="w-[150px] h-full rounded-tl-md rounded-bl-md"
-          source={require("../../assets/images/landmark.jpg")}
+          source={require("../../../assets/images/landmark.jpg")}
         />
         <View className="flex flex-1 flex-col px-2">
           <Text className="text-[15px] font-bold">
@@ -68,7 +65,7 @@ export default function CardListResort() {
       >
         <Image
           className="w-[150px] h-full rounded-tl-md rounded-bl-md"
-          source={require("../../assets/images/buivien.jpg")}
+          source={require("../../../assets/images/buivien.jpg")}
         />
         <View className="flex flex-1 flex-col px-2 ">
           <Text className="text-[15px]   font-bold">
@@ -83,14 +80,14 @@ export default function CardListResort() {
             <Text className="text-[12px]">4 Reviews</Text>
           </View>
           <View>
-            <View className="flex flex-row py-1 ">
+            <View className="flex flex-row mb-5">
               <EvilIcons name="location" size={25} color="gray" />
               <Text className="text-[13px] pr-5">
                 Binh Thanh district, 4km from the center
               </Text>
             </View>
           </View>
-          <View className="mb-1">
+          <View>
             <Text>5 Property</Text>
           </View>
 
@@ -101,11 +98,11 @@ export default function CardListResort() {
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.shadow}
-        className="bg-white flex flex-row  rounded-md mb-5"
+        className="bg-white flex flex-row mb-5 rounded-md "
       >
         <Image
           className="w-[150px] h-full rounded-tl-md rounded-bl-md"
-          source={require("../../assets/images/haanresort.jpg")}
+          source={require("../../../assets/images/haanresort.jpg")}
         />
         <View className="flex flex-1 flex-col px-2">
           <Text className="text-[15px]   font-bold">HAAN Resort & Golf</Text>
@@ -118,14 +115,14 @@ export default function CardListResort() {
             <Text className="text-[12px]">4 Reviews</Text>
           </View>
           <View>
-            <View className="flex flex-row py-1 ">
+            <View className="flex flex-row mb-5">
               <EvilIcons name="location" size={25} color="gray" />
               <Text className="text-[13px] pr-5">
                 Binh Thanh district, 4km from the center
               </Text>
             </View>
           </View>
-          <View className="mb-1">
+          <View>
             <Text>11 Property</Text>
           </View>
 
@@ -136,11 +133,11 @@ export default function CardListResort() {
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.shadow}
-        className="bg-white flex flex-row  rounded-md mb-5 "
+        className="bg-white flex flex-row mb-5 rounded-md "
       >
         <Image
           className="w-[150px] h-full rounded-tl-md rounded-bl-md"
-          source={require("../../assets/images/seahorse.jpg")}
+          source={require("../../../assets/images/seahorse.jpg")}
         />
         <View className="flex flex-1 flex-col px-2">
           <Text className="text-[15px]   font-bold">Seahorse Resort</Text>
@@ -153,14 +150,14 @@ export default function CardListResort() {
             <Text className="text-[12px]">4 Reviews</Text>
           </View>
           <View>
-            <View className="flex flex-row py-1 ">
+            <View className="flex flex-row mb-5">
               <EvilIcons name="location" size={25} color="gray" />
               <Text className="text-[13px] pr-5">
                 Binh Thanh district, 4km from the center
               </Text>
             </View>
           </View>
-          <View className="mb-1">
+          <View>
             <Text>21 Property</Text>
           </View>
 

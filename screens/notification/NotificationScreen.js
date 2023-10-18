@@ -1,14 +1,18 @@
 import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import { ScrollView, Image } from "react-native";
+import { ScrollView, Image, TouchableOpacity } from "react-native";
 import { Text } from "react-native";
 import { View } from "react-native";
 
 export default function NotificationScreen() {
+  const navigation = useNavigation();
   return (
     <View>
       <View className="bg-blue-500 w-full h-[100px]  flex flex-row items-center justify-start px-5">
-        <Ionicons name="close-outline" size={30} color="white" />
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Ionicons name="close-outline" size={30} color="white" />
+        </TouchableOpacity>
         <Text className="ml-8 text-[20px] text-white">Your notification</Text>
       </View>
       <View>

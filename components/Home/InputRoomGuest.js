@@ -22,7 +22,7 @@ export default function InputRoomGuest() {
           <View className="flex-row flex-1 items-center p-3  border border-gray-300 bg-slate-100">
             <AntDesign name="user" size={25} color="#AAAAAA" />
             <TextInput
-              placeholder="1 Apartment 2 Adults 0 children"
+              placeholder="Fill Guest"
               className="ml-2 flex-1 text-slate-600"
             />
             <View className="flex-row items-center space-x-1 bottom-0 border-l-2 pl-2 border-l-gray-300"></View>

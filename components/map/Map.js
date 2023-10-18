@@ -33,14 +33,9 @@ export default function Maps() {
   );
 }
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginBottom: 20,
-    paddingLeft: 25,
-    borderRadius: 100,
-  },
+  container: {},
   map: {
     width: Dimensions.get("window").width,
-    height: 300,
+    height: 200,
   },
 });

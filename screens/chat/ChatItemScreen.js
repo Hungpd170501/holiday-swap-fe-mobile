@@ -1,81 +1,195 @@
-import React, { useState } from "react";
-import { Text, TextInput, TouchableOpacity } from "react-native";
-import { View } from "react-native";
-import AntDesign from "@expo/vector-icons/AntDesign";
-import InputEmail from "../../components/input/InputEmail";
-import InputPassword from "../../components/input/InputPassword";
-import BtnLoginGoogle from "../../components/button/BtnLoginGoogle";
+import {
+  AntDesign,
+  Feather,
+  Ionicons,
+  MaterialCommunityIcons,
+  MaterialIcons,
+} from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-import SearchBar from "../../components/search/SearchBar";
-import { Image } from "react-native";
-import { ScrollView } from "react-native";
-import MaterialIcons from "react-native-vector-icons/MaterialIcons";
-export default function ChatItemScreen() {
-  const [isGreen, setIsGreen] = useState(false);
-  const navigation = useNavigation();
+import React from "react";
+import { Image, ScrollView, Text, TouchableOpacity } from "react-native";
+import { View } from "react-native-animatable";
+import { TextInput } from "react-native-paper";
 
+export default function ChatItemScreen() {
+  const navigation = useNavigation();
   return (
-    <View className="flex justify-between items-center w-full">
-      <View className="flex-row items-center justify-center mt-[70px]">
-        <View className="-ml-[130px] mr-[70px]">
-          <TouchableOpacity
-            className="w-[55px] h-[55px] bg-[#D9D5D5] rounded-full flex justify-center items-center "
-            onPress={() => navigation.navigate("ChatScreen")}
-          >
-            <AntDesign name="arrowleft" size={20} color="#AAAAAA" />
-          </TouchableOpacity>
-        </View>
-        <View>
-          <Text className="font-bold text-[24px]">Lụa lã</Text>
-        </View>
+    <View className="bg-white flex-1">
+      <View className="bg-white w-full h-[100px]  flex flex-row items-center justify-start px-5">
+        <TouchableOpacity
+          className="flex flex-row w-[50px] h-[50px] bg-[#EBEBEB] rounded-full items-center justify-center"
+          onPress={() => navigation.goBack()}
+        >
+          <AntDesign name="arrowleft" size={20} />
+        </TouchableOpacity>
+        <Text className="ml-8 text-[20px]">Nguyễn(Nguyen)</Text>
+        <TouchableOpacity className="ml-[20%]">
+          <MaterialCommunityIcons name="dots-vertical" size={20} />
+        </TouchableOpacity>
       </View>
-      <View className="flex-row mb-[40px] mt-[40px]">
-        <Image
-          className="mr-[8px] rounded-full w-[60] h-[60] mb-[20px]  "
-          source={require("../../assets/images/avtChat4.jpg")}
-        />
-        <View className="w-auto h-auto bg-slate-200 px-6 py-10 rounded-2xl">
-          <Text>Tôi có một khu nghỉ dưỡng cần trao đổi</Text>
+      <ScrollView>
+        <View className="px-4 py-4">
+          <View className="flex flex-row  mb-3  ">
+            <Image
+              className="w-[40px] h-[40px] rounded-full"
+              source={require("../../assets/images/avtChat5.jpg")}
+            />
+            <View className="ml-[5%] w-[80%]">
+              <Text className="bg-gray-200   text-gray-600 py-2 px-2 rounded-tl-[20] rounded-tr-[20] rounded-br-[20] ">
+                Hello, I want to talk to you about the house in Landmark81
+              </Text>
+              <Text className="text-gray-400 text-[12px]">15:42PM</Text>
+            </View>
+          </View>
+          <View className="flex flex-row  mb-3 justify-end">
+            <View className="w-[80%] mr-[5%] ">
+              <Text className="bg-blue-500 justify-end  text-white py-2 px-2 rounded-tl-[20] rounded-tr-[20] rounded-bl-[20] ">
+                Hello, I want to talk to you about the house in Landmark81
+              </Text>
+              <View className="flex flex-row justify-end">
+                <Text className="text-gray-400 text-[12px] ">15:42PM</Text>
+              </View>
+            </View>
+            <Image
+              className="w-[40px] h-[40px] rounded-full"
+              source={require("../../assets/images/avt.jpg")}
+            />
+          </View>
+          <View className="flex flex-row  mb-3  ">
+            <Image
+              className="w-[40px] h-[40px] rounded-full"
+              source={require("../../assets/images/avtChat5.jpg")}
+            />
+            <View className="ml-[5%] w-[80%]">
+              <Text className="bg-gray-200   text-gray-600 py-2 px-2 rounded-tl-[20] rounded-tr-[20] rounded-br-[20] ">
+                Hello, I want to talk to you about the house in Landmark81
+              </Text>
+              <Text className="text-gray-400 text-[12px]">15:42PM</Text>
+            </View>
+          </View>
+          <View className="flex flex-row  mb-3 justify-end">
+            <View className="w-[80%] mr-[5%] ">
+              <Text className="bg-blue-500 justify-end  text-white py-2 px-2 rounded-tl-[20] rounded-tr-[20] rounded-bl-[20] ">
+                Hello, I want to talk to you about the house in Landmark81
+              </Text>
+              <View className="flex flex-row justify-end">
+                <Text className="text-gray-400 text-[12px] ">15:42PM</Text>
+              </View>
+            </View>
+            <Image
+              className="w-[40px] h-[40px] rounded-full"
+              source={require("../../assets/images/avt.jpg")}
+            />
+          </View>
+          <View className="flex flex-row  mb-3  ">
+            <Image
+              className="w-[40px] h-[40px] rounded-full"
+              source={require("../../assets/images/avtChat5.jpg")}
+            />
+            <View className="ml-[5%] w-[80%]">
+              <Text className="bg-gray-200   text-gray-600 py-2 px-2 rounded-tl-[20] rounded-tr-[20] rounded-br-[20] ">
+                Hello, I want to talk to you about the house in Landmark81
+              </Text>
+              <Text className="text-gray-400 text-[12px]">15:42PM</Text>
+            </View>
+          </View>
+          <View className="flex flex-row  mb-3 justify-end">
+            <View className="w-[80%] mr-[5%] ">
+              <Text className="bg-blue-500 justify-end  text-white py-2 px-2 rounded-tl-[20] rounded-tr-[20] rounded-bl-[20] ">
+                Hello, I want to talk to you about the house in Landmark81
+              </Text>
+              <View className="flex flex-row justify-end">
+                <Text className="text-gray-400 text-[12px] ">15:42PM</Text>
+              </View>
+            </View>
+            <Image
+              className="w-[40px] h-[40px] rounded-full"
+              source={require("../../assets/images/avt.jpg")}
+            />
+          </View>
+          <View className="flex flex-row  mb-3  ">
+            <Image
+              className="w-[40px] h-[40px] rounded-full"
+              source={require("../../assets/images/avtChat5.jpg")}
+            />
+            <View className="ml-[5%] w-[80%]">
+              <Text className="bg-gray-200   text-gray-600 py-2 px-2 rounded-tl-[20] rounded-tr-[20] rounded-br-[20] ">
+                Hello, I want to talk to you about the house in Landmark81
+              </Text>
+              <Text className="text-gray-400 text-[12px]">15:42PM</Text>
+            </View>
+          </View>
+          <View className="flex flex-row  mb-3 justify-end">
+            <View className="w-[80%] mr-[5%] ">
+              <Text className="bg-blue-500 justify-end  text-white py-2 px-2 rounded-tl-[20] rounded-tr-[20] rounded-bl-[20] ">
+                Hello, I want to talk to you about the house in Landmark81
+              </Text>
+              <View className="flex flex-row justify-end">
+                <Text className="text-gray-400 text-[12px] ">15:42PM</Text>
+              </View>
+            </View>
+            <Image
+              className="w-[40px] h-[40px] rounded-full"
+              source={require("../../assets/images/avt.jpg")}
+            />
+          </View>
+          <View className="flex flex-row  mb-3  ">
+            <Image
+              className="w-[40px] h-[40px] rounded-full"
+              source={require("../../assets/images/avtChat5.jpg")}
+            />
+            <View className="ml-[5%] w-[80%]">
+              <Text className="bg-gray-200   text-gray-600 py-2 px-2 rounded-tl-[20] rounded-tr-[20] rounded-br-[20] ">
+                Hello, I want to talk to you about the house in Landmark81
+              </Text>
+              <Text className="text-gray-400 text-[12px]">15:42PM</Text>
+            </View>
+          </View>
+          <View className="flex flex-row  mb-3 justify-end">
+            <View className="w-[80%] mr-[5%] ">
+              <Text className="bg-blue-500 justify-end  text-white py-2 px-2 rounded-tl-[20] rounded-tr-[20] rounded-bl-[20] ">
+                Hello, I want to talk to you about the house in Landmark81
+              </Text>
+              <View className="flex flex-row justify-end">
+                <Text className="text-gray-400 text-[12px] ">15:42PM</Text>
+              </View>
+            </View>
+            <Image
+              className="w-[40px] h-[40px] rounded-full"
+              source={require("../../assets/images/avt.jpg")}
+            />
+          </View>
+          <View className="flex flex-row  mb-3  ">
+            <Image
+              className="w-[40px] h-[40px] rounded-full"
+              source={require("../../assets/images/avtChat5.jpg")}
+            />
+            <View className="ml-[5%] w-[80%]">
+              <Text className="bg-gray-200   text-gray-600 py-2 px-2 rounded-tl-[20] rounded-tr-[20] rounded-br-[20] ">
+                Hello, I want to talk to you about the house in Landmark81
+              </Text>
+              <Text className="text-gray-400 text-[12px]">15:42PM</Text>
+            </View>
+          </View>
         </View>
-      </View>
-      <View className="flex-row mb-[40px]">
-        <View className="w-auto h-auto bg-slate-200 px-6 py-10 rounded-2xl">
-          <Text>Tôi có một khu nghỉ dưỡng cần trao đổi</Text>
+      </ScrollView>
+      <View className="px-4 py-3">
+        <View className="bg-blue-100 border border-gray-300 rounded-3xl  px-2">
+          <View className="flex flex-row justify-between items-center">
+            <View className="flex flex-row items-center ">
+              <TouchableOpacity className="border-r border-gray-400 pr-3">
+                <MaterialCommunityIcons size={30} name="attachment" />
+              </TouchableOpacity>
+
+              <TextInput className="w-[70%] bg-transparent " value="Message" />
+            </View>
+            <View>
+              <TouchableOpacity className="bg-blue-300 rounded-full px-1 py-1 flex flex-row items-center justify-center">
+                <Feather name="send" size={25} color="white" />
+              </TouchableOpacity>
+            </View>
+          </View>
         </View>
-        <Image
-          className="ml-[8px] rounded-full w-[60] h-[60] mb-[20px]  "
-          source={require("../../assets/images/avtChat4.jpg")}
-        />
-      </View>
-      <View className="flex-row mb-[40px]">
-        <Image
-          className="ml-[8px] rounded-full w-[60] h-[60] mb-[20px]  "
-          source={require("../../assets/images/avtChat4.jpg")}
-        />
-        <View className="w-auto h-auto bg-slate-200 px-6 py-10 rounded-2xl">
-          <Text>Tôi có một khu nghỉ dưỡng cần trao đổi</Text>
-        </View>
-      </View>
-      <View className="flex-row mb-[40px]">
-        <View className="w-auto h-auto bg-slate-200 px-6 py-10 rounded-2xl">
-          <Text>Tôi có một khu nghỉ dưỡng cần trao đổi</Text>
-        </View>
-        <Image
-          className="ml-[8px] rounded-full w-[60] h-[60] mb-[20px]  "
-          source={require("../../assets/images/avtChat4.jpg")}
-        />
-      </View>
-      <View className="flex-row items-center">
-        <TextInput
-          placeholder="Message"
-          className="px-[20px] py-[10px] border border-gray-300 bg-slate-100 rounded-3xl w-[340px]"
-        />
-        <MaterialIcons
-          name="send"
-          size={25}
-          color="#2196F3"
-          style={{ marginLeft: -30 }}
-        />
       </View>
     </View>
   );
