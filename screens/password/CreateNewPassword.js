@@ -39,7 +39,11 @@ const CreateNewPassword = () => {
             />
           </View>
 
-          <Button text={"Continue"} style={{ marginTop: 40 }} />
+          <Button
+            onPress={() => navigation.navigate("SignInScreen")}
+            text={"Continue"}
+            style={{ marginTop: 40 }}
+          />
         </ScrollView>
       </SafeAreaView>
     </View>

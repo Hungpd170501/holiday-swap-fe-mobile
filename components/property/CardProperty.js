@@ -13,18 +13,18 @@ import { StyleSheet } from "react-native";
 import { Text } from "react-native";
 import { View } from "react-native";
 
-export default function CardApartment() {
+export default function CardProperty() {
   const navigation = useNavigation();
   return (
     <View>
       <TouchableOpacity
-        onPress={() => navigation.navigate("DetailApartment")}
+        onPress={() => navigation.navigate("DetailProperty")}
         style={styles.shadow}
         className="bg-white w-full h-auto mt-3 px-3 mb-3"
       >
         <View className="flex flex-row items-center justify-between ">
           <Text className="text-[20px] text-blue-700 pt-4 pb-3  font-bold">
-            Deluxe Apartment
+            Deluxe Property
           </Text>
           <View>
             <AntDesign color="blue" size={20} name="infocirlceo" />
@@ -33,7 +33,7 @@ export default function CardApartment() {
         <View className="flex flex-row items-center">
           <AntDesign name="creditcard" size={25} color="gray" />
           <Text className="text-[16px] ml-2 text-green-700 font-bold">
-            Prepay the apartment
+            Prepay the Property
           </Text>
         </View>
         <View className="w-full flex flex-row items-center justify-between mb-2 mt-2">
@@ -111,7 +111,7 @@ export default function CardApartment() {
       >
         <View className="flex flex-row items-center justify-between ">
           <Text className="text-[20px] text-blue-700 pt-4 pb-3  font-bold">
-            Standard Apartment
+            Standard Property
           </Text>
           <View>
             <AntDesign color="blue" size={20} name="infocirlceo" />
@@ -120,7 +120,7 @@ export default function CardApartment() {
         <View className="flex flex-row items-center">
           <AntDesign name="creditcard" size={25} color="gray" />
           <Text className="text-[16px] ml-2 text-green-700 font-bold">
-            Prepay the apartment
+            Prepay the Property
           </Text>
         </View>
         <View className="w-full flex flex-row items-center justify-between mb-2 mt-2">
@@ -198,7 +198,7 @@ export default function CardApartment() {
       >
         <View className="flex flex-row items-center justify-between ">
           <Text className="text-[20px] text-blue-700 pt-4 pb-3  font-bold">
-            Pen-House Apartment
+            Pen-House Property
           </Text>
           <View>
             <AntDesign color="blue" size={20} name="infocirlceo" />

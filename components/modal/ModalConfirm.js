@@ -3,8 +3,10 @@ import { View, Modal } from "react-native";
 import Button from "../button/Button";
 import { Text } from "react-native";
 import * as Icon from "react-native-feather";
+import { useNavigation } from "@react-navigation/native";
 
 const ModalConfirm = ({ modalVisible, setModalVisible }) => {
+  const navigation = useNavigation();
   return (
     <View className="flex-1 justify-center items-center bg-slate-200">
       <Modal
@@ -27,7 +29,10 @@ const ModalConfirm = ({ modalVisible, setModalVisible }) => {
               You have signed up successfully!
             </Text>
 
-            <Button text={"Continue"} onPress={() => setModalVisible(false)} />
+            <Button
+              text={"Continue"}
+              onPress={() => navigation.navigate("CreateNewPassword")}
+            />
           </View>
         </View>
       </Modal>

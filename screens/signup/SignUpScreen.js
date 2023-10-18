@@ -64,10 +64,10 @@ const SignUpScreen = () => {
             />
           </View>
 
-          <View className="flex-row justify-center">
+          <View className="flex-row justify-center pb-3">
             <Text className="text-lg font-bold">Already have an account? </Text>
             <Text
-              onPress={() => navigation.navigate("ForgotPassword")}
+              onPress={() => navigation.navigate("SignInScreen")}
               className="text-lg font-bold text-[#2196F3]"
             >
               Login

@@ -36,7 +36,7 @@ const ForgotPasswordScreen = () => {
           <Button
             text={"Continue"}
             style={{ marginTop: 40 }}
-            onPress={() => navigation.navigate("CreateNewPassword")}
+            onPress={() => navigation.navigate("VerifyOTP")}
           />
         </ScrollView>
       </SafeAreaView>

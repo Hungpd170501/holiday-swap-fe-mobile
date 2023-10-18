@@ -4,9 +4,9 @@ import { Text } from "react-native";
 import { View } from "react-native";
 import AvtHeader from "../../components/Home/AvtHeader";
 import { ScrollView } from "react-native";
-import CardApartment from "../../components/apartment/CardApartment";
+import CardProperty from "../../components/property/CardProperty";
 
-export default function ListApartment() {
+export default function ListProperty() {
   const navigation = useNavigation();
 
   return (
@@ -14,7 +14,7 @@ export default function ListApartment() {
       <AvtHeader />
       <ScrollView>
         <View className="px-4">
-          <CardApartment />
+          <CardProperty />
         </View>
       </ScrollView>
     </>

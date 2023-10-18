@@ -1,8 +1,10 @@
+import { useNavigation } from "@react-navigation/native";
 import * as React from "react";
-import { Text } from "react-native";
+import { Text, TouchableOpacity } from "react-native";
 import { DataTable } from "react-native-paper";
 
 const TableApartment = () => {
+  const navigation = useNavigation();
   const [page, setPage] = React.useState(0);
   const [numberOfItemsPerPageList] = React.useState([4, 3, 2]); // Đổi thứ tự để 4 là giá trị mặc định
   const [itemsPerPage, onItemsPerPageChange] = React.useState(
@@ -12,15 +14,15 @@ const TableApartment = () => {
   const [items] = React.useState([
     {
       key: 1,
-      name: "Cupcake",
-      price: 356,
-      date: 16,
+      name: "341",
+      price: 54333,
+      date: "16-30 September",
     },
     {
       key: 2,
-      name: "Eclair",
-      price: 262,
-      date: 16,
+      name: "451",
+      price: 75000,
+      date: "10-28 August",
     },
     {
       key: 3,
@@ -65,22 +67,27 @@ const TableApartment = () => {
     <DataTable>
       <DataTable.Header className="bg-blue-300 mt-3 rounded-md font-bold">
         <DataTable.Title>
-          <Text className="font-bold">Apartment ID</Text>
+          <Text className="font-bold text-[14px]">Apartment ID</Text>
         </DataTable.Title>
         <DataTable.Title>
-          <Text>Price</Text>
+          <Text className="font-bold text-[14px]">Price</Text>
         </DataTable.Title>
         <DataTable.Title numeric>
-          <Text>Date</Text>
+          <Text className="font-bold text-[14px]">Date</Text>
         </DataTable.Title>
       </DataTable.Header>
 
       {items.slice(from, to).map((item) => (
-        <DataTable.Row key={item.key}>
-          <DataTable.Cell>{item.name}</DataTable.Cell>
-          <DataTable.Cell>{item.price}</DataTable.Cell>
-          <DataTable.Cell numeric>{item.date}</DataTable.Cell>
-        </DataTable.Row>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("DetailApartment")}
+          key={item.key}
+        >
+          <DataTable.Row key={item.key}>
+            <DataTable.Cell>{item.name}</DataTable.Cell>
+            <DataTable.Cell>{item.price}</DataTable.Cell>
+            <DataTable.Cell numeric>{item.date}</DataTable.Cell>
+          </DataTable.Row>
+        </TouchableOpacity>
       ))}
 
       <DataTable.Pagination

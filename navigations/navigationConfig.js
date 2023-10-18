@@ -20,8 +20,6 @@ import ChatScreen from "../screens/chat/ChatScreen";
 import ChatItemScreen from "../screens/chat/ChatItemScreen";
 import ResortList from "../screens/resort/ResortList";
 import DetailResort from "../screens/resort/DetailResort";
-import ListApartment from "../screens/apartment/ListApartment";
-import DetailApartment from "../screens/apartment/DetailApartment";
 import ImageFullResort from "../screens/resort/ImageFullResort";
 import ImageFullApartment from "../screens/apartment/ImageFullApartment";
 import InputInfomationScreen from "../screens/paymentProcess/InputInfomationScreen";
@@ -38,6 +36,10 @@ import Landing from "../screens/addApartment/Landing";
 import WellcomeBackAdd from "../screens/addApartment/WellcomeBackAdd";
 import StartAdd from "../screens/addApartment/StartAdd";
 import StepAdd1 from "../screens/addApartment/StepAdd1";
+import DetailProperty from "../screens/property/DetailProperty";
+import DetailApartment from "../screens/apartment/DetailApartment";
+import ImageFullProperty from "../screens/property/ImageFullProperty";
+import ListProperty from "../screens/property/ListProperty";
 // import AllScreen from "../screens/DestinationScreen/AllScreen";
 
 const Stack = createStackNavigator();
@@ -47,6 +49,10 @@ function Navigation() {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Loading" component={LoadingScreen} />
+        <Stack.Screen name="VerifyOTP" component={VerifyOPTScreen} />
+        <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
+        <Stack.Screen name="CreateNewPassword" component={CreateNewPassword} />
+        <Stack.Screen name="DetailProperty" component={DetailProperty} />
         <Stack.Screen name="DetailApartment" component={DetailApartment} />
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Landing" component={Landing} />
@@ -73,11 +79,12 @@ function Navigation() {
           name="ImageFullApartment"
           component={ImageFullApartment}
         />
+        <Stack.Screen name="ImageFullProperty" component={ImageFullProperty} />
         <Stack.Screen name="HotelDetailScreen" component={HotelDetailScreen} />
         <Stack.Screen name="ChatScreen" component={ChatScreen} />
         <Stack.Screen name="ResortList" component={ResortList} />
         <Stack.Screen name="DetailResort" component={DetailResort} />
-        <Stack.Screen name="ListApartment" component={ListApartment} />
+        <Stack.Screen name="ListProperty" component={ListProperty} />
         <Stack.Screen
           name="ListDestinationScreen"
           component={ListDestinationScreen}
@@ -93,9 +100,7 @@ function Navigation() {
         <Stack.Screen name="WelcomeScreen" component={OnboardingScreen} />
         <Stack.Screen name="WelcomeBackScreen" component={WelcomeBackScreen} />
         <Stack.Screen name="SignUp" component={SignUpScreen} />
-        <Stack.Screen name="VerifyOTP" component={VerifyOPTScreen} />
-        <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
-        <Stack.Screen name="CreateNewPassword" component={CreateNewPassword} />
+
         <Stack.Screen name="SignInScreen" component={SignInScreen} />
         <Stack.Screen name="root" component={TabNavigation} />
       </Stack.Navigator>

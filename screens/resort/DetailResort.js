@@ -263,7 +263,7 @@ export default function DetailResort() {
       </ScrollView>
       <View>
         <TouchableOpacity
-          onPress={() => navigation.navigate("ListApartment")}
+          onPress={() => navigation.navigate("ListProperty")}
           className="bg-blue-500"
         >
           <Text className="text-center text-white font-bold py-4">

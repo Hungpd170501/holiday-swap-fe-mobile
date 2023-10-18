@@ -117,7 +117,10 @@ export default function ProfileScreen() {
               <MaterialCommunityIcons name="home-plus-outline" size={20} />
               <Text>Your apartment</Text>
             </TouchableOpacity>
-            <TouchableOpacity className="flex flex-row items-center gap-3">
+            <TouchableOpacity
+              onPress={() => navigation.navigate("SignInScreen")}
+              className="flex flex-row items-center gap-3"
+            >
               <AntDesign color="red" name="logout" size={20} />
               <Text className="text-red-600">Logout</Text>
             </TouchableOpacity>

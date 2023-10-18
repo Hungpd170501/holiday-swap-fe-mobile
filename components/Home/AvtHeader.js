@@ -3,7 +3,7 @@ import * as Icon from "react-native-feather";
 
 import { Image, Text, View } from "react-native";
 import { TouchableOpacity } from "react-native";
-import { AntDesign, EvilIcons, Feather } from "@expo/vector-icons";
+import { AntDesign, EvilIcons, Feather, Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
 export default function AvtHeader() {
@@ -12,23 +12,24 @@ export default function AvtHeader() {
     <View className="flex-row justify-between  bg-blue-500 w-full py-6 px-3">
       {/* Avatar */}
       <View className=" flex-row">
-        <Image
-          source={require("../../assets/images/avatar.png")}
-          className="w-16 h-16"
-        />
-        <View className="flex">
-          <Text className="text-2xl  text-white font-bold mx-2">
-            Hi, Thuc Bui
-          </Text>
-          <View className="flex-row">
-            <Icon.MapPin
-              stroke={"#AAAAAA"}
-              strokeWidth={2}
-              className="mx-1 my-1"
-            />
-            <Text className="my-1  text-white">Dak Lak</Text>
-          </View>
+        <View className="pl-4">
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Ionicons name="arrow-back-outline" size={30} color="white" />
+          </TouchableOpacity>
         </View>
+        <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
+          <View className="flex flex-row pl-6">
+            <View className="flex">
+              <Text className="text-2xl  text-white font-bold mx-2">
+                Hi, Thuc Bui
+              </Text>
+              <View className="flex-row items-center ml-3">
+                <EvilIcons name="location" size={20} color="#ffffff" />
+                <Text className="text-[13px]  text-white">Dak Lak</Text>
+              </View>
+            </View>
+          </View>
+        </TouchableOpacity>
       </View>
 
       {/* Bell icon */}
