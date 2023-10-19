@@ -16,7 +16,10 @@ export default function ProfileScreen() {
   const navigation = useNavigation();
   return (
     <View>
-      <View className="bg-blue-500 w-full h-[90px] justify-end flex flex-row items-center px-5">
+      <View className="bg-blue-500 w-full h-[100px] justify-between flex flex-row items-center px-5">
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Ionicons name="arrow-back-outline" size={30} color="white" />
+        </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate("HelpCenter")}>
           <AntDesign name="infocirlceo" size={20} color="white" />
         </TouchableOpacity>
@@ -56,7 +59,10 @@ export default function ProfileScreen() {
         <View className="px-3 mt-4 mb-32">
           <Text className="text-[17px] font-bold mb-3">Account</Text>
           <View className=" flex flex-col gap-1">
-            <TouchableOpacity className="flex flex-row items-center gap-3">
+            <TouchableOpacity
+              onPress={() => navigation.navigate("ManageAccount")}
+              className="flex flex-row items-center gap-3"
+            >
               <Feather name="user" size={20} color="gray" />
               <Text>Manage account</Text>
             </TouchableOpacity>
@@ -67,7 +73,10 @@ export default function ProfileScreen() {
               <AntDesign name="wallet" size={20} color="gray" />
               <Text>Wallet</Text>
             </TouchableOpacity>
-            <TouchableOpacity className="flex flex-row items-center gap-3">
+            <TouchableOpacity
+              onPress={() => navigation.navigate("Rating")}
+              className="flex flex-row items-center gap-3"
+            >
               <MaterialCommunityIcons
                 name="progress-star"
                 size={20}
@@ -78,7 +87,10 @@ export default function ProfileScreen() {
           </View>
           <Text className="text-[17px] font-bold mt-7 mb-3">Help</Text>
           <View className=" flex flex-col gap-1">
-            <TouchableOpacity className="flex flex-row items-center gap-3">
+            <TouchableOpacity
+              onPress={() => navigation.navigate("HelpCenter")}
+              className="flex flex-row items-center gap-3"
+            >
               <Ionicons name="help-circle-outline" size={20} />
               <Text>Contact customer service</Text>
             </TouchableOpacity>

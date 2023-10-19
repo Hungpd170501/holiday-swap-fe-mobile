@@ -40,6 +40,8 @@ import DetailProperty from "../screens/property/DetailProperty";
 import DetailApartment from "../screens/apartment/DetailApartment";
 import ImageFullProperty from "../screens/property/ImageFullProperty";
 import ListProperty from "../screens/property/ListProperty";
+import ManageAccount from "../screens/manageAccount/ManageAccount";
+import Rating from "../screens/rating/Rating";
 // import AllScreen from "../screens/DestinationScreen/AllScreen";
 
 const Stack = createStackNavigator();
@@ -48,20 +50,22 @@ function Navigation() {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="Profile" component={ProfileScreen} />
+        <Stack.Screen name="Rating" component={Rating} />
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="ManageAccount" component={ManageAccount} />
         <Stack.Screen name="Loading" component={LoadingScreen} />
         <Stack.Screen name="VerifyOTP" component={VerifyOPTScreen} />
         <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
         <Stack.Screen name="CreateNewPassword" component={CreateNewPassword} />
         <Stack.Screen name="DetailProperty" component={DetailProperty} />
         <Stack.Screen name="DetailApartment" component={DetailApartment} />
-        <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Landing" component={Landing} />
         <Stack.Screen name="StartAdd" component={StartAdd} />
         <Stack.Screen name="StepAdd1" component={StepAdd1} />
         <Stack.Screen name="WellcomeBackAdd" component={WellcomeBackAdd} />
         <Stack.Screen name="GuestToMember" component={GuestToMember} />
         <Stack.Screen name="ChatItemScreen" component={ChatItemScreen} />
-        <Stack.Screen name="Profile" component={ProfileScreen} />
         <Stack.Screen name="ImageFullResort" component={ImageFullResort} />
         <Stack.Screen name="HelpCenter" component={HelpCenter} />
         <Stack.Screen name="Wallet" component={Wallet} />

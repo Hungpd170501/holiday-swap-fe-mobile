@@ -128,7 +128,9 @@ export default function BookedApartment() {
                 <AntDesign size={20} name="message1" />
                 <View className="ml-4">
                   <Text className="font-bold ">Text the apartment owner</Text>
-                  <TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate("ChatItemScreen")}
+                  >
                     <Text className="text-blue-500 mt-3 text-[15px]">
                       Send message
                     </Text>

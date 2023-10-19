@@ -88,8 +88,8 @@ export default function CardProperty() {
           <MaterialCommunityIcons name="lightbulb-on-outline" size={20} />
           <View className="flex flex-row">
             <Text className="ml-2">Tips:</Text>
-            <Text className="mr-2 ml-1">
-              This apartment is larger than most other apartments at the resort
+            <Text className=" w-[80%] ml-2">
+              This property is larger than most other Property at the resort
             </Text>
           </View>
         </View>
@@ -175,8 +175,8 @@ export default function CardProperty() {
           <MaterialCommunityIcons name="lightbulb-on-outline" size={20} />
           <View className="flex flex-row">
             <Text className="ml-2">Tips:</Text>
-            <Text className="mr-2 ml-1">
-              This apartment is larger than most other apartments at the resort
+            <Text className="w-[80%] ml-2">
+              This property is larger than most other property at the resort
             </Text>
           </View>
         </View>
@@ -262,8 +262,8 @@ export default function CardProperty() {
           <MaterialCommunityIcons name="lightbulb-on-outline" size={20} />
           <View className="flex flex-row">
             <Text className="ml-2">Tips:</Text>
-            <Text className="mr-2 ml-1">
-              This apartment is larger than most other apartments at the resort
+            <Text className="w-[80%] ml-2">
+              This property is larger than most other property at the resort
             </Text>
           </View>
         </View>
