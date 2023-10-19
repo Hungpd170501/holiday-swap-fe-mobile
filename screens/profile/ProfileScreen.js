@@ -73,7 +73,10 @@ export default function ProfileScreen() {
               <AntDesign name="wallet" size={20} color="gray" />
               <Text>Wallet</Text>
             </TouchableOpacity>
-            <TouchableOpacity className="flex flex-row items-center gap-3">
+            <TouchableOpacity
+              onPress={() => navigation.navigate("Rating")}
+              className="flex flex-row items-center gap-3"
+            >
               <MaterialCommunityIcons
                 name="progress-star"
                 size={20}
@@ -84,7 +87,10 @@ export default function ProfileScreen() {
           </View>
           <Text className="text-[17px] font-bold mt-7 mb-3">Help</Text>
           <View className=" flex flex-col gap-1">
-            <TouchableOpacity className="flex flex-row items-center gap-3">
+            <TouchableOpacity
+              onPress={() => navigation.navigate("HelpCenter")}
+              className="flex flex-row items-center gap-3"
+            >
               <Ionicons name="help-circle-outline" size={20} />
               <Text>Contact customer service</Text>
             </TouchableOpacity>

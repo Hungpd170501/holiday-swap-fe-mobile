@@ -126,12 +126,12 @@ export default function InputInfomationScreen() {
       </ScrollView>
       <View className="border-t  border-gray-300 flex flex-row items-center justify-between px-3 h-16">
         <View className="w-[48%]">
-          <View className="flex flex-row items-center">
+          {/* <View className="flex flex-row items-center">
             <Text className="text-red-500 line-through mr-1 text-[20px] font-bold">
               20000
             </Text>
             <FontAwesome5 name="coins" size={20} color="orange" />
-          </View>
+          </View> */}
           <View className="flex flex-row items-center">
             <Text className="text-[25px] font-bold mr-1">15000</Text>
             <FontAwesome5 name="coins" size={20} color="orange" />
