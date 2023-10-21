@@ -57,7 +57,7 @@ export default function BookingConfirm() {
                 <View className="flex flex-row">
                   <Text>Total prices:</Text>
                   <View className="flex flex-row ">
-                    <Text className="font-bold mr-1"> 15.000</Text>
+                    <Text className="font-bold mr-1"> 25.000</Text>
                     <FontAwesome5 name="coins" size={20} color="orange" />
                   </View>
                 </View>
@@ -66,7 +66,7 @@ export default function BookingConfirm() {
             <View className=" flex flex-col mt-3">
               <View className="flex flex-row items-center mb-3">
                 <FontAwesome name="calendar-o" size={20} />
-                <Text className="ml-2">18th October - 27th October</Text>
+                <Text className="ml-2">23nd - 28nd August</Text>
               </View>
               <View className="flex flex-row items-center">
                 <Ionicons name="bed-outline" size={20} />

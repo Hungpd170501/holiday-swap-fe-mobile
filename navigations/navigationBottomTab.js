@@ -3,10 +3,11 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "../screens/home/HomeScreen";
 import ListDestinationScreen from "../screens/ListDestinationScreen";
-import { Entypo } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import ProfileScreen from "../screens/profile/ProfileScreen";
 import FavoriteScreen from "../screens/favorite/FavoriteScreen";
+import ChatScreen from "../screens/chat/ChatScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -29,6 +30,8 @@ const TabNavigation = () => {
             iconName = "user";
           } else if (route.name === "Favorite") {
             iconName = "hearto";
+          } else if (route.name === "ChatScreen") {
+            iconName = "message1";
           }
 
           return (
@@ -59,6 +62,11 @@ const TabNavigation = () => {
       <Tab.Screen
         name="ListDestination"
         component={ListDestinationScreen}
+        options={{ tabBarLabel: "" }}
+      />
+      <Stack.Screen
+        name="ChatScreen"
+        component={ChatScreen}
         options={{ tabBarLabel: "" }}
       />
       <Tab.Screen

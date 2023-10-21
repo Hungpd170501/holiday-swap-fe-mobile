@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { Text } from "react-native";
 import { View } from "react-native";
-import AvtHeader from "../../components/Home/AvtHeader";
+import AvtHeader from "../../components/Home/SearchHome";
 import { ScrollView } from "react-native";
 import CardProperty from "../../components/property/CardProperty";
 

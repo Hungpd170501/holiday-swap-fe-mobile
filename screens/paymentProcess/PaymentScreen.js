@@ -46,36 +46,27 @@ export default function PaymentScreen() {
             <Text className="py-3">
               712 Dien Bien Phu, Binh Thanh distric, Ho Chi Minh city, Vietnam
             </Text>
-            {/* <View className="flex flex-row gap-3 pb-3">
-              <View className="bg-blue-500 px-2 rounded-sm ">
-                <Text className="text-white">Save 32%</Text>
-              </View>
-              <View className="bg-blue-500 px-2 rounded-sm  ">
-                <Text className="text-white">Secret offer</Text>
-              </View>
-            </View> */}
+
             <View className="bg-gray-300 w-full h-[1px] my-3"></View>
             <View className=" flex flex-row w-full justify-between mb-3">
               <View className="border-r border-gray-300 w-[48%]">
                 <Text>Check in</Text>
                 <Text className="text-[15px] font-bold">
-                  Wed, 18th August, 2023
+                  Wed, 23th August, 2023
                 </Text>
               </View>
               <View className="w-[48%]">
                 <Text>Check out</Text>
 
                 <Text className="text-[15px] font-bold">
-                  Fri, 27th October, 2023
+                  Fri, 28th October, 2023
                 </Text>
               </View>
             </View>
             <View className="bg-gray-300 w-full h-[1px] mb-3"></View>
             <View className="mb-3">
               <Text>Your chose</Text>
-              <Text className="text-[15px] font-bold">
-                9 night, 1 apartment for 2 people
-              </Text>
+              <Text className="text-[15px] font-bold">5 night</Text>
               <Text>1x apartment, 1 bedroom</Text>
               <Text>2 audulst</Text>
             </View>
@@ -83,51 +74,23 @@ export default function PaymentScreen() {
         </View>
         <View className="mx-4  border border-gray-300 rounded-lg mt-3">
           <View className="px-3 py-3">
-            {/* <View className="flex flex-row justify-between">
-              <Text>Original price</Text>
-              <View className="flex flex-row gap-1">
-                <Text className="text-[15px]">20.000</Text>
-                <FontAwesome5 name="coins" size={20} color="orange" />
-              </View>
-            </View> */}
-            {/* <View className="flex flex-row justify-between">
-              <Text>Endown</Text>
-              <View className="flex flex-row gap-1">
-                <Text className="text-[15px]">- 5.000</Text>
-                <FontAwesome5 name="coins" size={20} color="orange" />
-              </View>
-            </View> */}
-            {/* <View className="bg-gray-300 w-full h-[1px] my-3"></View> */}
             <View className="flex flex-row items-center justify-between">
               <Text className="text-[20px] font-bold">Total</Text>
               <View className="">
-                {/* <View className="flex flex-row items-center gap-1 justify-end">
-                  <Text className="text-[15px] text-red-500 line-through">
-                    20.000
-                  </Text> 
-                  <FontAwesome5 name="coins" size={20} color="orange" />
-                </View>
-                */}
                 <View className="flex flex-row items-center gap-1 justify-end">
-                  <Text className=" font-bold text-[25px]">15.000</Text>
+                  <Text className=" font-bold text-[25px]">25.000</Text>
                   <FontAwesome5 name="coins" size={20} color="orange" />
                 </View>
-                <Text>Taxes and fees included</Text>
+                <TouchableOpacity>
+                  <Text className="underline font-bold">
+                    23nd - 28nd August
+                  </Text>
+                </TouchableOpacity>
               </View>
             </View>
             <View className="bg-gray-300 w-full h-[1px] my-3"></View>
             <View>
               <Text className="font-bold">Infoamtion about price</Text>
-              {/* <View className="flex flex-row items-center justify-between py-2">
-                <FontAwesome name="money" size={20} color="gray" />
-                <View className="flex flex-row ">
-                  <View className="flex flex-row mr-1">
-                    <Text className="mr-1">5000</Text>
-                    <FontAwesome5 name="coins" size={15} color="orange" />
-                  </View>
-                  <Text>incentives included</Text>
-                </View>
-              </View> */}
             </View>
           </View>
         </View>
@@ -204,16 +167,13 @@ export default function PaymentScreen() {
         <View className="bg-gray-300 w-full h-[1px] mt-3"></View>
         <View className="px-4 py-3 flex flex-row items-center justify-between">
           <View className="w-50%">
-            {/* <View className="flex flex-row items-center">
-              <Text className="text-red-500 line-through font-bold text-[18px]">
-                20.000
-              </Text>
-              <FontAwesome5 name="coins" size={20} color="orange" />
-            </View> */}
             <View className="flex flex-row items-center">
               <Text className="font-bold text-[20px]">15.000</Text>
               <FontAwesome5 name="coins" size={20} color="orange" />
             </View>
+            <TouchableOpacity>
+              <Text className="underline font-bold">23nd - 28nd August</Text>
+            </TouchableOpacity>
           </View>
           <View className="w-50%">
             <TouchableOpacity

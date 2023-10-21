@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
-import AvtHeader from "../../components/Home/AvtHeader";
+import AvtHeader from "../../components/Home/SearchHome";
 import { ScrollView } from "react-native";
-import Carosel from "../../components/apartment/Carosel";
+import Carosel from "../../components/apartment/CaroselApartmentHome";
 import {
   FontAwesome5,
   Ionicons,
