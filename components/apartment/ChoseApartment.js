@@ -6,6 +6,7 @@ import { View } from "react-native-animatable";
 import { BottomSheet } from "react-native-btr";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import EditDateApartmentDetail from "./EditDateApartmentDetail";
 
 export default function ChoseApartment() {
   const navigation = useNavigation();
@@ -18,9 +19,7 @@ export default function ChoseApartment() {
     <View className="">
       <TouchableOpacity onPress={toggleBottomNavigationView}>
         <View className="border border-blue-300 w-full my-3 rounded-sm ">
-          <Text className="text-center py-4 text-blue-700 font-bold">
-            CHOSE
-          </Text>
+          <Text className="text-center py-4 text-blue-700 font-bold">BOOK</Text>
         </View>
       </TouchableOpacity>
       <BottomSheet
@@ -40,10 +39,15 @@ export default function ChoseApartment() {
               <View className="w-full flex flex-row justify-around items-center ">
                 <View className="flex flex-col items-center gap-1">
                   <View className="flex flex-row items-center gap-1">
-                    <Text className="text-[35px] font-bold">15000</Text>
+                    <Text className="text-[35px] font-bold">25.000</Text>
                     <FontAwesome5 name="coins" size={25} color="orange" />
                   </View>
-                  <Text>Taxes and fees included</Text>
+                  {/* <TouchableOpacity>
+                    <Text className="font-bold underline">
+                      23nd - 28nd August
+                    </Text>
+                  </TouchableOpacity> */}
+                  <EditDateApartmentDetail />
                 </View>
                 <TouchableOpacity
                   onPress={() => navigation.navigate("InputInfomationScreen")}

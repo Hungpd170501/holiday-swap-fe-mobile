@@ -1,18 +1,24 @@
 import React from "react";
 import { Image } from "react-native";
 import { View } from "react-native-animatable";
-import AvtHeader from "../../components/Home/AvtHeader";
+import AvtHeader from "../../components/Home/SearchHome";
 import { ScrollView } from "react-native";
 import { TouchableOpacity } from "react-native";
 import { Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { AntDesign, Ionicons } from "@expo/vector-icons";
 
 export default function ImageFullApartment() {
   const navigation = useNavigation();
   return (
     <>
       <View>
-        <AvtHeader />
+        <View className="bg-blue-500 w-full h-[100px]  flex flex-row items-center justify-start px-5">
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <AntDesign name="arrowleft" size={30} color="white" />
+          </TouchableOpacity>
+          <Text className="ml-8 text-[20px] text-white">Image of property</Text>
+        </View>
       </View>
       <ScrollView>
         <View className="px-2  mt-2">

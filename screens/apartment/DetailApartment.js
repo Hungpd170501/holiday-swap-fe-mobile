@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
-import AvtHeader from "../../components/Home/AvtHeader";
+import AvtHeader from "../../components/Home/SearchHome";
 import { ScrollView } from "react-native";
-import Carosel from "../../components/apartment/Carosel";
+import CaroselApartmentDetail from "../../components/apartment/CaroselApartmentDetail";
 import {
   FontAwesome5,
   Ionicons,
@@ -17,12 +17,14 @@ export default function DetailApartment() {
   const [showMore, setShowMore] = useState(false);
 
   return (
-    <View className="flex-1">
-      <View className="">
+    <View className="flex-1 ">
+      <View>
         <AvtHeader />
       </View>
       <ScrollView>
-        <Carosel />
+        <View className=" bg-white">
+          <CaroselApartmentDetail />
+        </View>
         <View className="px-4 py-3 bg-white">
           <ScrollView
             horizontal={true}
@@ -61,44 +63,26 @@ export default function DetailApartment() {
         </View>
         <View className="px-4 py-3 bg-white">
           <View>
-            <Text className="text-[20px] font-bold">Apartment 3 Bedrooms</Text>
-            {/* <View className="flex flex-row items-center">
-              <MaterialCommunityIcons
-                size={25}
-                color="gray"
-                name="shower-head"
-              />
-              <Text className="ml-1 py-3">Private Bathroom with shower</Text>
-            </View> */}
+            <Text className="text-[20px] font-bold">
+              {" "}
+              Alex's Apartment with Sky view - Landmark 81 Tower
+            </Text>
+
             <View className="w-full h-[1px] bg-gray-300 my-3"></View>
 
-            {/* <View className="flex flex-row items-center gap-2">
-              <Text className="bg-blue-500 text-white px-1">Save 48%</Text>
-              <Text className="bg-blue-500 text-white px-1">
-                Limit time offer
-              </Text>
-            </View> */}
             <View className="py-3">
+              <Text>23nd - 28nd August</Text>
               <Text>
-                <Text className="text-black font-bold">
-                  Price for 9 nights for 2 adults
-                </Text>
+                <Text className="text-black font-bold">Price for 5 nights</Text>
               </Text>
               <View className="flex flex-row gap-3 ">
-                {/* <View className="flex flex-row items-center">
-                  <Text className="text-red-500 line-through px-1  text-[15px]">
-                    25000
-                  </Text>
-                  <FontAwesome5 name="coins" size={20} color="orange" />
-                </View> */}
                 <View className="flex flex-row items-center ">
                   <Text className=" font-bold text-[25px] py-2 pr-2">
-                    15000
+                    25.000
                   </Text>
                   <FontAwesome5 name="coins" size={20} color="orange" />
                 </View>
               </View>
-              {/* <Text>Taxes and fees included</Text> */}
             </View>
             <Text className="text-[17px]">Accommodation layout</Text>
             <View className="border border-gray-300 px-2 py-2 my-3">
@@ -114,10 +98,7 @@ export default function DetailApartment() {
             </TouchableOpacity>
           </View>
         </View>
-        {/* <View className="bg-white mt-2 px-4 flex flex-row items-center py-6">
-          <Ionicons size={20} name="leaf-outline" color="green" />
-          <Text className="ml-1">Book the apartment with ease</Text>
-        </View> */}
+
         <View className="bg-white px-4 mt-2 ">
           <Text className="font-bold text-[18px] py-4">Condition</Text>
           <View>
@@ -135,14 +116,6 @@ export default function DetailApartment() {
           </View>
         </View>
         <View className="px-4 bg-white mt-2 py-3">
-          <Text className="text-[20px] font-bold">Meals</Text>
-          <View className="flex flex-row py-3 ">
-            <Ionicons size={20} name="restaurant-outline" />
-            <Text className="pr-3 pl-1  font-bold text-[17px]">
-              This room rate does not include any meal options
-            </Text>
-          </View>
-          <View className="w-full bg-gray-300 h-[1px] my-4"></View>
           <View className="flex flex-row ">
             <Text className="text-[17px] font-bold">Acreage:</Text>
             <Text className="text-[17px] font-bold"> 50 m2</Text>

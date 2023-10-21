@@ -1,6 +1,6 @@
-import { FontAwesome5, Ionicons } from "@expo/vector-icons";
+import { AntDesign, FontAwesome5, Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-import React from "react";
+import React, { useState } from "react";
 import { TextInput } from "react-native";
 import { TouchableOpacity } from "react-native";
 import { ScrollView } from "react-native";
@@ -14,6 +14,20 @@ export default function InputInfomationScreen() {
   const [checkedA, setCheckedA] = React.useState(false);
   const [checkedB, setCheckedB] = React.useState(false);
 
+  const [items, setItems] = useState([1]);
+  const [clickedButtons, setClickedButtons] = useState([]);
+
+  const addItem = () => {
+    const newItem = items.length + 1;
+    setItems([...items, newItem]);
+  };
+
+  const handleButtonClick = (item) => {
+    if (!clickedButtons.includes(item)) {
+      setClickedButtons([...clickedButtons, item]);
+    }
+  };
+
   return (
     <View className="flex-1">
       <View className="bg-blue-500 w-full h-[100px]  flex flex-row items-center justify-start px-5">
@@ -26,66 +40,120 @@ export default function InputInfomationScreen() {
       </View>
       <ScrollView className="flex-1">
         <View className="px-3">
-          <View className="mb-4">
-            <View className="flex flex-row pt-2">
-              <Text className="">Last Name</Text>
-              <Text className="text-red-700">*</Text>
+          <View className="bg-white mb-2 px-2 rounded-md mt-2">
+            <View className="py-4">
+              <Text className="font-bold text-[18px]">Booking for?</Text>
             </View>
-            <View className="mt-2">
-              <TextInput
-                className="border border-gray-500 px-2 py-3 rounded-md"
-                placeholder="Your name"
-              />
+            <View className="mb-4">
+              <View className="flex flex-row pt-2">
+                <Text className="">Last Name</Text>
+                <Text className="text-red-700">*</Text>
+              </View>
+              <View className="mt-2">
+                <TextInput
+                  className="border border-gray-500 px-2 py-3 rounded-md"
+                  placeholder="Your name"
+                />
+              </View>
             </View>
-          </View>
-          <View className="mb-4">
-            <View className="flex flex-row">
-              <Text>First name</Text>
-              <Text className="text-red-700">*</Text>
+            <View className="mb-4">
+              <View className="flex flex-row">
+                <Text>First name</Text>
+                <Text className="text-red-700">*</Text>
+              </View>
+              <View className="mt-2">
+                <TextInput
+                  className="border border-gray-500 px-2 py-3 rounded-md"
+                  placeholder="Your name"
+                />
+              </View>
             </View>
-            <View className="mt-2">
-              <TextInput
-                className="border border-gray-500 px-2 py-3 rounded-md"
-                placeholder="Your name"
-              />
+            <View className="mb-4">
+              <View className="flex flex-row">
+                <Text>Email adress</Text>
+                <Text className="text-red-700">*</Text>
+              </View>
+              <View className="mt-2">
+                <TextInput
+                  className="border border-gray-500 px-2 py-3 rounded-md"
+                  placeholder="Buitrithuc1008@gmail.com"
+                />
+              </View>
             </View>
-          </View>
-          <View className="mb-4">
-            <View className="flex flex-row">
-              <Text>Email adress</Text>
-              <Text className="text-red-700">*</Text>
-            </View>
-            <View className="mt-2">
-              <TextInput
-                className="border border-gray-500 px-2 py-3 rounded-md"
-                placeholder="Buitrithuc1008@gmail.com"
-              />
-            </View>
-          </View>
-          <View className="mb-4">
-            <View className="flex flex-row">
-              <Text>Country</Text>
-              <Text className="text-red-700">*</Text>
-            </View>
-            <View className="mt-2">
-              <TextInput
-                className="border border-gray-500 px-2 py-3 rounded-md"
-                value="Vietnam"
-              />
-            </View>
-          </View>
-          <View className="mb-4">
-            <View className="flex flex-row">
-              <Text>Phone</Text>
-              <Text className="text-red-700">*</Text>
-            </View>
-            <View className="mt-2">
-              <TextInput
-                className="border border-gray-500 px-2 py-3 rounded-md"
-                value="0856597778"
-              />
+
+            <View className="mb-4">
+              <View className="flex flex-row">
+                <Text>Phone</Text>
+                <Text className="text-red-700">*</Text>
+              </View>
+              <View className="mt-2">
+                <TextInput
+                  className="border border-gray-500 px-2 py-3 rounded-md"
+                  value="0856597778"
+                />
+              </View>
             </View>
           </View>
+          <View className="bg-white px-2 rounded-md">
+            <Text className="font-bold text-[18px] py-3">Guest</Text>
+
+            <View className="bg-white px-2 rounded-md">
+              {items.map((item) => (
+                <View key={item}>
+                  <Text className="pb-3 font-bold">{item}</Text>
+                  <View className="mb-4">
+                    <View className="flex flex-row">
+                      <Text>Name</Text>
+                      <Text className="text-red-700">*</Text>
+                    </View>
+                    <View className="mt-2">
+                      <TextInput
+                        className="border border-gray-500 px-2 py-3 rounded-md"
+                        placeholder="Your name"
+                      />
+                    </View>
+                  </View>
+                  <View className="mb-4">
+                    <View className="flex flex-row">
+                      <Text>Phone</Text>
+                      <Text className="text-red-700">*</Text>
+                    </View>
+                    <View className="mt-2">
+                      <TextInput
+                        className="border border-gray-500 px-2 py-3 rounded-md"
+                        placeholder="Your name"
+                      />
+                    </View>
+                  </View>
+                  <View className="mb-4">
+                    <View className="flex flex-row">
+                      <Text>Email</Text>
+                      <Text className="text-red-700">*</Text>
+                    </View>
+                    <View className="mt-2">
+                      <TextInput
+                        className="border border-gray-500 px-2 py-3 rounded-md"
+                        placeholder="Your name"
+                      />
+                    </View>
+                  </View>
+                  {!clickedButtons.includes(item) && (
+                    <TouchableOpacity
+                      className="flex flex-row gap-5 justify-end mb-3"
+                      onPress={() => {
+                        addItem();
+                        handleButtonClick(item);
+                      }}
+                    >
+                      <AntDesign name="pluscircleo" size={20} />
+                    </TouchableOpacity>
+                  )}
+                </View>
+              ))}
+            </View>
+          </View>
+        </View>
+        <View className="bg-white mt-2 rounded-md px-4">
           <View className="flex flex-row items-center justify-between">
             <Text className="text-[15px]">
               Save your information for future bookings
@@ -124,16 +192,10 @@ export default function InputInfomationScreen() {
           </View>
         </View>
       </ScrollView>
-      <View className="border-t  border-gray-300 flex flex-row items-center justify-between px-3 h-16">
+      <View className="border-t bg-white border-gray-300 flex flex-row items-center justify-between px-3 h-16">
         <View className="w-[48%]">
-          {/* <View className="flex flex-row items-center">
-            <Text className="text-red-500 line-through mr-1 text-[20px] font-bold">
-              20000
-            </Text>
-            <FontAwesome5 name="coins" size={20} color="orange" />
-          </View> */}
           <View className="flex flex-row items-center">
-            <Text className="text-[25px] font-bold mr-1">15000</Text>
+            <Text className="text-[25px] font-bold mr-1">25.000</Text>
             <FontAwesome5 name="coins" size={20} color="orange" />
           </View>
         </View>
