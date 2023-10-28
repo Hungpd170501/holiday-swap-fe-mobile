@@ -8,7 +8,7 @@ const Button = ({ text, onPress, disabled, style }) => {
       onPress={onPress}
       disabled={disabled}
       style={style}
-      className="p-4 rounded-full bg-button flex my-4 mx-4"
+      className="px-5 py-2 rounded-md bg-button flex my-4 mx-4"
     >
       <Text className="text-center justify-center font-bold text-white text-xl">
         {text}

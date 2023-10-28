@@ -53,7 +53,6 @@ export default function EditImgDetailApartment() {
                 right: 0,
                 zIndex: 1,
                 padding: 5,
-                borderRadius: 50,
               }}
               onPress={() => removeImage(index)}
             >
@@ -63,18 +62,8 @@ export default function EditImgDetailApartment() {
         ))}
       </View>
       <TouchableOpacity onPress={pickImage}>
-        <Text
-          style={{
-            fontSize: 20,
-            fontWeight: "bold",
-            margin: 5,
-            backgroundColor: "blue",
-            padding: 10,
-            borderRadius: 8,
-            color: "white",
-          }}
-        >
-          Upload image
+        <Text className="bg-blue-500 text-white py-3 px-4 rounded-md mt-3 font-bold">
+          Add more image
         </Text>
       </TouchableOpacity>
     </View>

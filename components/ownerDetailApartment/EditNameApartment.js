@@ -22,15 +22,19 @@ export default function EditNameApartment() {
   };
   return (
     <View className="">
-      <TouchableOpacity onPress={toggleBottomNavigationView}>
-        <View className="flex flex-row justify-between items-center">
-          <View className="flex flex-row items-center ">
-            <Text className="font-bold">Name apartment: </Text>
-            <Text className="text-[20px]">{apartmentName}</Text>
-          </View>
-          <AntDesign size={25} name="edit" />
+      <View className="flex flex-row items-center justify-between">
+        <View className="flex flex-row items-center">
+          <Text className="font-bold">Name apartment: </Text>
+          <TouchableOpacity onPress={toggleBottomNavigationView}>
+            <View className="flex flex-row justify-between items-center">
+              <View className="flex flex-row items-center ">
+                <Text className="text-[20px] ">{apartmentName}</Text>
+              </View>
+            </View>
+          </TouchableOpacity>
         </View>
-      </TouchableOpacity>
+        <AntDesign size={25} color="#4180F4" name="edit" />
+      </View>
       <BottomSheet
         visible={visible}
         onBackButtonPress={toggleBottomNavigationView}

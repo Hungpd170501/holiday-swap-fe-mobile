@@ -26,15 +26,19 @@ export default function EditDesDetailApartment() {
   };
   return (
     <View className="">
-      <TouchableOpacity onPress={toggleBottomNavigationView}>
-        <View className="flex flex-row justify-between items-center">
-          <View className=" w-[90%]">
-            <Text className="font-bold">Description apartment: </Text>
-            <Text className="text-[15px] w-[80%]">{apartmentName}</Text>
-          </View>
-          <AntDesign size={25} name="edit" />
+      <View className=" flex flex-row items-center justify-between">
+        <View className="">
+          <Text className="font-bold">Description apartment: </Text>
+          <TouchableOpacity onPress={toggleBottomNavigationView}>
+            <View className="flex flex-row justify-between items-center">
+              <View className=" w-[90%]">
+                <Text className="text-[15px] w-[110%]">{apartmentName}</Text>
+              </View>
+            </View>
+          </TouchableOpacity>
         </View>
-      </TouchableOpacity>
+        <AntDesign size={25} color="#4180F4" name="edit" />
+      </View>
       <BottomSheet
         visible={visible}
         onBackButtonPress={toggleBottomNavigationView}
