@@ -9,7 +9,7 @@ import { View } from "react-native-animatable";
 export default function SearchHome() {
   const navigation = useNavigation();
   return (
-    <View className="py-10 px-4 bg-white">
+    <View className="pt-5 pb-8 px-4 bg-white">
       <View
         style={styles.shadow}
         className=" w-full bg-white rounded-3xl py-2 px-4"
@@ -27,9 +27,9 @@ export default function SearchHome() {
               Any location, any week - More...
             </Text>
           </View>
-          <TouchableOpacity className="border border-gray-300 py-2 px-2 rounded-full">
+          <View className="border border-gray-300 py-2 px-2 rounded-full">
             <Octicons name="multi-select" size={20} />
-          </TouchableOpacity>
+          </View>
         </TouchableOpacity>
       </View>
     </View>

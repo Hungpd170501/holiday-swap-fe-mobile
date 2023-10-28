@@ -18,12 +18,10 @@ export default function FilterSelect() {
   };
 
   const handleCancel = () => {
-    setVisible(false); // Tắt BottomSheet khi bấm Cancel
+    setVisible(false);
   };
 
   const handleApply = () => {
-    // Thực hiện xử lý khi bấm Apply ở đây
-    // Sau khi hoàn thành xử lý, bạn có thể tắt BottomSheet tương tự như handleCancel:
     setVisible(false);
   };
 

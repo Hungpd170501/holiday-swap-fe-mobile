@@ -158,7 +158,7 @@ export default function PaymentScreen() {
         <View className="bg-gray-300 w-full h-[1px] my-3"></View>
         <View className="px-4">
           <Text className="text-[20px] font-bold">Special requirements</Text>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate("SpecialReq")}>
             <Text className="text-blue-500 py-2">Add Special requirements</Text>
           </TouchableOpacity>
         </View>

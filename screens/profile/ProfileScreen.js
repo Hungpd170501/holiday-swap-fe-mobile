@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Image, ScrollView, Text, View } from "react-native";
-
 import {
   AntDesign,
   Feather,
@@ -9,17 +8,27 @@ import {
   MaterialCommunityIcons,
   Octicons,
 } from "@expo/vector-icons";
+import { useDispatch } from "react-redux";
 import { TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { useSelector } from "react-redux";
 
 export default function ProfileScreen() {
+  // const { userTest, loading, isAuthenticated } = useSelector(
+  //   (state) => state.userTest
+  // );
+  // console.log("check check", userTest);
   const navigation = useNavigation();
+
   return (
     <View>
       <View className="bg-blue-500 w-full h-[100px] justify-between flex flex-row items-center px-5">
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Ionicons name="arrow-back-outline" size={30} color="white" />
-        </TouchableOpacity>
+        <View className="flex flex-row items-center gap-8">
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Ionicons name="arrow-back-outline" size={30} color="white" />
+          </TouchableOpacity>
+          <Text className="text-[20px] text-white">Profile</Text>
+        </View>
         <TouchableOpacity onPress={() => navigation.navigate("HelpCenter")}>
           <AntDesign name="infocirlceo" size={20} color="white" />
         </TouchableOpacity>
@@ -31,7 +40,7 @@ export default function ProfileScreen() {
             source={require("../../assets/images/avt.jpg")}
           />
           <Text className="text-[30px] font-bold text-white py-2">
-            Bui Tri Thuc
+            {/* {item.username} */} Bui Tri Thuc
           </Text>
           <Text className="text-yellow-400">Guest</Text>
         </View>
@@ -84,6 +93,17 @@ export default function ProfileScreen() {
               />
               <Text>Rating</Text>
             </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => navigation.navigate("YourApartment")}
+              className="flex flex-row items-center gap-3"
+            >
+              <MaterialCommunityIcons
+                name="home-city-outline"
+                size={20}
+                color="gray"
+              />
+              <Text>Your Apartment </Text>
+            </TouchableOpacity>
           </View>
           <Text className="text-[17px] font-bold mt-7 mb-3">Help</Text>
           <View className=" flex flex-col gap-1">
@@ -118,14 +138,17 @@ export default function ProfileScreen() {
               <AntDesign name="setting" size={20} />
               <Text>Setting</Text>
             </TouchableOpacity>
-            <TouchableOpacity className="flex flex-row items-center gap-3">
+            {/* <TouchableOpacity className="flex flex-row items-center gap-3">
               <FontAwesome name="balance-scale" size={20} />
               <Text>Juridical</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </View>
           <Text className="text-[17px] font-bold mt-7 mb-3">Partner</Text>
           <View className=" flex flex-col gap-1">
-            <TouchableOpacity className="flex flex-row items-center gap-3">
+            <TouchableOpacity
+              onPress={() => navigation.navigate("Landing")}
+              className="flex flex-row items-center gap-3"
+            >
               <MaterialCommunityIcons name="home-plus-outline" size={20} />
               <Text>Your apartment</Text>
             </TouchableOpacity>

@@ -2,12 +2,13 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "../screens/home/HomeScreen";
-import ListDestinationScreen from "../screens/ListDestinationScreen";
 import { Feather } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import ProfileScreen from "../screens/profile/ProfileScreen";
 import FavoriteScreen from "../screens/favorite/FavoriteScreen";
 import ChatScreen from "../screens/chat/ChatScreen";
+import { Text, View } from "react-native";
+import YourTrip from "../screens/yourTrip/YourTrip";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -24,7 +25,7 @@ const TabNavigation = () => {
 
           if (route.name === "Home") {
             iconName = "home";
-          } else if (route.name === "ListDestination") {
+          } else if (route.name === "YourTrip") {
             iconName = "book";
           } else if (route.name === "Profile") {
             iconName = "user";
@@ -34,13 +35,38 @@ const TabNavigation = () => {
             iconName = "message1";
           }
 
+          const messageCount = 1;
+          const showBadge = route.name === "ChatScreen" && messageCount > 0;
+
           return (
-            <AntDesign
-              name={iconName}
-              size={size}
-              color={iconColor}
-              style={{ marginTop: 10 }}
-            />
+            <View>
+              <AntDesign
+                name={iconName}
+                size={size}
+                color={iconColor}
+                style={{ marginTop: 10 }}
+              />
+              {showBadge && (
+                <View
+                  style={{
+                    position: "absolute",
+                    top: 5,
+                    right: 1,
+                    left: 14,
+                    backgroundColor: "red",
+                    borderRadius: 10,
+                    width: 17,
+                    height: 17,
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Text style={{ color: "white", fontSize: 13 }}>
+                    {messageCount}
+                  </Text>
+                </View>
+              )}
+            </View>
           );
         },
       })}
@@ -60,8 +86,8 @@ const TabNavigation = () => {
         options={{ tabBarLabel: "" }}
       />
       <Tab.Screen
-        name="ListDestination"
-        component={ListDestinationScreen}
+        name="YourTrip"
+        component={YourTrip}
         options={{ tabBarLabel: "" }}
       />
       <Stack.Screen

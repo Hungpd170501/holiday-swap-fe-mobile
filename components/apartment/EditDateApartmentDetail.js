@@ -39,7 +39,7 @@ export default function EditDateApartmentDetail() {
           onPress={() => toggleBottomNavigationView()}
           className=""
         >
-          <Text className="font-bold">
+          <Text className="font-bold underline px-4 w-[100%]">
             {dateRange
               ? `${format(
                   new Date(dateRange.startDate),
@@ -66,7 +66,7 @@ export default function EditDateApartmentDetail() {
               <InputDateComponents handleDateRange={handleDateRange} />
             </View>
 
-            <View className="pb-4 px-4 flex flex-row justify-between">
+            <View className="pb-4 px-4  flex flex-row justify-between">
               <TouchableOpacity
                 onPress={() => setVisible(!visible)}
                 className="w-[40%] p-4 bg-sky-500 rounded-md"

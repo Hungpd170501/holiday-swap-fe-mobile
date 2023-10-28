@@ -42,16 +42,12 @@ export default function ChoseApartment() {
                     <Text className="text-[35px] font-bold">25.000</Text>
                     <FontAwesome5 name="coins" size={25} color="orange" />
                   </View>
-                  {/* <TouchableOpacity>
-                    <Text className="font-bold underline">
-                      23nd - 28nd August
-                    </Text>
-                  </TouchableOpacity> */}
+
                   <EditDateApartmentDetail />
                 </View>
                 <TouchableOpacity
                   onPress={() => navigation.navigate("InputInfomationScreen")}
-                  className="bg-blue-500 px-16 rounded-md"
+                  className="bg-blue-500 px-10 mx-4 rounded-md "
                 >
                   <Text className="p-3 text-white font-bold text-[23px]">
                     Book

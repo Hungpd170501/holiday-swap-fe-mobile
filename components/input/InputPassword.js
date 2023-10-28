@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 
-function InputPassword({ text }) {
-  const [password, setPassword] = useState("");
+function InputPassword({ text, password, onChange }) {
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -25,7 +24,7 @@ function InputPassword({ text }) {
           placeholder="Enter your password"
           secureTextEntry={!showPassword}
           value={password}
-          onChangeText={(text) => setPassword(text)}
+          onChangeText={onChange}
         />
         <TouchableOpacity onPress={togglePasswordVisibility}>
           <Icon
