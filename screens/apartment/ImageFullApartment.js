@@ -17,7 +17,9 @@ export default function ImageFullApartment() {
           <TouchableOpacity onPress={() => navigation.goBack()}>
             <AntDesign name="arrowleft" size={30} color="white" />
           </TouchableOpacity>
-          <Text className="ml-8 text-[20px] text-white">Image of property</Text>
+          <Text className="ml-8 text-[20px] text-white">
+            Image of Apartment
+          </Text>
         </View>
       </View>
       <ScrollView>

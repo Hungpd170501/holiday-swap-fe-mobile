@@ -2,11 +2,15 @@
 import React from "react";
 import Navigation from "./navigations/navigationConfig";
 import { LogBox } from "react-native";
-
-LogBox.ignoreAllLogs();
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
 
 function App() {
-  return <Navigation />;
+  return (
+    <Provider store={store}>
+      <Navigation />
+    </Provider>
+  );
 }
 
 export default App;

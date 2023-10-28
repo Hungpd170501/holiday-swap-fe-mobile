@@ -45,7 +45,10 @@ export default function Wallet() {
             <AntDesign name="creditcard" size={30} />
             <Text>No credit cards</Text>
             <Text>You can add points to the application via vnpay</Text>
-            <TouchableOpacity className="bg-blue-500 px-6 rounded-md py-3 my-3">
+            <TouchableOpacity
+              onPress={() => navigation.navigate("Rechart")}
+              className="bg-blue-500 px-6 rounded-md py-3 my-3"
+            >
               <Text className="text-white">Recharge</Text>
             </TouchableOpacity>
           </View>

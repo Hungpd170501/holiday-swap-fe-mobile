@@ -80,11 +80,7 @@ export default function WellcomeBackAdd() {
             </TouchableOpacity>
             <TouchableOpacity className="flex flex-row items-center justify-between">
               <View className="flex flex-row items-center gap-5">
-                <MaterialCommunityIcons
-                  color={"gray-500"}
-                  size={25}
-                  name="content-copy"
-                />
+                <MaterialCommunityIcons size={25} name="content-copy" />
                 <Text>content-copy</Text>
               </View>
               <MaterialIcons size={30} name="navigate-next" />

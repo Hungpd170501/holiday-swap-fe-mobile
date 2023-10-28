@@ -4,12 +4,12 @@ import Loading from "../../components/loading/Loading";
 import { useNavigation } from "@react-navigation/native";
 import { ScrollView } from "react-native";
 
-export default function LoadingScreen() {
-  const navigation = useNavigation();
+export default function LoadingScreen({ navigation }) {
+  // const navigation = useNavigation();
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigation.navigate("WelcomeScreen");
+      navigation.navigate("root");
     }, 1000);
 
     return () => clearTimeout(timer);
