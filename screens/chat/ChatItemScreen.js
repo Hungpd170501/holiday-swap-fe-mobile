@@ -14,7 +14,7 @@ import { TextInput } from "react-native-paper";
 export default function ChatItemScreen() {
   const navigation = useNavigation();
   return (
-    <View className="bg-white flex-1">
+    <View className=" flex-1">
       <View className="bg-white w-full h-[100px]  flex flex-row items-center justify-start px-5">
         <TouchableOpacity
           className="flex flex-row w-[50px] h-[50px] bg-[#EBEBEB] rounded-full items-center justify-center"
