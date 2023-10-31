@@ -9,7 +9,7 @@ import { View } from "react-native-animatable";
 export default function SearchHome() {
   const navigation = useNavigation();
   return (
-    <View className="pt-5 pb-8 px-4 bg-white">
+    <View className="pt-14 pb-8 px-4 bg-white">
       <View
         style={styles.shadow}
         className=" w-full bg-white rounded-3xl py-2 px-4"

@@ -52,6 +52,7 @@ import YourApartment from "../screens/yourApartment/YourApartment";
 import OwnerDetailApartment from "../screens/apartment/OwnerDetailApartment";
 import { useSelector } from "react-redux";
 import * as SecureStore from "expo-secure-store";
+import { ViewPropTypes } from "deprecated-react-native-prop-types";
 
 const Stack = createStackNavigator();
 
@@ -70,10 +71,12 @@ function Navigation() {
 
   useEffect(() => {
     if (user) {
+      console.log("Check user", user);
       setToken(user.access_token);
       getToken().then((token) => setAuthen(token));
     }
   }, [user]);
+
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
@@ -154,6 +157,7 @@ function Navigation() {
               name="WelcomeBackScreen"
               component={WelcomeBackScreen}
             />
+            <Stack.Screen name="SignInScreen" component={SignInScreen} />
           </Fragment>
         ) : (
           <Fragment>
@@ -167,6 +171,7 @@ function Navigation() {
               name="CreateNewPassword"
               component={CreateNewPassword}
             />
+            <Stack.Screen name="root" component={TabNavigation} />
           </Fragment>
         )}
       </Stack.Navigator>
