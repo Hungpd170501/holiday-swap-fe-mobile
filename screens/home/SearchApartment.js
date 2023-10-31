@@ -37,7 +37,7 @@ export default function SearchApartment() {
           <Text className="font-bold underline text-black">Clear all</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => navigation.navigate("Home")}
+          onPress={() => navigation.navigate("Homes")}
           className="py-3 px-8 rounded-md bg-sky-500"
         >
           <Text className="text-white text-center font-bold text-lg">

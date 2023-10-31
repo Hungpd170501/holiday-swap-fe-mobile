@@ -14,10 +14,8 @@ import { useNavigation } from "@react-navigation/native";
 import { useSelector } from "react-redux";
 
 export default function ProfileScreen() {
-  // const { userTest, loading, isAuthenticated } = useSelector(
-  //   (state) => state.userTest
-  // );
-  // console.log("check check", userTest);
+  const { user, loading, isAuthenticated } = useSelector((state) => state.user);
+  console.log("checkthuc ", user);
   const navigation = useNavigation();
 
   return (
@@ -40,7 +38,7 @@ export default function ProfileScreen() {
             source={require("../../assets/images/avt.jpg")}
           />
           <Text className="text-[30px] font-bold text-white py-2">
-            {/* {item.username} */} Bui Tri Thuc
+            {user.username}
           </Text>
           <Text className="text-yellow-400">Guest</Text>
         </View>

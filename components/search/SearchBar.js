@@ -4,7 +4,7 @@ import * as Icon from "react-native-feather";
 
 const SearchBar = () => {
   return (
-    <View className="flex-row items-center space-x-2 px-4 mt-4">
+    <View className="flex-row items-center space-x-2  mt-4">
       <View className="flex-row flex-1 items-center p-3  border border-gray-300 bg-slate-100">
         <Icon.Search height={25} width={25} stroke="gray" />
         <TextInput

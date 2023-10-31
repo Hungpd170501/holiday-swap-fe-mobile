@@ -39,7 +39,7 @@ export default function EditPublicTime() {
           onPress={() => toggleBottomNavigationView()}
           className="py-4 flex flex-row items-center justify-between"
         >
-          <View className="flex flex-row items-center">
+          <View className="">
             <Text className="font-bold">Public Time: </Text>
             <Text className="text-[20px]">
               {dateRange
@@ -50,9 +50,9 @@ export default function EditPublicTime() {
                 : "Time"}
             </Text>
           </View>
-          <View>
+          <TouchableOpacity onPress={() => toggleBottomNavigationView()}>
             <AntDesign size={25} color="#4180F4" name="edit" />
-          </View>
+          </TouchableOpacity>
         </TouchableOpacity>
       </View>
       <BottomSheet
