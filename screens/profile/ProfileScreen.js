@@ -8,6 +8,8 @@ import {
   MaterialCommunityIcons,
   Octicons,
 } from "@expo/vector-icons";
+import * as SecureStore from "expo-secure-store";
+
 import { useDispatch } from "react-redux";
 import { TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
@@ -17,6 +19,13 @@ export default function ProfileScreen() {
   const { user, loading, isAuthenticated } = useSelector((state) => state.user);
   console.log("checkthuc ", user);
   const navigation = useNavigation();
+  const signOut = () => {
+    SecureStore.deleteItemAsync("secure_token")
+      .then(navigation.navigate("SignInScreen"))
+      .catch((error) => {
+        console.log("Check error", error);
+      });
+  };
 
   return (
     <View>
@@ -151,7 +160,7 @@ export default function ProfileScreen() {
               <Text>Your apartment</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() => navigation.navigate("SignInScreen")}
+              onPress={signOut}
               className="flex flex-row items-center gap-3"
             >
               <AntDesign color="red" name="logout" size={20} />

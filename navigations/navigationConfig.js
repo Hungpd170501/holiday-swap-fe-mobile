@@ -101,6 +101,8 @@ function Navigation() {
               name="InputInfomationScreen"
               component={InputInfomationScreen}
             />
+            <Stack.Screen name="SignInScreen" component={SignInScreen} />
+
             <Stack.Screen name="SearchApartment" component={SearchApartment} />
             <Stack.Screen name="DetailApartment" component={DetailApartment} />
             <Stack.Screen name="Rating" component={Rating} />
