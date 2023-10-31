@@ -8,16 +8,22 @@ import {
   MaterialCommunityIcons,
   Octicons,
 } from "@expo/vector-icons";
-import * as SecureStore from "expo-secure-store";
-
 import { useDispatch } from "react-redux";
 import { TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useSelector } from "react-redux";
 import * as SecureStore from "expo-secure-store";
+import { loadUser } from "../../redux/actions/userActions";
 
 export default function ProfileScreen() {
-  const { user, loading, isAuthenticated } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const { user, userProfile, loading, error, isAuthenticated } = useSelector(
+    (state) => state.user
+  );
+
+  useEffect(() => {
+    dispatch(loadUser());
+  }, [dispatch]);
 
   const navigation = useNavigation();
   const signOut = () => {
@@ -27,6 +33,8 @@ export default function ProfileScreen() {
         console.log("Check error", error);
       });
   };
+
+  console.log("Check profile", userProfile);
 
   return (
     <View>
@@ -48,7 +56,7 @@ export default function ProfileScreen() {
             source={require("../../assets/images/avt.jpg")}
           />
           <Text className="text-[30px] font-bold text-white py-2">
-            {user?.username}
+            {userProfile?.username}
           </Text>
           <Text className="text-yellow-400">Guest</Text>
         </View>

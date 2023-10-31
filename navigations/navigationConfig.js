@@ -59,7 +59,7 @@ const Stack = createStackNavigator();
 function Navigation() {
   const { user } = useSelector((state) => state.user);
   const setToken = (token) => {
-    return SecureStore.setItemAsync("secure_token", JSON.stringify(token));
+    return SecureStore.setItemAsync("secure_token", token);
   };
   const getToken = () => {
     return SecureStore.getItemAsync("secure_token");
@@ -104,7 +104,6 @@ function Navigation() {
               name="InputInfomationScreen"
               component={InputInfomationScreen}
             />
-            <Stack.Screen name="SignInScreen" component={SignInScreen} />
 
             <Stack.Screen name="SearchApartment" component={SearchApartment} />
             <Stack.Screen name="DetailApartment" component={DetailApartment} />
@@ -163,8 +162,6 @@ function Navigation() {
           </Fragment>
         ) : (
           <Fragment>
-            <Stack.Screen name="root" component={TabNavigation} />
-
             <Stack.Screen name="SignInScreen" component={SignInScreen} />
             <Stack.Screen name="SignUp" component={SignUpScreen} />
             <Stack.Screen
@@ -175,7 +172,7 @@ function Navigation() {
               name="CreateNewPassword"
               component={CreateNewPassword}
             />
-            <Stack.Screen name="root" component={TabNavigation} />
+            {/* <Stack.Screen name="root" component={TabNavigation} /> */}
           </Fragment>
         )}
       </Stack.Navigator>
