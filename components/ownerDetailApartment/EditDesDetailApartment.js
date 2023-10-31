@@ -37,7 +37,9 @@ export default function EditDesDetailApartment() {
             </View>
           </TouchableOpacity>
         </View>
-        <AntDesign size={25} color="#4180F4" name="edit" />
+        <TouchableOpacity onPress={toggleBottomNavigationView}>
+          <AntDesign size={25} color="#4180F4" name="edit" />
+        </TouchableOpacity>
       </View>
       <BottomSheet
         visible={visible}

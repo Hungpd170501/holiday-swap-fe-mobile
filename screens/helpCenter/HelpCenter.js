@@ -41,7 +41,10 @@ export default function HelpCenter() {
             </View>
             <View>
               <Text className="py-3">Problem description*</Text>
-              <TextInput className="bg-blue-100 rounded-3xl border px-2 h-[120px] border-blue-500 " />
+              <TextInput
+                multiline
+                className="bg-blue-100 rounded-3xl border px-2 pb-[100px] pt-2  border-blue-500 "
+              />
             </View>
           </View>
           <TouchableOpacity

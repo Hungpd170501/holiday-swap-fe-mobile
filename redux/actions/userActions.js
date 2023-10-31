@@ -8,6 +8,7 @@ import {
   LOAD_USER_SUCCESS,
   LOAD_USER_FAIL,
 } from "../constants/userConstants";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 // Login
 export const login = (email, password) => async (dispatch) => {
@@ -19,6 +20,8 @@ export const login = (email, password) => async (dispatch) => {
       { email, password },
       config
     );
+    const token = data.access_token;
+    AsyncStorage.setItem("token", token);
 
     dispatch({ type: LOGIN_SUCCESS, payload: data }); // login thành công, data trả về (payload)
   } catch (error) {
@@ -31,10 +34,13 @@ export const loadUser = () => async (dispatch) => {
   try {
     dispatch({ type: LOAD_USER_REQUEST });
 
-    const { data } = await axios.get(
-      `https://holiday-swap.click/api/v1/users/profile`
-    );
+    const token = await AsyncStorage.getItem("token");
 
+    const data = await axios.get(
+      `https://holiday-swap.click/api/v1/users/profile`,
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+    console.log("checkdate", data);
     dispatch({ type: LOAD_USER_SUCCESS, payload: data.user });
   } catch (error) {
     dispatch({ type: LOAD_USER_FAIL, payload: error.response.data.message });

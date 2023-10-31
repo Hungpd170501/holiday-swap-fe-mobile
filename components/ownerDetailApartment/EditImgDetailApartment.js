@@ -38,7 +38,10 @@ export default function EditImgDetailApartment() {
   };
 
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+    <View
+      className="bg-white flex-1"
+      style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
+    >
       <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
         {images.map((image, index) => (
           <View
@@ -61,7 +64,7 @@ export default function EditImgDetailApartment() {
           </View>
         ))}
       </View>
-      <TouchableOpacity onPress={pickImage}>
+      <TouchableOpacity className="bg-white" onPress={pickImage}>
         <Text className="bg-blue-500 text-white py-3 px-4 rounded-md mt-3 font-bold">
           Add more image
         </Text>

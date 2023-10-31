@@ -46,7 +46,7 @@ export default function Wallet() {
             <Text>No credit cards</Text>
             <Text>You can add points to the application via vnpay</Text>
             <TouchableOpacity
-              onPress={() => navigation.navigate("Rechart")}
+              onPress={() => navigation.navigate("Recharge")}
               className="bg-blue-500 px-6 rounded-md py-3 my-3"
             >
               <Text className="text-white">Recharge</Text>
