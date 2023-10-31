@@ -102,6 +102,8 @@ function Navigation() {
               name="InputInfomationScreen"
               component={InputInfomationScreen}
             />
+            <Stack.Screen name="SignInScreen" component={SignInScreen} />
+
             <Stack.Screen name="SearchApartment" component={SearchApartment} />
             <Stack.Screen name="DetailApartment" component={DetailApartment} />
             <Stack.Screen name="Rating" component={Rating} />
@@ -158,6 +160,8 @@ function Navigation() {
           </Fragment>
         ) : (
           <Fragment>
+            <Stack.Screen name="root" component={TabNavigation} />
+
             <Stack.Screen name="SignInScreen" component={SignInScreen} />
             <Stack.Screen name="SignUp" component={SignUpScreen} />
             <Stack.Screen
