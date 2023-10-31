@@ -11,8 +11,8 @@ export default function MapDetailResorts() {
     <View style={styles.container}>
       <MapView
         initialRegion={{
-          latitude: 10.841328,
-          longitude: 106.810473,
+          latitude: 10.795909283931664,
+          longitude: 106.72132516778024,
           latitudeDelta: 0.01,
           longitudeDelta: 0.01,
         }}
@@ -21,11 +21,11 @@ export default function MapDetailResorts() {
       >
         <Marker
           coordinate={{
-            latitude: 10.841328,
-            longitude: 106.810473,
+            latitude: 10.795267202562,
+            longitude: 106.72173566479273,
           }}
-          title="Thức Bui"
-          description="Thuc Dep Trai"
+          title="Lanmark81"
+          // description="T"
           pinColor={"red"}
         />
       </MapView>

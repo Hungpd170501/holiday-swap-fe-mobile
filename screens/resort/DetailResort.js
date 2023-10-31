@@ -1,7 +1,7 @@
 import React from "react";
 import { Image, Text } from "react-native";
 import { View } from "react-native-animatable";
-import AvtHeader from "../../components/Home/AvtHeader";
+import AvtHeader from "../../components/Home/SearchHome";
 import ImgHeaderDetail from "../../components/resort/ImgHeaderDetail";
 import {
   AntDesign,
@@ -29,54 +29,14 @@ export default function DetailResort() {
             <View>
               <ImgHeaderDetail />
             </View>
-            <View className="px-3 pt-1">
-              <Text className="font-bold text-[15px]">
+            <View className="px-3 py-2">
+              <Text className="font-bold text-[20px]">
                 Landmark 81 - Luxury Resort - Stay in the Top of Vietnam
               </Text>
-              <View className="flex flex-row items-center  py-2 ">
-                <Ionicons name="leaf-outline" size={25} color="green" />
-                <Text className="text-[13px] text-green-900">
-                  Sustainable Tourism
-                </Text>
-              </View>
             </View>
           </View>
         </View>
-        <TouchableOpacity className="pr-4 pl-3 mt-3 bg-white flex flex-row items-center justify-between">
-          <View>
-            <View className=" flex flex-row gap-2 py-2">
-              <Text className="bg-blue-500 font-bold text-white px-1 py-1">
-                Save 40%
-              </Text>
-              <Text className="bg-blue-500 font-bold text-white px-1 py-1">
-                Limit time offer
-              </Text>
-            </View>
-            <View className="pb-3">
-              <Text>
-                <Text className="text-black font-bold">
-                  Price for 9 nights for 2 adults
-                </Text>
-              </Text>
-              <View className="flex flex-row gap-3 ">
-                <View className="flex flex-row items-center">
-                  <Text className="text-red-500 line-through px-1  text-[15px]">
-                    25000
-                  </Text>
-                  <FontAwesome5 name="coins" size={20} color="orange" />
-                </View>
-                <View className="flex flex-row items-center">
-                  <Text className=" font-bold text-[25px]">15000</Text>
-                  <FontAwesome5 name="coins" size={20} color="orange" />
-                </View>
-              </View>
-              <Text>Taxes and fees included</Text>
-            </View>
-          </View>
-          <TouchableOpacity>
-            <Text className="text-[30px] font-thin">{">"}</Text>
-          </TouchableOpacity>
-        </TouchableOpacity>
+
         <View className="bg-white mt-2 pr-3 pl-4 py-3 flex flex-row">
           <AntDesign size={20} name="creditcard" />
           <View>
@@ -88,7 +48,7 @@ export default function DetailResort() {
             </Text>
           </View>
         </View>
-        <View className="bg-white pt-3 pl-3 mb-2 ">
+        <View className="bg-white pt-3 pl-3 pb-4 ">
           <View className="flex flex-row items-center">
             <MaterialIcons size={25} color="gray" name="apartment" />
             <Text className="text-[15px] font-bold ml-3">Whole apartment</Text>
@@ -98,7 +58,7 @@ export default function DetailResort() {
         <View className="bg-white">
           <MapDetailResorts />
           <View className="pl-4 py-3">
-            <Text>
+            <Text className="text-[15px]">
               720A Đ. Điện Biên Phủ, Vinhomes Tân Cảng, Bình Thạnh, Thành phố Hồ
               Chí Minh, Vietnam
             </Text>
@@ -215,25 +175,7 @@ export default function DetailResort() {
             </Text>
           </TouchableOpacity>
         </View>
-        <View className="bg-white pl-4 pr-3 mt-2">
-          <TouchableOpacity className="flex flex-row items-center py-3 justify-between">
-            <View className="flex flex-row items-center">
-              <Image
-                className="w-[50px] h-[50px] rounded-full"
-                source={require("../../assets/images/landmark5.jpg")}
-              />
-              <View className="ml-2">
-                <Text className="text-[18px] font-bold">
-                  About the resort owner
-                </Text>
-                <Text>8.5 star about reosrt owner</Text>
-              </View>
-            </View>
-            <View>
-              <Text className="text-[30px] text-thin text-gray-500">{">"}</Text>
-            </View>
-          </TouchableOpacity>
-        </View>
+
         <View className="bg-white mt-2 pl-4">
           <Text className="text-[20px] font-bold">
             Let's cook for ourselves! - like at home
@@ -242,21 +184,21 @@ export default function DetailResort() {
           <View className="flex flex-row items-center pt-3 gap-5">
             <View>
               <View className="flex flex-row mb-1 items-center ">
-                <Entypo size={20} name="check" color="blue" />
+                <Entypo size={20} name="check" color="#0073CF" />
                 <Text className="text-[18px] ml-2">Dinner table</Text>
               </View>
               <View className="flex flex-row mb-1 items-center">
-                <Entypo size={20} name="check" color="blue" />
+                <Entypo size={20} name="check" color="#0073CF" />
                 <Text className="text-[18px] ml-2">Griller</Text>
               </View>
             </View>
             <View>
               <View className="flex flex-row mb-1 items-center">
-                <Entypo size={20} name="check" color="blue" />
+                <Entypo size={20} name="check" color="#0073CF" />
                 <Text className="text-[18px] ml-2">Microwave oven</Text>
               </View>
               <View className="flex flex-row mb-1 items-center">
-                <Entypo size={20} name="check" color="blue" />
+                <Entypo size={20} name="check" color="#0073CF" />
                 <Text className="text-[18px] ml-2">Fridge</Text>
               </View>
             </View>
@@ -264,11 +206,11 @@ export default function DetailResort() {
           <View className="flex flex-row gap-5 pt-2">
             <View>
               <View className="flex flex-row mb-1 items-center">
-                <Entypo size={20} name="check" color="blue" />
+                <Entypo size={20} name="check" color="#0073CF" />
                 <Text className="text-[18px] ml-2">Stove</Text>
               </View>
               <View className="flex flex-row mb-1 items-center">
-                <Entypo size={20} name="check" color="blue" />
+                <Entypo size={20} name="check" color="#0073CF" />
                 <Text className="text-[18px] ml-2">kettle</Text>
               </View>
             </View>
@@ -321,11 +263,11 @@ export default function DetailResort() {
       </ScrollView>
       <View>
         <TouchableOpacity
-          onPress={() => navigation.navigate("ListApartment")}
-          className="bg-blue-700"
+          onPress={() => navigation.navigate("ListProperty")}
+          className="bg-blue-500"
         >
           <Text className="text-center text-white font-bold py-4">
-            Vacant apartments
+            List Property
           </Text>
         </TouchableOpacity>
       </View>

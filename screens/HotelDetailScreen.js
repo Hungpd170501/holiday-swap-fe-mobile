@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ImgDetailHotel from "../components/ImgDetailHotel";
+import ImgDetailHotel from "../components/input/ImgDetailHotel";
 import { Image, ScrollView, TouchableOpacity } from "react-native";
 import { Text, View } from "react-native";
 import Location from "react-native-vector-icons/Entypo";
@@ -8,8 +8,7 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-
-import Maps from "../components/Map";
+import Maps from "../components/map/Map";
 export default function HotelDetailScreen() {
   const [isRed, setIsRed] = useState(false);
   const [showMore, setShowMore] = useState(false); // State to control showing more text
