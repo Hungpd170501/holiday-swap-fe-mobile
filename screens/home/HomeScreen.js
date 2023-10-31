@@ -8,7 +8,6 @@ import { StatusBar } from "expo-status-bar";
 
 export default function HomeScreen() {
   const { user } = useSelector((state) => state.user);
-  console.log("Check user", user);
   return (
     <>
       <View className="bg-white ">
