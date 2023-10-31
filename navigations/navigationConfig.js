@@ -69,8 +69,10 @@ function Navigation() {
   );
 
   useEffect(() => {
-    setToken(user.access_token);
-    getToken().then((token) => setAuthen(token));
+    if (user) {
+      setToken(user.access_token);
+      getToken().then((token) => setAuthen(token));
+    }
   }, [user]);
   return (
     <NavigationContainer>
