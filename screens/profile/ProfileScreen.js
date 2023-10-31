@@ -28,14 +28,6 @@ export default function ProfileScreen() {
       });
   };
 
-  const signOut = () => {
-    SecureStore.deleteItemAsync("secure_token")
-      .then(navigation.navigate("SignInScreen"))
-      .catch((error) => {
-        console.log("Check error", error);
-      });
-  };
-
   return (
     <View>
       <View className="bg-blue-500 w-full h-[100px] justify-between flex flex-row items-center px-5">
