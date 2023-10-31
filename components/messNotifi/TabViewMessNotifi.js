@@ -355,7 +355,7 @@ export default function TabViewMessNotifi() {
     <View className="flex-1 px-4 bg-white">
       <View>
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          <View className="flex flex-row gap-10 ">
+          <View className="flex flex-row gap-6">
             {tabs.map((tab) => (
               <TouchableOpacity
                 className="pb-1"

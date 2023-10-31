@@ -17,68 +17,69 @@ export default function OwnerDetailApartment() {
   const [modalVisible, setModalVisible] = useState(false);
 
   return (
-    <View>
+    <View className="flex-1 bg-white">
       <View className="bg-blue-500 w-full h-[100px]  flex flex-row items-center justify-start px-5">
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Ionicons name="close-outline" size={30} color="white" />
         </TouchableOpacity>
         <Text className="ml-8 text-[20px] text-white">Manage Apartment</Text>
       </View>
-      <View className="">
-        <ScrollView>
-          <View className="px-4 mt-2 ">
-            <EditNameApartment />
-            <View className="flex flex-row items-center justify-between">
-              <View className="flex flex-row items-center py-4">
-                <Text className="font-bold">Adress: </Text>
-                <Text className="text-[20px]">Phu Quoc resort </Text>
-              </View>
-              <TouchableOpacity>
-                <Entypo name="block" size={20} />
-              </TouchableOpacity>
+
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View className="px-4 mt-2 flex-1 mb-3">
+          <EditNameApartment />
+          <View className="flex flex-row items-center justify-between">
+            <View className="flex flex-row items-center py-4">
+              <Text className="font-bold">Adress: </Text>
+              <Text className="text-[20px]">Phu Quoc resort </Text>
             </View>
-            <View className="flex flex-row items-center justify-between">
-              <View className="flex flex-row items-center">
-                <Text className="font-bold">Property type: </Text>
-                <Text className="text-[20px]">Luxury property </Text>
-              </View>
-              <TouchableOpacity>
-                <Entypo name="block" size={20} />
-              </TouchableOpacity>
-            </View>
-            <View className="flex flex-row items-center justify-between mt-4">
-              <View className="flex flex-row items-center">
-                <Text className="font-bold">Apartment ID: </Text>
-                <Text className="text-[20px]">868 </Text>
-              </View>
-              <TouchableOpacity>
-                <Entypo name="block" size={20} />
-              </TouchableOpacity>
-            </View>
-            <View className="pt-4">
-              <EditDesDetailApartment />
-            </View>
-            <View>
-              <EditPublicTime />
-            </View>
-            <View>
-              <EditImgDetailApartment />
-            </View>
+            <TouchableOpacity>
+              <Entypo name="block" size={20} />
+            </TouchableOpacity>
           </View>
-        </ScrollView>
-      </View>
-      <ModalUpdate
-        modalVisible={modalVisible}
-        setModalVisible={setModalVisible}
-      />
-      <View className="flex flex-row justify-end px-4">
+          <View className="flex flex-row items-center justify-between">
+            <View className="flex flex-row items-center">
+              <Text className="font-bold">Property type: </Text>
+              <Text className="text-[20px]">Luxury property </Text>
+            </View>
+            <TouchableOpacity>
+              <Entypo name="block" size={20} />
+            </TouchableOpacity>
+          </View>
+          <View className="flex flex-row items-center justify-between mt-4">
+            <View className="flex flex-row items-center">
+              <Text className="font-bold">Apartment ID: </Text>
+              <Text className="text-[20px]">868 </Text>
+            </View>
+            <TouchableOpacity>
+              <Entypo name="block" size={20} />
+            </TouchableOpacity>
+          </View>
+          <View className="pt-4">
+            <EditDesDetailApartment />
+          </View>
+          <View>
+            <EditPublicTime />
+          </View>
+          <View>
+            <EditImgDetailApartment />
+          </View>
+        </View>
+      </ScrollView>
+
+      <View className="flex flex-row justify-end px-4 ">
         <TouchableOpacity
           onPress={() => setModalVisible(true)}
-          className="bg-blue-500 py-3 px-5 rounded-md mt-10"
+          className="bg-blue-500 py-3 px-5 rounded-md my-3"
         >
           <Text className="text-white font-bold">Save</Text>
         </TouchableOpacity>
       </View>
+
+      <ModalUpdate
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+      />
     </View>
   );
 }

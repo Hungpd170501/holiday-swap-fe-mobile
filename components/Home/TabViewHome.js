@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import CarouselApartmentHome from "../apartment/CaroselApartmentHome";
+import MapHome from "../mapHome/MapHome";
 
 const ApartmentDatasImpress = [
   {
@@ -129,7 +130,7 @@ export default function TabViewHome() {
     switch (selectedTab) {
       case "Caroline Resort":
         return (
-          <View style={styles.shadow} className="flex-1 ">
+          <View style={styles.shadow} className="flex-1  ">
             <ScrollView showsVerticalScrollIndicator={false} className="mt-5">
               <View>
                 {ApartmentDatasImpress.map((apartment) => (
@@ -194,12 +195,8 @@ export default function TabViewHome() {
                 ))}
               </View>
             </ScrollView>
-            <View className=" w-full absolute 2flex flex-col h-[99%] justify-end ">
-              <TouchableOpacity className=" flex flex-row justify-center items-center  ">
-                <Text className="border border-gray-400 rounded-full py-2 px-6 bg-black text-white text-center opacity-70">
-                  Maps
-                </Text>
-              </TouchableOpacity>
+            <View className=" w-full absolute  flex h-full flex-col justify-end ">
+              <MapHome />
             </View>
           </View>
         );
@@ -256,12 +253,8 @@ export default function TabViewHome() {
                 </View>
               </TouchableOpacity>
             </ScrollView>
-            <View className=" w-full absolute 2flex flex-col h-[99%] justify-end ">
-              <TouchableOpacity className=" flex flex-row justify-center items-center  ">
-                <Text className="border border-gray-400 rounded-full py-2 px-6 bg-black text-white text-center opacity-70">
-                  Maps
-                </Text>
-              </TouchableOpacity>
+            <View className=" w-full absolute  flex h-full flex-col justify-end ">
+              <MapHome />
             </View>
           </View>
         );
@@ -318,12 +311,8 @@ export default function TabViewHome() {
                 </View>
               </TouchableOpacity>
             </ScrollView>
-            <View className=" w-full absolute 2flex flex-col h-[99%] justify-end ">
-              <TouchableOpacity className=" flex flex-row justify-center items-center  ">
-                <Text className="border border-gray-400 rounded-full py-2 px-6 bg-black text-white text-center opacity-70">
-                  Maps
-                </Text>
-              </TouchableOpacity>
+            <View className=" w-full absolute  flex h-full flex-col justify-end ">
+              <MapHome />
             </View>
           </View>
         );
@@ -380,12 +369,8 @@ export default function TabViewHome() {
                 </View>
               </TouchableOpacity>
             </ScrollView>
-            <View className=" w-full absolute 2flex flex-col h-[99%] justify-end ">
-              <TouchableOpacity className=" flex flex-row justify-center items-center  ">
-                <Text className="border border-gray-400 rounded-full py-2 px-6 bg-black text-white text-center opacity-70">
-                  Maps
-                </Text>
-              </TouchableOpacity>
+            <View className=" w-full absolute  flex h-full flex-col justify-end ">
+              <MapHome />
             </View>
           </View>
         );
