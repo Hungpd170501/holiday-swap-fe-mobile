@@ -82,8 +82,9 @@ function Navigation() {
             <Stack.Screen name="root" component={TabNavigation} />
             <Stack.Screen name="Home" component={HomeScreen} />
             <Stack.Screen name="Profile" component={ProfileScreen} />
-
             <Stack.Screen name="Loading" component={LoadingScreen} />
+
+            {/* <Stack.Screen name="Loading" component={LoadingScreen} /> */}
             <Stack.Screen
               name="OwnerDetailApartment"
               component={OwnerDetailApartment}
