@@ -1,5 +1,5 @@
 import { AntDesign, FontAwesome5 } from "@expo/vector-icons";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -11,6 +11,8 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import CarouselApartmentHome from "../apartment/CaroselApartmentHome";
 import MapHome from "../mapHome/MapHome";
+import axios from "axios";
+import CarouselApartmentImage from "../apartment/CarouselApartmentImage";
 
 const ApartmentDatasImpress = [
   {
@@ -118,14 +120,43 @@ const ApartmentDatasCity = [
 ];
 
 export default function TabViewHome() {
-  const tabs = [
-    "Caroline Resort",
-    "Saigon Park Resort",
-    "Lakeview Villa",
-    "Resort InterContinental Danang ",
-  ];
+  useEffect(() => {
+    fetchListApartmentForRent();
+  }, []);
+
+  const tabs = ["Caroline Resort", "Saigon Park Resort", "Lakeview Villa", "Resort InterContinental Danang "];
   const [selectedTab, setSelectedTab] = useState("Caroline Resort");
+
+  const [listApartmentForRent, setListApartmentForRent] = useState([]);
+  const [apartment, setApartment] = useState({});
+  const [listApartment, setListApartment] = useState([]);
+  const [resort, setResort] = useState({});
   const navigation = useNavigation();
+  const apiUrl = "https://api.example.com/apartments";
+  let config = {
+    method: "get",
+    maxBodyLength: Infinity,
+    url: "https://holiday-swap.click/api/v1/apartment-for-rent?guest=1&numberBedsRoom=1&numberBathRoom=1&pageNo=0&pageSize=10&sortBy=id&sortDirection=asc",
+    headers: {},
+  };
+  const fetchListApartmentForRent = () => {
+    axios
+      .request(config)
+      .then((response) => {
+        // console.log(JSON.stringify(response.data));
+        setListApartmentForRent(response.data.content);
+        {
+          // Get the property values from the data array.
+          const propertyList = response.data.content.map((obj) => obj.property);
+
+          // Set the list of apartments.
+          setListApartment(propertyList);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   const renderTabContent = () => {
     switch (selectedTab) {
       case "Caroline Resort":
@@ -133,10 +164,12 @@ export default function TabViewHome() {
           <View style={styles.shadow} className="flex-1  ">
             <ScrollView showsVerticalScrollIndicator={false} className="mt-5">
               <View>
-                {ApartmentDatasImpress.map((apartment) => (
-                  <View key={apartment.id}>
-                    <View>{apartment.carosel}</View>
-
+                {listApartmentForRent.map((item, index) => (
+                  <View key={index}>
+                    <View>
+                    <CarouselApartmentImage image = {item.property.propertyImage} />
+                    {/* <CarouselApartmentHome /> */}
+                      </View>
                     <TouchableOpacity
                       onPress={() => navigation.navigate("DetailApartment")}
                       className=" mb-8"
@@ -145,35 +178,34 @@ export default function TabViewHome() {
                         <View className="">
                           <View className="flex flex-row items-center justify-between">
                             <Text className="underline pb-3 w-[80%] text-[18px] font-bold pt-2">
-                              {apartment.name}
+                              {item.property.propertyName}
                             </Text>
                             <View className="flex flex-row items-center gap-1">
-                              <Text>{apartment.rat}</Text>
+                              <Text>{5}</Text>
                               <AntDesign name="star" color="orange" />
                             </View>
                           </View>
                           <View className="flex flex-row gap-2 ">
                             <Text className="font-bold">Resort:</Text>
-                            <Text>{apartment.nameResort}</Text>
+                            <Text>{item.resort.resortName}</Text>
                           </View>
                           <View className="flex flex-row gap-2 py-2">
                             <Text className="font-bold">Type:</Text>
-                            <Text>{apartment.type}</Text>
+                            <Text>{item.property.propertyType.propertyTypeName}</Text>
                           </View>
-                          <View className="flex flex-row gap-2 mb-2">
-                            <Text className="font-bold">Apartment ID:</Text>
-                            <Text>{apartment.apartmentID}</Text>
-                          </View>
+                          {/* <View className="flex flex-row gap-2 mb-2"> */}
+                            {/* <Text className="font-bold">Apartment ID:</Text> */}
+                            {/* <Text>{apartment.apartmentID}</Text> */}
+                          {/* </View> */}
 
                           <View className="max-w-[100%] overflow-hidden pb-2">
                             <Text className="text-[15px] whitespace-nowrap overflow-ellipsis">
-                              Unique and secluded atmosphere with limitless
-                              views
+                             {item.property.propertyDescription}
                             </Text>
                           </View>
                           <View className="flex flex-row gap-1 items-center mb-1">
                             <Text className="text-[20px] font-bold">
-                              {apartment.price}
+                              {item.availableTime.pricePerNight}
                             </Text>
                             <FontAwesome5
                               name="coins"
@@ -184,9 +216,9 @@ export default function TabViewHome() {
 
                           <View className="flex flex-row items-center ">
                             <Text className="font-bold">
-                              {apartment.nightNumber}
+                              {/* {apartment.nightNumber} */}
                             </Text>
-                            <Text className="font-bold">{apartment.time}</Text>
+                            <Text className="font-bold">{item.availableTime.startTime}</Text>
                           </View>
                         </View>
                       </View>
