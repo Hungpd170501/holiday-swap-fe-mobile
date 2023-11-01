@@ -17,13 +17,13 @@ export default function ManageAccount() {
     (state) => state.user
   );
 
-  useEffect(() => {
-    dispatch(loadUser());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(loadUser());
+  // }, [dispatch]);
 
   const navigation = useNavigation();
 
-  console.log("Check profile", userProfile);
+  // console.log("Check profile", userProfile);
   const [isHide, setIsHide] = useState(false);
   const [displayName, setDisplayName] = useState("");
 
