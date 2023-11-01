@@ -53,6 +53,7 @@ import OwnerDetailApartment from "../screens/apartment/OwnerDetailApartment";
 import { useSelector } from "react-redux";
 import * as SecureStore from "expo-secure-store";
 import VNPAYPaymentScreen from "../screens/payment/VNPayScreen";
+import { ViewPropTypes } from "deprecated-react-native-prop-types";
 
 const Stack = createStackNavigator();
 
@@ -60,7 +61,7 @@ function Navigation() {
   const { user } = useSelector((state) => state.user);
 
   const setToken = (token) => {
-    return SecureStore.setItemAsync("secure_token", JSON.stringify(token));
+    return SecureStore.setItemAsync("secure_token", token);
   };
   const getToken = () => {
     return SecureStore.getItemAsync("secure_token");
@@ -72,15 +73,19 @@ function Navigation() {
 
   useEffect(() => {
     if (user) {
+      console.log("Check user", user);
       setToken(user.access_token);
       getToken().then((token) => setAuthen(token));
     }
   }, [user]);
+
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {authen ? (
           <Fragment>
+            <Stack.Screen name="SignInScreen" component={SignInScreen} />
+
             <Stack.Screen name="root" component={TabNavigation} />
             <Stack.Screen name="Home" component={HomeScreen} />
             <Stack.Screen name="Profile" component={ProfileScreen} />
@@ -104,7 +109,6 @@ function Navigation() {
               name="InputInfomationScreen"
               component={InputInfomationScreen}
             />
-            <Stack.Screen name="SignInScreen" component={SignInScreen} />
 
             <Stack.Screen name="SearchApartment" component={SearchApartment} />
             <Stack.Screen name="DetailApartment" component={DetailApartment} />
@@ -162,7 +166,7 @@ function Navigation() {
           </Fragment>
         ) : (
           <Fragment>
-            <Stack.Screen name="root" component={TabNavigation} />
+            {/* <Stack.Screen name="root" component={TabNavigation} /> */}
 
             <Stack.Screen name="SignInScreen" component={SignInScreen} />
             <Stack.Screen name="SignUp" component={SignUpScreen} />
@@ -174,6 +178,7 @@ function Navigation() {
               name="CreateNewPassword"
               component={CreateNewPassword}
             />
+            <Stack.Screen name="root" component={TabNavigation} />
           </Fragment>
         )}
       </Stack.Navigator>

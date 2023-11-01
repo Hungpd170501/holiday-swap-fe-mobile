@@ -8,18 +8,15 @@ import {
   LOAD_USER_FAIL,
 } from "../constants/userConstants";
 
-export const userReducers = (state = { user: {} }, action) => {
+export const userReducers = (state = { user: {}, userProfile: {} }, action) => {
   switch (action.type) {
     case LOGIN_REQUEST:
-      return { loading: true, isAuthenticated: false };
     case LOAD_USER_REQUEST:
-      return {
-        loading: true,
-        isAuthenticated: false,
-      };
+      return { loading: true, isAuthenticated: false };
+
     // Gửi login request, chưa đăng nhập nên authen = false
 
-    case LOGIN_SUCCESS: // login thành công authen = true. action.payload là data của th Usẻr
+    case LOGIN_SUCCESS:
       return {
         ...state,
         loading: false,
@@ -31,9 +28,9 @@ export const userReducers = (state = { user: {} }, action) => {
         ...state,
         loading: false,
         isAuthenticated: true,
-        user: action.payload,
+        userProfile: action.payload,
       };
-    case LOGIN_FAIL: //login fail authen = false vì đăng nhập k thành công. trả về eror action.payload.message (của error BE set)
+    case LOGIN_FAIL:
       return {
         loading: false,
         isAuthenticated: flase,
@@ -44,7 +41,7 @@ export const userReducers = (state = { user: {} }, action) => {
       return {
         loading: false,
         isAuthenticated: false,
-        user: null,
+        userProfile: null,
         error: action.payload,
       };
 
