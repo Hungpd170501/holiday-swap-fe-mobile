@@ -22,13 +22,6 @@ export default function ManageAccount() {
   }, [dispatch]);
 
   const navigation = useNavigation();
-  const signOut = () => {
-    SecureStore.deleteItemAsync("secure_token")
-      .then(navigation.navigate("SignInScreen"))
-      .catch((error) => {
-        console.log("Check error", error);
-      });
-  };
 
   console.log("Check profile", userProfile);
   const [isHide, setIsHide] = useState(false);
