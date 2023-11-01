@@ -166,6 +166,8 @@ function Navigation() {
           </Fragment>
         ) : (
           <Fragment>
+            {/* <Stack.Screen name="root" component={TabNavigation} /> */}
+
             <Stack.Screen name="SignInScreen" component={SignInScreen} />
             <Stack.Screen name="SignUp" component={SignUpScreen} />
             <Stack.Screen
