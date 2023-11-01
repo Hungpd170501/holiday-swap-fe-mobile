@@ -156,60 +156,72 @@ export default function TabViewHome() {
           <View style={styles.shadow} className="flex-1  ">
             <ScrollView showsVerticalScrollIndicator={false} className="mt-5">
               <View>
-                {listApartmentForRent.map((item, index) => (
-                  <View key={index}>
-                    <TouchableOpacity
-                      onPress={() => navigation.navigate("DetailApartment", { id: item.availableTime.id })}>
-                      <CarouselApartmentImage image={item.property.propertyImage} />
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                      onPress={() => navigation.navigate("DetailApartment", { id: item.availableTime.id })}
-                      className=" mb-8">
-                      <View className="">
+                {listApartmentForRent.map((item, index) => {
+                  const startTime = new Date(item.availableTime?.startTime);
+                  const endTime = new Date(item.availableTime?.endTime);
+                  // Calculate the time difference in milliseconds
+                  const timeDiff = endTime - startTime;
+
+                  // Calculate the number of days (nights)
+                  const nights = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+
+                  return (
+                    <View key={index}>
+                      <TouchableOpacity
+                        onPress={() => navigation.navigate("DetailApartment", { id: item.availableTime.id })}>
+                        <CarouselApartmentImage image={item.property.propertyImage} />
+                      </TouchableOpacity>
+                      <TouchableOpacity
+                        onPress={() => navigation.navigate("DetailApartment", { id: item.availableTime.id })}
+                        className=" mb-8">
                         <View className="">
-                          <View className="flex flex-row items-center justify-between">
-                            <Text className="underline pb-3 w-[80%] text-[18px] font-bold pt-2">
-                              {item.property.propertyName}
-                            </Text>
-                            <View className="flex flex-row items-center gap-1">
-                              <Text>{5}</Text>
-                              <AntDesign name="star" color="orange" />
+                          <View className="">
+                            <View className="flex flex-row items-center justify-between">
+                              <Text className="underline pb-3 w-[80%] text-[18px] font-bold pt-2">
+                                {item.property.propertyName}
+                              </Text>
+                              <View className="flex flex-row items-center gap-1">
+                                <Text>{5}</Text>
+                                <AntDesign name="star" color="orange" />
+                              </View>
+                            </View>
+                            <View className="flex flex-row gap-2 ">
+                              <Text className="font-bold">Resort:</Text>
+                              <Text>{item.resort.resortName}</Text>
+                            </View>
+                            <View className="flex flex-row gap-2 py-2">
+                              <Text className="font-bold">Type:</Text>
+                              <Text>{item.property.propertyType.propertyTypeName}</Text>
+                            </View>
+                            {/* <View className="flex flex-row gap-2 mb-2"> */}
+                            {/* <Text className="font-bold">Apartment ID:</Text> */}
+                            {/* <Text>{apartment.apartmentID}</Text> */}
+                            {/* </View> */}
+
+                            <View className="max-w-[100%] overflow-hidden pb-2">
+                              <Text className="text-[15px] whitespace-nowrap overflow-ellipsis">
+                                {item.property.propertyDescription}
+                              </Text>
+                            </View>
+                            <View className="flex flex-row gap-1 items-center mb-1">
+                              <Text className="text-[20px] font-bold">{item.availableTime.pricePerNight}</Text>
+                              <FontAwesome5 name="coins" size={20} color="orange" />
+                            </View>
+
+                            <View className="flex flex-row items-center ">
+                              <Text className="font-bold">{nights} nights</Text>
+                            </View>
+                            <View className="flex flex-row items-center ">
+                              <Text className="font-bold">
+                                {startTime.toDateString()} - {endTime.toDateString()}
+                              </Text>
                             </View>
                           </View>
-                          <View className="flex flex-row gap-2 ">
-                            <Text className="font-bold">Resort:</Text>
-                            <Text>{item.resort.resortName}</Text>
-                          </View>
-                          <View className="flex flex-row gap-2 py-2">
-                            <Text className="font-bold">Type:</Text>
-                            <Text>{item.property.propertyType.propertyTypeName}</Text>
-                          </View>
-                          {/* <View className="flex flex-row gap-2 mb-2"> */}
-                          {/* <Text className="font-bold">Apartment ID:</Text> */}
-                          {/* <Text>{apartment.apartmentID}</Text> */}
-                          {/* </View> */}
-
-                          <View className="max-w-[100%] overflow-hidden pb-2">
-                            <Text className="text-[15px] whitespace-nowrap overflow-ellipsis">
-                              {item.property.propertyDescription}
-                            </Text>
-                          </View>
-                          <View className="flex flex-row gap-1 items-center mb-1">
-                            <Text className="text-[20px] font-bold">{item.availableTime.pricePerNight}</Text>
-                            <FontAwesome5 name="coins" size={20} color="orange" />
-                          </View>
-
-                          <View className="flex flex-row items-center ">
-                            <Text className="font-bold">{/* {apartment.nightNumber} */}</Text>
-                            <Text className="font-bold">
-                              {item.availableTime.startTime} - {item.availableTime.endTime}
-                            </Text>
-                          </View>
                         </View>
-                      </View>
-                    </TouchableOpacity>
-                  </View>
-                ))}
+                      </TouchableOpacity>
+                    </View>
+                  );
+                })}
               </View>
             </ScrollView>
             <View className=" w-full absolute  flex h-full flex-col justify-end ">

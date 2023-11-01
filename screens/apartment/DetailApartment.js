@@ -25,6 +25,7 @@ export default function DetailApartment() {
   const [showMore, setShowMore] = useState(false);
   const [detailAapartMentForRent, setDetailAapartMentForRent] = useState({});
   const [apartmentImage, setApartmentImage] = useState([]);
+  const [availableTime, setAvailableTime] = useState({});
   const navigation = useNavigation();
   useEffect(() => {
     fetchDetailApartmentForRent();
@@ -42,6 +43,7 @@ export default function DetailApartment() {
       .then((response) => {
         setDetailAapartMentForRent(response.data);
         setApartmentImage(response.data?.property?.propertyImage);
+        setAvailableTime(response.data?.availableTime);
       })
       .catch((error) => {
         console.log(error);
@@ -51,6 +53,8 @@ export default function DetailApartment() {
   const itemWidthPercentage = 100;
 
   const itemWidth = (screenWidth * itemWidthPercentage) / 100;
+  const startTime = new Date(availableTime?.startTime);
+  const endTime = new Date(availableTime?.endTime);
   return (
     <View className="flex-1 ">
       <ScrollView>
@@ -93,10 +97,10 @@ export default function DetailApartment() {
 
             <View className="">
               <Text className="text-[17px]">
-                {detailAapartMentForRent.availableTime?.startTime} - {detailAapartMentForRent.availableTime?.endTime}
+                {startTime.toDateString()} - {endTime.toDateString()}
               </Text>
               <View className="py-2  ">
-                <Text className="text-black font-bold text-[17px]">Price for 5 nights</Text>
+                <Text className="text-black font-bold text-[17px]">Price for nights</Text>
               </View>
               <View className="flex flex-row gap-3 ">
                 <View className="flex flex-row items-center ">
@@ -108,7 +112,7 @@ export default function DetailApartment() {
               </View>
             </View>
 
-            <Text className="text-[15px]">Only one 1 on HolidaySwap</Text>
+            {/* <Text className="text-[15px]">Only one 1 on HolidaySwap</Text> */}
             <TouchableOpacity>
               <ChoseApartment />
             </TouchableOpacity>
