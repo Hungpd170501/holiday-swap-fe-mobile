@@ -1,16 +1,36 @@
 import { AntDesign, Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/core";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TextInput } from "react-native-paper";
 import { StyleSheet } from "react-native";
 import { Image } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import { loadUser } from "../../redux/actions/userActions";
 import { Text } from "react-native";
 import { ScrollView } from "react-native";
 import { TouchableOpacity } from "react-native";
 import { View } from "react-native-animatable";
 
 export default function ManageAccount() {
+  const dispatch = useDispatch();
+  const { user, userProfile, loading, error, isAuthenticated } = useSelector(
+    (state) => state.user
+  );
+
+  useEffect(() => {
+    dispatch(loadUser());
+  }, [dispatch]);
+
   const navigation = useNavigation();
+  const signOut = () => {
+    SecureStore.deleteItemAsync("secure_token")
+      .then(navigation.navigate("SignInScreen"))
+      .catch((error) => {
+        console.log("Check error", error);
+      });
+  };
+
+  console.log("Check profile", userProfile);
   const [isHide, setIsHide] = useState(false);
   const [displayName, setDisplayName] = useState("");
 
@@ -43,7 +63,7 @@ export default function ManageAccount() {
             />
             <TextInput
               className=" bg-transparent px-1 w-[72%] border-b border-gray-500"
-              placeholder="Display name"
+              value={userProfile?.username}
               onChangeText={handleInputChange}
             />
           </View>
@@ -52,7 +72,7 @@ export default function ManageAccount() {
               onChangeText={handleInputChange}
               keyboardType="number-pad"
               className=" bg-transparent w-[100%] border-b border-gray-400"
-              placeholder="Birth of date"
+              value={userProfile?.dob}
             />
           </View>
         </View>
@@ -63,7 +83,7 @@ export default function ManageAccount() {
               onChangeText={handleInputChange}
               label={"First name"}
               className="w-[100%] bg-transparent border-b border-gray-400"
-              value="Thuc"
+              value={userProfile?.username}
             />
           </View>
           <View className="my-5">
@@ -71,14 +91,14 @@ export default function ManageAccount() {
               onChangeText={handleInputChange}
               label="Last name"
               className="w-[100%] border-b border-gray-400 bg-transparent"
-              value="Bui Tri"
+              value={userProfile?.username}
             />
           </View>
           <View className="my-5">
             <TextInput
               onChangeText={handleInputChange}
               label="Phone number"
-              value="0856597778"
+              value={userProfile?.phone}
               className="  w-[100%] border-b border-gray-400 bg-transparent"
             />
           </View>
@@ -86,7 +106,8 @@ export default function ManageAccount() {
             <TextInput
               onChangeText={handleInputChange}
               className="w-[100%] border-b border-gray-400 bg-transparent"
-              label="Adress"
+              label="Gender"
+              value={userProfile?.gender}
             />
           </View>
           <View className="py-5">
