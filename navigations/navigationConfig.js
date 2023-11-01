@@ -52,12 +52,14 @@ import YourApartment from "../screens/yourApartment/YourApartment";
 import OwnerDetailApartment from "../screens/apartment/OwnerDetailApartment";
 import { useSelector } from "react-redux";
 import * as SecureStore from "expo-secure-store";
+import VNPAYPaymentScreen from "../screens/payment/VNPayScreen";
 import { ViewPropTypes } from "deprecated-react-native-prop-types";
 
 const Stack = createStackNavigator();
 
 function Navigation() {
   const { user } = useSelector((state) => state.user);
+
   const setToken = (token) => {
     return SecureStore.setItemAsync("secure_token", token);
   };
@@ -85,8 +87,9 @@ function Navigation() {
             <Stack.Screen name="root" component={TabNavigation} />
             <Stack.Screen name="Home" component={HomeScreen} />
             <Stack.Screen name="Profile" component={ProfileScreen} />
-
             <Stack.Screen name="Loading" component={LoadingScreen} />
+
+            {/* <Stack.Screen name="Loading" component={LoadingScreen} /> */}
             <Stack.Screen
               name="OwnerDetailApartment"
               component={OwnerDetailApartment}
@@ -96,7 +99,7 @@ function Navigation() {
             <Stack.Screen name="SpecialReq" component={SpecialReq} />
             <Stack.Screen name="Recharge" component={Recharge} />
             <Stack.Screen name="YourTrip" component={YourTrip} />
-            <Stack.Screen name="StepAdd4" component={StepAdd4} />
+            <Stack.Screen name="VNPAYPayment" component={VNPAYPaymentScreen} />
             <Stack.Screen name="StepAdd5" component={StepAdd5} />
             <Stack.Screen name="StartAdd" component={StartAdd} />
             <Stack.Screen name="StepAdd3" component={StepAdd3} />
@@ -142,6 +145,8 @@ function Navigation() {
               component={HotelDetailScreen}
             />
             <Stack.Screen name="ChatScreen" component={ChatScreen} />
+            <Stack.Screen name="SignInScreen" component={SignInScreen} />
+
             <Stack.Screen name="ResortList" component={ResortList} />
             <Stack.Screen name="DetailResort" component={DetailResort} />
             <Stack.Screen name="ListProperty" component={ListProperty} />
@@ -158,7 +163,6 @@ function Navigation() {
               name="WelcomeBackScreen"
               component={WelcomeBackScreen}
             />
-            <Stack.Screen name="SignInScreen" component={SignInScreen} />
           </Fragment>
         ) : (
           <Fragment>
@@ -172,7 +176,7 @@ function Navigation() {
               name="CreateNewPassword"
               component={CreateNewPassword}
             />
-            {/* <Stack.Screen name="root" component={TabNavigation} /> */}
+            <Stack.Screen name="root" component={TabNavigation} />
           </Fragment>
         )}
       </Stack.Navigator>

@@ -5,12 +5,20 @@ import { ScrollView, TextInput, TouchableOpacity } from "react-native";
 import { Text } from "react-native";
 import { View } from "react-native";
 import { Checkbox } from "react-native-paper";
+import { useDispatch, useSelector } from "react-redux";
+import { deposit } from "../../redux/actions/depositeActions";
 
 export default function Recharge() {
   const [checked, setChecked] = React.useState(false);
   const navigation = useNavigation();
+  const dispatch = useDispatch();
   const [selectedView, setSelectedView] = useState(null);
+  const [totalPoint, setTotalPoint] = useState(null);
 
+  const onInputchange = (text) => {
+    console.log("change change", text);
+    setTotalPoint(text);
+  };
   const handleViewSelect = (viewId) => {
     // Toggle selection on/off
     if (selectedView === viewId) {
@@ -18,6 +26,11 @@ export default function Recharge() {
     } else {
       setSelectedView(viewId);
     }
+  };
+  const RechargeSubmit = () => {
+    console.log("bam nut nap tien");
+    dispatch(deposit(totalPoint, "nap tien vnpay", "VNPAYPayment"));
+    navigation.navigate("VNPAYPayment");
   };
 
   return (
@@ -112,6 +125,7 @@ export default function Recharge() {
             <View>
               <Text>Enter the amount to deposit</Text>
               <TextInput
+                onChangeText={(text) => onInputchange(text)}
                 placeholder="0đ"
                 className=" px-3 mt-2 rounded-lg py-3 border border-gray-300"
               />
@@ -125,7 +139,10 @@ export default function Recharge() {
               </View>
             </View>
             <View className="flex flex-row items-center w-full justify-center mt-5 mb-5">
-              <TouchableOpacity className="bg-blue-500 px-20 py-3 rounded-md">
+              <TouchableOpacity
+                onPress={RechargeSubmit}
+                className="bg-blue-500 px-20 py-3 rounded-md"
+              >
                 <Text className="text-white">Recharge</Text>
               </TouchableOpacity>
             </View>

@@ -35,7 +35,9 @@ export default function SignInScreen() {
     if (isAuthenticated) {
       navigation.navigate("root");
     }
-  }, [isAuthenticated, navigation]);
+
+    console.log("Check user in sign in screen", user);
+  }, [isAuthenticated, navigation, error, user]);
   return (
     <ScrollView>
       <View className="flex justify-center items-center">

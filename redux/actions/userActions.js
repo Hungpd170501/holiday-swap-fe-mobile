@@ -12,17 +12,17 @@ import * as SecureStore from "expo-secure-store";
 // Login
 export const login = (email, password) => async (dispatch) => {
   try {
-    dispatch({ type: LOGIN_REQUEST }); // Bắn cái action login request
-    const config = { headers: { "Content-type": "application/json" } }; // quy định kiểu dữ liệu mà gửi xuống BE
+    dispatch({ type: LOGIN_REQUEST });
+    const config = { headers: { "Content-type": "application/json" } };
     const { data } = await axios.post(
-      "https://holiday-swap.click/api/v1/auth/login", // dùng axios gọi API với link Login
+      "https://holiday-swap.click/api/v1/auth/login",
       { email, password },
       config
     );
 
-    dispatch({ type: LOGIN_SUCCESS, payload: data }); // login thành công, data trả về (payload)
+    dispatch({ type: LOGIN_SUCCESS, payload: data });
   } catch (error) {
-    dispatch({ type: LOGIN_FAIL, payload: error.response.data.message }); // login không thành công,
+    dispatch({ type: LOGIN_FAIL, payload: error.response.data.message });
   }
 };
 
