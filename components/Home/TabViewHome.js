@@ -158,9 +158,10 @@ export default function TabViewHome() {
               <View>
                 {listApartmentForRent.map((item, index) => (
                   <View key={index}>
-                    <View>
+                    <TouchableOpacity
+                      onPress={() => navigation.navigate("DetailApartment", { id: item.availableTime.id })}>
                       <CarouselApartmentImage image={item.property.propertyImage} />
-                    </View>
+                    </TouchableOpacity>
                     <TouchableOpacity
                       onPress={() => navigation.navigate("DetailApartment", { id: item.availableTime.id })}
                       className=" mb-8">

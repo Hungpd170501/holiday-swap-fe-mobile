@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import { Dimensions, Text, TouchableOpacity, View } from "react-native";
 import { ScrollView } from "react-native";
 import CaroselApartmentDetail from "../../components/apartment/CaroselApartmentDetail";
 import {
@@ -24,6 +24,7 @@ export default function DetailApartment() {
   const { id } = route.params;
   const [showMore, setShowMore] = useState(false);
   const [detailAapartMentForRent, setDetailAapartMentForRent] = useState({});
+  const [apartmentImage, setApartmentImage] = useState([]);
   const navigation = useNavigation();
   useEffect(() => {
     fetchDetailApartmentForRent();
@@ -40,11 +41,16 @@ export default function DetailApartment() {
       .request(config)
       .then((response) => {
         setDetailAapartMentForRent(response.data);
+        setApartmentImage(response.data?.property?.propertyImage);
       })
       .catch((error) => {
         console.log(error);
       });
   };
+  const { width: screenWidth } = Dimensions.get("window");
+  const itemWidthPercentage = 100;
+
+  const itemWidth = (screenWidth * itemWidthPercentage) / 100;
   return (
     <View className="flex-1 ">
       <ScrollView>
@@ -112,21 +118,44 @@ export default function DetailApartment() {
         <View className="bg-white px-4 mt-2 ">
           <Text className="font-bold text-[18px] py-4">Image</Text>
           <View className="">
-            <TouchableOpacity>
-              <Image className="w-full rounded-md" source={require("../../assets/images/landmark1.jpg")} />
-            </TouchableOpacity>
-            <View className="flex flex-row gap-2 mt-[1px] ">
-              <Image className="w-[48%] h-28 rounded-md" source={require("../../assets/images/landmark2.jpg")} />
-              <Image className="w-[48%] h-28 rounded-md" source={require("../../assets/images/landmark3.jpg")} />
-            </View>
-            <View className="flex flex-row gap-2 mt-[1px] ">
-              <Image className="w-[48%] h-28 rounded-md" source={require("../../assets/images/landmark4.jpg")} />
-              <Image className="w-[48%] h-28 rounded-md" source={require("../../assets/images/landmark5.jpg")} />
-            </View>
-
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate("ImageFullApartment");
+                navigation.navigate("ImageFullApartment", { apartmentImage });
+              }}>
+              <Image
+                style={{ width: itemWidth, height: 300 }}
+                source={{
+                  uri: apartmentImage[0]?.link,
+                }}
+              />
+            </TouchableOpacity>
+            <View className="flex flex-row gap-2 mt-[1px] ">
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate("ImageFullApartment", { apartmentImage });
+                }}>
+                <Image
+                  style={{ width: itemWidth / 2, height: 300 / 2 }}
+                  source={{
+                    uri: apartmentImage[1]?.link,
+                  }}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate("ImageFullApartment", { apartmentImage });
+                }}>
+                <Image
+                  style={{ width: itemWidth / 2, height: 300 / 2 }}
+                  source={{
+                    uri: apartmentImage[2]?.link,
+                  }}
+                />
+              </TouchableOpacity>
+            </View>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("ImageFullApartment", { apartmentImage });
               }}
               className="border border-gray-500 rounded-md mt-5 mb-4">
               <Text className="text-center py-3 font-bold">Show full image</Text>
@@ -167,10 +196,10 @@ export default function DetailApartment() {
                 <View style={styles.container}>
                   {/* {detailAapartMentForRent.property?.inRoomAmenityType?.map((item, index) => ( */}
                   {detailAapartMentForRent.property?.inRoomAmenityType?.slice(0, 2).map((item, index) => (
-                    <View style={styles.column}>
+                    <View key={index} style={styles.column}>
                       <View style={styles.row}>
                         {/* Icon and title */}
-                        <Text style={styles.icon}>{item?.inRoomAmenityTypeName}</Text> 
+                        <Text style={styles.icon}>{item?.inRoomAmenityTypeName}</Text>
                       </View>
                       <View style={styles.content}>
                         {/* Content items */}
@@ -184,8 +213,8 @@ export default function DetailApartment() {
                 </View>
                 {showMore ? (
                   <View style={styles.container}>
-                   {detailAapartMentForRent.property?.inRoomAmenityType?.slice(2).map((item, index) => (
-                      <View style={styles.column}>
+                    {detailAapartMentForRent.property?.inRoomAmenityType?.slice(2).map((item, index) => (
+                      <View key={index} style={styles.column}>
                         <View style={styles.row}>
                           {/* Icon and title */}
                           <Text style={styles.icon}>{item?.inRoomAmenityTypeName}</Text>
