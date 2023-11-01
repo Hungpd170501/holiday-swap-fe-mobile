@@ -1,13 +1,6 @@
 import { AntDesign, FontAwesome5 } from "@expo/vector-icons";
 import React, { useEffect, useState } from "react";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  ScrollView,
-  StyleSheet,
-  Image,
-} from "react-native";
+import { View, Text, TouchableOpacity, ScrollView, StyleSheet, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import CarouselApartmentHome from "../apartment/CaroselApartmentHome";
 import MapHome from "../mapHome/MapHome";
@@ -143,7 +136,6 @@ export default function TabViewHome() {
     axios
       .request(config)
       .then((response) => {
-        // console.log(JSON.stringify(response.data));
         setListApartmentForRent(response.data.content);
         {
           // Get the property values from the data array.
@@ -167,13 +159,11 @@ export default function TabViewHome() {
                 {listApartmentForRent.map((item, index) => (
                   <View key={index}>
                     <View>
-                    <CarouselApartmentImage image = {item.property.propertyImage} />
-                    {/* <CarouselApartmentHome /> */}
-                      </View>
+                      <CarouselApartmentImage image={item.property.propertyImage} />
+                    </View>
                     <TouchableOpacity
-                      onPress={() => navigation.navigate("DetailApartment")}
-                      className=" mb-8"
-                    >
+                      onPress={() => navigation.navigate("DetailApartment", { id: item.availableTime.id })}
+                      className=" mb-8">
                       <View className="">
                         <View className="">
                           <View className="flex flex-row items-center justify-between">
@@ -194,31 +184,25 @@ export default function TabViewHome() {
                             <Text>{item.property.propertyType.propertyTypeName}</Text>
                           </View>
                           {/* <View className="flex flex-row gap-2 mb-2"> */}
-                            {/* <Text className="font-bold">Apartment ID:</Text> */}
-                            {/* <Text>{apartment.apartmentID}</Text> */}
+                          {/* <Text className="font-bold">Apartment ID:</Text> */}
+                          {/* <Text>{apartment.apartmentID}</Text> */}
                           {/* </View> */}
 
                           <View className="max-w-[100%] overflow-hidden pb-2">
                             <Text className="text-[15px] whitespace-nowrap overflow-ellipsis">
-                             {item.property.propertyDescription}
+                              {item.property.propertyDescription}
                             </Text>
                           </View>
                           <View className="flex flex-row gap-1 items-center mb-1">
-                            <Text className="text-[20px] font-bold">
-                              {item.availableTime.pricePerNight}
-                            </Text>
-                            <FontAwesome5
-                              name="coins"
-                              size={20}
-                              color="orange"
-                            />
+                            <Text className="text-[20px] font-bold">{item.availableTime.pricePerNight}</Text>
+                            <FontAwesome5 name="coins" size={20} color="orange" />
                           </View>
 
                           <View className="flex flex-row items-center ">
+                            <Text className="font-bold">{/* {apartment.nightNumber} */}</Text>
                             <Text className="font-bold">
-                              {/* {apartment.nightNumber} */}
+                              {item.availableTime.startTime} - {item.availableTime.endTime}
                             </Text>
-                            <Text className="font-bold">{item.availableTime.startTime}</Text>
                           </View>
                         </View>
                       </View>
@@ -236,18 +220,13 @@ export default function TabViewHome() {
         return (
           <View style={styles.shadow} className="flex-1 ">
             <ScrollView showsVerticalScrollIndicator={false} className="mt-5">
-              <TouchableOpacity
-                onPress={() => navigation.navigate("DetailApartment")}
-                className=" mb-8"
-              >
+              <TouchableOpacity onPress={() => navigation.navigate("DetailApartment")} className=" mb-8">
                 <View className="">
                   {ApartmentDatasHilly.map((apartment) => (
                     <View className="mb-10" key={apartment.id}>
                       <View>{apartment.carosel}</View>
                       <View className="flex flex-row items-center justify-between">
-                        <Text className="underline pb-3 w-[80%] text-[18px] font-bold pt-2">
-                          {apartment.name}
-                        </Text>
+                        <Text className="underline pb-3 w-[80%] text-[18px] font-bold pt-2">{apartment.name}</Text>
                         <View className="flex flex-row items-center gap-1">
                           <Text>4.94</Text>
                           <AntDesign name="star" color="orange" />
@@ -294,18 +273,13 @@ export default function TabViewHome() {
         return (
           <View style={styles.shadow} className="flex-1 ">
             <ScrollView showsVerticalScrollIndicator={false} className="mt-5">
-              <TouchableOpacity
-                onPress={() => navigation.navigate("DetailApartment")}
-                className=" mb-8"
-              >
+              <TouchableOpacity onPress={() => navigation.navigate("DetailApartment")} className=" mb-8">
                 <View className="">
                   {ApartmentDatasOcean.map((apartment) => (
                     <View className="mb-10" key={apartment.id}>
                       <View>{apartment.carosel}</View>
                       <View className="flex flex-row items-center justify-between">
-                        <Text className="underline pb-3 w-[80%] text-[18px] font-bold pt-2">
-                          {apartment.name}
-                        </Text>
+                        <Text className="underline pb-3 w-[80%] text-[18px] font-bold pt-2">{apartment.name}</Text>
                         <View className="flex flex-row items-center gap-1">
                           <Text>4.94</Text>
                           <AntDesign name="star" color="orange" />
@@ -352,18 +326,13 @@ export default function TabViewHome() {
         return (
           <View style={styles.shadow} className="flex-1 ">
             <ScrollView showsVerticalScrollIndicator={false} className="mt-5">
-              <TouchableOpacity
-                onPress={() => navigation.navigate("DetailApartment")}
-                className=" mb-8"
-              >
+              <TouchableOpacity onPress={() => navigation.navigate("DetailApartment")} className=" mb-8">
                 <View className="">
                   {ApartmentDatasCity.map((apartment) => (
                     <View className="mb-10" key={apartment.id}>
                       <View>{apartment.carosel}</View>
                       <View className="flex flex-row items-center justify-between">
-                        <Text className="underline pb-3 w-[80%] text-[18px] font-bold pt-2">
-                          {apartment.name}
-                        </Text>
+                        <Text className="underline pb-3 w-[80%] text-[18px] font-bold pt-2">{apartment.name}</Text>
                         <View className="flex flex-row items-center gap-1">
                           <Text>4.94</Text>
                           <AntDesign name="star" color="orange" />
@@ -425,14 +394,10 @@ export default function TabViewHome() {
                   styles.tabButton,
                   {
                     borderBottomWidth: selectedTab === tab ? 2 : 0,
-                    borderBottomColor:
-                      selectedTab === tab ? "#009FC2" : "transparent",
+                    borderBottomColor: selectedTab === tab ? "#009FC2" : "transparent",
                   },
-                ]}
-              >
-                <Text style={selectedTab === tab ? { color: "#007FC4" } : {}}>
-                  {tab}
-                </Text>
+                ]}>
+                <Text style={selectedTab === tab ? { color: "#007FC4" } : {}}>{tab}</Text>
               </TouchableOpacity>
             ))}
           </View>

@@ -2,16 +2,7 @@ import React, { useState } from "react";
 import { Image, Text, View, Dimensions } from "react-native";
 import Carousel from "react-native-snap-carousel";
 
-// const data = [
-//   { image: require("../../assets/images/landmark1.jpg") },
-//   { image: require("../../assets/images/landmark2.jpg") },
-//   { image: require("../../assets/images/landmark3.jpg") },
-//   { image: require("../../assets/images/landmark1.jpg") },
-// ];
-
 export default function CarouselApartmentImage(data) {
-  // const [data1, setData1] = useState([]);
-  console.log(data)
   const { width: screenWidth } = Dimensions.get("window");
   const itemWidthPercentage = 100;
 
@@ -20,7 +11,6 @@ export default function CarouselApartmentImage(data) {
   const renderItem = ({ item, index }) => (
     <View style={{ width: itemWidth, height: 300 }}>
       <View className="" style={{ width: "100%" }}>
-        {/* <Image style={{ width: "100%", height: "100%" }} source={item.image} /> */}
         <Image style={{ width: "100%", height: "100%" }}
         source={{ uri : item.link}} />
         <View
