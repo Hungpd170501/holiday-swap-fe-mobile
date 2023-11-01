@@ -52,11 +52,13 @@ import YourApartment from "../screens/yourApartment/YourApartment";
 import OwnerDetailApartment from "../screens/apartment/OwnerDetailApartment";
 import { useSelector } from "react-redux";
 import * as SecureStore from "expo-secure-store";
+import VNPAYPaymentScreen from "../screens/payment/VNPayScreen";
 
 const Stack = createStackNavigator();
 
 function Navigation() {
   const { user } = useSelector((state) => state.user);
+
   const setToken = (token) => {
     return SecureStore.setItemAsync("secure_token", JSON.stringify(token));
   };
@@ -94,7 +96,7 @@ function Navigation() {
             <Stack.Screen name="SpecialReq" component={SpecialReq} />
             <Stack.Screen name="Recharge" component={Recharge} />
             <Stack.Screen name="YourTrip" component={YourTrip} />
-            <Stack.Screen name="StepAdd4" component={StepAdd4} />
+            <Stack.Screen name="VNPAYPayment" component={VNPAYPaymentScreen} />
             <Stack.Screen name="StepAdd5" component={StepAdd5} />
             <Stack.Screen name="StartAdd" component={StartAdd} />
             <Stack.Screen name="StepAdd3" component={StepAdd3} />

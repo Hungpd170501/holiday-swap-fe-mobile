@@ -3,7 +3,7 @@ import {
   DEPOSIT_SUCCESS,
 } from "../constants/depositConstants";
 
-export const depositReducers = (state = { user: {} }, action) => {
+export const depositReducers = (state = { deposit: {} }, action) => {
   switch (action.type) {
     case DEPOSIT_REQUEST:
       return { loading: true, statusDeposit: false };
@@ -12,7 +12,7 @@ export const depositReducers = (state = { user: {} }, action) => {
         ...state,
         loading: false,
         statusDeposit: true,
-        user: action.payload,
+        deposit: action.payload,
       };
     default:
       return state;

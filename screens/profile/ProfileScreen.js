@@ -47,7 +47,7 @@ export default function ProfileScreen() {
             source={require("../../assets/images/avt.jpg")}
           />
           <Text className="text-[30px] font-bold text-white py-2">
-            {user.username}
+            {/* {user.username} */}
           </Text>
           <Text className="text-yellow-400">Guest</Text>
         </View>

@@ -30,6 +30,7 @@ export default function Recharge() {
   const RechargeSubmit = () => {
     console.log("bam nut nap tien");
     dispatch(deposit(totalPoint, "nap tien vnpay", "123"));
+    navigation.navigate("VNPAYPayment");
   };
 
   return (
