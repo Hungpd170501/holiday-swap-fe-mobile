@@ -8,7 +8,7 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import EditDateApartmentDetail from "./EditDateApartmentDetail";
 
-export default function ChoseApartment() {
+export default function ChoseApartment(data) {
   const navigation = useNavigation();
   const [visible, setVisible] = useState(false);
 
