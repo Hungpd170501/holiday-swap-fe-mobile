@@ -1,12 +1,12 @@
 import { FontAwesome5, Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ScrollView, TextInput, TouchableOpacity } from "react-native";
 import { Text } from "react-native";
 import { View } from "react-native";
 import { Checkbox } from "react-native-paper";
 import { useDispatch, useSelector } from "react-redux";
-import { deposit } from "../../redux/actions/depositeActions";
+import { depositPoint } from "../../redux/actions/depositeActions";
 
 export default function Recharge() {
   const [checked, setChecked] = React.useState(false);
@@ -14,6 +14,7 @@ export default function Recharge() {
   const dispatch = useDispatch();
   const [selectedView, setSelectedView] = useState(null);
   const [totalPoint, setTotalPoint] = useState(null);
+  const { deposit } = useSelector((state) => state.deposit);
 
   const onInputchange = (text) => {
     console.log("change change", text);
@@ -32,6 +33,12 @@ export default function Recharge() {
     dispatch(deposit(totalPoint, "nap tien vnpay", "VNPAYPayment"));
     navigation.navigate("VNPAYPayment");
   };
+
+  useEffect(() => {
+    if (deposit) {
+      navigation.navigate("VNPAYPayment");
+    }
+  }, [deposit]);
 
   return (
     <View className="bg-white h-full">
