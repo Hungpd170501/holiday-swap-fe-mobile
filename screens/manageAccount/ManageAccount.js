@@ -116,7 +116,7 @@ export default function ManageAccount() {
           <View className="flex flex-row items-center gap-4 py-4">
             <AntDesign name="checkcircleo" size={25} color="green" />
             <View>
-              <Text>toilikeyou23@gmail.com</Text>
+              <Text>{userProfile?.email}</Text>
               <Text>Email has been confirmed</Text>
             </View>
           </View>

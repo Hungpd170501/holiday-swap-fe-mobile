@@ -59,25 +59,39 @@ export default function DetailApartment() {
     <View className="flex-1 ">
       <ScrollView>
         <View className=" bg-white relative">
-          <CarouselApartmentImage image={detailAapartMentForRent?.property?.propertyImage} />
+          <CarouselApartmentImage
+            image={detailAapartMentForRent?.property?.propertyImage}
+          />
         </View>
         <View className="px-4 py-3 bg-white">
-          <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} className="flex row gap-10">
+          <ScrollView
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            className="flex row gap-10"
+          >
             <View className="flex flex-col items-center">
               <View className="bg-gray-300 rounded-full w-12 h-12 flex flex-col items-center justify-center">
                 <MaterialIcons size={25} color="gray" name="meeting-room" />
               </View>
-              <Text className="mt-1">{detailAapartMentForRent.property?.numberBedsRoom} Beds room</Text>
+              <Text className="mt-1">
+                {detailAapartMentForRent.property?.numberBedsRoom} Beds room
+              </Text>
             </View>
             <View className="flex flex-col items-center">
               <View className="bg-gray-300 rounded-full w-12 h-12 flex flex-col items-center justify-center">
                 <FontAwesome5 size={25} color="gray" name="house-user" />
               </View>
-              <Text className="mt-1">{detailAapartMentForRent.property?.roomSize} meters</Text>
+              <Text className="mt-1">
+                {detailAapartMentForRent.property?.roomSize} meters
+              </Text>
             </View>
             <View className="flex flex-col items-center">
               <View className="bg-gray-300 rounded-full w-12 h-12 flex flex-col items-center justify-center">
-                <MaterialCommunityIcons size={25} color="gray" name="google-classroom" />
+                <MaterialCommunityIcons
+                  size={25}
+                  color="gray"
+                  name="google-classroom"
+                />
               </View>
               <Text className="mt-1">Living room</Text>
             </View>
@@ -91,7 +105,9 @@ export default function DetailApartment() {
         </View>
         <View className="px-4 py-3 bg-white">
           <View>
-            <Text className="text-[20px] font-bold">{detailAapartMentForRent.property?.propertyName}</Text>
+            <Text className="text-[20px] font-bold">
+              {detailAapartMentForRent.property?.propertyName}
+            </Text>
 
             <View className="w-full h-[1px] bg-gray-300 my-3"></View>
 
@@ -100,7 +116,9 @@ export default function DetailApartment() {
                 {startTime.toDateString()} - {endTime.toDateString()}
               </Text>
               <View className="py-2  ">
-                <Text className="text-black font-bold text-[17px]">Price for nights</Text>
+                <Text className="text-black font-bold text-[17px]">
+                  Price for nights
+                </Text>
               </View>
               <View className="flex flex-row gap-3 ">
                 <View className="flex flex-row items-center ">
@@ -114,7 +132,9 @@ export default function DetailApartment() {
 
             {/* <Text className="text-[15px]">Only one 1 on HolidaySwap</Text> */}
             <TouchableOpacity>
-              <ChoseApartment detailAapartMentForRent={detailAapartMentForRent} />
+              <ChoseApartment
+                detailAapartMentForRent={detailAapartMentForRent}
+              />
             </TouchableOpacity>
           </View>
         </View>
@@ -125,32 +145,37 @@ export default function DetailApartment() {
             <TouchableOpacity
               onPress={() => {
                 navigation.navigate("ImageFullApartment", { apartmentImage });
-              }}>
+              }}
+            >
               <Image
-                style={{ width: itemWidth, height: 300 }}
+                style={{ width: "100%", height: 300 }}
                 source={{
                   uri: apartmentImage[0]?.link,
                 }}
               />
             </TouchableOpacity>
-            <View className="flex flex-row gap-2 mt-[1px] ">
+            <View className="flex flex-row gap-2 mt-[1px] w-full ">
               <TouchableOpacity
+                className="w-[50%]"
                 onPress={() => {
                   navigation.navigate("ImageFullApartment", { apartmentImage });
-                }}>
+                }}
+              >
                 <Image
-                  style={{ width: itemWidth / 2, height: 300 / 2 }}
+                  style={{ width: "100%", height: 300 / 2 }}
                   source={{
                     uri: apartmentImage[1]?.link,
                   }}
                 />
               </TouchableOpacity>
               <TouchableOpacity
+                className="w-[50%]"
                 onPress={() => {
                   navigation.navigate("ImageFullApartment", { apartmentImage });
-                }}>
+                }}
+              >
                 <Image
-                  style={{ width: itemWidth / 2, height: 300 / 2 }}
+                  style={{ width: "96%", height: 300 / 2 }}
                   source={{
                     uri: apartmentImage[2]?.link,
                   }}
@@ -161,8 +186,11 @@ export default function DetailApartment() {
               onPress={() => {
                 navigation.navigate("ImageFullApartment", { apartmentImage });
               }}
-              className="border border-gray-500 rounded-md mt-5 mb-4">
-              <Text className="text-center py-3 font-bold">Show full image</Text>
+              className="border border-gray-500 rounded-md mt-5 mb-4"
+            >
+              <Text className="text-center py-3 font-bold">
+                Show full image
+              </Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -199,29 +227,15 @@ export default function DetailApartment() {
               <View className="px-4 bg-white mt-2 py-3">
                 <View style={styles.container}>
                   {/* {detailAapartMentForRent.property?.inRoomAmenityType?.map((item, index) => ( */}
-                  {detailAapartMentForRent.property?.inRoomAmenityType?.slice(0, 2).map((item, index) => (
-                    <View key={index} style={styles.column}>
-                      <View style={styles.row}>
-                        {/* Icon and title */}
-                        <Text style={styles.icon}>{item?.inRoomAmenityTypeName}</Text>
-                      </View>
-                      <View style={styles.content}>
-                        {/* Content items */}
-
-                        {item?.inRoomAmenities?.map((item, index) => (
-                          <Text>{item.inRoomAmenityName}</Text>
-                        ))}
-                      </View>
-                    </View>
-                  ))}
-                </View>
-                {showMore ? (
-                  <View style={styles.container}>
-                    {detailAapartMentForRent.property?.inRoomAmenityType?.slice(2).map((item, index) => (
+                  {detailAapartMentForRent.property?.inRoomAmenityType
+                    ?.slice(0, 2)
+                    .map((item, index) => (
                       <View key={index} style={styles.column}>
                         <View style={styles.row}>
                           {/* Icon and title */}
-                          <Text style={styles.icon}>{item?.inRoomAmenityTypeName}</Text>
+                          <Text style={styles.icon}>
+                            {item?.inRoomAmenityTypeName}
+                          </Text>
                         </View>
                         <View style={styles.content}>
                           {/* Content items */}
@@ -232,10 +246,34 @@ export default function DetailApartment() {
                         </View>
                       </View>
                     ))}
+                </View>
+                {showMore ? (
+                  <View style={styles.container}>
+                    {detailAapartMentForRent.property?.inRoomAmenityType
+                      ?.slice(2)
+                      .map((item, index) => (
+                        <View key={index} style={styles.column}>
+                          <View style={styles.row}>
+                            {/* Icon and title */}
+                            <Text style={styles.icon}>
+                              {item?.inRoomAmenityTypeName}
+                            </Text>
+                          </View>
+                          <View style={styles.content}>
+                            {/* Content items */}
+
+                            {item?.inRoomAmenities?.map((item, index) => (
+                              <Text>{item.inRoomAmenityName}</Text>
+                            ))}
+                          </View>
+                        </View>
+                      ))}
                   </View>
                 ) : (
                   <TouchableOpacity onPress={() => setShowMore(true)}>
-                    <Text className="text-blue-700 font-bold text-[15px]">View more</Text>
+                    <Text className="text-blue-700 font-bold text-[15px]">
+                      View more
+                    </Text>
                   </TouchableOpacity>
                 )}
               </View>

@@ -84,12 +84,12 @@ function Navigation() {
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {authen ? (
           <Fragment>
+            <Stack.Screen name="Loading" component={LoadingScreen} />
+            <Stack.Screen name="root" component={TabNavigation} />
             <Stack.Screen name="SignInScreen" component={SignInScreen} />
 
-            <Stack.Screen name="root" component={TabNavigation} />
             <Stack.Screen name="Home" component={HomeScreen} />
             <Stack.Screen name="Profile" component={ProfileScreen} />
-            <Stack.Screen name="Loading" component={LoadingScreen} />
 
             {/* <Stack.Screen name="Loading" component={LoadingScreen} /> */}
             <Stack.Screen

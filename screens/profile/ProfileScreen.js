@@ -58,7 +58,7 @@ export default function ProfileScreen() {
           <Text className="text-[30px] font-bold text-white py-2">
             {userProfile?.username}
           </Text>
-          <Text className="text-yellow-400">Guest</Text>
+          {/* <Text className="text-yellow-400">{userProfile?.role.name}</Text> */}
         </View>
         <View className="px-4 flex flex-col items-center">
           <View className="bg-white rounded-md w-[95%] relative mt-40 border border-gray-300 px-3 py-3">

@@ -29,7 +29,13 @@ export default function Recharge() {
   };
   const RechargeSubmit = () => {
     console.log("bam nut nap tien");
-    dispatch(deposit(totalPoint, "nap tien vnpay", "VNPAYPayment"));
+    dispatch(
+      deposit(
+        totalPoint,
+        "nap tien vnpay",
+        "https://holiday-swap.click/api/v1/payment/payment_infor"
+      )
+    );
     navigation.navigate("VNPAYPayment");
   };
 

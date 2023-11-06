@@ -6,8 +6,13 @@ import { ScrollView } from "react-native";
 import { Image } from "react-native";
 import { Text } from "react-native";
 import { View } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Wallet() {
+  const dispatch = useDispatch();
+  const { user, userProfile, loading, error, isAuthenticated } = useSelector(
+    (state) => state.user
+  );
   const navigation = useNavigation();
   return (
     <View>
@@ -25,9 +30,9 @@ export default function Wallet() {
             source={require("../../assets/images/avt.jpg")}
           />
           <Text className="text-[30px] font-bold text-white py-2">
-            Bui Tri Thuc
+            {userProfile?.username}
           </Text>
-          <Text className="text-yellow-400">Membership</Text>
+          <Text className="text-yellow-400"> {userProfile?.role.name}</Text>
         </View>
 
         <View className="mb-28">

@@ -15,7 +15,7 @@ export const deposit = (amount, orderInfor, returnURL) => async (dispatch) => {
     console.log("orderInfor", orderInfor);
     console.log("returnUrl", returnURL);
     const { data } = await axios.get(
-      `https://holiday-swap.click/api/v1/payment/Create_payment?amount=${amount}&orderInfor=${orderInfor}&returnUrl=${returnURL}`,
+      `https://holiday-swap.click/api/v1/payment/Create_payment?amount=${amount}&orderInfor=${orderInfor}&returnURL=${returnURL}`,
       { headers: { Authorization: `Bearer ${accessToken}` } }
     );
     console.log("check api payment", data);
