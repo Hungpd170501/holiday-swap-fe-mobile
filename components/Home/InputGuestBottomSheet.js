@@ -6,7 +6,7 @@ import { BottomSheet } from "react-native-btr";
 import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
-export default function InputGuestBottomSheet() {
+export default function InputGuestBottomSheet(props) {
   const navigation = useNavigation();
   const [visible, setVisible] = useState(false);
   const [searchText, setSearchText] = useState("");
@@ -21,6 +21,7 @@ export default function InputGuestBottomSheet() {
   const applyChanges = () => {
     toggleBottomNavigationView();
     setShowGuestCount(true);
+    props.setNumberGuest(adultCount);
   };
 
   const resetCounts = () => {
@@ -77,10 +78,7 @@ export default function InputGuestBottomSheet() {
 
   return (
     <View style={styles.container}>
-      <View
-        style={styles.shadow}
-        className="bg-white rounded-xl px-5 py-5 mt-5 "
-      >
+      <View style={styles.shadow} className="bg-white rounded-xl px-5 py-5 mt-5 ">
         <TouchableOpacity onPress={toggleBottomNavigationView}>
           <View className="flex flex-row justify-between">
             <Text>Guest:</Text>
@@ -89,10 +87,7 @@ export default function InputGuestBottomSheet() {
               {isChildCountChanged ? `Children: ${childCount} ` : ""}
               {isBabyCountChanged ? `Baby: ${babyCount} ` : ""}
               {isPetCountChanged ? `Pet: ${petCount}` : ""}
-              {!isAdultCountChanged &&
-              !isChildCountChanged &&
-              !isBabyCountChanged &&
-              !isPetCountChanged
+              {!isAdultCountChanged && !isChildCountChanged && !isBabyCountChanged && !isPetCountChanged
                 ? "Add guest"
                 : ""}
             </Text>
@@ -102,24 +97,16 @@ export default function InputGuestBottomSheet() {
       <BottomSheet
         visible={visible}
         onBackButtonPress={toggleBottomNavigationView}
-        onBackdropPress={toggleBottomNavigationView}
-      >
+        onBackdropPress={toggleBottomNavigationView}>
         <View style={styles.bottomNavigationView}>
           <View className="flex-1 flex-col justify-between">
             <View className="px-4">
-              <View
-                style={styles.shadow}
-                className="bg-white rounded-xl px-5 mt-5 py-4"
-              >
-                <Text style={{ fontSize: 20, fontWeight: "bold" }}>
-                  Who's coming?
-                </Text>
+              <View style={styles.shadow} className="bg-white rounded-xl px-5 mt-5 py-4">
+                <Text style={{ fontSize: 20, fontWeight: "bold" }}>Who's coming?</Text>
                 <View className="flex flex-row items-center justify-between mt-5">
                   <View>
                     <Text className="text-[17px]">Adult</Text>
-                    <Text className="text-gray-500">
-                      From 13 years old and up
-                    </Text>
+                    <Text className="text-gray-500">From 13 years old and up</Text>
                   </View>
                   <View className="flex flex-row items-center gap-5">
                     <TouchableOpacity onPress={decrementAdultCount}>
@@ -131,7 +118,7 @@ export default function InputGuestBottomSheet() {
                     </TouchableOpacity>
                   </View>
                 </View>
-                <View className="bg-gray-400 h-[1px] w-full my-4"></View>
+                {/* <View className="bg-gray-400 h-[1px] w-full my-4"></View>
 
                 <View className="flex flex-row items-center justify-between">
                   <View>
@@ -165,9 +152,9 @@ export default function InputGuestBottomSheet() {
                     </TouchableOpacity>
                   </View>
                 </View>
-                <View className="bg-gray-400 h-[1px] my-5 w-full"></View>
+                <View className="bg-gray-400 h-[1px] my-5 w-full"></View> */}
 
-                <View className="flex flex-row items-center justify-between">
+                {/* <View className="flex flex-row items-center justify-between">
                   <View>
                     <Text className="text-[17px]">Pets</Text>
                     <Text style={{ color: "gray" }}>
@@ -183,24 +170,16 @@ export default function InputGuestBottomSheet() {
                       <AntDesign name="pluscircleo" size={20} />
                     </TouchableOpacity>
                   </View>
-                </View>
+                </View> */}
               </View>
             </View>
             <View className="px-4 border-t border-gray-400 py-3">
               <View className="flex flex-row items-center justify-between">
-                <TouchableOpacity
-                  onPress={resetCounts}
-                  style={{ fontSize: 18, fontWeight: "bold" }}
-                >
+                <TouchableOpacity onPress={resetCounts} style={{ fontSize: 18, fontWeight: "bold" }}>
                   <Text className="font-bold underline">Clear All</Text>
                 </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={applyChanges}
-                  className=" bg-blue-500 px-10 py-3 rounded-xl"
-                >
-                  <Text className=" text-[16px] font-bold text-white">
-                    Apply
-                  </Text>
+                <TouchableOpacity onPress={applyChanges} className=" bg-blue-500 px-10 py-3 rounded-xl">
+                  <Text className=" text-[16px] font-bold text-white">Apply</Text>
                 </TouchableOpacity>
               </View>
             </View>

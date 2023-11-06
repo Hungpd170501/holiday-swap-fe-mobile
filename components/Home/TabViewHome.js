@@ -6,6 +6,9 @@ import CarouselApartmentHome from "../apartment/CaroselApartmentHome";
 import MapHome from "../mapHome/MapHome";
 import axios from "axios";
 import CarouselApartmentImage from "../apartment/CarouselApartmentImage";
+import { useDispatch, useSelector } from "react-redux";
+import { Button } from "react-native-paper";
+import { submitSearchParamApartmentForRent } from "../../redux/actions/searchParamActions";
 
 const ApartmentDatasImpress = [
   {
@@ -112,49 +115,94 @@ const ApartmentDatasCity = [
   },
 ];
 
-export default function TabViewHome() {
+export default function TabViewHome(props) {
+  const { searchParam } = useSelector((state) => state.searchParam);
   useEffect(() => {
     fetchListApartmentForRent();
-  }, []);
+  }, [searchParam]);
 
+  const navigation = useNavigation();
   const tabs = ["Caroline Resort", "Saigon Park Resort", "Lakeview Villa", "Resort InterContinental Danang "];
   const [selectedTab, setSelectedTab] = useState("Caroline Resort");
-
+  let pageNo = searchParam.pageNo;
   const [listApartmentForRent, setListApartmentForRent] = useState([]);
-  const [apartment, setApartment] = useState({});
-  const [listApartment, setListApartment] = useState([]);
-  const [resort, setResort] = useState({});
-  const navigation = useNavigation();
-  const apiUrl = "https://api.example.com/apartments";
+  const [data, setData] = useState({});
+  const dispatch = useDispatch();
+  let param = "";
+  const apiUrl = "https://holiday-swap.click/api/v1/apartment-for-rent";
+
+  const loadArrayOfParram = (listOfParram, name) => {
+    listOfParram.map((data) => {
+      param += `&${name}=${data}`;
+    });
+  };
   let config = {
     method: "get",
     maxBodyLength: Infinity,
-    url: "https://holiday-swap.click/api/v1/apartment-for-rent?guest=1&numberBedsRoom=1&numberBathRoom=1&pageNo=0&pageSize=10&sortBy=id&sortDirection=asc",
+    url: "",
     headers: {},
   };
-  const fetchListApartmentForRent = () => {
-    axios
+  const fetchListApartmentForRent = async () => {
+    param = `?locationName=${searchParam.locationName}&resortId=${searchParam.resortId}&checkIn=${searchParam.checkIn}&checkOut=${searchParam.checkOut}&min=${searchParam.min}&max=${searchParam.max}&guest=${searchParam.guest}&numberBedsRoom=${searchParam.numberBedsRoom}&numberBathRoom=${searchParam.numberBathRoom}&pageNo=${searchParam.pageNo}&pageSize=${searchParam.pageSize}&sortBy=${searchParam.sortBy}&sortDirection=${searchParam.sortDirection}`;
+    loadArrayOfParram(searchParam.listOfInRoomAmenity, "listOfInRoomAmenity", param);
+    loadArrayOfParram(searchParam.listOfPropertyView, "listOfPropertyView", param);
+    loadArrayOfParram(searchParam.listOfPropertyType, "listOfPropertyType", param);
+    config.url = apiUrl.concat(param);
+    console.log("config.url :>> ", config.url);
+    await axios
       .request(config)
       .then((response) => {
-        setListApartmentForRent(response.data.content);
+        // setListApartmentForRent(...listApartmentForRent, ...contentRsp);
+        let contentRsp = listApartmentForRent.concat(response.data.content);
+        if (searchParam.pageNo == 0) setListApartmentForRent(response.data.content);
+        else setListApartmentForRent(contentRsp);
+        setData(response.data);
         {
           // Get the property values from the data array.
           const propertyList = response.data.content.map((obj) => obj.property);
-
-          // Set the list of apartments.
-          setListApartment(propertyList);
         }
       })
       .catch((error) => {
         console.log(error);
       });
   };
+  const handleOnScrollEnd = () => {
+    if (pageNo < data.totalPages - 1) {
+      pageNo++;
+      var searchParam = { pageNo: pageNo };
+      dispatch(submitSearchParamApartmentForRent(searchParam));
+    }
+  };
+  const handleScroll = (event) => {
+    const { contentOffset, layoutMeasurement, contentSize } = event.nativeEvent;
+
+    // Calculate the current scroll position
+    const scrollY = contentOffset.y;
+
+    // Calculate the height of the ScrollView's visible area
+    const scrollViewHeight = layoutMeasurement.height;
+
+    // Calculate the height of the entire content
+    const contentHeight = contentSize.height;
+
+    // Check if the user has scrolled to the end
+    if (scrollY + scrollViewHeight >= contentHeight - 100) {
+      // User has reached the end of the ScrollView content
+      console.log("Scrolled to the end");
+      handleOnScrollEnd();
+    }
+  };
   const renderTabContent = () => {
     switch (selectedTab) {
       case "Caroline Resort":
         return (
           <View style={styles.shadow} className="flex-1  ">
-            <ScrollView showsVerticalScrollIndicator={false} className="mt-5">
+            <ScrollView
+              showsVerticalScrollIndicator={false}
+              onScrollEndDrag={(event) => {
+                handleScroll(event);
+              }}
+              className="mt-5">
               <View>
                 {listApartmentForRent.map((item, index) => {
                   const startTime = new Date(item.availableTime?.startTime);
@@ -395,6 +443,7 @@ export default function TabViewHome() {
 
   return (
     <View className="flex-1 px-4 bg-white">
+      {/* <Text>{paramSearch?.sortDirection}</Text> */}
       <View className=" border-b border-blue-200 ">
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           <View className="flex flex-row gap-10 ">

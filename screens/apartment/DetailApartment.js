@@ -114,7 +114,7 @@ export default function DetailApartment() {
 
             {/* <Text className="text-[15px]">Only one 1 on HolidaySwap</Text> */}
             <TouchableOpacity>
-              <ChoseApartment />
+              <ChoseApartment detailAapartMentForRent={detailAapartMentForRent} />
             </TouchableOpacity>
           </View>
         </View>
@@ -185,14 +185,14 @@ export default function DetailApartment() {
             <Text>{detailAapartMentForRent.property?.propertyDescription}</Text>
           </View>
           <View className="w-full bg-gray-300 h-[1px] my-4"></View>
-          <View className="flex flex-row items-center justify-between">
+          {/* <View className="flex flex-row items-center justify-between">
             <View>
               <Text className="text-[17px] font-bold my-2">The apartment is in good condition</Text>
               <EditDateApartmentDetail />
             </View>
             <MaterialIcons size={25} name="keyboard-arrow-right" />
-          </View>
-          <View className="w-full bg-gray-300 h-[1px] my-4"></View>
+          </View> */}
+          {/* <View className="w-full bg-gray-300 h-[1px] my-4"></View> */}
           <View>
             <View className="flex flex-col">
               <Text className="text-[20px] font-bold">Amenity</Text>
