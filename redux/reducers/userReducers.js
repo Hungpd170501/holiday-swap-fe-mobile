@@ -6,6 +6,9 @@ import {
   LOAD_USER_REQUEST,
   LOAD_USER_SUCCESS,
   LOAD_USER_FAIL,
+  LOAD_TOKEN_EXP_REQUEST,
+  LOAD_TOKEN_EXP_SUCCESS,
+  LOAD_TOKEN_EXP_FAIL,
 } from "../constants/userConstants";
 
 export const userReducers = (state = { user: {}, userProfile: {} }, action) => {
@@ -30,6 +33,7 @@ export const userReducers = (state = { user: {}, userProfile: {} }, action) => {
         isAuthenticated: true,
         userProfile: action.payload,
       };
+
     case LOGIN_FAIL:
       return {
         loading: false,
@@ -42,6 +46,33 @@ export const userReducers = (state = { user: {}, userProfile: {} }, action) => {
         loading: false,
         isAuthenticated: false,
         userProfile: null,
+        error: action.payload,
+      };
+
+    default:
+      return state;
+  }
+};
+
+export const tokenReducers = (state = { token: {} }, action) => {
+  switch (action.type) {
+    case LOAD_TOKEN_EXP_REQUEST:
+      return {
+        loading: true,
+      };
+
+    case LOAD_TOKEN_EXP_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        token: action.payload,
+      };
+
+    case LOAD_TOKEN_EXP_FAIL:
+      return {
+        ...state,
+        loading: false,
+        token: null,
         error: action.payload,
       };
 

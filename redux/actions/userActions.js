@@ -34,8 +34,9 @@ export const loadUser = () => async (dispatch) => {
     let token;
     await SecureStore.getItemAsync("secure_token").then((value) => {
       token = value;
-      console.log("Check token", token);
     });
+
+    console.log("Check token", token);
 
     const config = { headers: { Authorization: `Bearer ${token}` } };
 
@@ -44,10 +45,8 @@ export const loadUser = () => async (dispatch) => {
       config
     );
 
-    console.log("Check data", data);
     dispatch({ type: LOAD_USER_SUCCESS, payload: data });
   } catch (error) {
-    console.log("Error", error);
     dispatch({ type: LOAD_USER_FAIL, payload: error.response.data.message });
   }
 };

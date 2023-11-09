@@ -20,9 +20,14 @@ export default function VNPAYPaymentScreen() {
       {deposit && deposit.deposit && deposit.deposit.url && (
         <WebView
           source={{ uri: `${deposit?.deposit?.url}` }}
-          // onNavigationStateChange={(navState) => {
-          //   // handlePaymentResult(navState?.url ?? ``);
-          // }}
+          onNavigationStateChange={(navState) => {
+            console.log(navState);
+            handlePaymentResult(navState?.url ?? ``);
+          }}
+          javaScriptEnabled={true}
+          domStorageEnabled={true}
+          // injectedJavaScript={this.state.cookie}
+          startInLoadingState={false}
         />
       )}
     </>

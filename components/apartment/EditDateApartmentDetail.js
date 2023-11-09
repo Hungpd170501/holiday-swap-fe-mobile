@@ -17,15 +17,21 @@ const initialDateRange = {
   endDate: new Date(new Date().getTime() + 24 * 60 * 60 * 1000),
 };
 
-export default function EditDateApartmentDetail() {
+export default function EditDateApartmentDetail({
+  dateRange,
+  handleChangeDateRange,
+}) {
   const navigation = useNavigation();
   const [visible, setVisible] = useState(false);
   const [searchText, setSearchText] = useState("");
   const [selectedLocation, setSelectedLocation] = useState(null);
-  const [dateRange, setDateRange] = useState(initialDateRange);
+  const [dateRangeBooking, setDateRangeBooking] = useState({
+    startDate: dateRange?.startTime,
+    endDate: dateRange?.endTime,
+  });
 
   const handleDateRange = (value) => {
-    setDateRange(value);
+    setDateRangeBooking(value);
   };
 
   const toggleBottomNavigationView = () => {
@@ -40,11 +46,11 @@ export default function EditDateApartmentDetail() {
           className=""
         >
           <Text className="font-bold underline px-4 w-[100%]">
-            {dateRange
+            {dateRangeBooking
               ? `${format(
-                  new Date(dateRange.startDate),
+                  new Date(dateRangeBooking.startDate),
                   "E, dd MMM"
-                )} - ${format(new Date(dateRange.endDate), "E, dd MMM")}`
+                )} - ${format(new Date(dateRangeBooking.endDate), "E, dd MMM")}`
               : "Time"}
           </Text>
         </TouchableOpacity>
@@ -63,16 +69,14 @@ export default function EditDateApartmentDetail() {
             }}
           >
             <View className="flex-1 px-4">
-              <InputDateComponents handleDateRange={handleDateRange} />
+              <InputDateComponents
+                dateRange={dateRangeBooking}
+                handleDateRange={handleDateRange}
+                handleChangeDateRange={handleChangeDateRange}
+              />
             </View>
 
-            <View className="pb-4 px-4  flex flex-row justify-between">
-              <TouchableOpacity
-                onPress={() => setVisible(!visible)}
-                className="w-[40%] p-4 bg-sky-500 rounded-md"
-              >
-                <Text className="text-white text-lg text-center">Apply</Text>
-              </TouchableOpacity>
+            <View className="pb-4 px-4  flex flex-row justify-end bg-white shadow-md">
               <TouchableOpacity
                 onPress={() => setVisible(!visible)}
                 className="w-[40%] p-4 bg-sky-500 rounded-md"
@@ -92,7 +96,7 @@ const styles = StyleSheet.create({
   bottomNavigationView: {
     backgroundColor: "#fff",
     width: "100%",
-    height: "80%",
+    height: "90%",
   },
   shadow: {
     shadowColor: "#000",
