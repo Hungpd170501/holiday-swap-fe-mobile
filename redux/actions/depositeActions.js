@@ -1,4 +1,5 @@
 import {
+  DEPOSIT_FAIL,
   DEPOSIT_REQUEST,
   DEPOSIT_SUCCESS,
 } from "../constants/depositConstants";
@@ -6,7 +7,7 @@ import * as SecureStore from "expo-secure-store";
 import axios from "axios";
 
 export const depositPoint =
-  (amount, orderInfor, returnURL) => async (dispatch) => {
+  (amount, orderInfor, returnURL, navigation) => async (dispatch) => {
     try {
       dispatch({ type: DEPOSIT_REQUEST });
       // const token = await AsyncStorage.getItem("token");
@@ -19,12 +20,11 @@ export const depositPoint =
         `https://holiday-swap.click/api/v1/payment/Create_payment?amount=${amount}&orderInfor=${orderInfor}&returnURL=${returnURL}`,
         { headers: { Authorization: `Bearer ${accessToken}` } }
       );
-      console.log("check api payment", data);
       dispatch({ type: DEPOSIT_SUCCESS, payload: data });
     } catch (error) {
       //test code
       console.log("Loi ne", error);
       console.log("loi roi con di");
-      dispatch({ type: DEPOSIT_REQUEST, payload: error.response.data.message });
+      dispatch({ type: DEPOSIT_FAIL, payload: error.response.data.message });
     }
   };

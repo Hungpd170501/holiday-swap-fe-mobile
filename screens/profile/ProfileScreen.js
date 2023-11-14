@@ -51,10 +51,18 @@ export default function ProfileScreen() {
       </View>
       <ScrollView>
         <View className="flex flex-col h-[200px] w-full absolute bg-blue-500 items-center">
-          <Image
-            className="w-[80px] h-[80px] rounded-full"
-            source={require("../../assets/images/avt.jpg")}
-          />
+          {userProfile?.avatar ? (
+            <Image
+              className="w-[80px] h-[80px] rounded-full"
+              source={{ uri: userProfile?.avatar }}
+            />
+          ) : (
+            <Image
+              className="w-[80px] h-[80px] rounded-full"
+              source={require("../../assets/images/avt.jpg")}
+            />
+          )}
+
           <Text className="text-[30px] font-bold text-white py-2">
             {userProfile?.username}
           </Text>

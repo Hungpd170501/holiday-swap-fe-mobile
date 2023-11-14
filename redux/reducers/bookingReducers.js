@@ -3,6 +3,9 @@ import {
   CREATE_BOOKING_SUCCESS,
   CREATE_BOOKING_FAIL,
   CREATE_BOOKING_RESET,
+  GET_HISTORY_BOOKING_REQUEST,
+  GET_HISTORY_BOOKING_SUCCESS,
+  GET_HISTORY_BOOKING_FAIL,
 } from "../constants/bookingConstants";
 
 export const newBookingReducers = (state = { booking: {} }, action) => {
@@ -31,7 +34,37 @@ export const newBookingReducers = (state = { booking: {} }, action) => {
     case CREATE_BOOKING_RESET:
       return {
         ...state,
+        loading: true,
         success: false,
+      };
+
+    default:
+      return state;
+  }
+};
+
+export const historyBookingReducers = (
+  state = { historyBooking: [] },
+  action
+) => {
+  switch (action.type) {
+    case GET_HISTORY_BOOKING_REQUEST:
+      return {
+        loading: true,
+        historyBooking: [],
+      };
+
+    case GET_HISTORY_BOOKING_SUCCESS:
+      return {
+        loading: false,
+        historyBooking: action.payload,
+      };
+
+    case GET_HISTORY_BOOKING_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
       };
 
     default:

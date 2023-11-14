@@ -9,22 +9,28 @@ export default function CarouselApartmentImage(data) {
   const itemWidth = (screenWidth * itemWidthPercentage) / 100;
 
   const renderItem = ({ item, index }) => (
-    <View style={{ width: itemWidth, height: 300 }}>
-      <View className="" style={{ width: "100%" }}>
-        <Image style={{ width: "100%", height: "100%" }} source={item.link ? { uri: item.link } : null} />
+    <View style={{ height: 300, width: "91%" }} className="max-w-fit">
+      <View className="w-auto flex-1">
+        <Image
+          // style={{ width: "100%", height: "100%" }}
+          className="rounded-xl w-full h-full"
+          source={item.link ? { uri: item.link } : null}
+        />
         <View
           className="px-7"
           style={{
             position: "absolute",
             bottom: 10,
-            right: 10,
-          }}>
+            right: 5,
+          }}
+        >
           <Text
             style={{
               fontSize: 15,
               fontWeight: "bold",
               color: "black",
-            }}>
+            }}
+          >
             {`${index + 1}/${data.image.length}`}
           </Text>
         </View>

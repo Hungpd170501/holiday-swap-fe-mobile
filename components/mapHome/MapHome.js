@@ -9,6 +9,7 @@ import { Dimensions } from "react-native";
 import { BottomSheet } from "react-native-btr";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { MapIcon, XMarkIcon } from "react-native-heroicons/solid";
 
 export default function MapHome() {
   const navigation = useNavigation();
@@ -21,14 +22,15 @@ export default function MapHome() {
   };
   return (
     <View className=" ">
-      <View className=" mb-2 ">
+      <View className=" mb-5">
         <TouchableOpacity
           onPress={toggleBottomNavigationView}
-          className=" flex flex-row justify-center items-center  "
+          className=" flex flex-row justify-center"
         >
-          <Text className="border border-gray-400 rounded-full py-2 px-6 bg-black text-white text-center opacity-70">
-            Maps
-          </Text>
+          <View className="flex flex-row items-center bg-black shadow-2xl rounded-full py-2 px-6 text-center">
+            <MapIcon color={"white"} size={30} />
+            <Text className=" text-white text-lg font-bold pl-2">Maps</Text>
+          </View>
         </TouchableOpacity>
       </View>
       <BottomSheet
@@ -38,46 +40,52 @@ export default function MapHome() {
       >
         <View style={styles.bottomNavigationView}>
           <View>
-            <View>
-              <MapView
-                initialRegion={{
+            <View className="py-3 border-b border-gray-300 flex flex-row gap-9 items-center">
+              <XMarkIcon
+                onPress={toggleBottomNavigationView}
+                size={30}
+                color={"black"}
+              />
+              <Text className="text-xl font-bold text-black">Maps</Text>
+            </View>
+            <MapView
+              initialRegion={{
+                latitude: 10.841328,
+                longitude: 106.810473,
+                latitudeDelta: 0.01,
+                longitudeDelta: 0.02,
+              }}
+              style={styles.map}
+              mapType="standard"
+            >
+              <Marker
+                coordinate={{
                   latitude: 10.841328,
                   longitude: 106.810473,
-                  latitudeDelta: 0.01,
-                  longitudeDelta: 0.02,
                 }}
-                style={styles.map}
-                mapType="standard"
-              >
-                <Marker
-                  coordinate={{
-                    latitude: 10.841328,
-                    longitude: 106.810473,
-                  }}
-                  title="Thức Bui Resort"
-                  description="Saigon Park Resort"
-                  pinColor={"red"}
-                />
-                <Marker
-                  coordinate={{
-                    latitude: 10.844406208155235,
-                    longitude: 106.80725192959953,
-                  }}
-                  title="Thinh Bui Resort"
-                  description="Lakeview Villa"
-                  pinColor={"red"}
-                />
-                <Marker
-                  coordinate={{
-                    latitude: 10.840191283504446,
-                    longitude: 106.80785274439928,
-                  }}
-                  title="Duy Thuong Resort"
-                  description="Khu Nghỉ dưỡng Caroline Resort"
-                  pinColor={"red"}
-                />
-              </MapView>
-            </View>
+                title="Thức Bui Resort"
+                description="Saigon Park Resort"
+                pinColor={"red"}
+              />
+              <Marker
+                coordinate={{
+                  latitude: 10.844406208155235,
+                  longitude: 106.80725192959953,
+                }}
+                title="Thinh Bui Resort"
+                description="Lakeview Villa"
+                pinColor={"red"}
+              />
+              <Marker
+                coordinate={{
+                  latitude: 10.840191283504446,
+                  longitude: 106.80785274439928,
+                }}
+                title="Duy Thuong Resort"
+                description="Khu Nghỉ dưỡng Caroline Resort"
+                pinColor={"red"}
+              />
+            </MapView>
           </View>
         </View>
       </BottomSheet>
@@ -90,7 +98,7 @@ const styles = StyleSheet.create({
   bottomNavigationView: {
     backgroundColor: "#fff",
     width: "100%",
-    height: "80%",
+    height: "100%",
   },
   map: {
     width: Dimensions.get("window").width,

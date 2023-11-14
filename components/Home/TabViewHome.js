@@ -236,7 +236,7 @@ export default function TabViewHome(props) {
                   onScrollEndDrag={(event) => {
                     handleScroll(event);
                   }}
-                  className="mt-5"
+                  className="mt-5 w-full"
                 >
                   <View>
                     {apartments.map((item, index) => {
@@ -251,85 +251,80 @@ export default function TabViewHome(props) {
                       );
 
                       return (
-                        <View key={index}>
-                          <TouchableOpacity
-                            onPress={() =>
-                              navigation.navigate("DetailApartment", {
-                                id: item.availableTime.id,
-                              })
-                            }
-                          >
+                        <View className="flex-1" key={index}>
+                          <View>
                             <CarouselApartmentImage
                               image={item.property.propertyImage}
                             />
-                          </TouchableOpacity>
-                          <TouchableOpacity
-                            onPress={() =>
-                              navigation.navigate("DetailApartment", {
-                                id: item.availableTime.id,
-                              })
-                            }
-                            className=" mb-8"
-                          >
-                            <View className="">
+                            <TouchableOpacity
+                              activeOpacity={0.8}
+                              onPress={() =>
+                                navigation.navigate("DetailApartment", {
+                                  id: item.availableTime.id,
+                                })
+                              }
+                              className="mb-8"
+                            >
                               <View className="">
-                                <View className="flex flex-row items-center justify-between">
-                                  <Text className="underline pb-3 w-[80%] text-[18px] font-bold pt-2">
-                                    {item.property.propertyName}
-                                  </Text>
-                                  <View className="flex flex-row items-center gap-1">
-                                    <Text>{5}</Text>
-                                    <AntDesign name="star" color="orange" />
+                                <View className="">
+                                  <View className="flex flex-row items-center justify-between">
+                                    <Text className="underline pb-3 w-[80%] text-[18px] font-bold pt-2">
+                                      {item.property.propertyName}
+                                    </Text>
+                                    <View className="flex flex-row items-center gap-1">
+                                      <Text>{5}</Text>
+                                      <AntDesign name="star" color="orange" />
+                                    </View>
+                                  </View>
+                                  <View className="flex flex-row gap-2 ">
+                                    <Text className="font-bold">Resort:</Text>
+                                    <Text>{item.resort.resortName}</Text>
+                                  </View>
+                                  <View className="flex flex-row gap-2 py-2">
+                                    <Text className="font-bold">Type:</Text>
+                                    <Text>
+                                      {
+                                        item.property.propertyType
+                                          .propertyTypeName
+                                      }
+                                    </Text>
+                                  </View>
+                                  {/* <View className="flex flex-row gap-2 mb-2"> */}
+                                  {/* <Text className="font-bold">Apartment ID:</Text> */}
+                                  {/* <Text>{apartment.apartmentID}</Text> */}
+                                  {/* </View> */}
+
+                                  <View className="max-w-[100%] overflow-hidden pb-2">
+                                    <Text className="text-[15px] whitespace-nowrap overflow-ellipsis">
+                                      {item.property.propertyDescription}
+                                    </Text>
+                                  </View>
+                                  <View className="flex flex-row gap-1 items-center mb-1">
+                                    <Text className="text-[20px] font-bold">
+                                      {item.availableTime.pricePerNight}
+                                    </Text>
+                                    <FontAwesome5
+                                      name="coins"
+                                      size={20}
+                                      color="orange"
+                                    />
+                                  </View>
+
+                                  <View className="flex flex-row items-center ">
+                                    <Text className="font-bold">
+                                      {nights} nights
+                                    </Text>
+                                  </View>
+                                  <View className="flex flex-row items-center ">
+                                    <Text className="font-bold">
+                                      {startTime.toDateString()} -{" "}
+                                      {endTime.toDateString()}
+                                    </Text>
                                   </View>
                                 </View>
-                                <View className="flex flex-row gap-2 ">
-                                  <Text className="font-bold">Resort:</Text>
-                                  <Text>{item.resort.resortName}</Text>
-                                </View>
-                                <View className="flex flex-row gap-2 py-2">
-                                  <Text className="font-bold">Type:</Text>
-                                  <Text>
-                                    {
-                                      item.property.propertyType
-                                        .propertyTypeName
-                                    }
-                                  </Text>
-                                </View>
-                                {/* <View className="flex flex-row gap-2 mb-2"> */}
-                                {/* <Text className="font-bold">Apartment ID:</Text> */}
-                                {/* <Text>{apartment.apartmentID}</Text> */}
-                                {/* </View> */}
-
-                                <View className="max-w-[100%] overflow-hidden pb-2">
-                                  <Text className="text-[15px] whitespace-nowrap overflow-ellipsis">
-                                    {item.property.propertyDescription}
-                                  </Text>
-                                </View>
-                                <View className="flex flex-row gap-1 items-center mb-1">
-                                  <Text className="text-[20px] font-bold">
-                                    {item.availableTime.pricePerNight}
-                                  </Text>
-                                  <FontAwesome5
-                                    name="coins"
-                                    size={20}
-                                    color="orange"
-                                  />
-                                </View>
-
-                                <View className="flex flex-row items-center ">
-                                  <Text className="font-bold">
-                                    {nights} nights
-                                  </Text>
-                                </View>
-                                <View className="flex flex-row items-center ">
-                                  <Text className="font-bold">
-                                    {startTime.toDateString()} -{" "}
-                                    {endTime.toDateString()}
-                                  </Text>
-                                </View>
                               </View>
-                            </View>
-                          </TouchableOpacity>
+                            </TouchableOpacity>
+                          </View>
                         </View>
                       );
                     })}
@@ -526,7 +521,7 @@ export default function TabViewHome(props) {
   };
 
   return (
-    <View className="flex-1 px-4 bg-white">
+    <View className="flex-1 px-4 max-w-fit bg-white">
       {/* <Text>{paramSearch?.sortDirection}</Text> */}
       <View className=" border-b border-blue-200 ">
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>

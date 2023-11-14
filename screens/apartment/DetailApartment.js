@@ -1,7 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Dimensions, Text, TouchableOpacity, View } from "react-native";
 import { ScrollView } from "react-native";
-import CaroselApartmentDetail from "../../components/apartment/CaroselApartmentDetail";
 import {
   FontAwesome5,
   Ionicons,
@@ -27,6 +26,8 @@ import { getAparmentDetail } from "../../redux/actions/apartmentActions";
 import { format, parseISO } from "date-fns";
 import { ActivityIndicator } from "react-native";
 import Loading from "../../components/Loading";
+import CarouselApartmentDetail from "../../components/apartment/CaroselApartmentDetail";
+import { StatusBar } from "expo-status-bar";
 
 export default function DetailApartment() {
   const route = useRoute();
@@ -77,17 +78,19 @@ export default function DetailApartment() {
   const itemWidth = (screenWidth * itemWidthPercentage) / 100;
   const startTime = apartment?.availableTime?.startTime;
   const endTime = apartment?.availableTime?.endTime;
+
   return (
     <Fragment>
       {loading ? (
         <Loading />
       ) : (
         <Fragment>
+          {/* <StatusBar style="dark" /> */}
           {apartment && (
             <View className="flex-1 ">
               <ScrollView>
                 <View className=" bg-white relative">
-                  <CarouselApartmentImage
+                  <CarouselApartmentDetail
                     image={apartment?.property?.propertyImage}
                   />
                 </View>

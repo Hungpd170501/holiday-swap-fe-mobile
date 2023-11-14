@@ -1,5 +1,6 @@
 import { FontAwesome, FontAwesome5, Ionicons } from "@expo/vector-icons";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
+import { format } from "date-fns";
 import React from "react";
 import { Image } from "react-native";
 import { TouchableOpacity } from "react-native";
@@ -10,79 +11,46 @@ import { Feather } from "react-native-feather";
 
 export default function BookingConfirm() {
   const navigation = useNavigation();
+  const route = useRoute();
+  const { apartmentBooking, dateRangeBooking, total } = route.params;
   return (
-    <View className="flex-1">
-      <View className="bg-blue-500 w-full h-[100px]  flex flex-row items-center justify-start px-5">
-        <TouchableOpacity onPress={() => navigation.goBack()}>
+    <View className="flex-1 bg-white">
+      <View className="bg-white w-full border-b border-slate-300 flex flex-row items-center justify-center py-5">
+        {/* <TouchableOpacity onPress={() => navigation.goBack()}>
           <Ionicons name="close-outline" size={30} color="white" />
-        </TouchableOpacity>
-        <Text className="ml-8 text-[20px] text-white">
-          Confirm Booking apartment
+        </TouchableOpacity> */}
+        <Text className="text-[20px] text-black font-bold py-4ư mt-4">
+          Your booking is successfully!
         </Text>
       </View>
-      <ScrollView>
-        <View className="px-3 py-4">
-          <View>
-            <Text className="text-blue-500">Confirmed</Text>
-            <Text className="py-3 text-[20px] font-bold">
-              Your apartment booking has been confirmed
+      <ScrollView className="flex-1">
+        <View className="flex flex-row px-5 py-5 bg-white gap-4 items-center">
+          <Image
+            source={{
+              uri: `${apartmentBooking?.property?.propertyImage[0]?.link}`,
+            }}
+            className="w-36 h-28 rounded-xl "
+          />
+          <View className="flex flex-col gap-1">
+            <Text className="text-lg font-bold text-black">
+              {apartmentBooking?.property?.propertyName}
+            </Text>
+            <Text className="text-base text-slate-800">
+              {format(new Date(dateRangeBooking?.startDate), "EEE, d yyyy")} -{" "}
+              {format(new Date(dateRangeBooking?.endDate), "EEE, d yyyy")}
+            </Text>
+            <Text className="text-base text-slate-800">
+              {total} point total
             </Text>
           </View>
-          <View className="pb-5">
-            <View className="flex flex-row ">
-              <Ionicons size={25} name="checkmark" />
-              <View className="ml-2">
-                <Text className="font-bold mb-1 text-[18px]">
-                  We have sent confirmation to
-                </Text>
-                <Text>Buitrithuc1008@gmail.com</Text>
-              </View>
-            </View>
-          </View>
+        </View>
+
+        <View className="flex py-4 flex-row justify-center bg-white">
           <TouchableOpacity
-            onPress={() => navigation.navigate("DetailApartment")}
-            className="border border-gray-400 rounded-md px-3 py-3 "
+            onPress={() => navigation.navigate("root")}
+            className="p-3 text-center bg-button rounded-lg"
           >
-            <View className="flex flex-row items-center ">
-              <Image
-                className="w-[100px] h-[100px]"
-                source={{
-                  uri: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/496850387.jpg?k=5564e90a2b71893855bc439d5857b7eb1e6d283e4b7b331b446cb6480cad0c60&o=&hp=1",
-                }}
-              />
-              <View className="flex flex-col w-[70%] ml-3">
-                <Text className="text-[20px] font-bold">
-                  Alex's Apartment with Sky View - Landmark 81 Toweer
-                </Text>
-                <View className="flex flex-row">
-                  <Text>Total prices:</Text>
-                  <View className="flex flex-row ">
-                    <Text className="font-bold mr-1"> 25.000</Text>
-                    <FontAwesome5 name="coins" size={20} color="orange" />
-                  </View>
-                </View>
-              </View>
-            </View>
-            <View className=" flex flex-col mt-3">
-              <View className="flex flex-row items-center mb-3">
-                <FontAwesome name="calendar-o" size={20} />
-                <Text className="ml-2">23nd - 28nd August</Text>
-              </View>
-              <View className="flex flex-row items-center">
-                <Ionicons name="bed-outline" size={20} />
-                <Text className="ml-2">Apartment 1 bedroom</Text>
-              </View>
-            </View>
-            <View className="bg-gray-400 w-full h-[1px] my-3"></View>
-            <View className="flex flex-row items-center justify-center">
-              <TouchableOpacity
-                onPress={() => navigation.navigate("BookedApartment")}
-              >
-                <Text className="text text-blue-500 text-[17px]">
-                  View or update detail
-                </Text>
-              </TouchableOpacity>
-            </View>
+            <Text className="text-white text-lg">Back to home</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>

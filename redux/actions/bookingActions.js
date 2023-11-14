@@ -3,6 +3,9 @@ import {
   CREATE_BOOKING_REQUEST,
   CREATE_BOOKING_SUCCESS,
   CREATE_BOOKING_FAIL,
+  GET_HISTORY_BOOKING_REQUEST,
+  GET_HISTORY_BOOKING_SUCCESS,
+  GET_HISTORY_BOOKING_FAIL,
 } from "../constants/bookingConstants";
 import axios from "axios";
 import * as SecureStore from "expo-secure-store";
@@ -50,3 +53,29 @@ export const createBooking =
       });
     }
   };
+
+export const getHistoryBooking = () => async (dispatch) => {
+  try {
+    dispatch({ type: GET_HISTORY_BOOKING_REQUEST });
+
+    const accessToken = await SecureStore.getItemAsync("secure_token");
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    };
+
+    const { data } = await axios.get(
+      `https://holiday-swap.click/api/booking/ownerhistorybooking`,
+      config
+    );
+
+    dispatch({ type: GET_HISTORY_BOOKING_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: GET_HISTORY_BOOKING_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};

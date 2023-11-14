@@ -6,7 +6,10 @@ import {
   apartmentDetailReducers,
   apartmentReducers,
 } from "./reducers/apartmentReducers";
-import { newBookingReducers } from "./reducers/bookingReducers";
+import {
+  historyBookingReducers,
+  newBookingReducers,
+} from "./reducers/bookingReducers";
 
 export const store = configureStore({
   reducer: {
@@ -16,5 +19,11 @@ export const store = configureStore({
     apartments: apartmentReducers,
     apartmentDetail: apartmentDetailReducers,
     newBooking: newBookingReducers,
+    historyBooking: historyBookingReducers,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      immutableCheck: false,
+      serializableCheck: false,
+    }),
 });

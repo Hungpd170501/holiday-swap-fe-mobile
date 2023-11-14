@@ -9,6 +9,7 @@ import { id } from "deprecated-react-native-prop-types/DeprecatedTextPropTypes";
 import { createContext, useState, useEffect } from "react";
 import * as SecureStore from "expo-secure-store";
 import { useNavigation } from "@react-navigation/native";
+import { Fragment } from "react";
 
 export default function HomeScreen() {
   const { user } = useSelector((state) => state.user);
@@ -29,12 +30,12 @@ export default function HomeScreen() {
     }
   }, [authen]);
   return (
-    <>
+    <Fragment>
       <View className="bg-white ">
-        <StatusBar style="light" />
+        <StatusBar style="dark" />
         <SearchHome />
       </View>
       <TabViewHome />
-    </>
+    </Fragment>
   );
 }

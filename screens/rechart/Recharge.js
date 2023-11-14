@@ -7,14 +7,15 @@ import { View } from "react-native";
 import { Checkbox } from "react-native-paper";
 import { useDispatch, useSelector } from "react-redux";
 import { depositPoint } from "../../redux/actions/depositeActions";
+import { DEPOSIT_RESET } from "../../redux/constants/depositConstants";
 
 export default function Recharge() {
   const [checked, setChecked] = React.useState(false);
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const [selectedView, setSelectedView] = useState(null);
-  const [totalPoint, setTotalPoint] = useState(null);
-  const { deposit } = useSelector((state) => state.deposit);
+  const [totalPoint, setTotalPoint] = useState();
+  const { deposit, statusDeposit } = useSelector((state) => state.deposit);
 
   const onInputchange = (text) => {
     console.log("change change", text);
@@ -29,22 +30,23 @@ export default function Recharge() {
     }
   };
   const RechargeSubmit = () => {
-    console.log("bam nut nap tien");
     dispatch(
-      deposit(
+      depositPoint(
         totalPoint,
         "nap tien vnpay",
-        "https://holiday-swap.click/api/v1/payment/payment_infor"
+        "https://holiday-swap.vercel.app/recharge/success",
+        navigation
       )
     );
     navigation.navigate("VNPAYPayment");
   };
 
   useEffect(() => {
-    if (deposit) {
+    if (statusDeposit) {
+      console.log("Check it run", deposit);
       navigation.navigate("VNPAYPayment");
     }
-  }, [deposit]);
+  }, [statusDeposit, navigation]);
 
   return (
     <View className="bg-white h-full">

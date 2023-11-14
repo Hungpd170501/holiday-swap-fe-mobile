@@ -97,6 +97,7 @@ function Navigation() {
         {authen ? (
           <Fragment>
             <Stack.Screen name="Loading" component={LoadingScreen} />
+
             <Stack.Screen name="root" component={TabNavigation} />
             <Stack.Screen name="SignInScreen" component={SignInScreen} />
 
@@ -127,7 +128,7 @@ function Navigation() {
             <Stack.Screen name="Rating" component={Rating} />
             <Stack.Screen name="ManageAccount" component={ManageAccount} />
             <Stack.Screen name="VerifyOTP" component={VerifyOPTScreen} />
-
+            <Stack.Screen name="BookingConfirm" component={BookingConfirm} />
             <Stack.Screen name="DetailProperty" component={DetailProperty} />
             <Stack.Screen name="Landing" component={Landing} />
             <Stack.Screen name="StepAdd1" component={StepAdd1} />
@@ -144,7 +145,6 @@ function Navigation() {
               component={ManageRevervation}
             />
             <Stack.Screen name="BookedApartment" component={BookedApartment} />
-            <Stack.Screen name="BookingConfirm" component={BookingConfirm} />
             <Stack.Screen name="PaymentScreen" component={PaymentScreen} />
             <Stack.Screen
               name="ImageFullApartment"
