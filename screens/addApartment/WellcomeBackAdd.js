@@ -37,7 +37,7 @@ export default function WellcomeBackAdd() {
           <Text className="font-bold">
             Complete your apartment addition section
           </Text>
-          <View className="py-5 flex flex-col gap-5">
+          {/* <View className="py-5 flex flex-col gap-5">
             <TouchableOpacity className="px-3 py-4 flex flex-row items-center border border-gray-300 rounded-md justify-between">
               <View className="flex flex-row gap-3 ">
                 <View className="bg-blue-100 px-2 py-2 rounded-md">
@@ -60,7 +60,7 @@ export default function WellcomeBackAdd() {
               </View>
               <MaterialIcons size={30} name="navigate-next" />
             </TouchableOpacity>
-          </View>
+          </View> */}
           <View className="px-4 bg-gray-300 w-full h-[1px] my-6"></View>
           <View>
             <Text className="font-bold">
@@ -78,13 +78,13 @@ export default function WellcomeBackAdd() {
               </View>
               <MaterialIcons size={30} name="navigate-next" />
             </TouchableOpacity>
-            <TouchableOpacity className="flex flex-row items-center justify-between">
+            {/* <TouchableOpacity className="flex flex-row items-center justify-between">
               <View className="flex flex-row items-center gap-5">
                 <MaterialCommunityIcons size={25} name="content-copy" />
                 <Text>content-copy</Text>
               </View>
               <MaterialIcons size={30} name="navigate-next" />
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </View>
         </ScrollView>
       </View>
