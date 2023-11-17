@@ -43,8 +43,8 @@ import Rating from "../screens/rating/Rating";
 import SearchApartment from "../screens/home/SearchApartment";
 import StepAdd2 from "../screens/addApartment/StepAdd2";
 import StepAdd3 from "../screens/addApartment/StepAdd3";
-import StepAdd4 from "../screens/addApartment/StepAdd4";
-import StepAdd5 from "../screens/addApartment/StepAdd5";
+import StepAdd4 from "../screens/addApartment/StepAdd3";
+import StepAdd5 from "../screens/addApartment/StepAdd4";
 import YourTrip from "../screens/yourTrip/YourTrip";
 import Recharge from "../screens/rechart/Recharge";
 import SpecialReq from "../screens/specialRequirement/SpecialReq";
@@ -115,9 +115,10 @@ function Navigation() {
             <Stack.Screen name="Recharge" component={Recharge} />
             <Stack.Screen name="YourTrip" component={YourTrip} />
             <Stack.Screen name="VNPAYPayment" component={VNPAYPaymentScreen} />
-            <Stack.Screen name="StepAdd5" component={StepAdd5} />
+
             <Stack.Screen name="StartAdd" component={StartAdd} />
             <Stack.Screen name="StepAdd3" component={StepAdd3} />
+            <Stack.Screen name="StepAdd4" component={StepAdd4} />
             <Stack.Screen
               name="InputInfomationScreen"
               component={InputInfomationScreen}
@@ -194,9 +195,10 @@ function Navigation() {
             <Stack.Screen name="Recharge" component={Recharge} />
             <Stack.Screen name="YourTrip" component={YourTrip} />
             <Stack.Screen name="VNPAYPayment" component={VNPAYPaymentScreen} />
-            <Stack.Screen name="StepAdd5" component={StepAdd5} />
+
             <Stack.Screen name="StartAdd" component={StartAdd} />
             <Stack.Screen name="StepAdd3" component={StepAdd3} />
+            <Stack.Screen name="StepAdd4" component={StepAdd4} />
             <Stack.Screen
               name="InputInfomationScreen"
               component={InputInfomationScreen}

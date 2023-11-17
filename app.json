@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Mobile-capstone-project",
-    "slug": "captone",
+    "slug": "holidayswap",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -11,13 +11,16 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSCameraUsageDescription": "This app uses the camera to scan barcodes on event tickets."
+      },
+      "bundleIdentifier": "com.thucbui.captone"
     },
     "android": {
+      "blockedPermissions": ["android.permission.RECORD_AUDIO"],
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -29,9 +32,9 @@
     },
     "extra": {
       "eas": {
-        "projectId": "019372a4-e0d8-470c-b7c9-d705011745e9"
+        "projectId": "7895ebe4-c50f-48ed-aa18-1b93129eecb8"
       }
     },
-    "owner": "thucbui"
+    "owner": "tinit28"
   }
 }

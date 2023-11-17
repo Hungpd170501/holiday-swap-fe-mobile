@@ -1,6 +1,10 @@
+import { useFocusEffect } from "@react-navigation/native";
 import React, { useState } from "react";
+import { Fragment } from "react";
+import { useEffect } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { Dropdown } from "react-native-element-dropdown";
+import { useSelector } from "react-redux";
 
 const data = [
   { label: "Property 1", value: "1" },
@@ -13,37 +17,52 @@ const data = [
   { label: "Property 8", value: "8" },
 ];
 
-const DropDownProperty = () => {
+const DropDownProperty = ({ handleChangePropertyId, properties }) => {
   const [value, setValue] = useState(null);
+
+  const [propertiesData, setPropertiesData] = useState();
+
+  useEffect(() => {
+    if (properties) {
+      setPropertiesData(properties.content);
+    }
+  }, [properties]);
+
+  console.log("Check properties", properties);
 
   const renderItem = (item) => {
     return (
       <View style={styles.item}>
-        <Text style={styles.textItem}>{item.label}</Text>
+        <Text style={styles.textItem}>{item.propertyName}</Text>
       </View>
     );
   };
 
   return (
-    <Dropdown
-      style={styles.dropdown}
-      placeholderStyle={styles.placeholderStyle}
-      selectedTextStyle={styles.selectedTextStyle}
-      inputSearchStyle={styles.inputSearchStyle}
-      iconStyle={styles.iconStyle}
-      data={data}
-      search
-      maxHeight={210}
-      labelField="label"
-      valueField="value"
-      placeholder="Select item"
-      searchPlaceholder="Search..."
-      value={value}
-      onChange={(item) => {
-        setValue(item.value);
-      }}
-      renderItem={renderItem}
-    />
+    <Fragment>
+      {propertiesData && (
+        <Dropdown
+          style={styles.dropdown}
+          placeholderStyle={styles.placeholderStyle}
+          selectedTextStyle={styles.selectedTextStyle}
+          inputSearchStyle={styles.inputSearchStyle}
+          iconStyle={styles.iconStyle}
+          data={propertiesData}
+          search
+          maxHeight={210}
+          labelField="propertyName"
+          valueField="id"
+          placeholder="Select item"
+          searchPlaceholder="Search..."
+          value={value}
+          onChange={(item) => {
+            handleChangePropertyId(item);
+            setValue(item.id);
+          }}
+          renderItem={renderItem}
+        />
+      )}
+    </Fragment>
   );
 };
 

@@ -3,7 +3,7 @@ import {
   FontAwesome5,
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import React from "react";
 import { TouchableOpacity } from "react-native";
 import { ScrollView } from "react-native";
@@ -11,9 +11,19 @@ import { Text } from "react-native";
 import { View } from "react-native";
 import Maps from "../../components/map/Map";
 import { Image } from "react-native";
+import { useDispatch } from "react-redux";
+import { getListResort } from "../../redux/actions/resortActions";
 
 export default function Landing() {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+
+  useFocusEffect(
+    React.useCallback(() => {
+      dispatch(getListResort());
+    }, [dispatch])
+  );
+
   return (
     <View className="flex-1">
       <View className="bg-white w-full h-[100px]  flex flex-row items-center justify-start px-5">

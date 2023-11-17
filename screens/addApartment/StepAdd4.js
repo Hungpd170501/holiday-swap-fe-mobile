@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { ScrollView } from "react-native";
 import { TouchableOpacity } from "react-native";
 import { Text } from "react-native";
 import { View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { TextInput } from "react-native";
-import UploadImage from "../../components/addApartment/UploadImage";
+import ModalConfirmAddApartment from "../../components/addApartment/ModalConfirmAddApartment";
+import { Image } from "react-native";
 
 export default function StepAdd4() {
+  const [modalVisible, setModalVisible] = useState(false);
+
   const navigation = useNavigation();
   return (
     <View className="bg-white h-full">
@@ -25,14 +27,14 @@ export default function StepAdd4() {
       </View>
       <ScrollView>
         <View className="px-4 ">
-          <Text className="text-[25px] font-bold mt-7">Step 4</Text>
+          <Text className="text-[25px] font-bold mt-7">Confirm</Text>
           <Text className="font-bold text-[25px] py-3 text-blue-500">
-            Share your information about your apartment with us
+            Thank you for providing us with information
           </Text>
           <View className="flex ">
             <Text className="text-[16px] text-gray-600">
-              In this step we will ask you if the apartment you want to rent is
-              located in the
+              Below is all the information you provided. Please read it again
+              before clicking finish
             </Text>
             <View className="flex flex-row items-center">
               <Text>Name: </Text>
@@ -59,32 +61,55 @@ export default function StepAdd4() {
               <Text>Time range: </Text>
               <Text className="text-[17px] font-bold">2019 - 2025</Text>
             </View>
-            <Text className="text-[16px] text-gray-600">
-              Please provide us with more pictures of your apartment
-            </Text>
+
+            <Text className="text-[17px] font-bold mb-3">Image</Text>
+
+            <View style={{ flexDirection: "row" }}>
+              <Image
+                style={{ flex: 1, aspectRatio: 1, margin: 2 }}
+                source={require("../../assets/images/landmark1.jpg")}
+              />
+              <Image
+                style={{ flex: 1, aspectRatio: 1, margin: 2 }}
+                source={require("../../assets/images/landmark2.jpg")}
+              />
+              <Image
+                style={{ flex: 1, aspectRatio: 1, margin: 2 }}
+                source={require("../../assets/images/landmark3.jpg")}
+              />
+            </View>
+            <View style={{ flexDirection: "row" }}>
+              <Image
+                style={{ flex: 1, aspectRatio: 1, margin: 2 }}
+                source={require("../../assets/images/landmark4.jpg")}
+              />
+              <Image
+                style={{ flex: 1, aspectRatio: 1, margin: 2 }}
+                source={require("../../assets/images/landmark5.jpg")}
+              />
+              <Image
+                style={{ flex: 1, aspectRatio: 1, margin: 2 }}
+                source={require("../../assets/images/landmark1.jpg")}
+              />
+            </View>
           </View>
         </View>
-        <View className="px-4 mt-10 mb-5 ">
-          <Text className="text-[20px] font-bold text-blue-500 mb-5">
-            Image
-          </Text>
-          <UploadImage />
-        </View>
+        <ModalConfirmAddApartment
+          modalVisible={modalVisible}
+          setModalVisible={setModalVisible}
+        />
       </ScrollView>
       <View className="flex flex-row gap-1 items-center justify-center w-full">
-        <View className="bg-gray-300 w-[25%] h-1"></View>
-        <View className="bg-gray-300 w-[25%] h-1"></View>
-        <View className="bg-gray-700 w-[25%] h-[5px]"></View>
-        <View className="bg-gray-300 w-[25%] h-1"></View>
+        <View className="bg-gray-600 w-full h-[5px]"></View>
       </View>
       <View className="px-4 py-5">
         <View className="flex flex-row justify-between items-center">
           <TouchableOpacity onPress={() => navigation.goBack()}>
             <Text className="text-[20px] underline">Back</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.navigate("StepAdd5")}>
-            <Text className="text-[20px] bg-blue-700  text-white px-5 py-2 rounded-md">
-              Next Step
+          <TouchableOpacity onPress={() => setModalVisible(true)}>
+            <Text className="text-[20px] bg-blue-700  text-white px-10 py-2 rounded-md">
+              Finish
             </Text>
           </TouchableOpacity>
         </View>

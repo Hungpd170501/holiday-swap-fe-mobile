@@ -34,7 +34,7 @@ export default function WellcomeBackAdd() {
               Bui Tri Thuc
             </Text>
           </View>
-          <Text className="font-bold">
+          <Text className="font-bold text-xl">
             Complete your apartment addition section
           </Text>
           {/* <View className="py-5 flex flex-col gap-5">
@@ -63,7 +63,7 @@ export default function WellcomeBackAdd() {
           </View> */}
           <View className="px-4 bg-gray-300 w-full h-[1px] my-6"></View>
           <View>
-            <Text className="font-bold">
+            <Text className="font-bold text-xl">
               Start creating a new apartment rental section
             </Text>
           </View>
@@ -73,8 +73,8 @@ export default function WellcomeBackAdd() {
               className="flex flex-row items-center justify-between"
             >
               <View className="flex flex-row items-center gap-5">
-                <MaterialCommunityIcons size={25} name="home-plus-outline" />
-                <Text>Create a new rental</Text>
+                <MaterialCommunityIcons size={30} name="home-plus-outline" />
+                <Text className="text-xl font-bold">Create a new rental</Text>
               </View>
               <MaterialIcons size={30} name="navigate-next" />
             </TouchableOpacity>

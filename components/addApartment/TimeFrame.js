@@ -102,39 +102,140 @@
 // });
 
 import { AntDesign } from "@expo/vector-icons";
-import React from "react";
-import { TextInput } from "react-native";
+import React, { Fragment, useState } from "react";
+import { StyleSheet, TextInput } from "react-native";
 import { TouchableOpacity } from "react-native";
 import { Text } from "react-native";
 import { View } from "react-native-animatable";
+import { Dropdown } from "react-native-element-dropdown";
 
-export default function TimeFrame() {
+export const type = [
+  {
+    id: 1,
+    type: "DEEDED",
+    label: "Owner forever",
+  },
+  {
+    id: 2,
+    type: "RIGHT_TO_USE",
+    label: "Owner for a period of time",
+  },
+];
+
+export default function TimeFrame({
+  handleChangeTypeValue,
+  handleChangeStartDate,
+  handleChangeEndDate,
+}) {
+  const [value, setValue] = useState();
+
+  const renderItem = (item) => {
+    return (
+      <View style={styles.item}>
+        <Text style={styles.textItem}>{item.label}</Text>
+      </View>
+    );
+  };
+
   return (
-    <View className="flex flex-row px-4 justify-between mt-6">
-      <TouchableOpacity>
-        <View className="flex-row items-center space-x-2   ">
-          <View className="flex-row  items-center py-3 px-5  border border-blue-300 bg-blue-100 rounded-lg">
-            <AntDesign name="calendar" size={25} color="#0592D0" />
-            <TextInput
-              keyboardType="numeric"
-              placeholder="Start year"
-              className="ml-2  text-blue-600"
-            />
-          </View>
+    <Fragment>
+      <Dropdown
+        style={styles.dropdown}
+        placeholderStyle={styles.placeholderStyle}
+        selectedTextStyle={styles.selectedTextStyle}
+        inputSearchStyle={styles.inputSearchStyle}
+        iconStyle={styles.iconStyle}
+        data={type}
+        search
+        maxHeight={300}
+        labelField="label"
+        valueField="type"
+        placeholder="Select item"
+        searchPlaceholder="Search..."
+        value={value}
+        onChange={(item) => {
+          handleChangeTypeValue(item.type);
+          setValue(item.type);
+        }}
+        renderItem={renderItem}
+      />
+
+      {value === "RIGHT_TO_USE" && (
+        <View className="flex flex-row px-4 justify-between mt-6">
+          <TouchableOpacity>
+            <View className="flex-row items-center space-x-2   ">
+              <View className="flex-row  items-center py-3 px-5  border border-blue-300 bg-blue-100 rounded-lg">
+                <AntDesign name="calendar" size={25} color="#0592D0" />
+                <TextInput
+                  onChangeText={(text) => handleChangeStartDate(text)}
+                  keyboardType="numeric"
+                  placeholder="Start year"
+                  className="ml-2  text-blue-600"
+                />
+              </View>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <View className="flex-row items-center space-x-2   ">
+              <View className="flex-row  items-center py-3 px-5  border border-blue-300 bg-blue-100 rounded-lg">
+                <AntDesign name="calendar" size={25} color="#0592D0" />
+                <TextInput
+                  onChangeText={(text) => handleChangeEndDate(text)}
+                  keyboardType="numeric"
+                  placeholder="End year"
+                  className="ml-2  text-blue-600"
+                />
+              </View>
+            </View>
+          </TouchableOpacity>
         </View>
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <View className="flex-row items-center space-x-2   ">
-          <View className="flex-row  items-center py-3 px-5  border border-blue-300 bg-blue-100 rounded-lg">
-            <AntDesign name="calendar" size={25} color="#0592D0" />
-            <TextInput
-              keyboardType="numeric"
-              placeholder="End year"
-              className="ml-2  text-blue-600"
-            />
-          </View>
-        </View>
-      </TouchableOpacity>
-    </View>
+      )}
+    </Fragment>
   );
 }
+
+const styles = StyleSheet.create({
+  dropdown: {
+    margin: 16,
+    height: 50,
+    backgroundColor: "white",
+    borderRadius: 12,
+    padding: 12,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 1.41,
+
+    elevation: 2,
+  },
+  icon: {
+    marginRight: 5,
+  },
+  item: {
+    padding: 17,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  textItem: {
+    flex: 1,
+    fontSize: 16,
+  },
+  placeholderStyle: {
+    fontSize: 16,
+  },
+  selectedTextStyle: {
+    fontSize: 16,
+  },
+  iconStyle: {
+    width: 20,
+    height: 20,
+  },
+  inputSearchStyle: {
+    height: 40,
+    fontSize: 16,
+  },
+});

@@ -26,9 +26,9 @@ export default function StartAdd() {
         <View className=" mb-4">
           <View className="flex flex-row items-center px-4 my-5">
             <View className="flex flex-row gap-2">
-              <Text className="font-bold">1</Text>
+              <Text className="font-bold text-xl">1</Text>
               <View className="w-[76%]">
-                <Text className="font-bold mb-1">
+                <Text className="font-bold mb-1 text-lg">
                   Share information about your apartment with us
                 </Text>
                 <Text>
@@ -45,9 +45,9 @@ export default function StartAdd() {
           <View className="bg-gray-400 w-full h-[1px] my-10"></View>
           <View className="flex flex-row items-center px-4">
             <View className="flex flex-row gap-2">
-              <Text className="font-bold">2</Text>
+              <Text className="font-bold text-xl">2</Text>
               <View className="w-[76%]">
-                <Text className="font-bold mb-1">
+                <Text className="font-bold mb-1 text-lg">
                   Make your rental apartment stand out
                 </Text>
                 <Text>
@@ -64,9 +64,9 @@ export default function StartAdd() {
           <View className="bg-gray-400 w-full h-[1px] my-10"></View>
           <View className="flex flex-row items-center px-4">
             <View className="flex flex-row gap-2">
-              <Text className="font-bold">3</Text>
+              <Text className="font-bold text-xl">3</Text>
               <View className="w-[76%]">
-                <Text className="font-bold mb-1">
+                <Text className="font-bold mb-1 text-lg">
                   Complete and post apartments for rent
                 </Text>
                 <Text>
@@ -91,9 +91,11 @@ export default function StartAdd() {
             <MaterialCommunityIcons
               name="home-plus-outline"
               color="#ffffff"
-              size={20}
+              size={30}
             />
-            <Text className="text-center text-white font-bold py-4">Start</Text>
+            <Text className="text-center text-white font-bold py-4 text-lg">
+              Start
+            </Text>
           </View>
         </TouchableOpacity>
       </View>

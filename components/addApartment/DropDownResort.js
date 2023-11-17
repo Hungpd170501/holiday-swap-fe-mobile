@@ -1,5 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, View, Text } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import { getListResort } from "../../redux/actions/resortActions";
+import { useFocusEffect } from "@react-navigation/native";
 import { Dropdown } from "react-native-element-dropdown";
 
 const data = [
@@ -13,13 +16,25 @@ const data = [
   { label: "Resort 8", value: "8" },
 ];
 
-const DropDownResort = () => {
+const DropDownResort = ({ handleChangeResortId }) => {
+  const dispatch = useDispatch();
+
+  const { resorts } = useSelector((state) => state.resorts);
+
   const [value, setValue] = useState(null);
+
+  const [resortData, setResortData] = useState();
+
+  useEffect(() => {
+    if (resorts) {
+      setResortData(resorts.content);
+    }
+  }, []);
 
   const renderItem = (item) => {
     return (
       <View style={styles.item}>
-        <Text style={styles.textItem}>{item.label}</Text>
+        <Text style={styles.textItem}>{item.resortName}</Text>
       </View>
     );
   };
@@ -31,16 +46,17 @@ const DropDownResort = () => {
       selectedTextStyle={styles.selectedTextStyle}
       inputSearchStyle={styles.inputSearchStyle}
       iconStyle={styles.iconStyle}
-      data={data}
+      data={resortData}
       search
       maxHeight={300}
-      labelField="label"
-      valueField="value"
+      labelField="resortName"
+      valueField="id"
       placeholder="Select item"
       searchPlaceholder="Search..."
       value={value}
       onChange={(item) => {
-        setValue(item.value);
+        handleChangeResortId(item);
+        setValue(item.id);
       }}
       renderItem={renderItem}
     />
