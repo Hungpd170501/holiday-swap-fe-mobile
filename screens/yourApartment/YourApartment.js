@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getListOwnership } from "../../redux/actions/ownershipActions";
 import { loadUser } from "../../redux/actions/userActions";
 import Loading from "./../../components/Loading";
+import { format } from "date-fns";
 
 const YourApartment = () => {
   const navigation = useNavigation();
@@ -40,12 +41,15 @@ const YourApartment = () => {
       </View>
       <View>
         {loading ? (
-          <Loading />
+          <View className="mt-[80%]">
+            <Loading />
+          </View>
         ) : (
           <ScrollView>
             <View className="px-4">
               {ownerships &&
-                ownerships.content.length > 0 &&
+              ownerships.content &&
+              ownerships.content.length > 0 ? (
                 ownerships.content.map((item, index) => (
                   <TouchableOpacity
                     key={index}
@@ -54,25 +58,33 @@ const YourApartment = () => {
                   >
                     <Image
                       className="w-[30%] h-[100px] rounded-md mr-3"
-                      source={{ uri: item.contractImages[0].link }}
+                      source={{ uri: item.contractImages[0]?.link }}
                     />
                     <View className="w-[65%]">
                       <Text className="text-[20px] font-bold ">
-                        Landmark View
+                        {item.id.roomId}
                       </Text>
                       <View className="flex flex-row mt-2">
                         <EvilIcons name="location" size={15} />
-                        <Text className="text-[12px] ">
-                          764 Dien Bien Phu, Binh Thanh, HCM city, Vietnam
+                        <Text className="text-[12px] ">resort </Text>
+                      </View>
+                      <View className="flex flex-row items-center">
+                        <Text>Ownertype:</Text>
+                        <Text>
+                          {item.startTime !== null
+                            ? format(new Date(item.startTime), "yyyy")
+                            : "Forever"}
                         </Text>
                       </View>
                       <View className="flex flex-row mt-2 items-center">
-                        <AntDesign name="star" color="orange" />
-                        <Text className="text-[12px] "> 20 rating</Text>
+                        <Text className="text-[12px] "> {item.status}</Text>
                       </View>
                     </View>
                   </TouchableOpacity>
-                ))}
+                ))
+              ) : (
+                <Text>No ownerships found</Text>
+              )}
             </View>
           </ScrollView>
         )}

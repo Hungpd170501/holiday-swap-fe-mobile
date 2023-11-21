@@ -1,19 +1,39 @@
-import { AntDesign, FontAwesome5, Ionicons } from "@expo/vector-icons";
-import { useNavigation } from "@react-navigation/native";
-import React from "react";
-import { TouchableOpacity } from "react-native";
-import { ScrollView } from "react-native";
-import { Image } from "react-native";
-import { Text } from "react-native";
-import { View } from "react-native";
+import React, { useEffect } from "react";
+import { TouchableOpacity, ActivityIndicator } from "react-native";
+import { ScrollView, Image, Text, View } from "react-native";
+import { AntDesign, FontAwesome5 } from "@expo/vector-icons";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
+import {
+  getTotalPoint,
+  getTransactionHistory,
+} from "../../redux/actions/walletAction";
 
 export default function Wallet() {
   const dispatch = useDispatch();
-  const { user, userProfile, loading, error, isAuthenticated } = useSelector(
-    (state) => state.user
-  );
+  const {
+    user,
+    userProfile,
+    loading: userLoading,
+    error: userError,
+  } = useSelector((state) => state.user);
+  const {
+    totalPoint,
+    transactionHistory,
+    error: walletError,
+  } = useSelector((state) => state.wallet);
+
   const navigation = useNavigation();
+
+  useFocusEffect(
+    React.useCallback(() => {
+      dispatch(getTotalPoint());
+      if (userProfile?.userId) {
+        dispatch(getTransactionHistory(userProfile.userId));
+      }
+    }, [dispatch, userProfile])
+  );
+
   return (
     <View>
       <View className="bg-blue-500 w-full h-[100px]  flex flex-row items-center justify-start px-5">
@@ -25,14 +45,21 @@ export default function Wallet() {
 
       <ScrollView>
         <View className="flex flex-col h-[200px] w-full  bg-blue-500 items-center">
-          <Image
-            className="w-[80px] h-[80px] rounded-full"
-            source={require("../../assets/images/avt.jpg")}
-          />
+          {userProfile?.avatar ? (
+            <Image
+              className="w-[80px] h-[80px] rounded-full"
+              source={{ uri: userProfile?.avatar }}
+            />
+          ) : (
+            <Image
+              className="w-[80px] h-[80px] rounded-full"
+              source={require("../../assets/images/avt.jpg")}
+            />
+          )}
           <Text className="text-[30px] font-bold text-white py-2">
             {userProfile?.username}
           </Text>
-          <Text className="text-yellow-400"> {userProfile?.role.name}</Text>
+          <Text className="text-yellow-400"> {userProfile?.role?.name}</Text>
         </View>
 
         <View className="mb-28">
@@ -40,7 +67,7 @@ export default function Wallet() {
             <View className="flex flex-row items-center justify-between">
               <Text className="text-[30px] font-bold">Point</Text>
               <View className="flex flex-row items-center">
-                <Text className="text-[20px] font-bold mr-2">15.000</Text>
+                <Text className="text-[20px] font-bold mr-2">{totalPoint}</Text>
                 <FontAwesome5 name="coins" size={20} color="orange" />
               </View>
             </View>
@@ -58,101 +85,75 @@ export default function Wallet() {
             </TouchableOpacity>
           </View>
           <View className="pr-6 pl-3 py-4 bg-white mt-3">
-            <View className="flex flex-row justify-start">
-              <Text className="font-bold">View transaction history</Text>
+            <View className="flex flex-row justify-between mb-3">
+              <View className="">
+                <Text> View transaction history</Text>
+              </View>
+              <TouchableOpacity
+                onPress={() => navigation.navigate("FullHistoryTransaction")}
+              >
+                <Text className="font-bold  text-blue-500">
+                  View all history
+                </Text>
+              </TouchableOpacity>
             </View>
-            <View className=" flex flex-row justify-between items-center mt-4 w-[80%] ">
-              <View className="flex flex-row items-center ">
-                <Image
-                  className="w-[50px] h-[50px] rounded-full"
-                  source={require("../../assets/images/avt.jpg")}
-                />
-                <View className="ml-2 w-[80%]">
-                  <Text className="text-[13px] font-bold">
-                    +100,000VND into the application
-                  </Text>
-                  <Text>09:12 - 12/10/2023</Text>
-                  <View className="flex flex-row items-center">
-                    <Text>Residual number: </Text>
-                    <Text className="mr-1">30.000</Text>
-                    <FontAwesome5 name="coins" size={10} color="orange" />
+            <ScrollView>
+              {transactionHistory !== undefined &&
+                transactionHistory.length > 0 && (
+                  <View className="w-full">
+                    {transactionHistory
+                      .slice(0, 3)
+                      .map((transaction, index) => (
+                        <View
+                          key={index}
+                          className="flex flex-row w-full justify-between mt-2"
+                        >
+                          <View className="flex flex-row gap-2 items-center">
+                            <View>
+                              <Image
+                                className="w-[30px] h-[30px] rounded-full"
+                                source={{ uri: userProfile?.avatar }}
+                              />
+                            </View>
+                            <View>
+                              <Text className="font-bold">
+                                {transaction.message}
+                              </Text>
+                              <Text className="text-[12px]">
+                                {transaction.dateConvert}
+                              </Text>
+                              <View className="flex flex-row items-center gap-1">
+                                <Text className="text-[12px]">
+                                  Wallet balance:
+                                </Text>
+                                <Text>{transaction.totalPoint}</Text>
+                              </View>
+                            </View>
+                          </View>
+                          <View className="flex flex-row items-center">
+                            <View>
+                              <Text className="mt-8 font-bold">
+                                {transaction.amount}
+                              </Text>
+                            </View>
+                            <View>
+                              <FontAwesome5
+                                className="mt-8"
+                                name="coins"
+                                size={10}
+                                color="orange"
+                              />
+                            </View>
+                          </View>
+                        </View>
+                      ))}
                   </View>
-                </View>
-              </View>
-              <View className="flex flex-row items-center gap-1">
-                <Text className="text-[20px] font-bold">+8.000</Text>
-                <FontAwesome5 name="coins" size={15} color="orange" />
-              </View>
-            </View>
-            <View className=" flex flex-row justify-between items-center mt-4 w-[80%] ">
-              <View className="flex flex-row items-center ">
-                <Image
-                  className="w-[50px] h-[50px] rounded-full"
-                  source={require("../../assets/images/avt.jpg")}
-                />
-                <View className="ml-2 w-[80%]">
-                  <Text className="font-bold text-[13px]">
-                    Rent payment for Alex's apartment
-                  </Text>
-                  <Text>00:12 - 11/12/2023</Text>
-                  <View className="flex flex-row items-center">
-                    <Text>Residual number: </Text>
-                    <Text className="mr-1">10.000</Text>
-                    <FontAwesome5 name="coins" size={10} color="orange" />
-                  </View>
-                </View>
-              </View>
-              <View className="flex flex-row items-center gap-1">
-                <Text className="text-[20px] font-bold">-20.000</Text>
-                <FontAwesome5 name="coins" size={15} color="orange" />
-              </View>
-            </View>
-            <View className=" flex flex-row justify-between items-center mt-4 w-[80%] ">
-              <View className="flex flex-row items-center ">
-                <Image
-                  className="w-[50px] h-[50px] rounded-full"
-                  source={require("../../assets/images/avt.jpg")}
-                />
-                <View className="ml-2 w-[80%]">
-                  <Text className="text-[13px] font-bold">
-                    +200,000VND into the application
-                  </Text>
-                  <Text>09:12 - 12/10/2023</Text>
-                  <View className="flex flex-row items-center">
-                    <Text>Residual number: </Text>
-                    <Text className="mr-1">30.000</Text>
-                    <FontAwesome5 name="coins" size={10} color="orange" />
-                  </View>
-                </View>
-              </View>
-              <View className="flex flex-row items-center gap-1">
-                <Text className="text-[20px] font-bold">+16.000</Text>
-                <FontAwesome5 name="coins" size={15} color="orange" />
-              </View>
-            </View>
-            <View className=" flex flex-row justify-between items-center mt-4 w-[80%] ">
-              <View className="flex flex-row items-center ">
-                <Image
-                  className="w-[50px] h-[50px] rounded-full"
-                  source={require("../../assets/images/avt.jpg")}
-                />
-                <View className="ml-2 w-[80%]">
-                  <Text className="text-[13px] font-bold">
-                    +100,000VND into the application
-                  </Text>
-                  <Text>09:12 - 12/10/2023</Text>
-                  <View className="flex flex-row items-center">
-                    <Text>Residual number: </Text>
-                    <Text className="mr-1">30.000</Text>
-                    <FontAwesome5 name="coins" size={10} color="orange" />
-                  </View>
-                </View>
-              </View>
-              <View className="flex flex-row items-center gap-1">
-                <Text className="text-[20px] font-bold">+8.000</Text>
-                <FontAwesome5 name="coins" size={15} color="orange" />
-              </View>
-            </View>
+                )}
+              {transactionHistory !== undefined &&
+                transactionHistory.length === 0 && (
+                  <Text>No transaction history</Text>
+                )}
+            </ScrollView>
           </View>
         </View>
       </ScrollView>
