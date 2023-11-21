@@ -59,10 +59,7 @@ export default function ProfileScreen() {
               source={{ uri: userProfile?.avatar }}
             />
           ) : (
-            <Image
-              className="w-[80px] h-[80px] rounded-full"
-              source={require("../../assets/images/avt.jpg")}
-            />
+            <Image className="w-[80px] h-[80px] rounded-full" />
           )}
 
           <Text className="text-[30px] font-bold text-white py-2">
@@ -140,18 +137,20 @@ export default function ProfileScreen() {
               <Ionicons name="help-circle-outline" size={20} />
               <Text>Contact customer service</Text>
             </TouchableOpacity>
-            <TouchableOpacity className="flex flex-row items-center gap-3">
-              <FontAwesome name="handshake-o" size={20} />
-              <Text>Dispute resolution</Text>
-            </TouchableOpacity>
           </View>
           <Text className="text-[17px] font-bold mt-7 mb-3">Discover</Text>
           <View className=" flex flex-col gap-1">
-            <TouchableOpacity className="flex flex-row items-center gap-3">
+            <TouchableOpacity
+              onPress={() => navigation.navigate("PostBlog")}
+              className="flex flex-row items-center gap-3"
+            >
               <Octicons name="note" size={20} />
               <Text>Posting about travel</Text>
             </TouchableOpacity>
-            <TouchableOpacity className="flex flex-row items-center gap-3">
+            <TouchableOpacity
+              onPress={() => navigation.navigate("BlogComunity")}
+              className="flex flex-row items-center gap-3"
+            >
               <Ionicons name="people-outline" size={20} />
               <Text>Comunity travel</Text>
             </TouchableOpacity>
@@ -176,7 +175,7 @@ export default function ProfileScreen() {
               className="flex flex-row items-center gap-3"
             >
               <MaterialCommunityIcons name="home-plus-outline" size={20} />
-              <Text>Your apartment</Text>
+              <Text>Add apartment</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={signOut}

@@ -52,7 +52,7 @@ export default function ManageAccount() {
           <View className="flex flex-row items-center py-5 gap-5">
             <Image
               className="w-16 h-16 rounded-full"
-              source={require("../../assets/images/avt.jpg")}
+              source={{ uri: userProfile?.avatar }}
             />
             <TextInput
               className=" bg-transparent px-1 w-[72%] border-b border-gray-500"

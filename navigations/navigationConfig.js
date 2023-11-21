@@ -56,6 +56,9 @@ import VNPAYPaymentScreen from "../screens/payment/VNPayScreen";
 import { jwtDecode } from "jwt-decode";
 import { loadTokenExp, loadUser } from "../redux/actions/userActions";
 import { useJwt } from "react-jwt";
+import PostBlog from "../screens/postBlog/PostBlog";
+import BlogComunity from "../screens/blogComunity/BlogComunity";
+import FullHistoryTransaction from "../screens/viewFullTransactionHistory/FullHistoryTransaction";
 
 const Stack = createStackNavigator();
 
@@ -114,8 +117,14 @@ function Navigation() {
             <Stack.Screen name="SpecialReq" component={SpecialReq} />
             <Stack.Screen name="Recharge" component={Recharge} />
             <Stack.Screen name="YourTrip" component={YourTrip} />
+            <Stack.Screen name="PostBlog" component={PostBlog} />
+            <Stack.Screen name="BlogComunity" component={BlogComunity} />
             <Stack.Screen name="VNPAYPayment" component={VNPAYPaymentScreen} />
 
+            <Stack.Screen
+              name="FullHistoryTransaction"
+              component={FullHistoryTransaction}
+            />
             <Stack.Screen name="StartAdd" component={StartAdd} />
             <Stack.Screen name="StepAdd3" component={StepAdd3} />
             <Stack.Screen name="StepAdd4" component={StepAdd4} />
