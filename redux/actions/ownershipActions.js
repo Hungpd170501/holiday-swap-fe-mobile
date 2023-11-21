@@ -3,9 +3,14 @@ import {
   CREATE_OWNERSHIP_REQUEST,
   CREATE_OWNERSHIP_SUCCESS,
   CREATE_OWNERSHIP_FAIL,
+  GET_OWNERSHIP_REQUEST,
+  GET_OWNERSHIP_SUCCESS,
+  GET_OWNERSHIP_FAIL,
 } from "../constants/ownershipConstants";
 import axios from "axios";
 import * as SecureStore from "expo-secure-store";
+import { Platform } from "react-native";
+import mine from "mime";
 
 export const createOwnership =
   (
@@ -26,8 +31,8 @@ export const createOwnership =
 
       const config = {
         headers: {
-          "content-type": "multipart/form-data",
           Authorization: `Bearer ${accessToken}`,
+          "content-type": "multipart/form-data",
         },
       };
 
@@ -54,20 +59,26 @@ export const createOwnership =
       formData.append("coOwnerId", coOwnerIdBlob);
       formData.append("coOwner", coOwnerBlob);
       contractImages.forEach((element) => {
-        console.log("check element", element.uri);
-        formData.append("contractImages", element.base64);
+        const newUri = "file://" + element.uri.split("file:///data/").join("");
+        formData.append("contractImages", {
+          uri: element.uri,
+          type: mine.getType(element.uri),
+          name: element.uri.split("/").pop(),
+        });
       });
 
       console.log("Check formData", formData);
 
       const { data } = await axios
         .post(`https://holiday-swap.click/api/co-owners`, formData, config)
-        .then(() => {
-          console.log("Success");
+        .then((response) => {
+          console.log("Success", response.data);
         })
         .catch((error) => {
           console.log("Check error", error);
         });
+
+      console.log("Check data", data);
 
       dispatch({ type: CREATE_OWNERSHIP_SUCCESS, payload: data });
     } catch (error) {
@@ -78,3 +89,26 @@ export const createOwnership =
       });
     }
   };
+
+export const getListOwnership = (userId) => async (dispatch) => {
+  try {
+    dispatch({ type: GET_OWNERSHIP_REQUEST });
+
+    const accessToken = await SecureStore.getItemAsync("secure_token");
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    };
+
+    const { data } = await axios.get(
+      `https://holiday-swap.click/api/co-owners?userId=${userId}&pageNo=0&pageSize=10&sortBy=property_id`,
+      config
+    );
+
+    dispatch({ type: GET_OWNERSHIP_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({ type: GET_OWNERSHIP_FAIL, payload: error });
+  }
+};

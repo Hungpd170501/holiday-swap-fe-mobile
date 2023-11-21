@@ -21,9 +21,11 @@ export default function ProfileScreen() {
     (state) => state.user
   );
 
-  useEffect(() => {
-    dispatch(loadUser());
-  }, [dispatch]);
+  useFocusEffect(
+    React.useCallback(() => {
+      dispatch(loadUser());
+    }, [dispatch])
+  );
 
   const navigation = useNavigation();
   const signOut = () => {

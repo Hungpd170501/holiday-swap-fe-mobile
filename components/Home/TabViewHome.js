@@ -239,7 +239,7 @@ export default function TabViewHome(props) {
                   className="mt-5 w-full"
                 >
                   <View>
-                    {apartments.map((item, index) => {
+                    {apartments?.map((item, index) => {
                       const startTime = new Date(item.availableTime?.startTime);
                       const endTime = new Date(item.availableTime?.endTime);
                       // Calculate the time difference in milliseconds

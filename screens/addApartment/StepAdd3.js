@@ -3,18 +3,29 @@ import { ScrollView } from "react-native";
 import { TouchableOpacity } from "react-native";
 import { Text } from "react-native";
 import { View } from "react-native";
-import { useNavigation, useRoute } from "@react-navigation/native";
-import { TextInput } from "react-native";
+import {
+  useFocusEffect,
+  useNavigation,
+  useRoute,
+} from "@react-navigation/native";
 import UploadImage from "../../components/addApartment/UploadImage";
 import { useDispatch, useSelector } from "react-redux";
 import { createOwnership } from "../../redux/actions/ownershipActions";
 import { CREATE_OWNERSHIP_RESET } from "../../redux/constants/ownershipConstants";
+import { loadUser } from "../../redux/actions/userActions";
 
 export default function StepAdd3() {
   const navigation = useNavigation();
   const route = useRoute();
   const dispatch = useDispatch();
   const { userProfile } = useSelector((state) => state.user);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      dispatch(loadUser());
+    }, [dispatch])
+  );
+
   const { success, ownership, error } = useSelector(
     (state) => state.newOwnership
   );
@@ -64,6 +75,8 @@ export default function StepAdd3() {
   }, [dispatch, success, error, navigation]);
 
   console.log("Check image", images);
+
+  console.log("Check user in step 2", userProfile);
 
   return (
     <View className="bg-white h-full">
@@ -124,6 +137,12 @@ export default function StepAdd3() {
             Image
           </Text>
           <UploadImage handleChangeImage={handleChangeImage} />
+          <TouchableOpacity
+            onPress={handleSubmit}
+            className="text-[20px] font-bold  mb-5 bg-blue-500 px-2 py-3 rounded-md text-white"
+          >
+            <Text>Submit</Text>
+          </TouchableOpacity>
         </View>
       </ScrollView>
       <View className="flex flex-row gap-1 items-center justify-center w-full">

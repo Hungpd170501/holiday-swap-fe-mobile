@@ -8,32 +8,11 @@ import * as FileSystem from "expo-file-system";
 export default function UploadImage({ handleChangeImage }) {
   const [images, setImages] = useState([]);
 
-  const convertAssetToFile = async (asset) => {
-    const fileInfo = await FileSystem.getInfoAsync(asset.uri);
-    const fileUri = fileInfo.uri;
-    const fileExtension = fileUri.split(".").pop();
-
-    const newFileUri =
-      FileSystem.documentDirectory + `image_${Date.now()}.${fileExtension}`;
-
-    await FileSystem.copyAsync({
-      from: fileUri,
-      to: newFileUri,
-    });
-
-    return {
-      uri: newFileUri,
-      name: `image_${Date.now()}.${fileExtension}`,
-      type: `image/${fileExtension}`,
-    };
-  };
-
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsMultipleSelection: true,
       quality: 1,
-      base64: true,
     });
 
     console.log(result);

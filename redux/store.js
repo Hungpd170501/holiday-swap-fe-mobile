@@ -12,7 +12,10 @@ import {
 } from "./reducers/bookingReducers";
 import { resortReducers } from "./reducers/resortReducers";
 import { propertiesReducers } from "./reducers/propertyReducers";
-import { newOwnershipReducers } from "./reducers/ownershipReducer";
+import {
+  newOwnershipReducers,
+  ownershipReducers,
+} from "./reducers/ownershipReducer";
 
 export const store = configureStore({
   reducer: {
@@ -26,6 +29,7 @@ export const store = configureStore({
     newBooking: newBookingReducers,
     historyBooking: historyBookingReducers,
     newOwnership: newOwnershipReducers,
+    ownerships: ownershipReducers,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

@@ -28,8 +28,6 @@ const DropDownProperty = ({ handleChangePropertyId, properties }) => {
     }
   }, [properties]);
 
-  console.log("Check properties", properties);
-
   const renderItem = (item) => {
     return (
       <View style={styles.item}>
