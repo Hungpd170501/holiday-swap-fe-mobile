@@ -86,7 +86,7 @@ function Navigation() {
     }
   }, [user]);
 
-  console.log("Check authen", authen);
+  // console.log("Check authen", authen);
 
   const { decodedToken } = useJwt(authen);
   if (decodedToken?.exp < Math.floor(Date.now() / 1000)) {

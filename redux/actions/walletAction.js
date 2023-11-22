@@ -50,7 +50,7 @@ export const getTransactionHistory = (userId) => {
     await SecureStore.getItemAsync("secure_token").then((value) => {
       token = value;
     });
-    console.log("check token", token);
+    // console.log("check token", token);
     try {
       const response = await axios.get(
         `https://holiday-swap.click/api/v1/payment/history/${userId}`,
@@ -62,7 +62,7 @@ export const getTransactionHistory = (userId) => {
         }
       );
 
-      console.log("Transaction History API Response:", response.data);
+      // console.log("Transaction History API Response:", response.data);
 
       dispatch({
         type: GET_TRANSACTION_HISTORY_SUCCESS,
