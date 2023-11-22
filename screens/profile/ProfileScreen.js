@@ -36,7 +36,7 @@ export default function ProfileScreen() {
       });
   };
 
-  console.log("Check profile", userProfile);
+  // console.log("Check profile", userProfile);
 
   return (
     <View>

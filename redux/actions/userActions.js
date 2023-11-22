@@ -36,7 +36,7 @@ export const loadUser = () => async (dispatch) => {
       token = value;
     });
 
-    console.log("Check token", token);
+    // console.log("Check token", token);
 
     const config = { headers: { Authorization: `Bearer ${token}` } };
 

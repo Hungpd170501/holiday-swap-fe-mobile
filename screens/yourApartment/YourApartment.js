@@ -61,23 +61,34 @@ const YourApartment = () => {
                       source={{ uri: item.contractImages[0]?.link }}
                     />
                     <View className="w-[65%]">
-                      <Text className="text-[20px] font-bold ">
-                        {item.id.roomId}
-                      </Text>
-                      <View className="flex flex-row mt-2">
+                      <View className="flex flex-row items-center gap-1">
+                        <Text className="text-[12px]">Apartment ID:</Text>
+                        <Text className=" font-bold ">{item.id.roomId}</Text>
+                      </View>
+                      {/* <View className="flex flex-row mt-2">
                         <EvilIcons name="location" size={15} />
                         <Text className="text-[12px] ">resort </Text>
-                      </View>
-                      <View className="flex flex-row items-center">
-                        <Text>Ownertype:</Text>
-                        <Text>
+                      </View> */}
+                      <View className="flex flex-row items-center gap-1">
+                        <Text className="text-[12px]">Ownertype:</Text>
+                        <Text className="font-bold">
                           {item.startTime !== null
                             ? format(new Date(item.startTime), "yyyy")
                             : "Forever"}
                         </Text>
                       </View>
-                      <View className="flex flex-row mt-2 items-center">
-                        <Text className="text-[12px] "> {item.status}</Text>
+                      <View className="flex flex-row items-center">
+                        <Text
+                          className={`text-[12px] font-bold ${
+                            item.status === "ACCEPTED"
+                              ? "text-green-500"
+                              : item.status === "PENDING"
+                              ? "text-red-500"
+                              : ""
+                          }`}
+                        >
+                          {item.status}
+                        </Text>
                       </View>
                     </View>
                   </TouchableOpacity>

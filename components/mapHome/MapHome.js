@@ -27,7 +27,7 @@ export default function MapHome() {
           onPress={toggleBottomNavigationView}
           className=" flex flex-row justify-center"
         >
-          <View className="flex flex-row items-center bg-black shadow-2xl rounded-full py-2 px-6 text-center">
+          <View className="flex flex-row items-center bg-black shadow-2xl rounded-full py-1 px-2 text-center opacity-50">
             <MapIcon color={"white"} size={30} />
             <Text className=" text-white text-lg font-bold pl-2">Maps</Text>
           </View>
