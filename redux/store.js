@@ -9,6 +9,7 @@ import {
 import {
   historyBookingReducers,
   newBookingReducers,
+  ownerBookingReducers,
 } from "./reducers/bookingReducers";
 import { resortReducers } from "./reducers/resortReducers";
 import { propertiesReducers } from "./reducers/propertyReducers";
@@ -30,6 +31,7 @@ export const store = configureStore({
     apartmentDetail: apartmentDetailReducers,
     newBooking: newBookingReducers,
     historyBooking: historyBookingReducers,
+    ownerBooking: ownerBookingReducers,
     newOwnership: newOwnershipReducers,
     ownerships: ownershipReducers,
     wallet: walletReducers,

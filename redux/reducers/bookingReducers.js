@@ -6,6 +6,9 @@ import {
   GET_HISTORY_BOOKING_REQUEST,
   GET_HISTORY_BOOKING_SUCCESS,
   GET_HISTORY_BOOKING_FAIL,
+  GET_OWNER_BOOKING_REQUEST,
+  GET_OWNER_BOOKING_SUCCESS,
+  GET_OWNER_BOOKING_FAIL,
 } from "../constants/bookingConstants";
 
 export const newBookingReducers = (state = { booking: {} }, action) => {
@@ -61,6 +64,32 @@ export const historyBookingReducers = (
       };
 
     case GET_HISTORY_BOOKING_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+
+    default:
+      return state;
+  }
+};
+
+export const ownerBookingReducers = (state = { ownerBooking: [] }, action) => {
+  switch (action.type) {
+    case GET_OWNER_BOOKING_REQUEST:
+      return {
+        loading: true,
+        ownerBooking: [],
+      };
+
+    case GET_OWNER_BOOKING_SUCCESS:
+      return {
+        loading: false,
+        ownerBooking: action.payload,
+      };
+
+    case GET_OWNER_BOOKING_FAIL:
       return {
         ...state,
         loading: false,

@@ -127,6 +127,13 @@ export default function ProfileScreen() {
               />
               <Text>Your Apartment </Text>
             </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => navigation.navigate("OwnerBooking")}
+              className="flex flex-row items-center gap-3"
+            >
+              <Octicons name="list-unordered" size={20} color="gray" />
+              <Text>Owner booking </Text>
+            </TouchableOpacity>
           </View>
           <Text className="text-[17px] font-bold mt-7 mb-3">Help</Text>
           <View className=" flex flex-col gap-1">
