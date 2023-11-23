@@ -2,13 +2,13 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "../screens/home/HomeScreen";
-import { Feather } from "@expo/vector-icons";
-import { AntDesign } from "@expo/vector-icons";
-import ProfileScreen from "../screens/profile/ProfileScreen";
-import FavoriteScreen from "../screens/favorite/FavoriteScreen";
-import ChatScreen from "../screens/chat/ChatScreen";
+import { AntDesign, Ionicons } from "@expo/vector-icons"; // Import Ionicons
 import { Text, View } from "react-native";
 import YourTrip from "../screens/yourTrip/YourTrip";
+import FullHistoryTransaction from "../screens/viewFullTransactionHistory/FullHistoryTransaction";
+import BlogComunity from "../screens/blogComunity/BlogComunity";
+import ProfileScreen from "../screens/profile/ProfileScreen";
+import ChatScreen from "../screens/chat/ChatScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -29,8 +29,8 @@ const TabNavigation = () => {
             iconName = "book";
           } else if (route.name === "Profile") {
             iconName = "user";
-          } else if (route.name === "Favorite") {
-            iconName = "hearto";
+          } else if (route.name === "BlogComunity") {
+            iconName = "people-outline";
           } else if (route.name === "ChatScreen") {
             iconName = "message1";
           }
@@ -40,12 +40,21 @@ const TabNavigation = () => {
 
           return (
             <View>
-              <AntDesign
-                name={iconName}
-                size={size}
-                color={iconColor}
-                style={{ marginTop: 10 }}
-              />
+              {route.name === "BlogComunity" ? (
+                <Ionicons
+                  name={iconName}
+                  size={28}
+                  color={iconColor}
+                  style={{ marginTop: 10 }}
+                />
+              ) : (
+                <AntDesign
+                  name={iconName}
+                  size={size}
+                  color={iconColor}
+                  style={{ marginTop: 10 }}
+                />
+              )}
               {showBadge && (
                 <View
                   style={{
@@ -71,18 +80,14 @@ const TabNavigation = () => {
         },
       })}
     >
-      <Tab.Screen name="Home" options={{ tabBarLabel: "" }}>
-        {() => (
-          <Stack.Navigator screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="Homes" component={HomeScreen} />
-            <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
-            <Stack.Screen name="Favorite" component={FavoriteScreen} />
-          </Stack.Navigator>
-        )}
-      </Tab.Screen>
       <Tab.Screen
-        name="Favorite"
-        component={FavoriteScreen}
+        name="Home"
+        component={HomeScreen}
+        options={{ tabBarLabel: "" }}
+      />
+      <Tab.Screen
+        name="ChatScreen"
+        component={ChatScreen}
         options={{ tabBarLabel: "" }}
       />
       <Tab.Screen
@@ -90,9 +95,9 @@ const TabNavigation = () => {
         component={YourTrip}
         options={{ tabBarLabel: "" }}
       />
-      <Stack.Screen
-        name="ChatScreen"
-        component={ChatScreen}
+      <Tab.Screen
+        name="BlogComunity"
+        component={BlogComunity}
         options={{ tabBarLabel: "" }}
       />
       <Tab.Screen

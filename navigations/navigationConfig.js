@@ -25,7 +25,6 @@ import PaymentScreen from "../screens/paymentProcess/PaymentScreen";
 import BookingConfirm from "../screens/bookingConfirm/BookingConfirm";
 import BookedApartment from "../screens/bookedApartment/BookedApartment";
 import ManageRevervation from "../screens/ManageRevervation/ManageRevervation";
-import FavoriteScreen from "../screens/favorite/FavoriteScreen";
 import NotificationScreen from "../screens/notification/NotificationScreen";
 import Wallet from "../screens/wallet/Wallet";
 import HelpCenter from "../screens/helpCenter/HelpCenter";
@@ -150,7 +149,6 @@ function Navigation() {
             <Stack.Screen name="HelpCenter" component={HelpCenter} />
             <Stack.Screen name="Wallet" component={Wallet} />
             <Stack.Screen name="Notification" component={NotificationScreen} />
-            <Stack.Screen name="Favorite" component={FavoriteScreen} />
             <Stack.Screen name="OwnerBooking" component={OwnerBooking} />
             <Stack.Screen
               name="ManageRevervation"
@@ -231,7 +229,6 @@ function Navigation() {
             <Stack.Screen name="HelpCenter" component={HelpCenter} />
             <Stack.Screen name="Wallet" component={Wallet} />
             <Stack.Screen name="Notification" component={NotificationScreen} />
-            <Stack.Screen name="Favorite" component={FavoriteScreen} />
             <Stack.Screen
               name="ManageRevervation"
               component={ManageRevervation}

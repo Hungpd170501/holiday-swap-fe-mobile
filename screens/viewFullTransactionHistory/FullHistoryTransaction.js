@@ -42,7 +42,7 @@ export default function FullHistoryTransaction() {
         </TouchableOpacity>
         <Text className="ml-8 text-[20px] text-white">Transaction history</Text>
       </View>
-      <ScrollView className="mb-10 px-3">
+      <ScrollView className="mb-[100px] px-3">
         {transactionHistory !== undefined && transactionHistory.length > 0 && (
           <View className="w-full">
             {transactionHistory.map((transaction, index) => (

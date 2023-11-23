@@ -44,7 +44,7 @@ export default function YourTrip() {
         </TouchableOpacity>
         <Text className="ml-8 text-[20px] text-white">Your trip</Text>
       </View>
-      <ScrollView>
+      <ScrollView className="mb-5">
         {loading && (
           <View className="mt-20">
             <Loading />

@@ -45,7 +45,7 @@ const YourApartment = () => {
             <Loading />
           </View>
         ) : (
-          <ScrollView>
+          <ScrollView className="mb-20">
             <View className="px-4">
               {ownerships &&
               ownerships.content &&
