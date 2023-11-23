@@ -59,6 +59,7 @@ import { useJwt } from "react-jwt";
 import PostBlog from "../screens/postBlog/PostBlog";
 import BlogComunity from "../screens/blogComunity/BlogComunity";
 import FullHistoryTransaction from "../screens/viewFullTransactionHistory/FullHistoryTransaction";
+import OwnerBooking from "../screens/ownerBooking/OwnerBooking";
 
 const Stack = createStackNavigator();
 
@@ -150,6 +151,7 @@ function Navigation() {
             <Stack.Screen name="Wallet" component={Wallet} />
             <Stack.Screen name="Notification" component={NotificationScreen} />
             <Stack.Screen name="Favorite" component={FavoriteScreen} />
+            <Stack.Screen name="OwnerBooking" component={OwnerBooking} />
             <Stack.Screen
               name="ManageRevervation"
               component={ManageRevervation}
