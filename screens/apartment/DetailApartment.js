@@ -89,6 +89,14 @@ export default function DetailApartment() {
           {apartment && (
             <View className="flex-1 ">
               <ScrollView>
+                <TouchableOpacity
+                  onPress={() => navigation.goBack()}
+                  className="absolute top-2 left-2 z-10"
+                >
+                  <View className="bg-slate-50 rounded-full px-3 py-3 opacity-40">
+                    <Ionicons name="arrow-back" size={25} />
+                  </View>
+                </TouchableOpacity>
                 <View className=" bg-white relative">
                   <CarouselApartmentDetail
                     image={apartment?.property?.propertyImage}

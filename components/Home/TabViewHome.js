@@ -15,38 +15,11 @@ import MapHome from "../mapHome/MapHome";
 import axios from "axios";
 import CarouselApartmentImage from "../apartment/CarouselApartmentImage";
 import { useDispatch, useSelector } from "react-redux";
-import { Button } from "react-native-paper";
 import { submitSearchParamApartmentForRent } from "../../redux/actions/searchParamActions";
 import { getApartments } from "../../redux/actions/apartmentActions";
 import { Fragment } from "react";
 import Loading from "../Loading";
 
-const ApartmentDatasImpress = [
-  {
-    id: 1,
-    carosel: <CarouselApartmentHome />,
-    name: "Alex's the view top of Apartment - Landmark 81 Tower",
-    rat: 3.9,
-    nameResort: "Les Hameaux de l'Orient",
-    type: "luxury property",
-    apartmentID: 301,
-    price: "25.000",
-    nightNumber: "5 night",
-    time: "23nd 28st August",
-  },
-  {
-    id: 2,
-    carosel: <CarouselApartmentHome />,
-    name: " Landmark 81 Tower",
-    rat: 4.9,
-    nameResort: "Les Hameaux de l'Orient",
-    type: "luxury property",
-    apartmentID: 981,
-    price: 15.0,
-    nightNumber: "10 night",
-    time: "13nd 23st August",
-  },
-];
 const ApartmentDatasHilly = [
   {
     id: 1,
