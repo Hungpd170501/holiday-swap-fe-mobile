@@ -91,6 +91,7 @@ export const profileReducer = (state = {}, action) => {
     case UPDATE_PROFILE_REQUEST:
       return {
         ...state,
+        success: false,
         loading: true,
       };
     case UPDATE_PROFILE_SUCCESS:
@@ -98,17 +99,20 @@ export const profileReducer = (state = {}, action) => {
         ...state,
         loading: false,
         isUpdated: action.payload,
+        success: true,
       };
     case UPDATE_PROFILE_FAIL:
       return {
         ...state,
         loading: false,
         error: action.payload,
+        success: false,
       };
     case UPDATE_PROFILE_RESET:
       return {
         ...state,
         isUpdated: false,
+        success: false,
       };
 
     default:

@@ -11,48 +11,52 @@ import { ScrollView } from "react-native";
 import { TouchableOpacity } from "react-native";
 import { View } from "react-native-animatable";
 import UploadImage from "../../components/addApartment/UploadImage";
+import UploadImageProfile from "./UploadImageProfile";
+import { launchImageLibrary } from "react-native-image-picker";
 
 export default function ManageAccount() {
-  const dispatch = useDispatch();
-  const [fullName, setFullName] = useState("");
-  console.log("check user profile", fullName);
   const { user, userProfile, loading, error, isAuthenticated } = useSelector(
     (state) => state.user
   );
 
+  const { success, isUpdated } = useSelector((state) => state.profile);
+
+  const dispatch = useDispatch();
+  const [avatar, setAvatar] = useState(userProfile?.avatar);
+  const [avatarSubmit, setAvatarSubmit] = useState();
+  const [fullName, setFullName] = useState(userProfile?.fullName);
+  const [dob, setDob] = useState(userProfile?.dob);
+  const [gender, setGender] = useState(userProfile?.gender);
+
   const handleSaveProfile = () => {
     const userData = {
-      avatar: { uri: userProfile.avatar },
+      avatar: avatarSubmit ?? userProfile.avatar,
       fullName: fullName,
-      gender: "male",
-      dob: "2023-1-2",
+      gender: gender,
+      dob: dob,
     };
 
-    dispatch(updateProfile({ userData: userData }));
-    console.log("check user data", userData);
+    console.log("Check user data", userData);
+
+    dispatch(updateProfile(userData));
   };
 
   useEffect(() => {
-    if (userProfile) {
-      setFullName(userProfile.username);
+    if (success === true) {
+      navigation.navigate("root");
     }
-  }, [userProfile]);
+  }, [success, navigation]);
 
   const navigation = useNavigation();
-  const [images, setImages] = useState([]);
+
+  console.log("Check profile in edit", userProfile);
 
   const handleChangeImage = (value) => {
-    setImages([...images, ...value]);
+    setAvatar(Object.assign({}, value));
+    setAvatarSubmit(Object.assign({}, value));
   };
 
-  // console.log("Check profile", userProfile);
-  const [isHide, setIsHide] = useState(false);
-  const [displayName, setDisplayName] = useState("");
-
-  const handleInputChangefullName = (text) => {
-    setFullName(text);
-    setIsHide(text !== "");
-  };
+  console.log("Check avatar", avatar);
 
   return (
     <View className="flex-1">
@@ -61,78 +65,62 @@ export default function ManageAccount() {
           <Ionicons name="arrow-back-outline" size={30} color="white" />
         </TouchableOpacity>
         <Text className="ml-8 text-[20px] text-white">Your details</Text>
-        <TouchableOpacity onPress={handleSaveProfile}>
-          {isHide && (
-            <Text className="text-[20px] text-white text-end font-bold">
-              Save
-            </Text>
-          )}
-        </TouchableOpacity>
       </View>
       <ScrollView>
         <View style={styles.shadow} className="mx-2 my-2 px-4 py-4 bg-white ">
-          <Text className="text-[15px] mt-5">Public Details</Text>
+          <Text className="text-[15px] mt-5 font-bold">Public Details</Text>
           <View className="flex flex-row items-center py-5 gap-5">
             <Image
               className="w-16 h-16 rounded-full"
-              source={{ uri: userProfile?.avatar }}
+              source={{ uri: avatar["0"]["uri"] || userProfile?.avatar }}
             />
 
             <TextInput
               className=" bg-transparent px-1 w-[72%] border-b border-gray-500"
               value={fullName}
-              onChangeText={handleInputChangefullName}
+              editable={false}
             />
           </View>
-          <UploadImage handleChangeImage={handleChangeImage} />
-          <View className="mt-5">
-            <TextInput
-              // onChangeText={handleInputChange}
-              keyboardType="number-pad"
-              className=" bg-transparent w-[100%] border-b border-gray-400"
-              value={userProfile?.dob}
-            />
-          </View>
+          <UploadImageProfile handleChangeImage={handleChangeImage} />
         </View>
         <View style={styles.shadow} className="mx-2 my-2 px-4 py-4 bg-white ">
-          <Text className="text-[15px]">Personal infomation</Text>
+          <Text className="text-[15px] font-bold">Personal infomation</Text>
           <View className="my-5">
             <TextInput
               // onChangeText={handleInputChange}
-              label={"First name"}
+              label={"Full Name"}
               className="w-[100%] bg-transparent border-b border-gray-400"
-              value={userProfile?.username}
+              value={fullName}
+              onChangeText={(text) => setFullName(text)}
             />
           </View>
           <View className="my-5">
             <TextInput
+              label={"Date of birth"}
               // onChangeText={handleInputChange}
-              label="Last name"
-              className="w-[100%] border-b border-gray-400 bg-transparent"
-              value={userProfile?.username}
+              keyboardType="numbers-and-punctuation"
+              className=" bg-transparent w-[100%] border-b border-gray-400"
+              value={dob}
+              onChangeText={(text) => setDob(text)}
             />
           </View>
-          <View className="my-5">
+
+          {/* <View className="my-5">
             <TextInput
               // onChangeText={handleInputChange}
               label="Phone number"
+              editable={false}
               value={userProfile?.phone}
               className="  w-[100%] border-b border-gray-400 bg-transparent"
             />
-          </View>
+          </View> */}
           <View className="my-5">
             <TextInput
               // onChangeText={handleInputChange}
               className="w-[100%] border-b border-gray-400 bg-transparent"
               label="Gender"
-              value={userProfile?.gender}
-            />
-          </View>
-          <View className="py-5">
-            <TextInput
-              // onChangeText={handleInputChange}
-              className="w-[100%] border-b border-gray-400 bg-transparent"
-              label="City"
+              value={gender}
+              onChangeText={(text) => setGender(text)}
             />
           </View>
         </View>
@@ -142,20 +130,19 @@ export default function ManageAccount() {
             <AntDesign name="checkcircleo" size={25} color="green" />
             <View>
               <Text>{userProfile?.email}</Text>
-              <Text>Email has been confirmed</Text>
+              <Text>{userProfile?.phone}</Text>
+              <Text>Email and phone has been confirmed</Text>
             </View>
           </View>
           <TouchableOpacity>
             <Text className="text-blue-500">EDIT EMAIL ADDRESS</Text>
           </TouchableOpacity>
         </View>
-        <View className="mx-2  my-2 px-4 py-4 bg-white ">
-          <TouchableOpacity onPress={() => navigation.navigate("SignInScreen")}>
-            <Text className="text-red-600 text-center text-[17px]">
-              Log out
-            </Text>
-          </TouchableOpacity>
-        </View>
+        <TouchableOpacity onPress={handleSaveProfile}>
+          <Text className="text-[20px] bg-blue-500 p-3 text-center text-white mx-2 my- font-bold">
+            Save
+          </Text>
+        </TouchableOpacity>
       </ScrollView>
     </View>
   );

@@ -36,14 +36,6 @@ export default function ProfileScreen() {
       });
   };
 
-  useFocusEffect(
-    React.useCallback(() => {
-      if (!user) {
-        signOut();
-      }
-    }, [user])
-  );
-
   // console.log("Check profile", userProfile);
 
   return (
@@ -104,7 +96,7 @@ export default function ProfileScreen() {
               className="flex flex-row items-center gap-3"
             >
               <Feather name="user" size={20} color="gray" />
-              <Text>Manage account</Text>
+              <Text>Edit account</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => navigation.navigate("Wallet")}
