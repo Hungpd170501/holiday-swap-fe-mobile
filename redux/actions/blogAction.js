@@ -1,5 +1,8 @@
 import axios from "axios";
 import {
+  GET_BLOG_DETAIL_FAIL,
+  GET_BLOG_DETAIL_REQUEST,
+  GET_BLOG_DETAIL_SUCCESS,
   GET_BLOG_FAIL,
   GET_BLOG_REQUEST,
   GET_BLOG_SUCCESS,
@@ -45,4 +48,35 @@ export const getBlog = () => {
       dispatch(getBlogFail(error.message));
     }
   };
+};
+
+export const getBlogDetails = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: GET_BLOG_DETAIL_REQUEST });
+
+    const accessToken = await SecureStore.getItemAsync("secure_token");
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    };
+
+    const { data } = await axios.get(
+      `https://holiday-swap.click/api/post/get/${id}`,
+      config
+    );
+    console.log("check data", data);
+
+    dispatch({
+      type: GET_BLOG_DETAIL_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: GET_BLOG_DETAIL_FAIL,
+      payload: error.response.data.message,
+    });
+    console.log("check eror", error);
+  }
 };
