@@ -24,6 +24,7 @@ import blogReducers, {
   dislikePostReducer,
   likePostReducer,
 } from "./reducers/blogReducers";
+import signupReducer from "./reducers/signupReducer";
 
 export const store = configureStore({
   reducer: {
@@ -45,6 +46,7 @@ export const store = configureStore({
     blogDetail: blogDetailsReducer,
     likePost: likePostReducer,
     profile: profileReducer,
+    signup: signupReducer,
 
     // dislikePost: dislikePostReducer,
   },
