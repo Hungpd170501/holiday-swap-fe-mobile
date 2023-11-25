@@ -37,7 +37,7 @@ export default function BlogComunity({ navigation }) {
               <TouchableOpacity
                 onPress={() =>
                   navigation.navigate("BlogDetail", {
-                    id: blog.postId,
+                    id: blog.id,
                   })
                 }
               >
