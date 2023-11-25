@@ -1,8 +1,8 @@
 import {
+  SIGNUP_FAILURE,
   SIGNUP_REQUEST,
   SIGNUP_SUCCESS,
-  SIGNUP_FAILURE,
-} from "./signupConstants";
+} from "../constants/signupConstants";
 
 const initialState = {
   loading: false,
