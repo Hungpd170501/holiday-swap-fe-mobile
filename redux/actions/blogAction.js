@@ -80,3 +80,41 @@ export const getBlogDetails = (id) => async (dispatch) => {
     console.log("check eror", error);
   }
 };
+
+export const likePost = (postId, userId) => async (dispatch) => {
+  try {
+    dispatch({ type: LIKE_POST_REQUEST });
+
+    const { data } = await axios.put(
+      `${HOST_URL}/post/react?postId=${postId}&reaction=likes`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${userId}`,
+        },
+      }
+    );
+
+    console.log("likePost success, data:", data);
+
+    dispatch({ type: LIKE_POST_SUCCESS, payload: data.likes });
+  } catch (error) {
+    console.error("likePost error:", error.response.data.message);
+    dispatch({ type: LIKE_POST_FAIL, payload: error.response.data.message });
+  }
+};
+
+// export const dislikePost = (postId, userId) => async (dispatch) => {
+//   try {
+//     dispatch({ type: DISLIKE_POST_REQUEST });
+
+//     const { data } = await axios.post(
+//       `${HOST_URL}/post/like/unlike/${postId}`,
+//       userId
+//     );
+
+//     dispatch({ type: DISLIKE_POST_SUCCESS, payload: data });
+//   } catch (error) {
+//     dispatch({ type: DISLIKE_POST_FAIL, payload: error.response.data.message });
+//   }
+// };

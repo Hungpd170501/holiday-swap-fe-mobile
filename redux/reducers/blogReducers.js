@@ -1,10 +1,18 @@
 import {
+  DISLIKE_POST_FAIL,
+  DISLIKE_POST_REQUEST,
+  DISLIKE_POST_RESET,
+  DISLIKE_POST_SUCCESS,
   GET_BLOG_DETAIL_FAIL,
   GET_BLOG_DETAIL_REQUEST,
   GET_BLOG_DETAIL_SUCCESS,
   GET_BLOG_FAIL,
   GET_BLOG_REQUEST,
   GET_BLOG_SUCCESS,
+  LIKE_POST_FAIL,
+  LIKE_POST_REQUEST,
+  LIKE_POST_RESET,
+  LIKE_POST_SUCCESS,
 } from "../constants/blogConstants";
 
 const initialState = {
@@ -63,3 +71,60 @@ export const blogDetailsReducer = (state = { blog: {} }, action) => {
       return state;
   }
 };
+
+export const likePostReducer = (state = { postLike: {} }, action) => {
+  switch (action.type) {
+    case LIKE_POST_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    case LIKE_POST_SUCCESS:
+      console.log("LIKE_POST_SUCCESS, action.payload:", action.payload);
+      return {
+        loading: false,
+        postLike: {
+          ...state.postLike,
+          likes: action.payload,
+        },
+      };
+    case LIKE_POST_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
+// export const dislikePostReducer = (state = { postDislike: {} }, action) => {
+//   switch (action.type) {
+//     case DISLIKE_POST_REQUEST:
+//       return {
+//         ...state,
+//         success: false,
+//         loading: true,
+//       };
+//     case DISLIKE_POST_SUCCESS:
+//       return {
+//         success: true,
+//         loading: false,
+//         postDislike: action.payload,
+//       };
+//     case DISLIKE_POST_FAIL:
+//       return {
+//         ...state,
+//         loading: false,
+//         error: action.payload,
+//       };
+//     case DISLIKE_POST_RESET:
+//       return {
+//         ...state,
+//         error: null,
+//       };
+//     default:
+//       return state;
+//   }
+// };

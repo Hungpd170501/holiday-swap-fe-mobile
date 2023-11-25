@@ -6,6 +6,9 @@ import {
   LOAD_USER_REQUEST,
   LOAD_USER_SUCCESS,
   LOAD_USER_FAIL,
+  UPDATE_PROFILE_REQUEST,
+  UPDATE_PROFILE_SUCCESS,
+  UPDATE_PROFILE_FAIL,
 } from "../constants/userConstants";
 import * as SecureStore from "expo-secure-store";
 
@@ -48,5 +51,40 @@ export const loadUser = () => async (dispatch) => {
     dispatch({ type: LOAD_USER_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: LOAD_USER_FAIL, payload: error.response.data.message });
+  }
+};
+
+//update profile
+
+export const updateProfile = (userData) => async (dispatch) => {
+  try {
+    dispatch({ type: UPDATE_PROFILE_REQUEST });
+
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    const formData = new FormData();
+    formData.append("avatar", {
+      uri: userData.avatar.uri,
+      type: "image/jpeg",
+      name: "avatar.jpg",
+    });
+    formData.append("fullName", userData.fullName);
+    formData.append("gender", userData.gender);
+    formData.append("dob", userData.dob);
+    console.log("check data", data);
+
+    const { data } = await axios.put("/api/v1/users/profile", formData, config);
+
+    dispatch({ type: UPDATE_PROFILE_SUCCESS, payload: data.success });
+  } catch (error) {
+    dispatch({
+      type: UPDATE_PROFILE_FAIL,
+      payload: error.response.data.message,
+    });
   }
 };
