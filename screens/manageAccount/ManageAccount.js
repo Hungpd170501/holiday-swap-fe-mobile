@@ -5,32 +5,55 @@ import { TextInput } from "react-native-paper";
 import { StyleSheet } from "react-native";
 import { Image } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { loadUser } from "../../redux/actions/userActions";
+import { loadUser, updateProfile } from "../../redux/actions/userActions";
 import { Text } from "react-native";
 import { ScrollView } from "react-native";
 import { TouchableOpacity } from "react-native";
 import { View } from "react-native-animatable";
+import UploadImage from "../../components/addApartment/UploadImage";
 
 export default function ManageAccount() {
   const dispatch = useDispatch();
+  const [fullName, setFullName] = useState("");
+  console.log("check user profile", fullName);
   const { user, userProfile, loading, error, isAuthenticated } = useSelector(
     (state) => state.user
   );
 
-  // useEffect(() => {
-  //   dispatch(loadUser());
-  // }, [dispatch]);
+  const handleSaveProfile = () => {
+    const userData = {
+      avatar: { uri: userProfile.avatar },
+      fullName: fullName,
+      gender: "male",
+      dob: "2023-1-2",
+    };
+
+    dispatch(updateProfile({ userData: userData }));
+    console.log("check user data", userData);
+  };
+
+  useEffect(() => {
+    if (userProfile) {
+      setFullName(userProfile.username);
+    }
+  }, [userProfile]);
 
   const navigation = useNavigation();
+  const [images, setImages] = useState([]);
+
+  const handleChangeImage = (value) => {
+    setImages([...images, ...value]);
+  };
 
   // console.log("Check profile", userProfile);
   const [isHide, setIsHide] = useState(false);
   const [displayName, setDisplayName] = useState("");
 
-  const handleInputChange = (text) => {
-    setDisplayName(text);
+  const handleInputChangefullName = (text) => {
+    setFullName(text);
     setIsHide(text !== "");
   };
+
   return (
     <View className="flex-1">
       <View className="bg-blue-500 w-full h-[100px]  flex flex-row items-center justify-start px-5">
@@ -38,7 +61,7 @@ export default function ManageAccount() {
           <Ionicons name="arrow-back-outline" size={30} color="white" />
         </TouchableOpacity>
         <Text className="ml-8 text-[20px] text-white">Your details</Text>
-        <TouchableOpacity className="flex flex-row justify-end w-[50%]">
+        <TouchableOpacity onPress={handleSaveProfile}>
           {isHide && (
             <Text className="text-[20px] text-white text-end font-bold">
               Save
@@ -54,15 +77,17 @@ export default function ManageAccount() {
               className="w-16 h-16 rounded-full"
               source={{ uri: userProfile?.avatar }}
             />
+
             <TextInput
               className=" bg-transparent px-1 w-[72%] border-b border-gray-500"
-              value={userProfile?.username}
-              onChangeText={handleInputChange}
+              value={fullName}
+              onChangeText={handleInputChangefullName}
             />
           </View>
+          <UploadImage handleChangeImage={handleChangeImage} />
           <View className="mt-5">
             <TextInput
-              onChangeText={handleInputChange}
+              // onChangeText={handleInputChange}
               keyboardType="number-pad"
               className=" bg-transparent w-[100%] border-b border-gray-400"
               value={userProfile?.dob}
@@ -73,7 +98,7 @@ export default function ManageAccount() {
           <Text className="text-[15px]">Personal infomation</Text>
           <View className="my-5">
             <TextInput
-              onChangeText={handleInputChange}
+              // onChangeText={handleInputChange}
               label={"First name"}
               className="w-[100%] bg-transparent border-b border-gray-400"
               value={userProfile?.username}
@@ -81,7 +106,7 @@ export default function ManageAccount() {
           </View>
           <View className="my-5">
             <TextInput
-              onChangeText={handleInputChange}
+              // onChangeText={handleInputChange}
               label="Last name"
               className="w-[100%] border-b border-gray-400 bg-transparent"
               value={userProfile?.username}
@@ -89,7 +114,7 @@ export default function ManageAccount() {
           </View>
           <View className="my-5">
             <TextInput
-              onChangeText={handleInputChange}
+              // onChangeText={handleInputChange}
               label="Phone number"
               value={userProfile?.phone}
               className="  w-[100%] border-b border-gray-400 bg-transparent"
@@ -97,7 +122,7 @@ export default function ManageAccount() {
           </View>
           <View className="my-5">
             <TextInput
-              onChangeText={handleInputChange}
+              // onChangeText={handleInputChange}
               className="w-[100%] border-b border-gray-400 bg-transparent"
               label="Gender"
               value={userProfile?.gender}
@@ -105,7 +130,7 @@ export default function ManageAccount() {
           </View>
           <View className="py-5">
             <TextInput
-              onChangeText={handleInputChange}
+              // onChangeText={handleInputChange}
               className="w-[100%] border-b border-gray-400 bg-transparent"
               label="City"
             />

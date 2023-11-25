@@ -80,6 +80,7 @@ export const getBlogDetails = (id) => async (dispatch) => {
     console.log("check eror", error);
   }
 };
+
 export const likePost = (postId, userId) => async (dispatch) => {
   try {
     dispatch({ type: LIKE_POST_REQUEST });

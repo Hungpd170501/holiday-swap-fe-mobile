@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { userReducers } from "./reducers/userReducers";
+import { profileReducer, userReducers } from "./reducers/userReducers";
 import { depositReducers } from "./reducers/depositReducers";
 import { searchParamReducers } from "./reducers/searchParamReducers";
 import {
@@ -44,6 +44,8 @@ export const store = configureStore({
     bookingDetail: bookingDetailsReducer,
     blogDetail: blogDetailsReducer,
     likePost: likePostReducer,
+    profile: profileReducer,
+
     // dislikePost: dislikePostReducer,
   },
   middleware: (getDefaultMiddleware) =>
