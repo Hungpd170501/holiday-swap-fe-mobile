@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import { Text, TouchableOpacity, Image, ScrollView } from "react-native"; // Import Image component for displaying avatars
 import { View } from "react-native-animatable";
 import { useDispatch, useSelector } from "react-redux";
-import { getBlogDetails } from "../../redux/actions/blogAction";
-import { Ionicons } from "@expo/vector-icons";
+import { getBlogDetails, likePost } from "../../redux/actions/blogAction";
+import { AntDesign, Ionicons } from "@expo/vector-icons";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import HTML from "react-native-render-html";
 import { format } from "date-fns";
@@ -15,9 +15,25 @@ export default function BlogDetail() {
   const dispatch = useDispatch();
   const { blog } = useSelector((state) => state.blogDetail);
 
+  const userId = "your_user_id"; // replace with actual user ID
+  const { loading, error, postLike } = useSelector((state) => state.likePost);
+
   useEffect(() => {
     dispatch(getBlogDetails(id));
   }, [dispatch, id]);
+
+  const handleLikeClick = () => {
+    dispatch(likePost(blog.postId, userId));
+  };
+
+  useEffect(() => {
+    console.log("Redux state:", { loading, error, postLike });
+    if (postLike && postLike === "Post reacted to") {
+      console.log("Post liked successfully!");
+    } else if (error) {
+      console.error("Error liking post:", error);
+    }
+  }, [postLike, error]);
 
   return (
     <View className="flex-1">
@@ -29,39 +45,39 @@ export default function BlogDetail() {
       </View>
 
       {blog ? (
-        <ScrollView className=" px-3 bg-white">
-          <View className="flex flex-row items-center justify-between py-5">
-            <View className="flex flex-row  gap-2">
+        <ScrollView className="px-3 bg-white py-5 ">
+          <View className="flex flex-row items-center justify-between">
+            <View className="flex flex-row items-center gap-2">
               <Image
+                className="w-[50px] h-[50px]"
                 source={{ uri: blog.avatar }}
-                style={{ width: 50, height: 50, borderRadius: 50 }}
               />
               <View>
-                <View className="flex flex-row items-center">
-                  <Text className="text-[16px]">Author: </Text>
-                  <Text className="text-[18px] font-bold">{blog.userName}</Text>
-                </View>
-                <View className="flex flex-row items-center ">
-                  <Text className="text-[16px]">Date Posted:</Text>
-                  <Text className="text-[18px] font-bold">
-                    {format(new Date(blog.datePosted), "dd-MM-yyyy")}
-                  </Text>
-                </View>
+                <Text className="text-[18px] font-bold"> {blog.userName}</Text>
+                <Text className="text-[13px]">{blog?.datePosted}</Text>
+                {/* <Text>{format(new Date(blog?.datePosted), "dd-MM-yyyy")}</Text> */}
               </View>
             </View>
-            <View>
-              <Text>Likes: {blog.likes}</Text>
-              <Text>Dislikes: {blog.dislikes}</Text>
+            <View className="flex flex-row items-center gap-3">
+              <View className="flex flex-row items-center gap-1">
+                <AntDesign
+                  onPress={handleLikeClick}
+                  name="like2"
+                  size={20}
+                  color="gray"
+                />
+                <Text>{blog.likes}</Text>
+              </View>
+
+              <View className="flex flex-row items-center gap-1">
+                <AntDesign name="dislike2" size={20} color="gray" />
+                <Text>{blog.dislikes}</Text>
+              </View>
             </View>
           </View>
-          <Text>Title: {blog.title}</Text>
+          <Text className="py-5">Title: {blog.title}</Text>
 
           <HTML source={{ html: blog.content }} />
-          {/* 
-          <Image
-            source={{ uri: blog.avatar }}
-            style={{ width: 50, height: 50, borderRadius: 25 }}
-          /> */}
         </ScrollView>
       ) : (
         <Text>Loading...</Text>
