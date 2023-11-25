@@ -12,6 +12,7 @@ import {
 } from "react-native";
 import { getHistoryBooking } from "../../redux/actions/historyBookingActions";
 import Loading from "../../components/Loading";
+import { format } from "date-fns";
 
 export default function YourTrip() {
   const dispatch = useDispatch();
@@ -54,23 +55,35 @@ export default function YourTrip() {
           <>
             {historyBooking && historyBooking.length > 0 ? (
               historyBooking.map((booking, index) => (
-                <View
-                  key={index}
-                  className="px-4 py-3 border-b border-gray-300"
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.navigate("BookingDetail", { id: booking.id })
+                  }
                 >
-                  <Image
-                    source={{ uri: booking.propertyImage }}
-                    style={{ width: "100%", height: 200 }}
-                  />
-                  <Text className="text-[20px] font-bold py-2">
-                    {booking.propertyName}
-                  </Text>
-                  <Text>Resort: {booking.resortName}</Text>
-                  <Text>Room: {booking.roomId}</Text>
-                  <Text>Check-in: {booking.checkInDate}</Text>
-                  <Text>Check-out: {booking.checkOutDate}</Text>
-                  <Text>Price: ${booking.price}</Text>
-                </View>
+                  <View
+                    key={index}
+                    className="px-4 py-3 border-b border-gray-300"
+                  >
+                    <Image
+                      source={{ uri: booking.propertyImage }}
+                      style={{ width: "100%", height: 200 }}
+                    />
+                    <Text className="text-[20px] font-bold py-2">
+                      {booking.propertyName}
+                    </Text>
+                    <Text>Resort: {booking.resortName}</Text>
+                    <Text>Room: {booking.roomId}</Text>
+                    <Text>
+                      Check-in:{" "}
+                      {format(new Date(booking?.checkInDate), "dd-MM-yyyy")}
+                    </Text>
+                    <Text>
+                      Check-out:{" "}
+                      {format(new Date(booking.checkOutDate), "dd-MM-yyyy")}
+                    </Text>
+                    <Text>Price: ${booking.price}</Text>
+                  </View>
+                </TouchableOpacity>
               ))
             ) : (
               <View className="px-4">

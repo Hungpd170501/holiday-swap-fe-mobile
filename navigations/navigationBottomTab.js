@@ -8,7 +8,6 @@ import YourTrip from "../screens/yourTrip/YourTrip";
 import FullHistoryTransaction from "../screens/viewFullTransactionHistory/FullHistoryTransaction";
 import BlogComunity from "../screens/blogComunity/BlogComunity";
 import ProfileScreen from "../screens/profile/ProfileScreen";
-import ChatScreen from "../screens/chat/ChatScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -31,12 +30,9 @@ const TabNavigation = () => {
             iconName = "user";
           } else if (route.name === "BlogComunity") {
             iconName = "people-outline";
-          } else if (route.name === "ChatScreen") {
-            iconName = "message1";
           }
 
           const messageCount = 1;
-          const showBadge = route.name === "ChatScreen" && messageCount > 0;
 
           return (
             <View>
@@ -55,26 +51,6 @@ const TabNavigation = () => {
                   style={{ marginTop: 10 }}
                 />
               )}
-              {showBadge && (
-                <View
-                  style={{
-                    position: "absolute",
-                    top: 5,
-                    right: 1,
-                    left: 14,
-                    backgroundColor: "red",
-                    borderRadius: 10,
-                    width: 17,
-                    height: 17,
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <Text style={{ color: "white", fontSize: 13 }}>
-                    {messageCount}
-                  </Text>
-                </View>
-              )}
             </View>
           );
         },
@@ -85,11 +61,7 @@ const TabNavigation = () => {
         component={HomeScreen}
         options={{ tabBarLabel: "" }}
       />
-      <Tab.Screen
-        name="ChatScreen"
-        component={ChatScreen}
-        options={{ tabBarLabel: "" }}
-      />
+
       <Tab.Screen
         name="YourTrip"
         component={YourTrip}

@@ -9,6 +9,9 @@ import {
   GET_OWNER_BOOKING_REQUEST,
   GET_OWNER_BOOKING_SUCCESS,
   GET_OWNER_BOOKING_FAIL,
+  GET_BOOKING_DETAIL_FAIL,
+  GET_BOOKING_DETAIL_SUCCESS,
+  GET_BOOKING_DETAIL_REQUEST,
 } from "../constants/bookingConstants";
 import axios from "axios";
 import * as SecureStore from "expo-secure-store";
@@ -106,5 +109,36 @@ export const getOwnerBooking = () => async (dispatch) => {
       type: GET_OWNER_BOOKING_FAIL,
       payload: error.response.data.message,
     });
+  }
+};
+
+export const getBookingDetails = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: GET_BOOKING_DETAIL_REQUEST });
+
+    const accessToken = await SecureStore.getItemAsync("secure_token");
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    };
+
+    const { data } = await axios.get(
+      `https://holiday-swap.click/api/booking/historybooking/${id}`,
+      config
+    );
+    console.log("check data", data);
+
+    dispatch({
+      type: GET_BOOKING_DETAIL_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: GET_BOOKING_DETAIL_FAIL,
+      payload: error.response.data.message,
+    });
+    console.log("check eror", error);
   }
 };
