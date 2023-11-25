@@ -9,6 +9,9 @@ import {
   GET_OWNER_BOOKING_REQUEST,
   GET_OWNER_BOOKING_SUCCESS,
   GET_OWNER_BOOKING_FAIL,
+  GET_BOOKING_DETAIL_FAIL,
+  GET_BOOKING_DETAIL_SUCCESS,
+  GET_BOOKING_DETAIL_REQUEST,
 } from "../constants/bookingConstants";
 
 export const newBookingReducers = (state = { booking: {} }, action) => {
@@ -95,6 +98,37 @@ export const ownerBookingReducers = (state = { ownerBooking: [] }, action) => {
         loading: false,
         error: action.payload,
       };
+
+    default:
+      return state;
+  }
+};
+
+export const bookingDetailsReducer = (state = { booking: {} }, action) => {
+  switch (action.type) {
+    case GET_BOOKING_DETAIL_REQUEST:
+      return {
+        loading: true,
+        ...state,
+      };
+
+    case GET_BOOKING_DETAIL_SUCCESS:
+      return {
+        loading: false,
+        booking: action.payload,
+      };
+
+    case GET_BOOKING_DETAIL_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      };
+
+    // case CLEAR_ERRORS:
+    //   return {
+    //     ...state,
+    //     error: null,
+    //   };
 
     default:
       return state;
