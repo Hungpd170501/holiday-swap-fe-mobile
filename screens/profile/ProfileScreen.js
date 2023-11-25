@@ -36,6 +36,14 @@ export default function ProfileScreen() {
       });
   };
 
+  useFocusEffect(
+    React.useCallback(() => {
+      if (!user) {
+        signOut();
+      }
+    }, [user])
+  );
+
   // console.log("Check profile", userProfile);
 
   return (
