@@ -33,39 +33,56 @@ export default function BlogComunity({ navigation }) {
       ) : (
         <ScrollView className="flex flex-col px-5  gap-3 mt-5 mb-5">
           {listBlog && listBlog.length > 0 ? (
-            listBlog.map((blog) => (
-              <View
-                key={blog.id}
-                className=" border border-gray-300 rounded-md"
+            listBlog.map((blog, index) => (
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate("BlogDetail", {
+                    id: blog.postId,
+                  })
+                }
               >
-                <View className="flex flex-row items-center justify-between">
-                  <View className="flex flex-row items-center gap-2 p-3">
-                    <Image
-                      className="w-[50px] h-[50px] rounded-full"
-                      source={{ uri: blog?.avatar }}
+                <View
+                  key={index}
+                  className=" border border-gray-300 rounded-md"
+                >
+                  <View className="flex flex-row items-center justify-between">
+                    <View className="flex flex-row items-center gap-2 p-3">
+                      <Image
+                        className="w-[50px] h-[50px] rounded-full"
+                        source={{ uri: blog?.avatar }}
+                      />
+                      <View>
+                        <Text className="text-[20px] font-bold">
+                          {blog.userName}
+                        </Text>
+                        <Text>
+                          {format(new Date(blog.datePosted), "MMMM d, yyyy")}
+                        </Text>
+                      </View>
+                    </View>
+                    <View className="p-3 flex gap-1 flex-row items-center">
+                      <View>
+                        <AntDesign name="like2" size={20} color="gray" />
+                      </View>
+                      <View>
+                        <Text>{blog.likes}</Text>
+                      </View>
+                    </View>
+                  </View>
+                  <View className="p-3">
+                    <HTML
+                      tagsStyles={{
+                        p: {
+                          fontSize: 20,
+                          fontWeight: "bold",
+                          marginBottom: 10,
+                        },
+                      }}
+                      source={{ html: blog.title }}
                     />
-                    <View>
-                      <Text className="text-[20px] font-bold">
-                        {blog.userName}
-                      </Text>
-                      <Text>
-                        {format(new Date(blog.datePosted), "MMMM d, yyyy")}
-                      </Text>
-                    </View>
-                  </View>
-                  <View className="p-3 flex gap-1 flex-row items-center">
-                    <View>
-                      <AntDesign name="like2" size={20} color="gray" />
-                    </View>
-                    <View>
-                      <Text>{blog.likes}</Text>
-                    </View>
                   </View>
                 </View>
-                <View className="p-3">
-                  <HTML source={{ html: blog.content }} />
-                </View>
-              </View>
+              </TouchableOpacity>
             ))
           ) : (
             <View className="mb-[80%]">

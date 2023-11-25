@@ -60,6 +60,7 @@ import BlogComunity from "../screens/blogComunity/BlogComunity";
 import FullHistoryTransaction from "../screens/viewFullTransactionHistory/FullHistoryTransaction";
 import OwnerBooking from "../screens/ownerBooking/OwnerBooking";
 import BookingDetail from "../screens/bookingDetail/BookingDetail";
+import BlogDetail from "../screens/blogDetail/BlogDetail";
 
 const Stack = createStackNavigator();
 
@@ -121,6 +122,8 @@ function Navigation() {
             <Stack.Screen name="PostBlog" component={PostBlog} />
             <Stack.Screen name="BlogComunity" component={BlogComunity} />
             <Stack.Screen name="BookingDetail" component={BookingDetail} />
+            <Stack.Screen name="BlogDetail" component={BlogDetail} />
+
             <Stack.Screen name="VNPAYPayment" component={VNPAYPaymentScreen} />
 
             <Stack.Screen
@@ -152,6 +155,7 @@ function Navigation() {
             <Stack.Screen name="Wallet" component={Wallet} />
             <Stack.Screen name="Notification" component={NotificationScreen} />
             <Stack.Screen name="OwnerBooking" component={OwnerBooking} />
+
             <Stack.Screen
               name="ManageRevervation"
               component={ManageRevervation}
