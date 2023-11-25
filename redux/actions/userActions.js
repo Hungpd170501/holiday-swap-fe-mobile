@@ -60,6 +60,11 @@ export const updateProfile = (userData) => async (dispatch) => {
   try {
     dispatch({ type: UPDATE_PROFILE_REQUEST });
 
+    let token;
+    await SecureStore.getItemAsync("secure_token").then((value) => {
+      token = value;
+    });
+
     const config = {
       headers: {
         "Content-Type": "multipart/form-data",
@@ -69,19 +74,30 @@ export const updateProfile = (userData) => async (dispatch) => {
 
     const formData = new FormData();
     formData.append("avatar", {
-      uri: userData.avatar.uri,
+      uri: userData.avatar["0"]["uri"] ?? userData.avatar,
       type: "image/jpeg",
       name: "avatar.jpg",
     });
     formData.append("fullName", userData.fullName);
     formData.append("gender", userData.gender);
     formData.append("dob", userData.dob);
+
+    console.log("Check userdata", formData);
+
+    const data = await axios
+      .put("https://holiday-swap.click/api/v1/users/profile", formData, config)
+      .then((response) => {
+        console.log("Success", response);
+      })
+      .catch((response) => {
+        console.log("Check erro put", response);
+      });
+
     console.log("check data", data);
 
-    const { data } = await axios.put("/api/v1/users/profile", formData, config);
-
-    dispatch({ type: UPDATE_PROFILE_SUCCESS, payload: data.success });
+    dispatch({ type: UPDATE_PROFILE_SUCCESS, payload: data });
   } catch (error) {
+    console.log("Check error update", error);
     dispatch({
       type: UPDATE_PROFILE_FAIL,
       payload: error.response.data.message,

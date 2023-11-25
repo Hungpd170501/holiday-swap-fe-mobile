@@ -58,12 +58,13 @@ export const createOwnership =
       formData.append("coOwnerId", coOwnerIdBlob);
       formData.append("coOwner", coOwnerBlob);
       contractImages.forEach((element) => {
-        const newUri = "file://" + element.uri.split("file:///data/").join("");
-        formData.append("contractImages", {
-          uri: element.uri,
-          type: mine.getType(element.uri),
-          name: element.uri.split("/").pop(),
-        });
+        formData.append(
+          "contractImages",
+          new File([element.base64], element.uri.split("/").pop()),
+          {
+            type: "image/jpeg",
+          }
+        );
       });
 
       console.log("Check formData", formData);

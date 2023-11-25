@@ -56,16 +56,14 @@ export default function YourTrip() {
             {historyBooking && historyBooking.length > 0 ? (
               historyBooking.map((booking, index) => (
                 <TouchableOpacity
+                  key={index}
                   onPress={() =>
                     navigation.navigate("BookingDetail", {
                       id: booking.bookingId,
                     })
                   }
                 >
-                  <View
-                    key={index}
-                    className="px-4 py-3 border-b border-gray-300"
-                  >
+                  <View className="px-4 py-3 border-b border-gray-300">
                     <Image
                       source={{ uri: booking.propertyImage }}
                       style={{ width: "100%", height: 200 }}
