@@ -33,20 +33,10 @@ const VerifyOPTScreen = () => {
 
           {/* Title */}
           <View className="justify-center items-center flex w-full py-3">
-            <Text className="text-3xl font-bold justify-center">
-              Verify OTP
-            </Text>
             <Text className="text-lg font-normal mx-6 my-6 text-center">
-              We have just sent 4 digit code via your email: email@gmail.com
+              We have just sent digit code via your email: email@gmail.com
             </Text>
           </View>
-
-          <OTPInputField
-            setPinReady={setPinReady}
-            code={code}
-            setCode={setCode}
-            maxLength={MAX_CODE_LENGTH}
-          />
 
           <Button
             text={"Continue"}
