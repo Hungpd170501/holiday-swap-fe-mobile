@@ -1,5 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { profileReducer, userReducers } from "./reducers/userReducers";
+import {
+  forgotPasswordReducer,
+  profileReducer,
+  userReducers,
+} from "./reducers/userReducers";
 import { depositReducers } from "./reducers/depositReducers";
 import { searchParamReducers } from "./reducers/searchParamReducers";
 import {
@@ -47,6 +51,7 @@ export const store = configureStore({
     likePost: likePostReducer,
     profile: profileReducer,
     signup: signupReducer,
+    forgotPassword: forgotPasswordReducer,
 
     // dislikePost: dislikePostReducer,
   },
