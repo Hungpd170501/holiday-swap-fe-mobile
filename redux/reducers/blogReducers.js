@@ -1,4 +1,7 @@
 import {
+  GET_BLOG_DETAIL_FAIL,
+  GET_BLOG_DETAIL_REQUEST,
+  GET_BLOG_DETAIL_SUCCESS,
   GET_BLOG_FAIL,
   GET_BLOG_REQUEST,
   GET_BLOG_SUCCESS,
@@ -35,3 +38,28 @@ const blogReducers = (state = initialState, action) => {
 };
 
 export default blogReducers;
+
+export const blogDetailsReducer = (state = { blog: {} }, action) => {
+  switch (action.type) {
+    case GET_BLOG_DETAIL_REQUEST:
+      return {
+        loading: true,
+        ...state,
+      };
+
+    case GET_BLOG_DETAIL_SUCCESS:
+      return {
+        loading: false,
+        blog: action.payload,
+      };
+
+    case GET_BLOG_DETAIL_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      };
+
+    default:
+      return state;
+  }
+};

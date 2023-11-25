@@ -19,7 +19,7 @@ import {
   ownershipReducers,
 } from "./reducers/ownershipReducer";
 import walletReducers from "./reducers/walletReducers";
-import blogReducers from "./reducers/blogReducers";
+import blogReducers, { blogDetailsReducer } from "./reducers/blogReducers";
 
 export const store = configureStore({
   reducer: {
@@ -38,6 +38,7 @@ export const store = configureStore({
     wallet: walletReducers,
     blog: blogReducers,
     bookingDetail: bookingDetailsReducer,
+    blogDetail: blogDetailsReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
