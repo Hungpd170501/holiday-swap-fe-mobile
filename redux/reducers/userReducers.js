@@ -9,6 +9,10 @@ import {
   LOAD_TOKEN_EXP_REQUEST,
   LOAD_TOKEN_EXP_SUCCESS,
   LOAD_TOKEN_EXP_FAIL,
+  UPDATE_PROFILE_REQUEST,
+  UPDATE_PROFILE_SUCCESS,
+  UPDATE_PROFILE_FAIL,
+  UPDATE_PROFILE_RESET,
 } from "../constants/userConstants";
 
 export const userReducers = (state = { user: {}, userProfile: {} }, action) => {
@@ -74,6 +78,37 @@ export const tokenReducers = (state = { token: {} }, action) => {
         loading: false,
         token: null,
         error: action.payload,
+      };
+
+    default:
+      return state;
+  }
+};
+// update profile
+
+export const profileReducer = (state = {}, action) => {
+  switch (action.type) {
+    case UPDATE_PROFILE_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    case UPDATE_PROFILE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        isUpdated: action.payload,
+      };
+    case UPDATE_PROFILE_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    case UPDATE_PROFILE_RESET:
+      return {
+        ...state,
+        isUpdated: false,
       };
 
     default:

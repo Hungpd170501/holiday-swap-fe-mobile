@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { userReducers } from "./reducers/userReducers";
+import { profileReducer, userReducers } from "./reducers/userReducers";
 import { depositReducers } from "./reducers/depositReducers";
 import { searchParamReducers } from "./reducers/searchParamReducers";
 import {
@@ -19,7 +19,11 @@ import {
   ownershipReducers,
 } from "./reducers/ownershipReducer";
 import walletReducers from "./reducers/walletReducers";
-import blogReducers, { blogDetailsReducer } from "./reducers/blogReducers";
+import blogReducers, {
+  blogDetailsReducer,
+  dislikePostReducer,
+  likePostReducer,
+} from "./reducers/blogReducers";
 
 export const store = configureStore({
   reducer: {
@@ -39,6 +43,10 @@ export const store = configureStore({
     blog: blogReducers,
     bookingDetail: bookingDetailsReducer,
     blogDetail: blogDetailsReducer,
+    likePost: likePostReducer,
+    profile: profileReducer,
+
+    // dislikePost: dislikePostReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
