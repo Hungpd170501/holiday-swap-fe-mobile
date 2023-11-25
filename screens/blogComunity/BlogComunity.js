@@ -63,7 +63,12 @@ export default function BlogComunity({ navigation }) {
                   </View>
                 </View>
                 <View className="p-3">
-                  <HTML source={{ html: blog.content }} />
+                  <HTML
+                    tagsStyles={{
+                      p: { fontSize: 20, fontWeight: "bold", marginBottom: 10 },
+                    }}
+                    source={{ html: blog.title }}
+                  />
                 </View>
               </View>
             ))

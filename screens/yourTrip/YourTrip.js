@@ -57,7 +57,9 @@ export default function YourTrip() {
               historyBooking.map((booking, index) => (
                 <TouchableOpacity
                   onPress={() =>
-                    navigation.navigate("BookingDetail", { id: booking.id })
+                    navigation.navigate("BookingDetail", {
+                      id: booking.bookingId,
+                    })
                   }
                 >
                   <View
