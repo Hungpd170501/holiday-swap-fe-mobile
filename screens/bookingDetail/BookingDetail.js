@@ -8,6 +8,7 @@ import { getBookingDetails } from "../../redux/actions/bookingActions";
 export default function BookingDetail() {
   const route = useRoute();
   const { id } = route.params;
+  console.log("Check id", id);
   const dispatch = useDispatch();
   const { booking } = useSelector((state) => state.bookingDetail);
 

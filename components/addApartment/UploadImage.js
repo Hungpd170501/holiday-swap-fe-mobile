@@ -13,6 +13,7 @@ export default function UploadImage({ handleChangeImage }) {
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsMultipleSelection: true,
       quality: 1,
+      base64: true,
     });
 
     console.log(result);

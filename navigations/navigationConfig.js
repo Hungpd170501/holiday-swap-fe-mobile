@@ -217,6 +217,7 @@ function Navigation() {
 
             <Stack.Screen name="SearchApartment" component={SearchApartment} />
             <Stack.Screen name="DetailApartment" component={DetailApartment} />
+            <Stack.Screen name="BookingDetail" component={BookingDetail} />
             <Stack.Screen name="Rating" component={Rating} />
             <Stack.Screen name="ManageAccount" component={ManageAccount} />
             <Stack.Screen name="VerifyOTP" component={VerifyOPTScreen} />
