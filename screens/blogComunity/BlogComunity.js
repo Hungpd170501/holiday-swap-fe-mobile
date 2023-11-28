@@ -4,14 +4,14 @@ import { ScrollView, TouchableOpacity } from "react-native";
 import { Text, View } from "react-native-animatable";
 import { useDispatch, useSelector } from "react-redux";
 import HTML from "react-native-render-html";
-import { getBlog } from "../../redux/actions/blogAction";
+import { getBlog, likePost } from "../../redux/actions/blogAction";
 import Loading from "../../components/loading/Loading";
 import { Image } from "react-native";
 import { format } from "date-fns";
 
 export default function BlogComunity({ navigation }) {
   const dispatch = useDispatch();
-  const { listBlog, error } = useSelector((state) => state.blog);
+  const { listBlog, error, loading } = useSelector((state) => state.blog);
 
   useEffect(() => {
     dispatch(getBlog());
@@ -26,10 +26,8 @@ export default function BlogComunity({ navigation }) {
         <Text className="ml-8 text-[20px] text-white">Blog Community</Text>
       </View>
 
-      {error ? (
-        <View>
-          <Text>Error: {error}</Text>
-        </View>
+      {loading ? (
+        <Loading />
       ) : (
         <ScrollView className="flex flex-col px-5  gap-3 mt-5 mb-5">
           {listBlog && listBlog.length > 0 ? (
@@ -60,14 +58,18 @@ export default function BlogComunity({ navigation }) {
                         </Text>
                       </View>
                     </View>
-                    <View className="p-3 flex gap-1 flex-row items-center">
+                    <TouchableOpacity
+                      activeOpacity={0.8}
+                      onPress={() => handleLikePost(blog.id)}
+                      className="p-3 flex gap-1 flex-row items-center z-50"
+                    >
                       <View>
                         <AntDesign name="like2" size={20} color="gray" />
                       </View>
                       <View>
                         <Text>{blog.likes}</Text>
                       </View>
-                    </View>
+                    </TouchableOpacity>
                   </View>
                   <View className="p-3">
                     <HTML

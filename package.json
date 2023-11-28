@@ -37,7 +37,6 @@
     "react-native-calendar-picker": "^7.1.4",
     "react-native-calendar-range-picker": "^1.5.6",
     "react-native-calendars": "^1.1301.0",
-    "react-native-date-picker": "^4.3.3",
     "react-native-document-picker": "^9.0.1",
     "react-native-dropdown-picker": "^5.4.6",
     "react-native-element-dropdown": "^2.10.0",
@@ -67,7 +66,8 @@
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.2",
     "rn-progress-loader": "^1.0.8",
-    "styled-components": "^6.0.7"
+    "styled-components": "^6.0.7",
+    "@react-native-community/datetimepicker": "6.7.3"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
