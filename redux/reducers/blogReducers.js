@@ -78,19 +78,19 @@ export const likePostReducer = (state = { postLike: {} }, action) => {
       return {
         ...state,
         loading: true,
+        success: false,
       };
     case LIKE_POST_SUCCESS:
       return {
         loading: false,
-        postLike: {
-          ...state.postLike,
-          likes: action.payload,
-        },
+        postLike: action.payload,
+        success: true,
       };
     case LIKE_POST_FAIL:
       return {
         ...state,
         loading: false,
+        success: false,
         error: action.payload,
       };
     default:
@@ -98,32 +98,33 @@ export const likePostReducer = (state = { postLike: {} }, action) => {
   }
 };
 
-// export const dislikePostReducer = (state = { postDislike: {} }, action) => {
-//   switch (action.type) {
-//     case DISLIKE_POST_REQUEST:
-//       return {
-//         ...state,
-//         success: false,
-//         loading: true,
-//       };
-//     case DISLIKE_POST_SUCCESS:
-//       return {
-//         success: true,
-//         loading: false,
-//         postDislike: action.payload,
-//       };
-//     case DISLIKE_POST_FAIL:
-//       return {
-//         ...state,
-//         loading: false,
-//         error: action.payload,
-//       };
-//     case DISLIKE_POST_RESET:
-//       return {
-//         ...state,
-//         error: null,
-//       };
-//     default:
-//       return state;
-//   }
-// };
+export const dislikePostReducer = (state = { postDislike: {} }, action) => {
+  switch (action.type) {
+    case DISLIKE_POST_REQUEST:
+      return {
+        ...state,
+        dislikeSuccess: false,
+        loading: true,
+      };
+    case DISLIKE_POST_SUCCESS:
+      return {
+        dislikeSuccess: true,
+        loading: false,
+        postDislike: action.payload,
+      };
+    case DISLIKE_POST_FAIL:
+      return {
+        ...state,
+        loading: false,
+        dislikeSuccess: false,
+        error: action.payload,
+      };
+    case DISLIKE_POST_RESET:
+      return {
+        ...state,
+        error: null,
+      };
+    default:
+      return state;
+  }
+};

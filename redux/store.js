@@ -49,6 +49,7 @@ export const store = configureStore({
     bookingDetail: bookingDetailsReducer,
     blogDetail: blogDetailsReducer,
     likePost: likePostReducer,
+    dislikePost: dislikePostReducer,
     profile: profileReducer,
     signup: signupReducer,
     forgotPassword: forgotPasswordReducer,

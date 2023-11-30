@@ -31,7 +31,7 @@ const ModalConfirm = ({ modalVisible, setModalVisible }) => {
 
             <Button
               text={"Continue"}
-              onPress={() => navigation.navigate("CreateNewPassword")}
+              onPress={() => navigation.navigate("SignInScreen")}
             />
           </View>
         </View>

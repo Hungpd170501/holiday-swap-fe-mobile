@@ -1,8 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Text, TouchableOpacity, Image, ScrollView } from "react-native"; // Import Image component for displaying avatars
 import { View } from "react-native-animatable";
 import { useDispatch, useSelector } from "react-redux";
-import { getBlogDetails, likePost } from "../../redux/actions/blogAction";
+import {
+  dislikePost,
+  getBlogDetails,
+  likePost,
+} from "../../redux/actions/blogAction";
 import { AntDesign, Ionicons } from "@expo/vector-icons";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import HTML from "react-native-render-html";
@@ -15,25 +19,35 @@ export default function BlogDetail() {
   const dispatch = useDispatch();
   const { blog } = useSelector((state) => state.blogDetail);
 
-  // const userId = "your_user_id"; // replace with actual user ID
-  const { loading, error, postLike } = useSelector((state) => state.likePost);
+  const { loading, error, postLike, success } = useSelector(
+    (state) => state.likePost
+  );
+
+  const { dislikeSuccess } = useSelector((state) => state.dislikePost);
 
   useEffect(() => {
     dispatch(getBlogDetails(id));
   }, [dispatch, id]);
 
   const handleLikeClick = () => {
-    dispatch(likePost(blog.postId, userId));
+    dispatch(likePost(blog.id));
+  };
+
+  const handleDislikePost = () => {
+    dispatch(dislikePost(blog.id));
   };
 
   useEffect(() => {
-    console.log("Redux state:", { loading, error, postLike });
-    if (postLike && postLike === "Post reacted to") {
-      console.log("Post liked successfully!");
-    } else if (error) {
-      console.error("Error liking post:", error);
+    if (success) {
+      console.log("Ok đó");
+      dispatch(getBlogDetails(id));
     }
-  }, [postLike, error]);
+
+    if (dislikeSuccess) {
+      console.log("Dislike nè");
+      dispatch(getBlogDetails(id));
+    }
+  }, [success, dislikeSuccess, dispatch, id]);
 
   return (
     <View className="flex-1">
@@ -59,20 +73,23 @@ export default function BlogDetail() {
               </View>
             </View>
             <View className="flex flex-row items-center gap-3">
-              <View className="flex flex-row items-center gap-1">
-                <AntDesign
-                  onPress={handleLikeClick}
-                  name="like2"
-                  size={20}
-                  color="gray"
-                />
+              <TouchableOpacity
+                onPress={handleLikeClick}
+                activeOpacity={0.7}
+                className="flex flex-row items-center gap-1"
+              >
+                <AntDesign name="like2" size={20} color="gray" />
                 <Text>{blog.likes}</Text>
-              </View>
+              </TouchableOpacity>
 
-              <View className="flex flex-row items-center gap-1">
+              <TouchableOpacity
+                activeOpacity={0.7}
+                onPress={handleDislikePost}
+                className="flex flex-row items-center gap-1"
+              >
                 <AntDesign name="dislike2" size={20} color="gray" />
                 <Text>{blog.dislikes}</Text>
-              </View>
+              </TouchableOpacity>
             </View>
           </View>
           <Text className="py-5">Title: {blog.title}</Text>

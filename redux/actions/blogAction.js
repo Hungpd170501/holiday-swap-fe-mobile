@@ -1,5 +1,7 @@
 import axios from "axios";
 import {
+  DISLIKE_POST_FAIL,
+  DISLIKE_POST_SUCCESS,
   GET_BLOG_DETAIL_FAIL,
   GET_BLOG_DETAIL_REQUEST,
   GET_BLOG_DETAIL_SUCCESS,
@@ -9,8 +11,12 @@ import {
   LIKE_POST_FAIL,
   LIKE_POST_REQUEST,
   LIKE_POST_SUCCESS,
+  LIKE_POST_FAIL,
+  LIKE_POST_REQUEST,
+  LIKE_POST_SUCCESS,
 } from "../constants/blogConstants";
 import * as SecureStore from "expo-secure-store";
+import { DISLIKE_POST_REQUEST } from "./../constants/blogConstants";
 
 export const getBlogRequest = () => ({
   type: GET_BLOG_REQUEST,
@@ -88,25 +94,23 @@ export const likePost = (postId) => async (dispatch) => {
   try {
     dispatch({ type: LIKE_POST_REQUEST });
 
-    const token = await SecureStore.getItemAsync("secure_token");
+    const accessToken = await SecureStore.getItemAsync("secure_token");
 
-    const response = await axios.put(
-      `https://holiday-swap.click/api/post/react?postId=${postId}&reaction=likes`,
-      {},
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
+    const config = {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    };
+
+    const { data } = await axios.put(
+      `https://holiday-swap.click/api/post/react?postId=${postId}&reaction=like`,
+      null,
+      config
     );
 
     const likes = response?.data?.likes;
 
-    if (likes !== undefined) {
-      dispatch({ type: LIKE_POST_SUCCESS, payload: likes });
-    } else {
-      dispatch({ type: LIKE_POST_FAIL, payload: "Failed to get like count" });
-    }
+    dispatch({ type: LIKE_POST_SUCCESS, payload: data });
   } catch (error) {
     console.error(
       "likePost error:",
@@ -119,17 +123,26 @@ export const likePost = (postId) => async (dispatch) => {
   }
 };
 
-// export const dislikePost = (postId, userId) => async (dispatch) => {
-//   try {
-//     dispatch({ type: DISLIKE_POST_REQUEST });
+export const dislikePost = (postId) => async (dispatch) => {
+  try {
+    dispatch({ type: DISLIKE_POST_REQUEST });
 
-//     const { data } = await axios.post(
-//       `${HOST_URL}/post/like/unlike/${postId}`,
-//       userId
-//     );
+    const accessToken = await SecureStore.getItemAsync("secure_token");
 
-//     dispatch({ type: DISLIKE_POST_SUCCESS, payload: data });
-//   } catch (error) {
-//     dispatch({ type: DISLIKE_POST_FAIL, payload: error.response.data.message });
-//   }
-// };
+    const config = {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    };
+
+    const { data } = await axios.put(
+      `https://holiday-swap.click/api/post/react?postId=${postId}&reaction=dislike`,
+      null,
+      config
+    );
+
+    dispatch({ type: DISLIKE_POST_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({ type: DISLIKE_POST_FAIL, payload: error.response.data.message });
+  }
+};
