@@ -11,9 +11,6 @@ import {
   LIKE_POST_FAIL,
   LIKE_POST_REQUEST,
   LIKE_POST_SUCCESS,
-  LIKE_POST_FAIL,
-  LIKE_POST_REQUEST,
-  LIKE_POST_SUCCESS,
 } from "../constants/blogConstants";
 import * as SecureStore from "expo-secure-store";
 import { DISLIKE_POST_REQUEST } from "./../constants/blogConstants";
