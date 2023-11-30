@@ -58,24 +58,23 @@ export const createOwnership =
       formData.append("coOwnerId", coOwnerIdBlob);
       formData.append("coOwner", coOwnerBlob);
       contractImages.forEach((element) => {
-        formData.append(
-          "contractImages",
-          new File([element.base64], element.uri.split("/").pop()),
-          {
-            type: "image/jpeg",
-          }
-        );
+        formData.append("contractImages", {
+          uri: element.uri,
+          type: "image/jpeg",
+          name: "photo.jpg",
+        });
       });
 
       console.log("Check formData", formData);
 
-      const { data } = await axios.post(
-        `https://holiday-swap.click/api/co-owners`,
-        formData,
-        config
-      );
-
-      console.log("Success", data);
+      const { data } = await axios
+        .post(`https://holiday-swap.click/api/co-owners`, formData, config)
+        .then((response) => {
+          console.log("success", response);
+        })
+        .catch((response) => {
+          console.log("Error ", response);
+        });
 
       dispatch({ type: CREATE_OWNERSHIP_SUCCESS, payload: data });
       return data; // return data for any further use
