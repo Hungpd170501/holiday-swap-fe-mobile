@@ -39,12 +39,10 @@ export default function BlogDetail() {
 
   useEffect(() => {
     if (success) {
-      console.log("Ok đó");
       dispatch(getBlogDetails(id));
     }
 
     if (dislikeSuccess) {
-      console.log("Dislike nè");
       dispatch(getBlogDetails(id));
     }
   }, [success, dislikeSuccess, dispatch, id]);
