@@ -105,12 +105,18 @@ export const likePost = (postId) => async (dispatch) => {
       config
     );
 
-    console.log("likePost success, data:", data);
+    const likes = response?.data?.likes;
 
     dispatch({ type: LIKE_POST_SUCCESS, payload: data });
   } catch (error) {
-    console.error("likePost error:", error.response.data.message);
-    dispatch({ type: LIKE_POST_FAIL, payload: error.response.data.message });
+    console.error(
+      "likePost error:",
+      error.response?.data?.message || error.message
+    );
+    dispatch({
+      type: LIKE_POST_FAIL,
+      payload: error.response?.data?.message || error.message,
+    });
   }
 };
 

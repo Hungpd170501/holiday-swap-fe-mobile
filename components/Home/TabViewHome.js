@@ -234,9 +234,9 @@ export default function TabViewHome(props) {
                     })}
                   </View>
                 </ScrollView>
-                <View className="w-full absolute  flex h-full flex-col justify-end ">
+                {/* <View className="w-full absolute  flex h-full flex-col justify-end ">
                   <MapHome />
-                </View>
+                </View> */}
               </View>
             )}
           </Fragment>
