@@ -200,7 +200,7 @@ export default function InputInfomationScreen() {
             <Text className="ml-8 text-[20px] text-white">Confirm and pay</Text>
           </View>
           <ScrollView className="flex-1">
-            <View className="flex flex-row gap-5 bg-white px-4 mt-2 py-5">
+            <View className="flex flex-row gap-5 bg-white px-4  py-5">
               <Image
                 source={{
                   uri: `${apartmentBooking?.property?.propertyImage[0].link}`,
@@ -209,13 +209,26 @@ export default function InputInfomationScreen() {
               />
 
               <View className="flex flex-col justify-between">
-                <Text className="text-lg font-normal">
+                <Text className="text-lg font-bold w-[80%]">
+                  {apartmentBooking?.property?.resort.resortName}
+                </Text>
+                <Text className="text-lg font-bold">
                   {apartmentBooking?.property?.propertyName}
                 </Text>
-                <Text className="flex flex-row gap-1 items-center ">
+                <View className="flex flex-row items-center">
+                  <Text>Apartment ID: </Text>
+                  <Text className="font-bold">
+                    {apartmentBooking?.coOwnerId.roomId}
+                  </Text>
+                </View>
+                <Text className=" font-normal">
+                  {apartmentBooking?.property?.propertyDescription}
+                </Text>
+
+                {/* <Text className="flex flex-row gap-1 items-center ">
                   <StarIcon size={30} color={"yellow"} />
                   <Text>4.92</Text>
-                </Text>
+                </Text> */}
               </View>
             </View>
 

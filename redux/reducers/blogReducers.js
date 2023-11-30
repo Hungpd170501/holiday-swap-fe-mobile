@@ -80,7 +80,6 @@ export const likePostReducer = (state = { postLike: {} }, action) => {
         loading: true,
       };
     case LIKE_POST_SUCCESS:
-      console.log("LIKE_POST_SUCCESS, action.payload:", action.payload);
       return {
         loading: false,
         postLike: {

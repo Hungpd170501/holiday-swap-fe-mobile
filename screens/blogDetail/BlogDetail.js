@@ -15,7 +15,7 @@ export default function BlogDetail() {
   const dispatch = useDispatch();
   const { blog } = useSelector((state) => state.blogDetail);
 
-  const userId = "your_user_id"; // replace with actual user ID
+  // const userId = "your_user_id"; // replace with actual user ID
   const { loading, error, postLike } = useSelector((state) => state.likePost);
 
   useEffect(() => {

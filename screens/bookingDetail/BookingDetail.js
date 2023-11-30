@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getBookingDetails } from "../../redux/actions/bookingActions";
 import { Ionicons } from "@expo/vector-icons";
 import { ScrollView } from "react-native";
+import { format } from "date-fns";
 
 export default function BookingDetail() {
   const route = useRoute();
@@ -43,11 +44,13 @@ export default function BookingDetail() {
         </View>
         <View className="flex flex-row items-center">
           <Text className="text-[16px]">Check in: </Text>
-          <Text className="text-[18px] font-bold">{booking.dateCheckIn}</Text>
+          <Text>{booking.dateCheckIn}</Text>
+          {/* <Text> {format(new Date(booking.dateCheckIn), "MMMM d, yyyy")}</Text> */}
         </View>
         <View className="flex flex-row items-center">
           <Text className="text-[16px]">Check out: </Text>
-          <Text className="text-[18px] font-bold">{booking.dateCheckOut}</Text>
+          <Text>{booking.dateCheckOut}</Text>
+          {/* <Text> {format(new Date(booking.dateCheckOut), "MMMM d, yyyy")}</Text> */}
         </View>
         <View className="flex flex-row items-center">
           <Text className="text-[16px]">Guest: </Text>

@@ -57,7 +57,7 @@ export default function Wallet() {
             />
           )}
           <Text className="text-[30px] font-bold text-white py-2">
-            {userProfile?.username}
+            {userProfile?.fullName}
           </Text>
           <Text className="text-yellow-400"> {userProfile?.role?.name}</Text>
         </View>

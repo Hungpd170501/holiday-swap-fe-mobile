@@ -6,6 +6,9 @@ import {
   GET_BLOG_FAIL,
   GET_BLOG_REQUEST,
   GET_BLOG_SUCCESS,
+  LIKE_POST_FAIL,
+  LIKE_POST_REQUEST,
+  LIKE_POST_SUCCESS,
 } from "../constants/blogConstants";
 import * as SecureStore from "expo-secure-store";
 
@@ -81,26 +84,38 @@ export const getBlogDetails = (id) => async (dispatch) => {
   }
 };
 
-export const likePost = (postId, userId) => async (dispatch) => {
+export const likePost = (postId) => async (dispatch) => {
   try {
     dispatch({ type: LIKE_POST_REQUEST });
 
-    const { data } = await axios.put(
-      `${HOST_URL}/post/react?postId=${postId}&reaction=likes`,
+    const token = await SecureStore.getItemAsync("secure_token");
+
+    const response = await axios.put(
+      `https://holiday-swap.click/api/post/react?postId=${postId}&reaction=likes`,
       {},
       {
         headers: {
-          Authorization: `Bearer ${userId}`,
+          Authorization: `Bearer ${token}`,
         },
       }
     );
 
-    console.log("likePost success, data:", data);
+    const likes = response?.data?.likes;
 
-    dispatch({ type: LIKE_POST_SUCCESS, payload: data.likes });
+    if (likes !== undefined) {
+      dispatch({ type: LIKE_POST_SUCCESS, payload: likes });
+    } else {
+      dispatch({ type: LIKE_POST_FAIL, payload: "Failed to get like count" });
+    }
   } catch (error) {
-    console.error("likePost error:", error.response.data.message);
-    dispatch({ type: LIKE_POST_FAIL, payload: error.response.data.message });
+    console.error(
+      "likePost error:",
+      error.response?.data?.message || error.message
+    );
+    dispatch({
+      type: LIKE_POST_FAIL,
+      payload: error.response?.data?.message || error.message,
+    });
   }
 };
 
