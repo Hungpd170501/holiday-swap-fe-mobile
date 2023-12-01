@@ -21,7 +21,7 @@ export default function BookingDetail() {
   }, [dispatch, id]);
 
   return (
-    <View>
+    <View className="flex-1">
       <View className="bg-blue-500 w-full h-[100px] flex flex-row items-center justify-start px-5">
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Ionicons name="arrow-back-outline" size={30} color="white" />
@@ -72,7 +72,7 @@ export default function BookingDetail() {
           className="w-full h-[300px] my-3"
           source={{ uri: booking.propertyImage }}
         />
-        <View>
+        <View className="pb-10">
           <Text className="text-[20px] font-bold">User of booking</Text>
           {booking.userOfBooking?.length > 0 && (
             <View>

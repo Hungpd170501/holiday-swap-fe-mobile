@@ -207,15 +207,17 @@ export default function TabViewHome(props) {
                                     <Text className="text-[20px] font-bold">
                                       {item.availableTime.pricePerNight}
                                     </Text>
+
                                     <FontAwesome5
                                       name="coins"
-                                      size={20}
+                                      size={15}
                                       color="orange"
                                     />
+                                    <Text className="font-bold">/ night</Text>
                                   </View>
 
                                   <View className="flex flex-row items-center ">
-                                    <Text className="font-bold">
+                                    <Text className="font-bold mb-1">
                                       {nights} nights
                                     </Text>
                                   </View>

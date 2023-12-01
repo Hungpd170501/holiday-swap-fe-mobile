@@ -12,6 +12,8 @@ function InputPassword({ text, password, onChange }) {
   return (
     <View>
       <Text className="mb-4 text-lg">{text}</Text>
+      <Text className=" mb-4 text-lg ">Password:</Text>
+
       <View
         style={{
           flexDirection: "row",

@@ -209,10 +209,10 @@ export default function InputInfomationScreen() {
               />
 
               <View className="flex flex-col justify-between">
-                <Text className="text-lg font-bold w-[80%]">
+                <Text className="text-base font-bold w-[80%]">
                   {apartmentBooking?.property?.resort.resortName}
                 </Text>
-                <Text className="text-lg font-bold">
+                <Text className="text-lg font-bold w-[40%]">
                   {apartmentBooking?.property?.propertyName}
                 </Text>
                 <View className="flex flex-row items-center">

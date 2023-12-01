@@ -54,8 +54,10 @@ export default function SignInScreen() {
             <Text className="font-bold text-[24px]">Sign In</Text>
           </View>
         </View>
-        <InputEmail email={email} onChange={(e) => setEmail(e)} />
-        <InputPassword password={password} onChange={(e) => setPassword(e)} />
+        <View className="mt-10">
+          <InputEmail email={email} onChange={(e) => setEmail(e)} />
+          <InputPassword password={password} onChange={(e) => setPassword(e)} />
+        </View>
         <View>
           <View className="flex-row mb-[30px] mt-[10px]">
             <View className="flex-row items-center mr-[80px]">
@@ -81,12 +83,6 @@ export default function SignInScreen() {
         >
           <Text className="text-white text-lg font-bold">Sign In</Text>
         </TouchableOpacity>
-        <View className="flex-row justify-center items-center mb-[20px]">
-          <View className="w-[93px] h-[1px] bg-black"></View>
-          <Text className="p-3">Or continue with</Text>
-          <View className="w-[93px] h-[1px] bg-black"></View>
-        </View>
-        <BtnLoginGoogle />
       </View>
     </ScrollView>
   );

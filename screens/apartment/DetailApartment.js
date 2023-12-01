@@ -259,10 +259,7 @@ export default function DetailApartment() {
                   </Text>
 
                   <View>
-                    <MapApartmentDetail
-                      latitude={apartment.resort.latitude}
-                      longitude={apartment.resort.longitude}
-                    />
+                    {/* <MapApartmentDetail apartment={apartment} /> */}
                   </View>
                 </View>
                 <View className="px-4 bg-white mt-2 py-3">

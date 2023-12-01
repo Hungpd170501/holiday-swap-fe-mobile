@@ -31,8 +31,8 @@ export default function BookingConfirm() {
             }}
             className="w-36 h-28 rounded-xl "
           />
-          <View className="flex flex-col gap-1">
-            <Text className="text-lg font-bold text-black">
+          <View className="flex flex-col">
+            <Text className="text-lg font-bold text-black w-[60%]">
               {apartmentBooking?.property?.propertyName}
             </Text>
             <Text className="text-base text-slate-800">
