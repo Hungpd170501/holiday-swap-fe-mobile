@@ -52,9 +52,12 @@ export default function ChoseApartment({ data }) {
                 <View className="flex flex-col items-center gap-1">
                   <View className="flex flex-row items-center gap-1">
                     <Text className="text-[35px] font-bold">
-                      {apartmentDetail?.availableTime?.pricePerNight} / night
+                      {apartmentDetail?.availableTime?.pricePerNight}
                     </Text>
-                    <FontAwesome5 name="coins" size={25} color="orange" />
+                    <View>
+                      <FontAwesome5 name="coins" size={25} color="orange" />
+                    </View>
+                    <Text className="text-[35px] font-bold">/Night</Text>
                   </View>
                   {/* <Text>{apartmentDetail?.availableTime?.startTime}</Text> */}
                   <EditDateApartmentDetail

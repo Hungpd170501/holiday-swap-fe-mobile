@@ -53,7 +53,13 @@ const YourApartment = () => {
                 ownerships.content.map((item, index) => (
                   <TouchableOpacity
                     key={index}
-                    onPress={() => navigation.navigate("OwnerDetailApartment")}
+                    onPress={() =>
+                      navigation.navigate("OwnerDetailApartment", {
+                        roomId: item.id.roomId,
+                        userId: item.id.userId,
+                        propertyId: item.id.propertyId,
+                      })
+                    }
                     className=" flex flex-row bg-white mt-3 justify-start  rounded-md py-2 px-2"
                   >
                     <Image

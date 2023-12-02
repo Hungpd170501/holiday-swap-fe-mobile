@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Ionicons } from "@expo/vector-icons";
+import { FontAwesome5, Ionicons } from "@expo/vector-icons";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import {
   ScrollView,
@@ -81,7 +81,10 @@ export default function YourTrip() {
                       Check-out:{" "}
                       {format(new Date(booking.checkOutDate), "dd-MM-yyyy")}
                     </Text>
-                    <Text>Price: ${booking.price}</Text>
+                    <View className="flex flex-row items-center gap-1">
+                      <Text>Price: {booking.price}</Text>
+                      <FontAwesome5 name="coins" size={15} color="orange" />
+                    </View>
                   </View>
                 </TouchableOpacity>
               ))

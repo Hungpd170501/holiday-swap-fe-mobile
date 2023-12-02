@@ -1,7 +1,7 @@
 import { AntDesign, FontAwesome5, Ionicons } from "@expo/vector-icons";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import React, { useState } from "react";
-import { TextInput, Image, StyleSheet } from "react-native";
+import { TextInput, Image, StyleSheet, Alert } from "react-native";
 import { TouchableOpacity } from "react-native";
 import { ScrollView } from "react-native";
 import { Text, CheckBox } from "react-native";
@@ -24,6 +24,7 @@ import ModalConfirmBooking from "../../components/modal/ModalConfirmBooking";
 import { CREATE_BOOKING_RESET } from "../../redux/constants/bookingConstants";
 import { Fragment } from "react";
 import Loading from "../../components/Loading";
+import validator from "validator";
 
 export default function InputInfomationScreen() {
   const navigation = useNavigation();
@@ -153,11 +154,36 @@ export default function InputInfomationScreen() {
         ...updatedGuests[guestIndex],
         [field]: text,
       };
+
       return updatedGuests;
     });
   };
 
+  const isEmailValid = (email) => {
+    return validator.isEmail(email) && email.endsWith("@gmail.com");
+  };
+
   const handleBooking = () => {
+    const isAllEmailValid = guests.every((guest) => isEmailValid(guest.email));
+
+    if (!isAllEmailValid) {
+      // Hiển thị thông báo khi có ít nhất một email không hợp lệ
+      Alert.alert("Warning", "Please enter a valid email");
+      return;
+    }
+    const isPhoneNumberValid = guests.every((guest) =>
+      /^[0-9]{10}$/.test(guest.phoneNumber)
+    );
+
+    if (!isPhoneNumberValid) {
+      // Display an alert if the phone number format is invalid
+      Alert.alert(
+        "Warning",
+        "Please enter a valid 10-digit phone number starting with 0"
+      );
+      return;
+    }
+
     dispatch(
       createBooking(
         apartmentBooking.availableTime.id,
@@ -549,6 +575,10 @@ export default function InputInfomationScreen() {
                             placeholder="Email"
                           />
                         </View>
+                        {/* Thêm thông báo lỗi nếu email không hợp lệ */}
+                        {!isEmailValid(item.email) && (
+                          <Text className="text-red-700"></Text>
+                        )}
                       </View>
                       {totalGuest <= 1 || guests.length === Number(totalGuest)
                         ? ""
@@ -572,6 +602,7 @@ export default function InputInfomationScreen() {
           <View className="border-t bg-white border-gray-300 flex flex-row items-center justify-between px-3 h-16">
             <View className="w-[48%]">
               <View className="flex flex-row items-center">
+                <Text className="text-[25px] font-bold">Total: </Text>
                 <Text className="text-[25px] font-bold mr-1">
                   {apartmentBooking?.availableTime?.pricePerNight *
                     calculateNightDifference(

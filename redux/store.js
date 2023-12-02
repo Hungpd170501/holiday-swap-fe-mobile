@@ -20,6 +20,7 @@ import { resortReducers } from "./reducers/resortReducers";
 import { propertiesReducers } from "./reducers/propertyReducers";
 import {
   newOwnershipReducers,
+  ownershipDetailsReducer,
   ownershipReducers,
 } from "./reducers/ownershipReducer";
 import walletReducers from "./reducers/walletReducers";
@@ -54,6 +55,7 @@ export const store = configureStore({
     profile: profileReducer,
     signup: signupReducer,
     forgotPassword: forgotPasswordReducer,
+    detailOwnership: ownershipDetailsReducer,
     dateRangeBooking: dateRangeReducer,
 
     // dislikePost: dislikePostReducer,
