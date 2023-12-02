@@ -11,7 +11,6 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import CarouselApartmentHome from "../apartment/CaroselApartmentHome";
-import MapHome from "../mapHome/MapHome";
 import axios from "axios";
 import CarouselApartmentImage from "../apartment/CarouselApartmentImage";
 import { useDispatch, useSelector } from "react-redux";

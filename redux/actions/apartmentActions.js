@@ -13,8 +13,7 @@ export const getApartments = () => async (dispatch) => {
     dispatch({ type: GET_APARTMENT_REQUEST });
 
     const { data } = await axios.get(
-      `https://holiday-swap.click/api/v1/apartment-for-rent?guest=1&numberBedsRoom=1&numberBathRoom=1&pageNo=0&pageSize=100&sortBy=id&sortDirection=asc`,
-      config
+      `https://holiday-swap.click/api/v1/apartment-for-rent?guest=1&numberBedsRoom=1&numberBathRoom=1&pageNo=0&pageSize=100&sortBy=id&sortDirection=asc`
     );
 
     dispatch({ type: GET_APARTMENT_SUCCESS, payload: data });
