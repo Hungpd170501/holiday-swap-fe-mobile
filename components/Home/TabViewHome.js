@@ -1,5 +1,5 @@
 import { AntDesign, FontAwesome5 } from "@expo/vector-icons";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -9,7 +9,7 @@ import {
   Image,
   ActivityIndicator,
 } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import CarouselApartmentHome from "../apartment/CaroselApartmentHome";
 import MapHome from "../mapHome/MapHome";
 import axios from "axios";
@@ -28,7 +28,6 @@ export default function TabViewHome(props) {
   useEffect(() => {
     dispatch(getApartments());
   }, [dispatch]);
-
   const [selectedTab, setSelectedTab] = useState("");
   const [tabs, setTabs] = useState([]);
   useEffect(() => {
@@ -40,9 +39,6 @@ export default function TabViewHome(props) {
       setTabs(resortNames);
     }
   }, [apartments]);
-  useEffect(() => {
-    dispatch(getApartments());
-  }, [dispatch]);
 
   const navigation = useNavigation();
 

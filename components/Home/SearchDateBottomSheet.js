@@ -11,6 +11,7 @@ import { ScrollView } from "react-native";
 import { Image } from "react-native";
 import InputDateComponents from "../dateInput/InputDateComponents";
 import { format } from "date-fns";
+import InputDateSearch from "./InputDateSearch";
 
 const initialDateRange = {
   startDate: new Date(),
@@ -39,14 +40,17 @@ export default function SearchDateBottomSheet(props) {
   return (
     <View className="">
       <View style={styles.shadow} className="bg-white rounded-xl px-5 mt-5 ">
-        <TouchableOpacity onPress={() => toggleBottomNavigationView()} className="py-5 flex flex-row justify-between">
+        <TouchableOpacity
+          onPress={() => toggleBottomNavigationView()}
+          className="py-5 flex flex-row justify-between"
+        >
           <Text>Time:</Text>
           <Text className="font-bold">
             {dateRange
-              ? `${format(new Date(dateRange.startDate), "E, dd MMM")} - ${format(
-                  new Date(dateRange.endDate),
+              ? `${format(
+                  new Date(dateRange.startDate),
                   "E, dd MMM"
-                )}`
+                )} - ${format(new Date(dateRange.endDate), "E, dd MMM")}`
               : "Time"}
           </Text>
         </TouchableOpacity>
@@ -54,20 +58,28 @@ export default function SearchDateBottomSheet(props) {
       <BottomSheet
         visible={visible}
         onBackButtonPress={toggleBottomNavigationView}
-        onBackdropPress={toggleBottomNavigationView}>
+        onBackdropPress={toggleBottomNavigationView}
+      >
         <View style={styles.bottomNavigationView}>
           <View
             style={{
               flex: 1,
               flexDirection: "column",
               justifyContent: "space-between",
-            }}>
+            }}
+          >
             <View className="flex-1 px-4">
-              <InputDateComponents handleDateRange={handleDateRange} />
+              <InputDateSearch
+                dateRange={dateRange}
+                handleDateRange={handleDateRange}
+              />
             </View>
 
             <View className="pb-4 px-4">
-              <TouchableOpacity onPress={() => handleFishnish()} className="w-full p-4 bg-sky-500 rounded-md">
+              <TouchableOpacity
+                onPress={() => handleFishnish()}
+                className="w-full p-4 bg-sky-500 rounded-md"
+              >
                 <Text className="text-white text-lg text-center">Apply</Text>
               </TouchableOpacity>
             </View>

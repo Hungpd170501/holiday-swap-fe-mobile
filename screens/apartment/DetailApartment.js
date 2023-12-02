@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useCallback, useEffect, useState } from "react";
 import { Dimensions, Text, TouchableOpacity, View } from "react-native";
 import { ScrollView } from "react-native";
 import {
@@ -44,9 +44,11 @@ export default function DetailApartment() {
 
   console.log("Check id", id);
 
-  useEffect(() => {
-    dispatch(getAparmentDetail(id));
-  }, [dispatch]);
+  useFocusEffect(
+    useCallback(() => {
+      dispatch(getAparmentDetail(id));
+    }, [dispatch, id])
+  );
 
   useEffect(() => {
     if (apartment) {
@@ -55,24 +57,6 @@ export default function DetailApartment() {
     }
   }, [apartment]);
 
-  let config = {
-    method: "get",
-    maxBodyLength: Infinity,
-    url: `https://holiday-swap.click/api/v1/apartment-for-rent/${id}`,
-    headers: {},
-  };
-  const fetchDetailApartmentForRent = () => {
-    axios
-      .request(config)
-      .then((response) => {
-        setDetailAapartMentForRent(response.data);
-        setApartmentImage(response.data?.property?.propertyImage);
-        setAvailableTime(response.data?.availableTime);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
   const { width: screenWidth } = Dimensions.get("window");
   const itemWidthPercentage = 100;
 
