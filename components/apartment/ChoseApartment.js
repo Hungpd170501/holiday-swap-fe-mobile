@@ -65,7 +65,6 @@ export default function ChoseApartment({ data }) {
                 <TouchableOpacity
                   onPress={() =>
                     navigation.navigate("InputInfomationScreen", {
-                      dateRange: dateRange,
                       apartmentBooking: apartmentDetail,
                     })
                   }

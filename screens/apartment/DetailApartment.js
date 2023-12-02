@@ -28,6 +28,7 @@ import { ActivityIndicator } from "react-native";
 import Loading from "../../components/Loading";
 import CarouselApartmentDetail from "../../components/apartment/CaroselApartmentDetail";
 import { StatusBar } from "expo-status-bar";
+import { getDateRangeBooking } from "../../redux/actions/dateRangeActions";
 
 export default function DetailApartment() {
   const route = useRoute();
@@ -78,6 +79,16 @@ export default function DetailApartment() {
   const itemWidth = (screenWidth * itemWidthPercentage) / 100;
   const startTime = apartment?.availableTime?.startTime;
   const endTime = apartment?.availableTime?.endTime;
+
+  const { dateRangeBooking } = useSelector((state) => state.dateRangeBooking);
+
+  useEffect(() => {
+    if (apartment) {
+      const startTimeBooking = apartment?.availableTime?.startTime;
+      const endTimeBooking = apartment?.availableTime?.endTime;
+      dispatch(getDateRangeBooking({ startTimeBooking, endTimeBooking }));
+    }
+  }, [dispatch, apartment]);
 
   return (
     <Fragment>

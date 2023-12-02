@@ -28,14 +28,14 @@ import Loading from "../../components/Loading";
 export default function InputInfomationScreen() {
   const navigation = useNavigation();
   const route = useRoute();
-  const { dateRange, apartmentBooking } = route.params;
+  const { apartmentBooking } = route.params;
   const [checked, setChecked] = React.useState(false);
   const [checkedA, setCheckedA] = React.useState(false);
   const [checkedB, setCheckedB] = React.useState(false);
   const [visibleCalendar, setVisibleCalendar] = useState(false);
   const [visibleGuest, setVisibleGuest] = useState(false);
   const [visibleModal, setVisibleModal] = useState(false);
-  const [dateRangeBooking, setDateRangeBooking] = useState(dateRange);
+  // const [dateRangeBooking, setDateRangeBooking] = useState(dateRange);
 
   const [apartmentAllowGuest, setApartmentAllowGuest] = useState(
     apartmentBooking?.property?.numberKingBeds * 2 +
@@ -55,6 +55,9 @@ export default function InputInfomationScreen() {
     (state) => state.newBooking
   );
   const { user, userProfile } = useSelector((state) => state.user);
+  const { dateRangeBooking: dateRangeRedux } = useSelector(
+    (state) => state.dateRangeBooking
+  );
   const dispatch = useDispatch();
 
   const toggleVisibleCalendar = () => {
@@ -90,9 +93,9 @@ export default function InputInfomationScreen() {
     }
   };
 
-  const handleChangeDateRangeBooking = (value) => {
-    setDateRangeBooking(value);
-  };
+  // const handleChangeDateRangeBooking = (value) => {
+  //   setDateRangeBooking(value);
+  // };
 
   const handleDescreaseAdultGuest = (value) => {
     if (value <= 1) {
@@ -159,8 +162,8 @@ export default function InputInfomationScreen() {
       createBooking(
         apartmentBooking.availableTime.id,
         userProfile.userId,
-        dateRangeBooking.startDate,
-        dateRangeBooking.endDate,
+        dateRangeRedux.startTimeBooking,
+        dateRangeRedux.endTimeBooking,
         guests
       )
     );
@@ -176,12 +179,12 @@ export default function InputInfomationScreen() {
       dispatch({ type: CREATE_BOOKING_RESET });
       navigation.navigate("BookingConfirm", {
         apartmentBooking: apartmentBooking,
-        dateRangeBooking: dateRangeBooking,
+        // dateRangeBooking: dateRangeRedux,
         total:
           apartmentBooking?.availableTime?.pricePerNight *
           calculateNightDifference(
-            dateRangeBooking.startDate,
-            dateRangeBooking.endDate
+            dateRangeRedux.startTimeBooking,
+            dateRangeRedux.endTimeBooking
           ),
       });
     }
@@ -239,11 +242,14 @@ export default function InputInfomationScreen() {
                   <Text className="text-lg font-bold">Dates</Text>
                   <Text className="text-slate-700">
                     {format(
-                      new Date(dateRangeBooking?.startDate),
+                      new Date(dateRangeRedux?.startTimeBooking),
                       "d, MMM yyyy"
                     )}{" "}
                     -{" "}
-                    {format(new Date(dateRangeBooking?.endDate), "d, MMM yyyy")}
+                    {format(
+                      new Date(dateRangeRedux?.endTimeBooking),
+                      "d, MMM yyyy"
+                    )}
                   </Text>
                 </View>
                 <Text
@@ -278,10 +284,7 @@ export default function InputInfomationScreen() {
                           Dates
                         </Text>
                       </View>
-                      <InputDateComponents
-                        dateRange={dateRangeBooking}
-                        handleDateRange={handleChangeDateRangeBooking}
-                      />
+                      <InputDateComponents />
                     </View>
 
                     <View className="pb-4 px-4  flex flex-row justify-end bg-white shadow-md">
@@ -322,15 +325,15 @@ export default function InputInfomationScreen() {
                 <Text className="text-lg text-slate-600">
                   {apartmentBooking?.availableTime?.pricePerNight} point x{" "}
                   {calculateNightDifference(
-                    dateRangeBooking.startDate,
-                    dateRangeBooking.endDate
+                    dateRangeRedux.startTimeBooking,
+                    dateRangeRedux.endTimeBooking
                   )}
                 </Text>
                 <Text className="text-lg text-slate-600">
                   {apartmentBooking?.availableTime?.pricePerNight *
                     calculateNightDifference(
-                      dateRangeBooking.startDate,
-                      dateRangeBooking.endDate
+                      dateRangeRedux.startTimeBooking,
+                      dateRangeRedux.endTimeBooking
                     )}{" "}
                   point
                 </Text>
@@ -572,8 +575,8 @@ export default function InputInfomationScreen() {
                 <Text className="text-[25px] font-bold mr-1">
                   {apartmentBooking?.availableTime?.pricePerNight *
                     calculateNightDifference(
-                      dateRangeBooking.startDate,
-                      dateRangeBooking.endDate
+                      dateRangeRedux.startTimeBooking,
+                      dateRangeRedux.endTimeBooking
                     )}
                 </Text>
                 <FontAwesome5 name="coins" size={20} color="orange" />

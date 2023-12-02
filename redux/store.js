@@ -29,6 +29,7 @@ import blogReducers, {
   likePostReducer,
 } from "./reducers/blogReducers";
 import signupReducer from "./reducers/signupReducer";
+import { dateRangeReducer } from "./reducers/dateRangeReducers";
 
 export const store = configureStore({
   reducer: {
@@ -53,6 +54,7 @@ export const store = configureStore({
     profile: profileReducer,
     signup: signupReducer,
     forgotPassword: forgotPasswordReducer,
+    dateRangeBooking: dateRangeReducer,
 
     // dislikePost: dislikePostReducer,
   },

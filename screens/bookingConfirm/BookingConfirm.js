@@ -8,11 +8,17 @@ import { ScrollView } from "react-native";
 import { Text } from "react-native";
 import { View } from "react-native";
 import { Feather } from "react-native-feather";
+import { useSelector } from "react-redux";
 
 export default function BookingConfirm() {
   const navigation = useNavigation();
   const route = useRoute();
-  const { apartmentBooking, dateRangeBooking, total } = route.params;
+  const { apartmentBooking, total } = route.params;
+
+  const { dateRangeBooking: dateRangeRedux } = useSelector(
+    (state) => state.dateRangeBooking
+  );
+
   return (
     <View className="flex-1 bg-white">
       <View className="bg-white w-full border-b border-slate-300 flex flex-row items-center justify-center py-5">
@@ -36,8 +42,12 @@ export default function BookingConfirm() {
               {apartmentBooking?.property?.propertyName}
             </Text>
             <Text className="text-base text-slate-800">
-              {format(new Date(dateRangeBooking?.startDate), "EEE, d yyyy")} -{" "}
-              {format(new Date(dateRangeBooking?.endDate), "EEE, d yyyy")}
+              {format(
+                new Date(dateRangeRedux?.startTimeBooking),
+                "EEE, d yyyy"
+              )}{" "}
+              -{" "}
+              {format(new Date(dateRangeRedux?.endTimeBooking), "EEE, d yyyy")}
             </Text>
             <Text className="text-base text-slate-800">
               {total} point total
