@@ -172,6 +172,12 @@ export default function DetailApartment() {
                           Price for nights
                         </Text>
                       </View>
+                      <View className="flex flex-row items-center gap-1">
+                        <Text>Owner: </Text>
+                        <Text className="font-bold">
+                          {apartment.user.fullName}
+                        </Text>
+                      </View>
                       <View className="flex flex-row gap-3 ">
                         <View className="flex flex-row items-center ">
                           <Text className=" font-bold text-[25px] pr-2">
@@ -341,6 +347,22 @@ export default function DetailApartment() {
                       </View>
                     </View>
                   </View>
+                  <View>
+                    <Text className="font-bold text-[18px] py-4">Review</Text>
+                    {apartment?.property?.ratings?.content.map(
+                      (review, index) => (
+                        <View key={index} className="mb-5">
+                          <Text className="text-[16px] font-bold">
+                            Rating: {review.rating}
+                          </Text>
+                          <Text>
+                            {/* {format(parseISO(review.createDate), "yyyy-MM-dd")} */}
+                          </Text>
+                          <Text>{review.comment}</Text>
+                        </View>
+                      )
+                    )}
+                  </View>
                 </View>
               </ScrollView>
             </View>
@@ -356,7 +378,7 @@ const styles = {
     flexWrap: "wrap",
   },
   column: {
-    width: "50%", // Two columns in one row
+    width: "50%",
     padding: 10,
   },
   row: {

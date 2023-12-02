@@ -200,9 +200,15 @@ export default function TabViewHome(props) {
                                     </Text>
                                   </View>
 
-                                  <View className="max-w-[100%] overflow-hidden pb-2">
+                                  {/* <View className="max-w-[100%] overflow-hidden pb-2">
                                     <Text className="text-[15px] whitespace-nowrap overflow-ellipsis">
                                       {item.property.propertyDescription}
+                                    </Text>
+                                  </View> */}
+                                  <View className="max-w-[100%] overflow-hidden pb-2 flex flex-row gap-1">
+                                    <Text>Owner by:</Text>
+                                    <Text className="text-[15px] whitespace-nowrap overflow-ellipsis">
+                                      {item.user.username}
                                     </Text>
                                   </View>
                                   <View className="flex flex-row gap-1 items-center mb-1">
