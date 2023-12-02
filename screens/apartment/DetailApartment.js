@@ -43,10 +43,11 @@ export default function DetailApartment() {
 
   console.log("Check id", id);
 
-  useEffect(() => {
-    dispatch(getAparmentDetail(id));
-  }, [dispatch]);
-
+  useFocusEffect(
+    React.useCallback(() => {
+      dispatch(getAparmentDetail(id));
+    }, [dispatch, id])
+  );
   useEffect(() => {
     if (apartment) {
       setApartmentImage(apartment?.property?.propertyImage);
@@ -173,10 +174,10 @@ export default function DetailApartment() {
                         </Text>
                       </View>
                       <View className="flex flex-row items-center gap-1">
-                        <Text>Owner: </Text>
-                        <Text className="font-bold">
+                        {/* <Text>Owner: </Text> */}
+                        {/* <Text className="font-bold">
                           {apartment.user.fullName}
-                        </Text>
+                        </Text> */}
                       </View>
                       <View className="flex flex-row gap-3 ">
                         <View className="flex flex-row items-center ">
