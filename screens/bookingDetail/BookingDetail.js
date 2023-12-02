@@ -6,6 +6,7 @@ import { getBookingDetails } from "../../redux/actions/bookingActions";
 import { Ionicons } from "@expo/vector-icons";
 import { ScrollView } from "react-native";
 import { format } from "date-fns";
+import ReviewBtn from "../../components/review/ReviewBtn";
 
 export default function BookingDetail() {
   const route = useRoute();
@@ -98,6 +99,10 @@ export default function BookingDetail() {
           )}
         </View>
       </ScrollView>
+
+      <View className="absolute bottom-5 right-5">
+        <ReviewBtn />
+      </View>
     </View>
   );
 }

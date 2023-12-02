@@ -69,20 +69,16 @@ export default function ProfileScreen() {
         </View>
         <View className="px-4 flex flex-col items-center">
           <View className="bg-white rounded-md w-[95%] relative mt-40 border border-gray-300 px-3 py-3">
-            <Text>
-              Complete your account upgrade from guest to membership to rent an
-              apartment and experience it to the fullest in our application.
+            <Text className="text-center">
+              Welcome to experience our app! Hopefully you will have interesting
+              and rewarding moments.
             </Text>
             <View className="bg-gray-300 w-full h-[1px] my-5" />
             <View className="flex flex-col items-center">
-              <Text className="py-3">
-                Upgrade your account easily and quickly at
-              </Text>
-              <TouchableOpacity
-                onPress={() => navigation.navigate("GuestToMember")}
-              >
+              <Text className="py-3">Start looking for a vacation now!!</Text>
+              <TouchableOpacity onPress={() => navigation.navigate("Home")}>
                 <Text className="text-blue-500 font-bold text-[20px]">
-                  Upgrade
+                  HolidaySwap!
                 </Text>
               </TouchableOpacity>
             </View>
@@ -106,15 +102,15 @@ export default function ProfileScreen() {
               <Text>Wallet</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() => navigation.navigate("Rating")}
+              onPress={() => navigation.navigate("YourTrip")}
               className="flex flex-row items-center gap-3"
             >
               <MaterialCommunityIcons
-                name="progress-star"
+                name="clipboard-list-outline"
                 size={20}
                 color="gray"
               />
-              <Text>Rating</Text>
+              <Text>Booking history</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => navigation.navigate("YourApartment")}

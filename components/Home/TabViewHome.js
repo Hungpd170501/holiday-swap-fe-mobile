@@ -179,10 +179,12 @@ export default function TabViewHome(props) {
                                     <Text className="underline pb-3 w-[80%] text-[18px] font-bold pt-2">
                                       {item.property.propertyName}
                                     </Text>
-                                    <View className="flex flex-row items-center gap-1">
-                                      <Text>{5}</Text>
-                                      <AntDesign name="star" color="orange" />
-                                    </View>
+                                    {item.property.rating && ( // Check if rating is available
+                                      <View className="flex flex-row items-center gap-1">
+                                        <Text> {item.property.rating}</Text>
+                                        <AntDesign name="star" color="orange" />
+                                      </View>
+                                    )}
                                   </View>
                                   <View className="flex flex-row gap-2 ">
                                     <Text className="font-bold">Resort:</Text>

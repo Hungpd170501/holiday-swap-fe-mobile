@@ -47,7 +47,7 @@ export default function YourTrip() {
       </View>
       <ScrollView className="mb-5">
         {loading && (
-          <View className="mt-20">
+          <View className="mt-80">
             <Loading />
           </View>
         )}

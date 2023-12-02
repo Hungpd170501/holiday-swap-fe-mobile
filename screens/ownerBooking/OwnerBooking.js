@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Ionicons } from "@expo/vector-icons";
+import { FontAwesome5, Ionicons } from "@expo/vector-icons";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import {
   ScrollView,
@@ -12,6 +12,7 @@ import {
 } from "react-native";
 import Loading from "../../components/Loading";
 import { getOwnerBooking } from "../../redux/actions/bookingActions";
+import { format } from "date-fns";
 
 export default function YourTrip() {
   const dispatch = useDispatch();
@@ -46,7 +47,7 @@ export default function YourTrip() {
       </View>
       <ScrollView>
         {loading && (
-          <View className="mt-20">
+          <View className="mt-80">
             <Loading />
           </View>
         )}
@@ -65,11 +66,34 @@ export default function YourTrip() {
                   <Text className="text-[20px] font-bold py-2">
                     {booking.propertyName}
                   </Text>
-                  <Text>Resort: {booking.resortName}</Text>
-                  <Text>Room: {booking.roomId}</Text>
-                  <Text>Check-in: {booking.checkInDate}</Text>
-                  <Text>Check-out: {booking.checkOutDate}</Text>
-                  <Text>Price: ${booking.price}</Text>
+                  <View className="flex flex-row items-center">
+                    <Text>Resort: </Text>
+                    <Text className="font-bold">{booking.resortName}</Text>
+                  </View>
+                  <View className="flex flex-row items-center py-2">
+                    <Text>Room:</Text>
+                    <Text className="font-bold"> {booking.roomId}</Text>
+                  </View>
+                  <View className="flex flex-row items-center">
+                    <Text>Check-in: </Text>
+                    <Text className="font-bold">
+                      {format(new Date(booking?.checkInDate), "dd-MM-yyyy")}
+                    </Text>
+                  </View>
+                  <View className="flex flex-row items-center py-2">
+                    <Text>Check-out: </Text>
+                    <Text className="font-bold">
+                      {" "}
+                      {format(new Date(booking?.checkOutDate), "dd-MM-yyyy")}
+                    </Text>
+                  </View>
+                  <View className="flex flex-row items-center gap-1">
+                    <Text>Price:</Text>
+                    <View className="flex flex-row items-center gap-1">
+                      <Text className="font-bold">{booking.price}</Text>
+                      <FontAwesome5 name="coins" size={15} color="orange" />
+                    </View>
+                  </View>
                 </View>
               ))
             ) : (
