@@ -6,6 +6,9 @@ import {
   GET_OWNERSHIP_REQUEST,
   GET_OWNERSHIP_SUCCESS,
   GET_OWNERSHIP_FAIL,
+  GET_OWNERSHIP_DETAIL_REQUEST,
+  GET_OWNERSHIP_DETAIL_SUCCESS,
+  GET_OWNERSHIP_DETAIL_FAIL,
 } from "../constants/ownershipConstants";
 
 export const newOwnershipReducers = (state = { ownership: {} }, action) => {
@@ -64,6 +67,38 @@ export const ownershipReducers = (state = { ownerships: {} }, action) => {
         ...state,
         loading: false,
         success: false,
+        error: action.payload,
+      };
+
+    default:
+      return state;
+  }
+};
+
+export const ownershipDetailsReducer = (
+  state = { owner: {}, loading: false, error: null },
+  action
+) => {
+  switch (action.type) {
+    case GET_OWNERSHIP_DETAIL_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
+
+    case GET_OWNERSHIP_DETAIL_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        owner: action.payload,
+        error: null,
+      };
+
+    case GET_OWNERSHIP_DETAIL_FAIL:
+      return {
+        ...state,
+        loading: false,
         error: action.payload,
       };
 

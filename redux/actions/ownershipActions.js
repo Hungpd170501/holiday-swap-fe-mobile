@@ -8,6 +8,9 @@ import {
   GET_OWNERSHIP_REQUEST,
   GET_OWNERSHIP_SUCCESS,
   GET_OWNERSHIP_FAIL,
+  GET_OWNERSHIP_DETAIL_REQUEST,
+  GET_OWNERSHIP_DETAIL_FAIL,
+  GET_OWNERSHIP_DETAIL_SUCCESS,
 } from "../constants/ownershipConstants";
 import mine from "mime";
 
@@ -111,4 +114,36 @@ export const getListOwnership = (userId) => async (dispatch) => {
     dispatch({ type: GET_OWNERSHIP_FAIL, payload: error });
     throw error; // rethrow the error for handling at the component level
   }
-};
+}; // actions.js
+
+export const getOwnershipDetails =
+  (userId, propertyId, roomId) => async (dispatch) => {
+    try {
+      dispatch({ type: GET_OWNERSHIP_DETAIL_REQUEST });
+
+      const accessToken = await SecureStore.getItemAsync("secure_token");
+      console.log("check detailasd", userId);
+      const config = {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      };
+
+      const { data } = await axios.get(
+        `https://holiday-swap.click/api/co-owners/detail?propertyId=${propertyId}&userId=${userId}&roomId=${roomId}`,
+        config
+      );
+
+      console.log("check data", data);
+      dispatch({
+        type: GET_OWNERSHIP_DETAIL_SUCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: GET_OWNERSHIP_DETAIL_FAIL,
+        payload: error.message || "An error occurred while fetching data.",
+      });
+      console.error("Error in getOwnershipDetails:", error);
+    }
+  };
