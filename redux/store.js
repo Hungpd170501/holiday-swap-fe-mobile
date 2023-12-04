@@ -31,6 +31,10 @@ import blogReducers, {
 } from "./reducers/blogReducers";
 import signupReducer from "./reducers/signupReducer";
 import { dateRangeReducer } from "./reducers/dateRangeReducers";
+import {
+  createRatingBookingReducer,
+  ratingsReducer,
+} from "./reducers/ratingReducers";
 
 export const store = configureStore({
   reducer: {
@@ -57,7 +61,8 @@ export const store = configureStore({
     forgotPassword: forgotPasswordReducer,
     detailOwnership: ownershipDetailsReducer,
     dateRangeBooking: dateRangeReducer,
-
+    ratings: ratingsReducer,
+    createRatingBooking: createRatingBookingReducer,
     // dislikePost: dislikePostReducer,
   },
   middleware: (getDefaultMiddleware) =>

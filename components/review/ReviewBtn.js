@@ -32,14 +32,6 @@ export default function ReviewBtn() {
 
   return (
     <View className=" ">
-      <View className="absolute bottom-5 right-5">
-        <TouchableOpacity
-          onPress={toggleBottomNavigationView}
-          className="bg-blue-500 rounded-md px-6 py-3"
-        >
-          <Text style={{ color: "white" }}>Rating</Text>
-        </TouchableOpacity>
-      </View>
       <BottomSheet
         visible={visible}
         onBackButtonPress={toggleBottomNavigationView}

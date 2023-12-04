@@ -1,5 +1,11 @@
 import React, { Fragment, useCallback, useEffect, useState } from "react";
-import { Dimensions, Text, TouchableOpacity, View } from "react-native";
+import {
+  Dimensions,
+  SafeAreaView,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { ScrollView } from "react-native";
 import {
   FontAwesome5,
@@ -81,7 +87,8 @@ export default function DetailApartment() {
         <Fragment>
           {/* <StatusBar style="dark" /> */}
           {apartment && (
-            <View className="flex-1 ">
+            <SafeAreaView className="flex-1 ">
+              <StatusBar style="light" hidden={false} animated />
               <ScrollView>
                 <TouchableOpacity
                   onPress={() => navigation.goBack()}
@@ -359,7 +366,7 @@ export default function DetailApartment() {
                   </View>
                 </View>
               </ScrollView>
-            </View>
+            </SafeAreaView>
           )}
         </Fragment>
       )}
