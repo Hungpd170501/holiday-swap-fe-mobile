@@ -7,17 +7,18 @@ import { TouchableOpacity } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { format } from "date-fns";
+import { useFocusEffect } from "@react-navigation/native";
 
 export default function OwnerDetailApartment({ route }) {
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const { userId, propertyId, roomId } = route.params;
   const { owner } = useSelector((state) => state.detailOwnership);
-  useEffect(() => {
-    dispatch(getOwnershipDetails(userId, propertyId, roomId));
-  }, [dispatch, userId, propertyId, roomId]);
-
-  console.log("check detail asdasdasd", owner);
+  useFocusEffect(
+    React.useCallback(() => {
+      dispatch(getOwnershipDetails(userId, propertyId, roomId));
+    }, [dispatch, userId, propertyId, roomId])
+  );
 
   return (
     <View className="flex-1">
@@ -30,7 +31,7 @@ export default function OwnerDetailApartment({ route }) {
       <ScrollView>
         <View className="px-3 mt-2 pb-10 h-full">
           <Text className="text-[25px] font-bold">
-            {owner.property.propertyName}
+            {owner.property?.propertyName}
           </Text>
           <View className=" w-[80%] flex flex-row py-3 gap-1">
             <Text>Resort:</Text>
@@ -49,7 +50,7 @@ export default function OwnerDetailApartment({ route }) {
             <Text className="text-[20px] font-bold">{owner.id.roomId}</Text>
           </View>
           {owner.endTime === null && owner.startTime === null ? (
-            <View className="flex flex-row items-center gap-1">
+            <View className="flex flex-row items-center gap-1 pt-3">
               <Text>Type owner:</Text>
               <Text className="text-[20px] font-bold">Owner forever</Text>
             </View>
@@ -78,6 +79,9 @@ export default function OwnerDetailApartment({ route }) {
             />
           </View>
         </View>
+        {/* <View>
+          <Text> {owner.property?.propertyName}</Text>
+        </View> */}
       </ScrollView>
     </View>
   );

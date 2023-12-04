@@ -80,14 +80,14 @@ export const createOwnership =
         });
 
       dispatch({ type: CREATE_OWNERSHIP_SUCCESS, payload: data });
-      return data; // return data for any further use
+      return data;
     } catch (error) {
       console.log("Error redux", error);
       dispatch({
         type: CREATE_OWNERSHIP_FAIL,
         payload: error.response?.data?.message || "An error occurred",
       });
-      throw error; // rethrow the error for handling at the component level
+      throw error;
     }
   };
 
@@ -109,12 +109,12 @@ export const getListOwnership = (userId) => async (dispatch) => {
     );
 
     dispatch({ type: GET_OWNERSHIP_SUCCESS, payload: data });
-    return data; // return data for any further use
+    return data;
   } catch (error) {
     dispatch({ type: GET_OWNERSHIP_FAIL, payload: error });
-    throw error; // rethrow the error for handling at the component level
+    throw error;
   }
-}; // actions.js
+};
 
 export const getOwnershipDetails =
   (userId, propertyId, roomId) => async (dispatch) => {

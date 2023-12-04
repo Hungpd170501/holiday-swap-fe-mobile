@@ -11,7 +11,6 @@ import {
 } from "react-native";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import CarouselApartmentHome from "../apartment/CaroselApartmentHome";
-import MapHome from "../mapHome/MapHome";
 import axios from "axios";
 import CarouselApartmentImage from "../apartment/CarouselApartmentImage";
 import { useDispatch, useSelector } from "react-redux";
@@ -175,10 +174,12 @@ export default function TabViewHome(props) {
                                     <Text className="underline pb-3 w-[80%] text-[18px] font-bold pt-2">
                                       {item.property.propertyName}
                                     </Text>
-                                    <View className="flex flex-row items-center gap-1">
-                                      <Text>{5}</Text>
-                                      <AntDesign name="star" color="orange" />
-                                    </View>
+                                    {item.property.rating && ( // Check if rating is available
+                                      <View className="flex flex-row items-center gap-1">
+                                        <Text> {item.property.rating}</Text>
+                                        <AntDesign name="star" color="orange" />
+                                      </View>
+                                    )}
                                   </View>
                                   <View className="flex flex-row gap-2 ">
                                     <Text className="font-bold">Resort:</Text>
@@ -194,9 +195,15 @@ export default function TabViewHome(props) {
                                     </Text>
                                   </View>
 
-                                  <View className="max-w-[100%] overflow-hidden pb-2">
+                                  {/* <View className="max-w-[100%] overflow-hidden pb-2">
                                     <Text className="text-[15px] whitespace-nowrap overflow-ellipsis">
                                       {item.property.propertyDescription}
+                                    </Text>
+                                  </View> */}
+                                  <View className="max-w-[100%] overflow-hidden pb-2 flex flex-row gap-1">
+                                    <Text>Owner by:</Text>
+                                    <Text className="text-[15px] whitespace-nowrap overflow-ellipsis">
+                                      {item.user.username}
                                     </Text>
                                   </View>
                                   <View className="flex flex-row gap-1 items-center mb-1">
