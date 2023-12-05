@@ -49,8 +49,6 @@ export const createBooking =
         config
       );
 
-      console.log("Check data booking", data);
-
       dispatch({ type: CREATE_BOOKING_SUCCESS, payload: data });
     } catch (error) {
       dispatch({
@@ -128,8 +126,6 @@ export const getBookingDetails = (id) => async (dispatch) => {
       `https://holiday-swap.click/api/booking/historybooking/${id}`,
       config
     );
-    console.log("check data", data);
-
     dispatch({
       type: GET_BOOKING_DETAIL_SUCCESS,
       payload: data,

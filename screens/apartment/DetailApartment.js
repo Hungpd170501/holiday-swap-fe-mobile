@@ -29,12 +29,23 @@ import CarouselApartmentImage from "../../components/apartment/CarouselApartment
 import index from "react-native-swipeable-carousel";
 import { useDispatch, useSelector } from "react-redux";
 import { getAparmentDetail } from "../../redux/actions/apartmentActions";
-import { format, parseISO } from "date-fns";
+import {
+  addDays,
+  addMonths,
+  differenceInDays,
+  format,
+  parseISO,
+  subDays,
+} from "date-fns";
 import { ActivityIndicator } from "react-native";
 import Loading from "../../components/Loading";
 import CarouselApartmentDetail from "../../components/apartment/CaroselApartmentDetail";
 import { StatusBar } from "expo-status-bar";
-import { getDateRangeBooking } from "../../redux/actions/dateRangeActions";
+import {
+  getDateRangeBooking,
+  getDateRangeDefault,
+  getDateRangeOut,
+} from "../../redux/actions/dateRangeActions";
 
 export default function DetailApartment() {
   const route = useRoute();
@@ -47,14 +58,43 @@ export default function DetailApartment() {
   const [availableTime, setAvailableTime] = useState({});
   const navigation = useNavigation();
   const [dateRange, setDateRange] = useState();
+  const [dateOut, setDateOut] = useState([]);
+
+  const [checkInMap, setCheckInMap] = useState(new Map());
+  const [checkOutMap, setCheckOutMap] = useState(new Map());
+
+  useEffect(() => {
+    const updateCheckInAndOutMaps = () => {
+      const newCheckInMap = new Map();
+      const newCheckOutMap = new Map();
+
+      if (
+        apartment.timeHasBooked &&
+        Array.isArray(apartment.timeHasBooked) &&
+        apartment.timeHasBooked.length > 0
+      ) {
+        apartment.timeHasBooked.forEach((booking, index) => {
+          const checkInDate = new Date(booking.checkIn);
+          const checkOutDate = new Date(booking.checkOut);
+
+          newCheckInMap.set(format(checkInDate, "yyyy-MM-dd"), checkInDate);
+          newCheckOutMap.set(format(checkOutDate, "yyyy-MM-dd"), checkOutDate);
+        });
+      }
+
+      setCheckInMap(newCheckInMap);
+      setCheckOutMap(newCheckOutMap);
+    };
+
+    updateCheckInAndOutMaps();
+  }, [apartment.timeHasBooked]);
 
   console.log("Check id", id);
 
-  useFocusEffect(
-    React.useCallback(() => {
-      dispatch(getAparmentDetail(id));
-    }, [dispatch, id])
-  );
+  useEffect(() => {
+    dispatch(getAparmentDetail(id));
+  }, [dispatch, id]);
+
   useEffect(() => {
     if (apartment) {
       setApartmentImage(apartment?.property?.propertyImage);
@@ -70,14 +110,116 @@ export default function DetailApartment() {
   const endTime = apartment?.availableTime?.endTime;
 
   const { dateRangeBooking } = useSelector((state) => state.dateRangeBooking);
+  const { dateRangeDefault } = useSelector((state) => state.dateRangeDefault);
+  const { dateRangeOut } = useSelector((state) => state.dateOut);
 
-  useEffect(() => {
-    if (apartment) {
-      const startTimeBooking = apartment?.availableTime?.startTime;
-      const endTimeBooking = apartment?.availableTime?.endTime;
-      dispatch(getDateRangeBooking({ startTimeBooking, endTimeBooking }));
+  useFocusEffect(
+    useCallback(() => {
+      if (apartment) {
+        const startTimeBooking = apartment?.availableTime?.startTime;
+        const endTimeBooking = apartment?.availableTime?.endTime;
+        dispatch(getDateRangeBooking({ startTimeBooking, endTimeBooking }));
+      }
+    }, [dispatch, apartment])
+  );
+
+  useFocusEffect(
+    useCallback(() => {
+      const startTimeDefault = apartment?.availableTime?.startTime;
+      const endTimeDefault = apartment?.availableTime?.endTime;
+      dispatch(getDateRangeDefault({ startTimeDefault, endTimeDefault }));
+    }, [dispatch, apartment])
+  );
+
+  const getDatesOutsideDateRange = (dateRange) => {
+    const startDate = new Date(dateRange?.startTimeDefault);
+    const endDate = new Date(dateRange?.endTimeDefault);
+
+    const startDateOutsideDateRange = addDays(endDate, 1);
+    const endDateOutsideDateRange = subDays(addMonths(startDate, 30), 1);
+
+    const datesOutsideDateRange = [];
+    for (
+      let i = startDateOutsideDateRange.getTime();
+      i <= endDateOutsideDateRange.getTime();
+      i += 24 * 60 * 60 * 1000
+    ) {
+      datesOutsideDateRange.push(new Date(i));
     }
-  }, [dispatch, apartment]);
+
+    if (
+      apartment.timeHasBooked &&
+      Array.isArray(apartment.timeHasBooked) &&
+      apartment.timeHasBooked.length > 0
+    ) {
+      apartment.timeHasBooked.forEach((booking) => {
+        const checkInDate = new Date(booking.checkIn);
+        const checkOutDate = new Date(booking.checkOut);
+
+        // console.log('Check difference', differenceInDays(checkOutDate, checkInDate));
+
+        if (differenceInDays(checkOutDate, checkInDate) < 2) {
+          checkInMap.forEach((checkInDate) => {
+            if (checkOutMap.has(format(checkInDate, "yyyy-MM-dd"))) {
+              datesOutsideDateRange.push(new Date(checkInDate));
+            } else {
+              // console.log('Ko có');
+            }
+          });
+
+          // Check if a date is beyond the general availability range
+          if (startDate) {
+            if (checkInMap.has(format(startDate, "yyyy-MM-dd"))) {
+              datesOutsideDateRange.push(new Date(startDate));
+            }
+          }
+
+          if (endDate) {
+            if (checkOutMap.has(format(endDate, "yyyy-MM-dd"))) {
+              datesOutsideDateRange.push(new Date(endDate));
+            }
+          }
+        } else {
+          for (
+            let i = checkInDate.getTime() + 24 * 60 * 60 * 1000;
+            i <= checkOutDate.getTime() - 24 * 60 * 60 * 1000;
+            i += 24 * 60 * 60 * 1000
+          ) {
+            checkInMap.forEach((checkInDate) => {
+              if (checkOutMap.has(format(checkInDate, "yyyy-MM-dd"))) {
+                datesOutsideDateRange.push(new Date(checkInDate));
+              } else {
+                // console.log('Ko có');
+              }
+            });
+
+            if (startDate) {
+              if (checkInMap.has(format(startDate, "yyyy-MM-dd"))) {
+                datesOutsideDateRange.push(new Date(startDate));
+              }
+            }
+
+            if (endDate) {
+              if (checkOutMap.has(format(endDate, "yyyy-MM-dd"))) {
+                datesOutsideDateRange.push(new Date(endDate));
+              }
+            }
+            datesOutsideDateRange.push(new Date(i));
+          }
+        }
+      });
+    }
+
+    return datesOutsideDateRange;
+  };
+
+  useFocusEffect(
+    useCallback(() => {
+      if (dateRangeDefault) {
+        dispatch(getDateRangeOut(getDatesOutsideDateRange(dateRangeDefault)));
+      }
+    }, [dispatch, dateRangeDefault])
+  );
 
   return (
     <Fragment>
@@ -308,7 +450,9 @@ export default function DetailApartment() {
                                   {/* Content items */}
 
                                   {item?.inRoomAmenities?.map((item, index) => (
-                                    <Text>{item.inRoomAmenityName}</Text>
+                                    <Text key={index}>
+                                      {item.inRoomAmenityName}
+                                    </Text>
                                   ))}
                                 </View>
                               </View>
@@ -331,7 +475,9 @@ export default function DetailApartment() {
 
                                     {item?.inRoomAmenities?.map(
                                       (item, index) => (
-                                        <Text>{item.inRoomAmenityName}</Text>
+                                        <Text key={index}>
+                                          {item.inRoomAmenityName}
+                                        </Text>
                                       )
                                     )}
                                   </View>

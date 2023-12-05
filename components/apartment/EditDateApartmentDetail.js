@@ -34,9 +34,6 @@ export default function EditDateApartmentDetail({
 
   const { dateRangeBooking } = useSelector((state) => state.dateRangeBooking);
   const dispatch = useDispatch();
-
-  console.log("Check date booking", dateRangeBooking);
-
   // const handleDateRange = (value) => {
   //   dispatch(getDateRangeBooking(value));
   // };

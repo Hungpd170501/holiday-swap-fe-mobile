@@ -21,8 +21,6 @@ export default function ChoseApartment({ data }) {
     setVisible(!visible);
   };
 
-  console.log("Check data", apartmentDetail);
-
   const handleChangeDateRange = (value) => {
     setDateRange(value);
   };

@@ -72,7 +72,6 @@ export const getBlogDetails = (id) => async (dispatch) => {
       `https://holiday-swap.click/api/post/get/${id}`,
       config
     );
-    console.log("check data", data);
 
     dispatch({
       type: GET_BLOG_DETAIL_SUCCESS,

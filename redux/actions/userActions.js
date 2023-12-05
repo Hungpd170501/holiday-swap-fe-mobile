@@ -96,8 +96,6 @@ export const updateProfile = (userData) => async (dispatch) => {
         console.log("Check erro put", response);
       });
 
-    console.log("check data", data);
-
     dispatch({ type: UPDATE_PROFILE_SUCCESS, payload: data });
   } catch (error) {
     console.log("Check error update", error);

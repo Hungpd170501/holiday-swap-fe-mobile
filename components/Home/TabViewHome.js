@@ -27,6 +27,13 @@ export default function TabViewHome(props) {
   useEffect(() => {
     dispatch(getApartments());
   }, [dispatch]);
+
+  useFocusEffect(
+    useCallback(() => {
+      dispatch(getApartments());
+    }, [dispatch])
+  );
+
   const [selectedTab, setSelectedTab] = useState("");
   const [tabs, setTabs] = useState([]);
   useEffect(() => {
@@ -52,12 +59,14 @@ export default function TabViewHome(props) {
       param += `&${name}=${data}`;
     });
   };
+
   let config = {
     method: "get",
     maxBodyLength: Infinity,
     url: "",
     headers: {},
   };
+
   const fetchListApartmentForRent = async () => {
     param = `?locationName=${searchParam.locationName}&resortId=${searchParam.resortId}&checkIn=${searchParam.checkIn}&checkOut=${searchParam.checkOut}&min=${searchParam.min}&max=${searchParam.max}&guest=${searchParam.guest}&numberBedsRoom=${searchParam.numberBedsRoom}&numberBathRoom=${searchParam.numberBathRoom}&pageNo=${searchParam.pageNo}&pageSize=${searchParam.pageSize}&sortBy=${searchParam.sortBy}&sortDirection=${searchParam.sortDirection}`;
     loadArrayOfParram(
