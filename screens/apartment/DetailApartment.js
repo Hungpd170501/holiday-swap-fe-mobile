@@ -159,7 +159,7 @@ export default function DetailApartment() {
         // console.log('Check difference', differenceInDays(checkOutDate, checkInDate));
 
         if (differenceInDays(checkOutDate, checkInDate) < 2) {
-          checkInMap.forEach((checkInDate) => {
+          checkInMap.forEach((checkInDate, key) => {
             if (checkOutMap.has(format(checkInDate, "yyyy-MM-dd"))) {
               datesOutsideDateRange.push(new Date(checkInDate));
             } else {

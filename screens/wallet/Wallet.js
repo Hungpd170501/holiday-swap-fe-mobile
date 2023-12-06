@@ -67,7 +67,9 @@ export default function Wallet() {
             <View className="flex flex-row items-center justify-between">
               <Text className="text-[30px] font-bold">Point</Text>
               <View className="flex flex-row items-center">
-                <Text className="text-[20px] font-bold mr-2">{totalPoint}</Text>
+                <Text className="text-[20px] font-bold mr-2">
+                  {Number(totalPoint).toFixed(2)}
+                </Text>
                 <FontAwesome5 name="coins" size={20} color="orange" />
               </View>
             </View>

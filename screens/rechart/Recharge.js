@@ -1,6 +1,6 @@
 import { FontAwesome5, Ionicons } from "@expo/vector-icons";
-import { useNavigation } from "@react-navigation/native";
-import React, { useEffect, useState } from "react";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
+import React, { useCallback, useEffect, useState } from "react";
 import { ScrollView, TextInput, TouchableOpacity } from "react-native";
 import { Text } from "react-native";
 import { View } from "react-native";
@@ -8,19 +8,33 @@ import { Checkbox } from "react-native-paper";
 import { useDispatch, useSelector } from "react-redux";
 import { depositPoint } from "../../redux/actions/depositeActions";
 import { DEPOSIT_RESET } from "../../redux/constants/depositConstants";
+import axios from "axios";
 
 export default function Recharge() {
   const [checked, setChecked] = React.useState(false);
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const [selectedView, setSelectedView] = useState(null);
+  const [pricePoint, setPricePoint] = useState();
+  const [amountTotal, setAmountTotal] = useState();
   const [totalPoint, setTotalPoint] = useState();
   const { deposit, statusDeposit } = useSelector((state) => state.deposit);
+
+  useFocusEffect(
+    useCallback(async () => {
+      const point = await axios.get("https://holiday-swap.click/api/v1/point");
+      if (point) {
+        setPricePoint(point.data.pointPrice);
+      }
+    }, [])
+  );
 
   const onInputchange = (text) => {
     console.log("change change", text);
     setTotalPoint(text);
+    setAmountTotal(Number(text) * Number(pricePoint));
   };
+
   const handleViewSelect = (viewId) => {
     // Toggle selection on/off
     if (selectedView === viewId) {
@@ -32,7 +46,7 @@ export default function Recharge() {
   const RechargeSubmit = () => {
     dispatch(
       depositPoint(
-        totalPoint,
+        amountTotal,
         "nap tien vnpay",
         "https://holiday-swap.vercel.app/recharge/success",
         navigation
