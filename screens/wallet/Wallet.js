@@ -111,11 +111,11 @@ export default function Wallet() {
                           <View className="flex flex-row gap-2 items-center">
                             <View>
                               <Image
-                                className="w-[30px] h-[30px] rounded-full"
+                                className="w-[50px] h-[50px] rounded-full"
                                 source={{ uri: userProfile?.avatar }}
                               />
                             </View>
-                            <View>
+                            <View className="w-[70%]">
                               <Text className="font-bold">
                                 {transaction.message}
                               </Text>
@@ -130,7 +130,7 @@ export default function Wallet() {
                               </View>
                             </View>
                           </View>
-                          <View className="flex flex-row items-center">
+                          <View className="flex flex-row items-center absolute right-0">
                             <View>
                               <Text className="mt-8 font-bold">
                                 {transaction.amount}
