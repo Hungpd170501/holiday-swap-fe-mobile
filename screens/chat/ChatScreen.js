@@ -9,7 +9,7 @@ import { useNavigation } from "@react-navigation/native";
 import SearchBar from "../../components/search/SearchBar";
 import { Image } from "react-native";
 import { ScrollView } from "react-native";
-import TabViewMessNotifi from "../../components/messNotifi/TabViewMessNotifi";
+import TabViewMessageAndNotification from "../../components/messNotifi/TabViewMessageAndNotification";
 import { Ionicons } from "@expo/vector-icons";
 
 export default function ChatScreen() {
@@ -28,7 +28,7 @@ export default function ChatScreen() {
         </TouchableOpacity>
         <Text className="ml-8 text-[20px] text-white">Your notification</Text>
       </View>
-      <TabViewMessNotifi />
+      <TabViewMessageAndNotification />
     </>
   );
 }
