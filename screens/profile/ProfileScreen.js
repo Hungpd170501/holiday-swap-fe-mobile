@@ -7,6 +7,7 @@ import {
   Ionicons,
   MaterialCommunityIcons,
   Octicons,
+  EvilIcons,
 } from "@expo/vector-icons";
 import { useDispatch } from "react-redux";
 import { TouchableOpacity } from "react-native";
@@ -85,14 +86,18 @@ export default function ProfileScreen() {
           </View>
         </View>
         <View className="px-3 mt-4 mb-32">
-          <Text className="text-[17px] font-bold mb-3">Account</Text>
+          <Text className="text-3xl font-bold mb-3">Account</Text>
           <View className=" flex flex-col gap-1">
             <TouchableOpacity
+              activeOpacity={0.7}
               onPress={() => navigation.navigate("ManageAccount")}
-              className="flex flex-row items-center gap-3"
+              className="flex flex-row items-center justify-between py-4 border-b border-slate-200"
             >
-              <Feather name="user" size={20} color="gray" />
-              <Text>Edit account</Text>
+              <View className="flex flex-row items-center gap-2">
+                <EvilIcons name="user" size={55} color="black" />
+                <Text className="text-xl font-bold">Edit account</Text>
+              </View>
+              <Octicons name="chevron-right" size={24} color="black" />
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => navigation.navigate("Wallet")}

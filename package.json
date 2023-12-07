@@ -2,7 +2,7 @@
   "name": "mobile-capstone-project",
   "version": "1.0.0",
   "scripts": {
-    "start": "expo start",
+    "start": "expo start --dev-client",
     "android": "expo run:android",
     "ios": "expo run:ios",
     "web": "expo start --web"
@@ -64,6 +64,7 @@
     "react-native-swipeable-carousel": "^1.0.7",
     "react-native-tab-view": "^3.5.2",
     "react-native-textarea": "^1.0.4",
+    "react-native-toast-message": "^2.1.8",
     "react-native-vector-icons": "^10.0.0",
     "react-native-vnpay-merchant": "file:react-native-vnpay-merchant",
     "react-native-webview": "11.26.0",
@@ -72,7 +73,8 @@
     "redux-thunk": "^2.4.2",
     "rn-progress-loader": "^1.0.8",
     "styled-components": "^6.0.7",
-    "validator": "^13.11.0"
+    "validator": "^13.11.0",
+    "expo-updates": "~0.16.4"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

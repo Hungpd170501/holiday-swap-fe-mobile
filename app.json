@@ -17,7 +17,10 @@
       "infoPlist": {
         "NSCameraUsageDescription": "This app uses the camera to scan barcodes on event tickets."
       },
-      "bundleIdentifier": "com.thucbui.captone"
+      "bundleIdentifier": "com.thucbui.captone",
+      "runtimeVersion": {
+        "policy": "sdkVersion"
+      }
     },
     "android": {
       "blockedPermissions": ["android.permission.RECORD_AUDIO"],
@@ -34,6 +37,10 @@
       "eas": {
         "projectId": "7895ebe4-c50f-48ed-aa18-1b93129eecb8"
       }
+    },
+    "owner": "tinit28",
+    "updates": {
+      "url": "https://u.expo.dev/7895ebe4-c50f-48ed-aa18-1b93129eecb8"
     }
   }
 }
