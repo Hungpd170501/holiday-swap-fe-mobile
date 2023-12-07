@@ -8,6 +8,7 @@ import YourTrip from "../screens/yourTrip/YourTrip";
 import FullHistoryTransaction from "../screens/viewFullTransactionHistory/FullHistoryTransaction";
 import BlogComunity from "../screens/blogComunity/BlogComunity";
 import ProfileScreen from "../screens/profile/ProfileScreen";
+import ChatScreen from "../screens/chat/ChatScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -30,6 +31,8 @@ const TabNavigation = () => {
             iconName = "user";
           } else if (route.name === "BlogComunity") {
             iconName = "people-outline";
+          } else if (route.name === "ChatScreen") {
+            iconName = "message1";
           }
 
           const messageCount = 1;
@@ -71,6 +74,11 @@ const TabNavigation = () => {
         name="BlogComunity"
         component={BlogComunity}
         options={{ tabBarLabel: "" }}
+      />
+      <Stack.Screen
+          name="ChatScreen"
+          component={ChatScreen}
+          options={{ tabBarLabel: "" }}
       />
       <Tab.Screen
         name="Profile"
