@@ -28,6 +28,7 @@ export const login = (email, password) => async (dispatch) => {
 
     dispatch({ type: LOGIN_SUCCESS, payload: data });
   } catch (error) {
+    console.log("Check error login", error.response.data.message);
     dispatch({ type: LOGIN_FAIL, payload: error.response.data.message });
   }
 };

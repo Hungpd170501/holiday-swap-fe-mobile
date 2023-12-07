@@ -333,19 +333,19 @@ export default function BookingDetail() {
                   <View className="pt-5 px-4">
                     <View className="flex flex-row gap-3 items-center">
                       <Image
-                        source={{ uri: ratings?.user.avatar }}
+                        source={{ uri: ratings?.user?.avatar }}
                         className="rounded-full h-20 w-20"
                       />
                       <View>
                         <Text className="font-semibold text-base">
                           {ratings.ratingType !== "PRIVATE"
-                            ? ratings?.user.fullName
+                            ? ratings?.user?.fullName
                             : `Anymous user`}
                         </Text>
-                        {ratings.createDate ? (
+                        {ratings?.createDate ? (
                           <Text>
                             {format(
-                              new Date(ratings.createDate),
+                              new Date(ratings?.createDate),
                               "dd/MM/yyyy 'at' h:mm a"
                             )}
                           </Text>

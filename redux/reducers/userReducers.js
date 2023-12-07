@@ -47,7 +47,7 @@ export const userReducers = (state = { user: {}, userProfile: {} }, action) => {
     case LOGIN_FAIL:
       return {
         loading: false,
-        isAuthenticated: flase,
+        isAuthenticated: false,
         user: null,
         error: action.payload,
       };
