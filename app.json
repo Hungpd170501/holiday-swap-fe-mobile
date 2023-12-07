@@ -28,7 +28,8 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.thucbui.captone"
+      "package": "com.thucbui.captone",
+      "runtimeVersion": { "policy": "sdkVersion" }
     },
     "web": {
       "favicon": "./assets/favicon.png"
