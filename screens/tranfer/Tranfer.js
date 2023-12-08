@@ -16,6 +16,7 @@ import { loadUser, searchAllUser } from "../../redux/actions/userActions";
 import Toast from "react-native-toast-message";
 import { TRANFER_RESET } from "../../redux/constants/tranferConstants";
 import { tranferPointAction } from "../../redux/actions/walletAction";
+import ModalConfirmBase from "../../components/modal/ModalConfirmBase";
 
 const Tranfer = () => {
   const data = [
@@ -29,6 +30,7 @@ const Tranfer = () => {
     { label: "Property 8", value: "8" },
   ];
   const navigation = useNavigation();
+  const [modalVisible, setModalVisible] = useState(false);
 
   const { userProfile } = useSelector((state) => state.user);
   const { usersSearch } = useSelector((state) => state.searchAllUsers);
@@ -79,6 +81,7 @@ const Tranfer = () => {
   const handleTranferPoint = () => {
     if (userProfile && value && amount) {
       dispatch(tranferPointAction(userProfile.userId, value, amount));
+      setModalVisible(false);
     } else {
       Toast.show({
         type: "error",
@@ -144,11 +147,18 @@ const Tranfer = () => {
 
         <TouchableOpacity
           activeOpacity={0.7}
-          onPress={handleTranferPoint}
+          onPress={() => setModalVisible(true)}
           className="bg-blue-500 px-6 rounded-md py-3 mt-7"
         >
           <Text className="text-white text-center text-lg">Tranfer</Text>
         </TouchableOpacity>
+
+        <ModalConfirmBase
+          modalVisible={modalVisible}
+          setModalVisible={setModalVisible}
+          onPress={handleTranferPoint}
+          context={"Are you sure want to tranfer?"}
+        />
       </ScrollView>
     </SafeAreaView>
   );

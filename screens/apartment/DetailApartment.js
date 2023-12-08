@@ -230,11 +230,11 @@ export default function DetailApartment() {
           {/* <StatusBar style="dark" /> */}
           {apartment && (
             <SafeAreaView className="flex-1 ">
-              <StatusBar style="light" hidden={false} animated />
+              <StatusBar style="dark" hidden={false} animated />
               <ScrollView>
                 <TouchableOpacity
                   onPress={() => navigation.goBack()}
-                  className="absolute top-2 left-2 z-10"
+                  className="absolute top-10 left-2 z-10"
                 >
                   <View className="bg-slate-50 rounded-full px-3 py-3 opacity-40">
                     <Ionicons name="arrow-back" size={25} />
@@ -407,10 +407,18 @@ export default function DetailApartment() {
                     Address
                   </Text>
 
-                  <View>
-                    {/* <MapApartmentDetail apartment={apartment} /> */}
-                  </View>
+                  {apartment ? (
+                    <View>
+                      {/* <MapApartmentDetail
+                        latitude={apartment?.latitude}
+                        longitude={apartment?.longitude}
+                      /> */}
+                    </View>
+                  ) : (
+                    <View></View>
+                  )}
                 </View>
+
                 <View className="px-4 bg-white mt-2 py-3">
                   {/* <View className="flex flex-row ">
             <Text className="text-[17px] font-bold">Acreage:</Text>

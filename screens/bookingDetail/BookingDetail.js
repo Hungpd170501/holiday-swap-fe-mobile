@@ -82,14 +82,8 @@ export default function BookingDetail() {
       ratingType: value,
     };
     dispatch(createRatingBooking(userProfile.userId, id, data));
+    setVisibleRating(false);
   };
-
-  useEffect(() => {
-    if (success) {
-      toggleBottomNavigationRating();
-    }
-  }, [success, error]);
-
   return (
     <Fragment>
       {loading ? (

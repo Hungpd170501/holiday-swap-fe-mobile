@@ -24,10 +24,6 @@ export default function TabViewHome(props) {
   const { loading, apartments } = useSelector((state) => state.apartments);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getApartments());
-  }, [dispatch]);
-
   useFocusEffect(
     useCallback(() => {
       dispatch(getApartments());

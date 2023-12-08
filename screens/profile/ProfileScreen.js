@@ -44,7 +44,7 @@ export default function ProfileScreen() {
       <View className="bg-blue-500 w-full h-[100px] justify-between flex flex-row items-center px-5">
         <View className="flex flex-row items-center gap-8">
           <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Ionicons name="arrow-back-outline" size={30} color="white" />
+            <Ionicons name="arrow-back-outline" size={20} color="white" />
           </TouchableOpacity>
           <Text className="text-[20px] text-white">Profile</Text>
         </View>
@@ -95,8 +95,8 @@ export default function ProfileScreen() {
               className="flex flex-row items-center justify-between py-4 border-b border-slate-200"
             >
               <View className="flex flex-row items-center gap-2">
-                <EvilIcons name="user" size={40} color="black" />
-                <Text className="text-xl font-bold">Edit account</Text>
+                <EvilIcons name="user" size={35} color="black" />
+                <Text className="text-lg">Edit account</Text>
               </View>
               <Octicons name="chevron-right" size={24} color="black" />
             </TouchableOpacity>
@@ -108,8 +108,8 @@ export default function ProfileScreen() {
               className="flex flex-row items-center justify-between py-4 pl-2 border-b border-slate-200"
             >
               <View className="flex flex-row items-center gap-2">
-                <AntDesign name="wallet" size={30} color="black" />
-                <Text className="text-xl font-bold">Wallet</Text>
+                <AntDesign name="wallet" size={20} color="black" />
+                <Text className="text-lg">Wallet</Text>
               </View>
               <Octicons name="chevron-right" size={24} color="black" />
             </TouchableOpacity>
@@ -123,10 +123,10 @@ export default function ProfileScreen() {
               <View className="flex flex-row items-center gap-2">
                 <MaterialCommunityIcons
                   name="clipboard-list-outline"
-                  size={30}
+                  size={20}
                   color="black"
                 />
-                <Text className="text-xl font-bold">Booking history</Text>
+                <Text className="text-lg">Booking history</Text>
               </View>
               <Octicons name="chevron-right" size={24} color="black" />
             </TouchableOpacity>
@@ -140,10 +140,10 @@ export default function ProfileScreen() {
               <View className="flex flex-row items-center gap-2">
                 <MaterialCommunityIcons
                   name="home-city-outline"
-                  size={30}
+                  size={20}
                   color="black"
                 />
-                <Text className="text-xl font-bold">Your Apartment </Text>
+                <Text className="text-lg">Your Apartment </Text>
               </View>
               <Octicons name="chevron-right" size={24} color="black" />
             </TouchableOpacity>
@@ -155,8 +155,8 @@ export default function ProfileScreen() {
               className="flex flex-row items-center justify-between py-4 pl-2"
             >
               <View className="flex flex-row items-center gap-2">
-                <Octicons name="list-unordered" size={30} color="black" />
-                <Text className="text-xl font-bold">Owner booking </Text>
+                <Octicons name="list-unordered" size={20} color="black" />
+                <Text className="text-lg">Owner booking </Text>
               </View>
               <Octicons name="chevron-right" size={24} color="black" />
             </TouchableOpacity>
@@ -171,10 +171,8 @@ export default function ProfileScreen() {
               className="flex flex-row items-center justify-between py-4 pl-2"
             >
               <View className="flex flex-row items-center gap-2">
-                <Ionicons name="help-circle-outline" size={30} />
-                <Text className="text-xl font-bold">
-                  Contact customer service
-                </Text>
+                <Ionicons name="help-circle-outline" size={20} />
+                <Text className="text-lg">Contact customer service</Text>
               </View>
               <Octicons name="chevron-right" size={24} color="black" />
             </TouchableOpacity>
@@ -184,17 +182,17 @@ export default function ProfileScreen() {
           <Text className="text-3xl font-bold mb-3 mt-6">Discover</Text>
           <View className=" flex flex-col gap-1">
             {/* posting */}
-            <TouchableOpacity
+            {/* <TouchableOpacity
               activeOpacity={0.7}
               onPress={() => navigation.navigate("PostBlog")}
               className="flex flex-row items-center justify-between py-4 pl-2 border-b border-slate-200"
             >
               <View className="flex flex-row items-center gap-2">
-                <Octicons name="note" size={30} />
-                <Text className="text-xl font-bold">Posting about travel</Text>
+                <Octicons name="note" size={20} />
+                <Text className="text-lg">Posting about travel</Text>
               </View>
               <Octicons name="chevron-right" size={24} color="black" />
-            </TouchableOpacity>
+            </TouchableOpacity> */}
 
             {/* Community travel */}
             <TouchableOpacity
@@ -202,14 +200,14 @@ export default function ProfileScreen() {
               className="flex flex-row items-center justify-between py-4 pl-2"
             >
               <View className="flex flex-row items-center gap-2">
-                <Ionicons name="people-outline" size={30} />
-                <Text className="text-xl font-bold">Comunity travel</Text>
+                <Ionicons name="people-outline" size={20} />
+                <Text className="text-lg">Blog travel</Text>
               </View>
               <Octicons name="chevron-right" size={24} color="black" />
             </TouchableOpacity>
           </View>
 
-          <Text className="text-3xl font-bold mb-3 mt-6">
+          {/* <Text className="text-3xl font-bold mb-3 mt-6">
             Setting and Juridical
           </Text>
           <View className=" flex flex-col gap-1">
@@ -218,12 +216,12 @@ export default function ProfileScreen() {
               className="flex flex-row items-center justify-between py-4 pl-2"
             >
               <View className="flex flex-row items-center gap-2">
-                <AntDesign name="setting" size={30} />
-                <Text className="text-xl font-bold">Setting</Text>
+                <AntDesign name="setting" size={20} />
+                <Text className="text-lg">Setting</Text>
               </View>
               <Octicons name="chevron-right" size={24} color="black" />
             </TouchableOpacity>
-          </View>
+          </View> */}
           <Text className="text-3xl font-bold mb-3 mt-6">Partner</Text>
           <View className=" flex flex-col gap-1">
             <TouchableOpacity
@@ -232,8 +230,8 @@ export default function ProfileScreen() {
               className="flex flex-row items-center justify-between py-4 pl-2"
             >
               <View className="flex flex-row items-center gap-2">
-                <MaterialCommunityIcons name="home-plus-outline" size={30} />
-                <Text className="text-xl font-bold">Add apartment</Text>
+                <MaterialCommunityIcons name="home-plus-outline" size={20} />
+                <Text className="text-lg">Add apartment</Text>
               </View>
               <Octicons name="chevron-right" size={24} color="black" />
             </TouchableOpacity>
