@@ -144,7 +144,7 @@ export const forgotPassword = (email) => async (dispatch) => {
 
     const { data } = await axios.post(`/api/v1/password/forgot`, email, config);
 
-    dispatch({ type: FORGOT_PASSWORD_SUCCESS, payload: data.message });
+    dispatch({ type: FORGOT_PASSWORD_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
       type: FORGOT_PASSWORD_FAIL,

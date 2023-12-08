@@ -35,24 +35,29 @@ export default function InputDateComponents({
     } else {
       setEndDate(null);
       setStartDate(value);
+    }
+  };
 
+  useEffect(() => {
+    if (startDate) {
+      let timeBooked = apartment.timeHasBooked;
       timeBooked.forEach((element) => {
         let checkIn = new Date(element.checkIn);
         let checkOut = new Date(element.checkOut);
-        if (startDate > checkIn) {
+        if (new Date(startDate).getTime() > checkIn.getTime()) {
           const result = dateRangeOut.filter(
             (date) => date.getTime() != checkOut.getTime()
           );
-          dispatch(getDateRangeOut([...result, ...[checkIn]]));
+          dispatch(getDateRangeOut([...result, checkIn]));
         } else if (startDate < checkIn) {
           const result = dateRangeOut.filter(
             (date) => date.getTime() != checkIn.getTime()
           );
-          dispatch(getDateRangeOut([...result, ...[checkOut]]));
+          dispatch(getDateRangeOut([...result, checkOut]));
         }
       });
     }
-  };
+  }, [startDate, apartment]);
 
   useEffect(() => {
     if (startDate && endDate) {
