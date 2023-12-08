@@ -25,6 +25,7 @@ import { CREATE_BOOKING_RESET } from "../../redux/constants/bookingConstants";
 import { Fragment } from "react";
 import Loading from "../../components/Loading";
 import validator from "validator";
+import ModalConfirmBase from "./../../components/modal/ModalConfirmBase";
 
 export default function InputInfomationScreen() {
   const navigation = useNavigation();
@@ -198,10 +199,12 @@ export default function InputInfomationScreen() {
   useEffect(() => {
     dispatch(loadUser());
     if (error) {
+      setVisibleModal(false);
       console.log("Error booking", error);
     }
 
     if (success) {
+      setVisibleModal(false);
       dispatch({ type: CREATE_BOOKING_RESET });
       navigation.navigate("BookingConfirm", {
         apartmentBooking: apartmentBooking,
@@ -598,6 +601,13 @@ export default function InputInfomationScreen() {
                 </View>
               </View>
             </View>
+
+            <ModalConfirmBase
+              context={"Are you sure want to booking"}
+              modalVisible={visibleModal}
+              setModalVisible={setVisibleModal}
+              onPress={handleBooking}
+            />
           </ScrollView>
           <View className="border-t bg-white border-gray-300 flex flex-row items-center justify-between px-3 h-16">
             <View className="w-[48%]">
@@ -615,12 +625,10 @@ export default function InputInfomationScreen() {
             </View>
             <View className="w-[48%]">
               <TouchableOpacity
-                onPress={handleBooking}
+                onPress={() => setVisibleModal(true)}
                 className="bg-blue-500 py-3 rounded-md"
               >
-                <Text className="text-white text-2xl text-center">
-                  Next step
-                </Text>
+                <Text className="text-white text-2xl text-center">Booking</Text>
               </TouchableOpacity>
             </View>
           </View>

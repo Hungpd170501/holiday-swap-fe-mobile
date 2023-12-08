@@ -65,6 +65,7 @@ import Tranfer from "../screens/tranfer/Tranfer";
 import { Client } from "@stomp/stompjs";
 import { stompContext, StompEventTypes, withSocket } from "../services/socket";
 import * as Notifications from "expo-notifications";
+import ChangePassword from "../screens/changePassword/ChangePassword";
 
 const Stack = createStackNavigator();
 
@@ -173,7 +174,7 @@ function Navigation() {
               name="InputInfomationScreen"
               component={InputInfomationScreen}
             />
-
+            <Stack.Screen name="ChangePassword" component={ChangePassword} />
             <Stack.Screen name="SearchApartment" component={SearchApartment} />
             <Stack.Screen name="DetailApartment" component={DetailApartment} />
             <Stack.Screen name="Rating" component={Rating} />
@@ -256,6 +257,7 @@ function Navigation() {
               name="InputInfomationScreen"
               component={InputInfomationScreen}
             />
+            <Stack.Screen name="ChangePassword" component={ChangePassword} />
 
             <Stack.Screen name="SearchApartment" component={SearchApartment} />
             <Stack.Screen name="DetailApartment" component={DetailApartment} />

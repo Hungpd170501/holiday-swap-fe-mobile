@@ -221,6 +221,8 @@ export default function DetailApartment() {
     }, [dispatch, dateRangeDefault])
   );
 
+  console.log("Check apartment", apartment);
+
   return (
     <Fragment>
       {loading ? (
@@ -409,10 +411,14 @@ export default function DetailApartment() {
 
                   {apartment ? (
                     <View>
-                      {/* <MapApartmentDetail
-                        latitude={apartment?.latitude}
-                        longitude={apartment?.longitude}
-                      /> */}
+                      <Text className="text-neutral-500 dark:text-neutral-400 py-4 px-3">
+                        {apartment?.resort?.locationFormattedName}
+                      </Text>
+                      <MapApartmentDetail
+                        latitude={apartment?.resort?.latitude}
+                        longitude={apartment?.resort?.longitude}
+                        apartment={apartment}
+                      />
                     </View>
                   ) : (
                     <View></View>

@@ -101,6 +101,18 @@ export default function ProfileScreen() {
               <Octicons name="chevron-right" size={24} color="black" />
             </TouchableOpacity>
 
+            <TouchableOpacity
+              activeOpacity={0.7}
+              onPress={() => navigation.navigate("ChangePassword")}
+              className="flex flex-row items-center justify-between py-4 border-b border-slate-200"
+            >
+              <View className="flex flex-row items-center gap-2">
+                <AntDesign name="unlock" size={30} color="black" />
+                <Text className="text-lg">Change password</Text>
+              </View>
+              <Octicons name="chevron-right" size={24} color="black" />
+            </TouchableOpacity>
+
             {/* Wallet */}
             <TouchableOpacity
               activeOpacity={0.7}

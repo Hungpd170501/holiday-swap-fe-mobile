@@ -15,6 +15,9 @@ import {
   SEARCH_ALL_USER_REQUEST,
   SEARCH_ALL_USER_SUCCESS,
   SEARCH_ALL_USER_FAIL,
+  RESET_PASSWORD_REQUEST,
+  RESET_PASSWORD_SUCCESS,
+  RESET_PASSWORD_FAIL,
 } from "../constants/userConstants";
 import * as SecureStore from "expo-secure-store";
 
@@ -150,27 +153,31 @@ export const forgotPassword = (email) => async (dispatch) => {
   }
 };
 
-// Reset Password
-// export const resetPassword = (token, passwords) => async (dispatch) => {
-//   try {
-//     dispatch({ type: RESET_PASSWORD_REQUEST });
+export const resetPassword = (email, password) => async (dispatch) => {
+  try {
+    dispatch({ type: RESET_PASSWORD_REQUEST });
 
-//     const config = { headers: { "Content-Type": "application/json" } };
+    const config = { headers: { "Content-Type": "application/json" } };
 
-//     const { data } = await axios.put(
-//       `/api/v1/password/reset/${token}`,
-//       passwords,
-//       config
-//     );
+    let token;
+    await SecureStore.getItemAsync("secure_token").then((value) => {
+      token = value;
+    });
 
-//     dispatch({ type: RESET_PASSWORD_SUCCESS, payload: data.success });
-//   } catch (error) {
-//     dispatch({
-//       type: RESET_PASSWORD_FAIL,
-//       payload: error.response.data.message,
-//     });
-//   }
-// };
+    const { data } = await axios.put(
+      `https://holiday-swap.click/api/v1/auth/reset-password`,
+      { token, email, password },
+      config
+    );
+
+    dispatch({ type: RESET_PASSWORD_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: RESET_PASSWORD_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
 
 export const searchAllUser = () => async (dispatch) => {
   try {
