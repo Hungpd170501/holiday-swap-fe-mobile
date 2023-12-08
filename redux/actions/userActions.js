@@ -12,6 +12,9 @@ import {
   FORGOT_PASSWORD_REQUEST,
   FORGOT_PASSWORD_SUCCESS,
   FORGOT_PASSWORD_FAIL,
+  SEARCH_ALL_USER_REQUEST,
+  SEARCH_ALL_USER_SUCCESS,
+  SEARCH_ALL_USER_FAIL,
 } from "../constants/userConstants";
 import * as SecureStore from "expo-secure-store";
 
@@ -168,3 +171,20 @@ export const forgotPassword = (email) => async (dispatch) => {
 //     });
 //   }
 // };
+
+export const searchAllUser = () => async (dispatch) => {
+  try {
+    dispatch({ type: SEARCH_ALL_USER_REQUEST });
+
+    const { data } = await axios.get(
+      `https://holiday-swap.click/api/v1/users/search?status=ACTIVE&roleIds=2&limit=99999&offset=0&sortProps=id&sortDirection=asc`
+    );
+
+    dispatch({ type: SEARCH_ALL_USER_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: SEARCH_ALL_USER_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};

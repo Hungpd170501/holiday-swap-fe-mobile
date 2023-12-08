@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import {
   forgotPasswordReducer,
   profileReducer,
+  searchAllUserReducers,
   userReducers,
 } from "./reducers/userReducers";
 import { depositReducers } from "./reducers/depositReducers";
@@ -23,7 +24,10 @@ import {
   ownershipDetailsReducer,
   ownershipReducers,
 } from "./reducers/ownershipReducer";
-import walletReducers from "./reducers/walletReducers";
+import {
+  walletReducers,
+  tranferPointReducers,
+} from "./reducers/walletReducers";
 import blogReducers, {
   blogDetailsReducer,
   dislikePostReducer,
@@ -74,6 +78,8 @@ export const store = configureStore({
     // dislikePost: dislikePostReducer,
     dateRangeDefault: dateRangeDefaultReducer,
     dateOut: dateRangeOutReducer,
+    searchAllUsers: searchAllUserReducers,
+    tranferPoint: tranferPointReducers,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

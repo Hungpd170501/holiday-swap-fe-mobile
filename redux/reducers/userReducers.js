@@ -19,6 +19,9 @@ import {
   RESET_PASSWORD_REQUEST,
   RESET_PASSWORD_SUCCESS,
   RESET_PASSWORD_FAIL,
+  SEARCH_ALL_USER_REQUEST,
+  SEARCH_ALL_USER_SUCCESS,
+  SEARCH_ALL_USER_FAIL,
 } from "../constants/userConstants";
 
 export const userReducers = (state = { user: {}, userProfile: {} }, action) => {
@@ -152,6 +155,33 @@ export const forgotPasswordReducer = (state = {}, action) => {
       return {
         ...state,
         loading: false,
+        error: action.payload,
+      };
+
+    default:
+      return state;
+  }
+};
+
+export const searchAllUserReducers = (state = { usersSearch: [] }, action) => {
+  switch (action.type) {
+    case SEARCH_ALL_USER_REQUEST:
+      return {
+        loading: true,
+      };
+
+    case SEARCH_ALL_USER_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        usersSearch: action.payload.content,
+      };
+
+    case SEARCH_ALL_USER_FAIL:
+      return {
+        ...state,
+        loading: false,
+        usersSearch: null,
         error: action.payload,
       };
 
