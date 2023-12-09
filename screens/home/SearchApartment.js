@@ -39,8 +39,6 @@ export default function SearchApartment(props) {
     navigation.navigate("root");
   };
 
-  console.log("Check apartments", aparments);
-
   const handleChangeResort = (value) => {
     setResortId(value);
   };

@@ -89,8 +89,6 @@ export default function DetailApartment() {
     updateCheckInAndOutMaps();
   }, [apartment.timeHasBooked]);
 
-  console.log("Check id", id);
-
   useEffect(() => {
     dispatch(getAparmentDetail(id));
   }, [dispatch, id]);
@@ -220,8 +218,6 @@ export default function DetailApartment() {
       }
     }, [dispatch, dateRangeDefault])
   );
-
-  console.log("Check apartment", apartment);
 
   return (
     <Fragment>

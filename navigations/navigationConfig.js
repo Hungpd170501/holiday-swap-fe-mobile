@@ -139,7 +139,6 @@ function Navigation() {
         {authen ? (
           <Fragment>
             <Stack.Screen name="Loading" component={LoadingScreen} />
-
             <Stack.Screen name="root" component={TabNavigation} />
             <Stack.Screen name="SignInScreen" component={SignInScreen} />
 
@@ -238,96 +237,6 @@ function Navigation() {
           </Fragment>
         ) : (
           <Fragment>
-            <Stack.Screen name="root" component={TabNavigation} />
-            <Stack.Screen name="Home" component={HomeScreen} />
-            <Stack.Screen name="Profile" component={ProfileScreen} />
-
-            {/* <Stack.Screen name="Loading" component={LoadingScreen} /> */}
-            <Stack.Screen
-              name="OwnerDetailApartment"
-              component={OwnerDetailApartment}
-            />
-            <Stack.Screen name="YourApartment" component={YourApartment} />
-            <Stack.Screen name="StepAdd2" component={StepAdd2} />
-            <Stack.Screen name="SpecialReq" component={SpecialReq} />
-            <Stack.Screen name="Recharge" component={Recharge} />
-            <Stack.Screen name="YourTrip" component={YourTrip} />
-            <Stack.Screen name="VNPAYPayment" component={VNPAYPaymentScreen} />
-            <Stack.Screen name="Tranfer" component={Tranfer} />
-            <Stack.Screen name="StartAdd" component={StartAdd} />
-            <Stack.Screen name="StepAdd3" component={StepAdd3} />
-            <Stack.Screen name="StepAdd4" component={StepAdd4} />
-            <Stack.Screen
-              name="InputInfomationScreen"
-              component={InputInfomationScreen}
-            />
-            <Stack.Screen name="ChangePassword" component={ChangePassword} />
-            <Stack.Screen
-              name="OwnerBookingDetail"
-              component={OwnerBookingDetail}
-            />
-
-            <Stack.Screen name="SearchApartment" component={SearchApartment} />
-            <Stack.Screen name="DetailApartment" component={DetailApartment} />
-            <Stack.Screen name="BookingDetail" component={BookingDetail} />
-            <Stack.Screen name="Rating" component={Rating} />
-            <Stack.Screen name="ManageAccount" component={ManageAccount} />
-            <Stack.Screen name="VerifyOTP" component={VerifyOPTScreen} />
-
-            <Stack.Screen name="DetailProperty" component={DetailProperty} />
-            <Stack.Screen name="Landing" component={Landing} />
-            <Stack.Screen name="StepAdd1" component={StepAdd1} />
-            <Stack.Screen name="WellcomeBackAdd" component={WellcomeBackAdd} />
-            <Stack.Screen name="GuestToMember" component={GuestToMember} />
-            <Stack.Screen name="ChatItemScreen" component={ChatItemScreen} />
-            <Stack.Screen name="ImageFullResort" component={ImageFullResort} />
-            <Stack.Screen name="HelpCenter" component={HelpCenter} />
-            <Stack.Screen name="Wallet" component={Wallet} />
-            {withSocket(
-              <Stack.Screen
-                name="Notification"
-                component={NotificationScreen}
-              />
-            )}
-            <Stack.Screen
-              name="ManageRevervation"
-              component={ManageRevervation}
-            />
-            <Stack.Screen name="BookedApartment" component={BookedApartment} />
-            <Stack.Screen name="BookingConfirm" component={BookingConfirm} />
-            <Stack.Screen name="PaymentScreen" component={PaymentScreen} />
-            <Stack.Screen
-              name="ImageFullApartment"
-              component={ImageFullApartment}
-            />
-            <Stack.Screen
-              name="ImageFullProperty"
-              component={ImageFullProperty}
-            />
-            <Stack.Screen
-              name="HotelDetailScreen"
-              component={HotelDetailScreen}
-            />
-            <Stack.Screen name="ChatScreen" component={ChatScreen} />
-
-            <Stack.Screen name="ResortList" component={ResortList} />
-            <Stack.Screen name="DetailResort" component={DetailResort} />
-            <Stack.Screen name="ListProperty" component={ListProperty} />
-            <Stack.Screen
-              name="CreateAccountScreen"
-              component={CreateAccountScreen}
-            />
-            <Stack.Screen
-              name="SearchDestinationScreen"
-              component={SearchDestinationScreen}
-            />
-            {/* <Stack.Screen name="WelcomeScreen" component={OnboardingScreen} /> */}
-            <Stack.Screen
-              name="WelcomeBackScreen"
-              component={WelcomeBackScreen}
-            />
-
-            {/* <Stack.Screen name="root" component={TabNavigation} /> */}
             <Stack.Screen name="SignInScreen" component={SignInScreen} />
             <Stack.Screen name="SignUp" component={SignUpScreen} />
             <Stack.Screen
