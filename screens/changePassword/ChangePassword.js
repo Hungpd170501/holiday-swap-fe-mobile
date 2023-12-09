@@ -30,21 +30,18 @@ const ChangePassword = () => {
   const [modalVisible, setModalVisible] = useState(false);
 
   const { userProfile } = useSelector((state) => state.user);
-  const { success } = useSelector((state) => state.forgotPassword);
+  const { success, error } = useSelector((state) => state.forgotPassword);
 
+  const [oldPassword, setOldPassword] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const dispatch = useDispatch();
 
   const handleResetPassword = () => {
-    dispatch(resetPassword(userProfile.email, password));
+    dispatch(resetPassword(oldPassword, password, confirmPassword));
+    setModalVisible(false);
   };
-
-  useFocusEffect(
-    useCallback(() => {
-      dispatch(loadUser());
-    }, [dispatch])
-  );
 
   useEffect(() => {
     const token = async () => {
@@ -61,10 +58,11 @@ const ChangePassword = () => {
           text1: "Change password",
           text2: error,
         });
+        dispatch({ type: RESET_PASSWORD_RESET });
       }
     };
     token();
-  }, [success, navigation, dispatch]);
+  }, [success, navigation, error, dispatch]);
 
   return (
     <SafeAreaView className="flex-1">
@@ -76,12 +74,13 @@ const ChangePassword = () => {
       </View>
       <ScrollView className="px-4">
         <View className="flex flex-col pt-5">
-          <Text className="text-lg font-bold">Email</Text>
+          <Text className="text-lg font-bold">Old Password</Text>
           <TextInput
-            editable={false}
-            value={userProfile?.email}
+            secureTextEntry={true}
+            value={oldPassword}
+            onChangeText={(text) => setOldPassword(text)}
             className="w-[100%] p-2 rounded-md border border-slate-400 text-black"
-            placeholder="Email"
+            placeholder="Old password"
           />
         </View>
 
@@ -89,9 +88,21 @@ const ChangePassword = () => {
           <Text className="text-lg font-bold">New Password</Text>
           <TextInput
             secureTextEntry={true}
+            value={password}
             onChangeText={(text) => setPassword(text)}
             className="w-[100%] p-2 rounded-md border border-slate-400"
             placeholder="New password"
+          />
+        </View>
+
+        <View className="flex flex-col pt-5">
+          <Text className="text-lg font-bold">Confirm New Password</Text>
+          <TextInput
+            secureTextEntry={true}
+            value={confirmPassword}
+            onChangeText={(text) => setConfirmPassword(text)}
+            className="w-[100%] p-2 rounded-md border border-slate-400"
+            placeholder="Confirm New password"
           />
         </View>
 
