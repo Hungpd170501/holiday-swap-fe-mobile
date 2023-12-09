@@ -66,6 +66,7 @@ import { Client } from "@stomp/stompjs";
 import { stompContext, StompEventTypes, withSocket } from "../services/socket";
 import * as Notifications from "expo-notifications";
 import ChangePassword from "../screens/changePassword/ChangePassword";
+import OwnerBookingDetail from "../screens/ownerBookingDetail/OwnerBookingDetail";
 
 const Stack = createStackNavigator();
 
@@ -192,7 +193,10 @@ function Navigation() {
             <Stack.Screen name="Wallet" component={Wallet} />
             <Stack.Screen name="Notification" component={NotificationScreen} />
             <Stack.Screen name="OwnerBooking" component={OwnerBooking} />
-
+            <Stack.Screen
+              name="OwnerBookingDetail"
+              component={OwnerBookingDetail}
+            />
             <Stack.Screen
               name="ManageRevervation"
               component={ManageRevervation}
@@ -258,6 +262,10 @@ function Navigation() {
               component={InputInfomationScreen}
             />
             <Stack.Screen name="ChangePassword" component={ChangePassword} />
+            <Stack.Screen
+              name="OwnerBookingDetail"
+              component={OwnerBookingDetail}
+            />
 
             <Stack.Screen name="SearchApartment" component={SearchApartment} />
             <Stack.Screen name="DetailApartment" component={DetailApartment} />

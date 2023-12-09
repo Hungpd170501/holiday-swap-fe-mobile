@@ -13,6 +13,7 @@ import {
 } from "./reducers/apartmentReducers";
 import {
   bookingDetailsReducer,
+  cancelBookingReducer,
   historyBookingReducers,
   newBookingReducers,
   ownerBookingReducers,
@@ -80,6 +81,7 @@ export const store = configureStore({
     dateOut: dateRangeOutReducer,
     searchAllUsers: searchAllUserReducers,
     tranferPoint: tranferPointReducers,
+    cancelBooking: cancelBookingReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
