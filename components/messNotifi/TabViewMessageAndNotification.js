@@ -18,6 +18,7 @@ import {formatRelative} from "date-fns";
 import {fetchConversations, setConversationLoaded} from "../../redux/slices/conversationSlice";
 import ConversationApis from "../../apis/ConversationApis";
 import {UserApis} from "../../apis/UserApis";
+import DeleteChat from "../chatDelete";
 
 const getAvatarSource = (item, currentUser) => {
     const defaultAvatar = `https://ui-avatars.com/api/?name=${item.conversationName}`;
@@ -146,6 +147,7 @@ export default function TabViewMessageAndNotification() {
             case "Notifications":
                 return (
                     <View style={styles.shadow} className="flex-1 ">
+                        {/*<DeleteChat></DeleteChat>*/}
                         <ScrollView showsVerticalScrollIndicator={false}>
                             {notifications && (notifications?.length !== 0 ? (
                                 notifications?.map((item, index) => (
