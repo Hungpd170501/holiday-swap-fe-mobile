@@ -64,7 +64,7 @@ export default function FullHistoryTransaction() {
                     </Text>
                     <View className="flex flex-row items-center gap-1">
                       <Text className="text-[12px]">Wallet balance:</Text>
-                      <Text>{transaction.totalPoint}</Text>
+                      <Text>{transaction.totalPoint?.toFixed(2)}</Text>
                     </View>
                   </View>
                 </View>

@@ -139,7 +139,7 @@ export default function ManageAccount() {
           </TouchableOpacity>
         </View>
         <TouchableOpacity onPress={handleSaveProfile}>
-          <Text className="text-[20px] bg-blue-500 p-3 text-center text-white mx-2 my- font-bold">
+          <Text className="text-[20px] bg-blue-500 p-3 text-center text-white mx-2 mb-2 font-bold">
             Save
           </Text>
         </TouchableOpacity>

@@ -146,7 +146,7 @@ export default function Wallet() {
                                 <Text className="text-[12px]">
                                   Wallet balance:
                                 </Text>
-                                <Text>{transaction.totalPoint}</Text>
+                                <Text>{transaction.totalPoint.toFixed(2)}</Text>
                               </View>
                             </View>
                           </View>

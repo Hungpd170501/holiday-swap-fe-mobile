@@ -10,7 +10,7 @@ export default function BtnLoginGoogle() {
 
   return (
     <View className="flex items-center">
-      <TouchableOpacity className=" items-center justify-center border-[1px] border-collapse border-black w-[317] h-[58] rounded-3xl mb-[20px]">
+      {/* <TouchableOpacity className=" items-center justify-center border-[1px] border-collapse border-black w-[317] h-[58] rounded-3xl mb-[20px]">
         <View className="flex-row items-center">
           <Image
             className="-ml-[22px]"
@@ -18,8 +18,8 @@ export default function BtnLoginGoogle() {
           />
           <Text className="text-[16px] font-medium">Continue with Google</Text>
         </View>
-      </TouchableOpacity>
-      <TouchableOpacity className=" items-center justify-center border-[1px] border-collapse border-black w-[317] h-[58] rounded-3xl mb-[20px]">
+      </TouchableOpacity> */}
+      {/* <TouchableOpacity className=" items-center justify-center border-[1px] border-collapse border-black w-[317] h-[58] rounded-3xl mb-[20px]">
         <View className="flex-row items-center ">
           <Image
             className="mr-[8px]"
@@ -29,7 +29,7 @@ export default function BtnLoginGoogle() {
             Continue with Facebook
           </Text>
         </View>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
       <View className="flex-row py-3">
         <Text style={{ fontSize: 16 }}>Dont’t have an account?</Text>
         <TouchableOpacity

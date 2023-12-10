@@ -310,7 +310,7 @@ export default function DetailApartment() {
                       </Text>
                       <View className="py-2  ">
                         <Text className="text-black font-bold text-[17px]">
-                          Price for nights
+                          Price per nights
                         </Text>
                       </View>
                       <View className="flex flex-row items-center gap-1">
@@ -401,13 +401,13 @@ export default function DetailApartment() {
                 </View>
 
                 <View className="bg-white mt-2">
-                  <Text className="font-bold px-4 text-[18px] py-4">
+                  <Text className="font-bold px-4 text-[18px] pt-4">
                     Address
                   </Text>
 
                   {apartment ? (
                     <View>
-                      <Text className="text-neutral-500 dark:text-neutral-400 py-4 px-3">
+                      <Text className="text-neutral-500 dark:text-neutral-400 pb-4 px-3">
                         {apartment?.resort?.locationFormattedName}
                       </Text>
                       <MapApartmentDetail
@@ -432,6 +432,33 @@ export default function DetailApartment() {
                     <Text>{apartment?.property?.propertyDescription}</Text>
                   </View>
                   <View className="w-full bg-gray-300 h-[1px] my-4"></View>
+                  <View className="w-full">
+                    <Text className="text-[18px] font-bold mb-2">Owner: </Text>
+                    <View className="flex flex-row items-center justify-between">
+                      <View className="flex flex-row items-center gap-1">
+                        <Image
+                          className="rounded-full"
+                          style={{ width: 40, height: 40 }}
+                          source={{
+                            uri: apartment?.user?.avatar,
+                          }}
+                        />
+                        <View>
+                          <Text>{apartment?.user?.fullName}</Text>
+                          <Text className="text-[12px] text-green-500">
+                            Email verified
+                          </Text>
+                        </View>
+                      </View>
+                      <View>
+                        <TouchableOpacity className="bg-blue-500 px-2 py-2 rounded-md">
+                          <Text className="text-white">Contact with owner</Text>
+                        </TouchableOpacity>
+                      </View>
+                    </View>
+                  </View>
+                  <View className="w-full bg-gray-300 h-[1px] my-4"></View>
+
                   {/* <View className="flex flex-row items-center justify-between">
             <View>
               <Text className="text-[17px] font-bold my-2">The apartment is in good condition</Text>
@@ -443,7 +470,7 @@ export default function DetailApartment() {
                   <View>
                     <View className="flex flex-col">
                       <Text className="text-[20px] font-bold">Amenity</Text>
-                      <View className="px-4 bg-white mt-2 py-3">
+                      <View className=" bg-white mt-2 py-3">
                         <View style={styles.container}>
                           {/* {apartment.property?.inRoomAmenityType?.map((item, index) => ( */}
                           {apartment?.property?.inRoomAmenityType
