@@ -232,7 +232,7 @@ export default function InputInfomationScreen() {
             <Text className="ml-8 text-[20px] text-white">Confirm and pay</Text>
           </View>
           <ScrollView className="flex-1">
-            <View className="flex flex-row gap-5 bg-white px-4  py-5">
+            <View className="flex flex-row gap-5 bg-white px-4 py-5">
               <Image
                 source={{
                   uri: `${apartmentBooking?.property?.propertyImage[0].link}`,
@@ -240,11 +240,11 @@ export default function InputInfomationScreen() {
                 className="h-40 w-44 rounded-lg"
               />
 
-              <View className="flex flex-col justify-between">
+              <View className="flex flex-col justify-around">
                 <Text className="text-base font-bold w-[80%]">
                   {apartmentBooking?.property?.resort.resortName}
                 </Text>
-                <Text className="text-lg font-bold w-[40%]">
+                <Text className="text-lg font-bold w-[90%]">
                   {apartmentBooking?.property?.propertyName}
                 </Text>
                 <View className="flex flex-row items-center">

@@ -99,8 +99,9 @@ export default function BlogDetail() {
             </View>
           </View>
           <Text className="py-5">Title: {blog.title}</Text>
-
-          <HTML source={{ html: blog.content }} />
+          <View className="mb-5">
+            <HTML source={{ html: blog.content }} />
+          </View>
         </ScrollView>
       ) : (
         <Text>Loading...</Text>

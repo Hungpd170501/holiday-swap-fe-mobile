@@ -94,6 +94,7 @@ export default function SignInScreen() {
         >
           <Text className="text-white text-lg font-bold">Sign In</Text>
         </TouchableOpacity>
+        <BtnLoginGoogle />
       </View>
     </ScrollView>
   );

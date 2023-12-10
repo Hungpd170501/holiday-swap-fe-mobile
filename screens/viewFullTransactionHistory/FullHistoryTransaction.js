@@ -50,7 +50,7 @@ export default function FullHistoryTransaction() {
                 key={index}
                 className="flex flex-row w-full justify-between mt-4 py-2 border border-gray-200 rounded-md "
               >
-                <View className="flex flex-row gap-2 items-center">
+                <View className="flex flex-row gap-2 items-center w-[80%]">
                   <View>
                     <Image
                       className="w-[30px] h-[30px] rounded-full"
@@ -64,11 +64,11 @@ export default function FullHistoryTransaction() {
                     </Text>
                     <View className="flex flex-row items-center gap-1">
                       <Text className="text-[12px]">Wallet balance:</Text>
-                      <Text>{transaction.totalPoint}</Text>
+                      <Text>{transaction.totalPoint?.toFixed(2)}</Text>
                     </View>
                   </View>
                 </View>
-                <View className="flex flex-row items-center">
+                <View className="flex flex-row items-center absolute right-0">
                   <View>
                     <Text className="mt-8 font-bold">{transaction.amount}</Text>
                   </View>
