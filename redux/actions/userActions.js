@@ -49,14 +49,14 @@ export const loadUser = () => async (dispatch) => {
       token = value;
     });
 
-    // console.log("Check token", token);
-
     const config = { headers: { Authorization: `Bearer ${token}` } };
 
     const { data } = await axios.get(
       `https://holiday-swap.click/api/v1/users/profile`,
       config
     );
+
+    console.log("Check data", data);
 
     dispatch({ type: LOAD_USER_SUCCESS, payload: data });
   } catch (error) {

@@ -44,11 +44,8 @@ export default function SignInScreen() {
         text2: error,
       });
     }
-
-    console.log("Check user in sign in screen", user);
   }, [isAuthenticated, navigation, error, user]);
 
-  console.log("chekc error in screen", error);
   return (
     <ScrollView>
       <View className="flex justify-center items-center">

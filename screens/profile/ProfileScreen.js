@@ -54,17 +54,22 @@ export default function ProfileScreen() {
       </View>
       <ScrollView>
         <View className="flex flex-col h-[200px] w-full absolute bg-blue-500 items-center">
-          {userProfile?.avatar ? (
+          {userProfile?.avatar !== null ? (
             <Image
               className="w-[80px] h-[80px] rounded-full"
               source={{ uri: userProfile?.avatar }}
             />
           ) : (
-            <Image className="w-[80px] h-[80px] rounded-full" />
+            <Image
+              className="w-[80px] h-[80px] rounded-full"
+              source={require("../../assets/images/avatar.png")}
+            />
           )}
 
           <Text className="text-[30px] font-bold text-white py-2">
-            {userProfile?.fullName}
+            {userProfile?.fullName
+              ? userProfile?.fullName
+              : userProfile?.username}
           </Text>
           {/* <Text className="text-yellow-400">{userProfile?.role.name}</Text> */}
         </View>
