@@ -27,17 +27,17 @@ export default function ChatItemScreen() {
     const [token, setToken] = useState(null);
     const [loading, setLoading] = useState(false);
     const {user, userProfile} = useSelector((state) => state.user);
-
+    const [sending, setSending] = useState(false)
 
     const scrollViewRef = useRef();
 
-    const getToken = () => {
-        return SecureStore.getItemAsync("secure_token");
+    const getToken = async () => {
+        return await SecureStore.getItemAsync("secure_token");
     };
 
     const scrollToBottom = () => {
         if (scrollViewRef.current) {
-            scrollViewRef?.current?.scrollToEnd({ animated: true });
+            scrollViewRef?.current?.scrollToEnd({animated: true});
         }
     };
 
@@ -53,16 +53,15 @@ export default function ChatItemScreen() {
     );
 
     useEffect(() => {
-        if(user){
-            const accessToken = user.access_token;
+        const tokenPromise = getToken().then((res) => {
             setLoading(true);
-            // console.log("TOKEN", accessToken);
-            if (accessToken) {
-                // console.log("SOCKCET CREATING...");
+            console.log(res);
+            console.log("SOCKCET CREATING...");
+            if (res) {
                 const updatedClient = new Client({
                     brokerURL: 'https:///api.holiday-swap.click/websocket',
                     connectHeaders: {
-                        ['Authorization']: `${accessToken}`,
+                        ['Authorization']: `${res}`,
                     },
                     reconnectDelay: 2000,
                     heartbeatIncoming: 4000,
@@ -74,20 +73,20 @@ export default function ChatItemScreen() {
                 });
                 updatedClient.onConnect = () => {
                     updatedClient.subscribe(`/topic/${conversationId}`, (message) => {
-                        const newMessage =  JSON.parse(message.body);
+                        const newMessage = JSON.parse(message.body);
                         setMessages((current) => {
                             return [newMessage, ...current];
                         })
-                        scrollViewRef?.current?.scrollToEnd({ animated: true });
+                        scrollViewRef?.current?.scrollToEnd({animated: true});
                     }, {
-                        ['Authorization']: `${accessToken}`,
+                        ['Authorization']: `${res}`,
                     });
                 };
                 updatedClient.activate();
                 setLoading(false);
                 setClient(updatedClient);
             }
-        }
+        });
         return () => {
             if (client) {
                 client.deactivate();
@@ -95,22 +94,22 @@ export default function ChatItemScreen() {
                 // console.log("Socket closed");
             }
         };
-    }, [user]);
+    }, []);
 
 
     const handleSendMessage = () => {
         if (textMessage && textMessage?.trim().length > 0) {
+            setSending(true);
             const formData = new FormData();
             formData.append('text', textMessage);
-            formData.append('authorId', String(currentUser?.userId)); // Convert to string
+            formData.append('authorId', String(currentUser?.userId));
+            setTextMessage('');
             MessageApis.sendMessage(conversationId, formData)
-                .then(res => {
-                    setTextMessage('');
-                })
                 .catch(error => {
                     console.error('Error sending message:', error);
                 });
         }
+        setSending(false);
     };
 
     const handleTextChange = (text) => {
@@ -162,14 +161,14 @@ export default function ChatItemScreen() {
                             </TouchableOpacity>
                             <TextInput
                                 className="w-[70%] bg-transparent"
-                                value={textMessage??""}
+                                value={textMessage ?? ""}
                                 placeholder="Write a message"
                                 onChangeText={handleTextChange}
                             />
                         </View>
                         <View>
-                            <TouchableOpacity onPress={handleSendMessage}
-                                className="bg-blue-300 rounded-full px-1 py-1 flex flex-row items-center justify-center">
+                            <TouchableOpacity onPress={handleSendMessage} disabled={sending}
+                                              className={`${sending ? 'bg-blue-300' : 'bg-blue-600'} rounded-full px-1 py-1 flex flex-row items-center justify-center`}>
                                 <Feather name="send" size={25} color="white"/>
                             </TouchableOpacity>
                         </View>
