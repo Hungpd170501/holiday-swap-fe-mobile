@@ -11,6 +11,7 @@ import { AntDesign, Ionicons } from "@expo/vector-icons";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import HTML from "react-native-render-html";
 import { format } from "date-fns";
+import { loadUser } from "../../redux/actions/userActions";
 
 export default function BlogDetail() {
   const navigation = useNavigation();
@@ -22,12 +23,21 @@ export default function BlogDetail() {
   const { loading, error, postLike, success } = useSelector(
     (state) => state.likePost
   );
+  const { userProfile } = useSelector((state) => state.user);
 
   const { dislikeSuccess } = useSelector((state) => state.dislikePost);
 
   useEffect(() => {
-    dispatch(getBlogDetails(id));
-  }, [dispatch, id]);
+    dispatch(loadUser());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (userProfile && (success || dislikeSuccess)) {
+      dispatch(getBlogDetails(id, userProfile.userId));
+    } else {
+      dispatch(getBlogDetails(id));
+    }
+  }, [dispatch, id, userProfile, success, dislikeSuccess]);
 
   const handleLikeClick = () => {
     dispatch(likePost(blog.id));
@@ -36,16 +46,6 @@ export default function BlogDetail() {
   const handleDislikePost = () => {
     dispatch(dislikePost(blog.id));
   };
-
-  useEffect(() => {
-    if (success) {
-      dispatch(getBlogDetails(id));
-    }
-
-    if (dislikeSuccess) {
-      dispatch(getBlogDetails(id));
-    }
-  }, [success, dislikeSuccess, dispatch, id]);
 
   return (
     <View className="flex-1">
@@ -76,8 +76,12 @@ export default function BlogDetail() {
                 activeOpacity={0.7}
                 className="flex flex-row items-center gap-1"
               >
-                <AntDesign name="like2" size={20} color="gray" />
-                <Text>{blog.likes}</Text>
+                <AntDesign
+                  name="like2"
+                  size={30}
+                  color={blog.liked === true ? "blue" : "gray"}
+                />
+                <Text className="text-lg">{blog.likes}</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
@@ -85,8 +89,12 @@ export default function BlogDetail() {
                 onPress={handleDislikePost}
                 className="flex flex-row items-center gap-1"
               >
-                <AntDesign name="dislike2" size={20} color="gray" />
-                <Text>{blog.dislikes}</Text>
+                <AntDesign
+                  name="dislike2"
+                  size={30}
+                  color={blog.disliked === true ? "red" : "gray"}
+                />
+                <Text className="text-lg">{blog.dislikes}</Text>
               </TouchableOpacity>
             </View>
           </View>

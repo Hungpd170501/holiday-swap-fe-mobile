@@ -97,18 +97,18 @@ export default function YourTrip() {
                   "It's time to dust off your luggage and start preparing for
                   your next adventure."
                 </Text>
+                <View className="w-[50%] mx-4 py-3">
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate("Home")}
+                    className="px-5 py-3 border border-gray-600 rounded-md"
+                  >
+                    <Text className="text-center text-[20px] font-bold">
+                      Start search
+                    </Text>
+                  </TouchableOpacity>
+                </View>
               </View>
             )}
-            <View className="w-[50%] mx-4 py-3">
-              <TouchableOpacity
-                onPress={() => navigation.navigate("Home")}
-                className="px-5 py-3 border border-gray-600 rounded-md"
-              >
-                <Text className="text-center text-[20px] font-bold">
-                  Start search
-                </Text>
-              </TouchableOpacity>
-            </View>
           </>
         )}
       </ScrollView>

@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import {
   forgotPasswordReducer,
   profileReducer,
+  searchAllUserReducers,
   userReducers,
 } from "./reducers/userReducers";
 import { depositReducers } from "./reducers/depositReducers";
@@ -12,6 +13,7 @@ import {
 } from "./reducers/apartmentReducers";
 import {
   bookingDetailsReducer,
+  cancelBookingReducer,
   historyBookingReducers,
   newBookingReducers,
   ownerBookingReducers,
@@ -23,13 +25,27 @@ import {
   ownershipDetailsReducer,
   ownershipReducers,
 } from "./reducers/ownershipReducer";
-import walletReducers from "./reducers/walletReducers";
+import {
+  walletReducers,
+  tranferPointReducers,
+} from "./reducers/walletReducers";
 import blogReducers, {
   blogDetailsReducer,
   dislikePostReducer,
   likePostReducer,
 } from "./reducers/blogReducers";
 import signupReducer from "./reducers/signupReducer";
+import {
+  dateRangeDefaultReducer,
+  dateRangeOutReducer,
+  dateRangeReducer,
+} from "./reducers/dateRangeReducers";
+import {
+  createRatingBookingReducer,
+  ratingsReducer,
+} from "./reducers/ratingReducers";
+import notificationReducer from "./slices/pushNotificationSlice";
+import conversationReducer from "./slices/conversationSlice";
 
 export const store = configureStore({
   reducer: {
@@ -55,8 +71,17 @@ export const store = configureStore({
     signup: signupReducer,
     forgotPassword: forgotPasswordReducer,
     detailOwnership: ownershipDetailsReducer,
-
+    dateRangeBooking: dateRangeReducer,
+    ratings: ratingsReducer,
+    createRatingBooking: createRatingBookingReducer,
+    pushNotification: notificationReducer,
+    conversation: conversationReducer,
     // dislikePost: dislikePostReducer,
+    dateRangeDefault: dateRangeDefaultReducer,
+    dateOut: dateRangeOutReducer,
+    searchAllUsers: searchAllUserReducers,
+    tranferPoint: tranferPointReducers,
+    cancelBooking: cancelBookingReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

@@ -10,6 +10,11 @@ import {
   GET_TRANSACTION_HISTORY_SUCCESS,
 } from "../constants/walletConstants";
 import * as SecureStore from "expo-secure-store";
+import {
+  TRANFER_FAIL,
+  TRANFER_REQUEST,
+  TRANFER_SUCCESS,
+} from "../constants/tranferConstants";
 
 export const getTotalPoint = () => {
   return async (dispatch) => {
@@ -73,6 +78,43 @@ export const getTransactionHistory = (userId) => {
       dispatch({
         type: GET_TRANSACTION_HISTORY_FAIL,
         payload: error.message,
+      });
+    }
+  };
+};
+
+export const tranferPointAction = (userIdFrom, userIdTo, amount) => {
+  return async (dispatch) => {
+    dispatch({ type: TRANFER_REQUEST });
+    let token;
+    await SecureStore.getItemAsync("secure_token").then((value) => {
+      token = value;
+    });
+
+    try {
+      const response = await axios.post(
+        "https://holiday-swap.click/api/v1/transfer",
+        {
+          from: userIdFrom,
+          to: userIdTo,
+          amount: amount,
+        },
+        {
+          headers: {
+            accept: "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      dispatch({
+        type: TRANFER_SUCCESS,
+        payload: response,
+      });
+    } catch (error) {
+      dispatch({
+        type: TRANFER_FAIL,
+        payload: error.response.data.message,
       });
     }
   };

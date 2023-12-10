@@ -12,6 +12,11 @@ import {
   GET_BOOKING_DETAIL_FAIL,
   GET_BOOKING_DETAIL_SUCCESS,
   GET_BOOKING_DETAIL_REQUEST,
+  GET_OWNER_BOOKING_DETAIL_REQUEST,
+  GET_OWNER_BOOKING_DETAIL_SUCCESS,
+  GET_OWNER_BOOKING_DETAIL_FAIL,
+  CANCEL_BOOKING_REQUEST,
+  CANCEL_BOOKING_FAIL,
 } from "../constants/bookingConstants";
 import axios from "axios";
 import * as SecureStore from "expo-secure-store";
@@ -48,8 +53,6 @@ export const createBooking =
         bookingData,
         config
       );
-
-      console.log("Check data booking", data);
 
       dispatch({ type: CREATE_BOOKING_SUCCESS, payload: data });
     } catch (error) {
@@ -128,8 +131,6 @@ export const getBookingDetails = (id) => async (dispatch) => {
       `https://holiday-swap.click/api/booking/historybooking/${id}`,
       config
     );
-    console.log("check data", data);
-
     dispatch({
       type: GET_BOOKING_DETAIL_SUCCESS,
       payload: data,
@@ -137,6 +138,64 @@ export const getBookingDetails = (id) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: GET_BOOKING_DETAIL_FAIL,
+      payload: error.response.data.message,
+    });
+    console.log("check eror", error);
+  }
+};
+
+export const getOwnerBookingDetails = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: GET_OWNER_BOOKING_DETAIL_REQUEST });
+
+    const accessToken = await SecureStore.getItemAsync("secure_token");
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    };
+
+    const { data } = await axios.get(
+      `https://holiday-swap.click/api/booking/ownerhistorybooking/${id}`,
+      config
+    );
+    dispatch({
+      type: GET_OWNER_BOOKING_DETAIL_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: GET_OWNER_BOOKING_DETAIL_FAIL,
+      payload: error.response.data.message,
+    });
+    console.log("check eror", error);
+  }
+};
+
+export const cancelBooking = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: CANCEL_BOOKING_REQUEST });
+
+    const accessToken = await SecureStore.getItemAsync("secure_token");
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    };
+
+    const { data } = await axios.get(
+      `https://holiday-swap.click/api/booking/cancel/${id}`,
+      config
+    );
+    dispatch({
+      type: CREATE_BOOKING_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: CANCEL_BOOKING_FAIL,
       payload: error.response.data.message,
     });
     console.log("check eror", error);

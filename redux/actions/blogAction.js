@@ -56,7 +56,7 @@ export const getBlog = () => {
   };
 };
 
-export const getBlogDetails = (id) => async (dispatch) => {
+export const getBlogDetails = (id, userId) => async (dispatch) => {
   try {
     dispatch({ type: GET_BLOG_DETAIL_REQUEST });
 
@@ -68,11 +68,13 @@ export const getBlogDetails = (id) => async (dispatch) => {
       },
     };
 
-    const { data } = await axios.get(
-      `https://holiday-swap.click/api/post/get/${id}`,
-      config
-    );
-    console.log("check data", data);
+    let link = `https://holiday-swap.click/api/post/get/${id}`;
+
+    if (userId) {
+      link += `?userId=${userId}`;
+    }
+
+    const { data } = await axios.get(link, config);
 
     dispatch({
       type: GET_BLOG_DETAIL_SUCCESS,
@@ -105,14 +107,8 @@ export const likePost = (postId) => async (dispatch) => {
       config
     );
 
-    const likes = response?.data?.likes;
-
     dispatch({ type: LIKE_POST_SUCCESS, payload: data });
   } catch (error) {
-    console.error(
-      "likePost error:",
-      error.response?.data?.message || error.message
-    );
     dispatch({
       type: LIKE_POST_FAIL,
       payload: error.response?.data?.message || error.message,

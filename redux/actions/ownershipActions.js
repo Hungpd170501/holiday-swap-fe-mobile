@@ -134,7 +134,6 @@ export const getOwnershipDetails =
         config
       );
 
-      console.log("check data", data);
       dispatch({
         type: GET_OWNERSHIP_DETAIL_SUCCESS,
         payload: data,

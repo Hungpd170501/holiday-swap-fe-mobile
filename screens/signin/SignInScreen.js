@@ -9,6 +9,7 @@ import { useNavigation } from "@react-navigation/native";
 import { ScrollView } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../redux/actions/userActions";
+import Toast from "react-native-toast-message";
 
 export default function SignInScreen() {
   const [isGreen, setIsGreen] = useState(false);
@@ -36,8 +37,18 @@ export default function SignInScreen() {
       navigation.navigate("root");
     }
 
+    if (error) {
+      Toast.show({
+        type: "error",
+        text1: "Login fail",
+        text2: error,
+      });
+    }
+
     console.log("Check user in sign in screen", user);
   }, [isAuthenticated, navigation, error, user]);
+
+  console.log("chekc error in screen", error);
   return (
     <ScrollView>
       <View className="flex justify-center items-center">

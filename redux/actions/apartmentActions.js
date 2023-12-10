@@ -7,20 +7,43 @@ import {
   APARTMENT_DETAIL_FAIL,
 } from "../constants/apartmentConstants";
 import axios from "axios";
+import * as SecureStore from "expo-secure-store";
 
-export const getApartments = () => async (dispatch) => {
-  try {
-    dispatch({ type: GET_APARTMENT_REQUEST });
+export const getApartments =
+  (resortId, startTime, endTime, guest) => async (dispatch) => {
+    try {
+      dispatch({ type: GET_APARTMENT_REQUEST });
 
-    const { data } = await axios.get(
-      `https://holiday-swap.click/api/v1/apartment-for-rent?guest=1&numberBedsRoom=1&numberBathRoom=1&pageNo=0&pageSize=100&sortBy=id&sortDirection=asc`
-    );
+      const accessToken = await SecureStore.getItemAsync("secure_token");
 
-    dispatch({ type: GET_APARTMENT_SUCCESS, payload: data });
-  } catch (error) {
-    dispatch({ type: GET_APARTMENT_FAIL, payload: error });
-  }
-};
+      const config = {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      };
+
+      let link = `https://holiday-swap.click/api/v1/apartment-for-rent?pageNo=0&pageSize=9999&sortBy=id&sortDirection=asc`;
+
+      if (resortId) {
+        link += `&resortId=${resortId}`;
+      }
+
+      if (startTime && endTime) {
+        link += `&checkIn=${startTime}&checkOut=${endTime}`;
+      }
+
+      if (guest) {
+        link += `&guest=${guest}`;
+      }
+
+      const { data } = await axios.get(link, config);
+
+      dispatch({ type: GET_APARTMENT_SUCCESS, payload: data });
+    } catch (error) {
+      console.log("Check error", error.response.data.message);
+      dispatch({ type: GET_APARTMENT_FAIL, payload: error });
+    }
+  };
 
 export const getAparmentDetail = (availableId) => async (dispatch) => {
   try {

@@ -12,6 +12,12 @@ import {
   FORGOT_PASSWORD_REQUEST,
   FORGOT_PASSWORD_SUCCESS,
   FORGOT_PASSWORD_FAIL,
+  SEARCH_ALL_USER_REQUEST,
+  SEARCH_ALL_USER_SUCCESS,
+  SEARCH_ALL_USER_FAIL,
+  RESET_PASSWORD_REQUEST,
+  RESET_PASSWORD_SUCCESS,
+  RESET_PASSWORD_FAIL,
 } from "../constants/userConstants";
 import * as SecureStore from "expo-secure-store";
 
@@ -28,6 +34,7 @@ export const login = (email, password) => async (dispatch) => {
 
     dispatch({ type: LOGIN_SUCCESS, payload: data });
   } catch (error) {
+    console.log("Check error login", error.response.data.message);
     dispatch({ type: LOGIN_FAIL, payload: error.response.data.message });
   }
 };
@@ -96,8 +103,6 @@ export const updateProfile = (userData) => async (dispatch) => {
         console.log("Check erro put", response);
       });
 
-    console.log("check data", data);
-
     dispatch({ type: UPDATE_PROFILE_SUCCESS, payload: data });
   } catch (error) {
     console.log("Check error update", error);
@@ -139,7 +144,7 @@ export const forgotPassword = (email) => async (dispatch) => {
 
     const { data } = await axios.post(`/api/v1/password/forgot`, email, config);
 
-    dispatch({ type: FORGOT_PASSWORD_SUCCESS, payload: data.message });
+    dispatch({ type: FORGOT_PASSWORD_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
       type: FORGOT_PASSWORD_FAIL,
@@ -148,24 +153,55 @@ export const forgotPassword = (email) => async (dispatch) => {
   }
 };
 
-// Reset Password
-// export const resetPassword = (token, passwords) => async (dispatch) => {
-//   try {
-//     dispatch({ type: RESET_PASSWORD_REQUEST });
+export const resetPassword =
+  (oldPassword, newPassword, confirmNewPassword) => async (dispatch) => {
+    try {
+      dispatch({ type: RESET_PASSWORD_REQUEST });
 
-//     const config = { headers: { "Content-Type": "application/json" } };
+      let token;
+      await SecureStore.getItemAsync("secure_token").then((value) => {
+        token = value;
+      });
 
-//     const { data } = await axios.put(
-//       `/api/v1/password/reset/${token}`,
-//       passwords,
-//       config
-//     );
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      };
 
-//     dispatch({ type: RESET_PASSWORD_SUCCESS, payload: data.success });
-//   } catch (error) {
-//     dispatch({
-//       type: RESET_PASSWORD_FAIL,
-//       payload: error.response.data.message,
-//     });
-//   }
-// };
+      const { data } = await axios.patch(
+        `https://holiday-swap.click/api/v1/users/change-password`,
+        {
+          currentPassword: oldPassword,
+          newPassword: newPassword,
+          confirmPassword: confirmNewPassword,
+        },
+        config
+      );
+
+      dispatch({ type: RESET_PASSWORD_SUCCESS, payload: data });
+    } catch (error) {
+      dispatch({
+        type: RESET_PASSWORD_FAIL,
+        payload: error.response.data.message,
+      });
+    }
+  };
+
+export const searchAllUser = () => async (dispatch) => {
+  try {
+    dispatch({ type: SEARCH_ALL_USER_REQUEST });
+
+    const { data } = await axios.get(
+      `https://holiday-swap.click/api/v1/users/search?status=ACTIVE&roleIds=2&limit=99999&offset=0&sortProps=id&sortDirection=asc`
+    );
+
+    dispatch({ type: SEARCH_ALL_USER_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: SEARCH_ALL_USER_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};

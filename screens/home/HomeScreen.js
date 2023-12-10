@@ -32,8 +32,10 @@ export default function HomeScreen() {
   return (
     <Fragment>
       <View className="bg-white ">
-        <StatusBar style="dark" />
-        <SearchHome />
+        <StatusBar style="dark" hidden={false} animated />
+        <View className="pt-5">
+          <SearchHome />
+        </View>
       </View>
       <TabViewHome />
     </Fragment>

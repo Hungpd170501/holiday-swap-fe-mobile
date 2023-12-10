@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "Mobile-capstone-project",
+    "name": "HolidaySwap",
     "slug": "holidayswap",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/logo.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
@@ -17,7 +17,10 @@
       "infoPlist": {
         "NSCameraUsageDescription": "This app uses the camera to scan barcodes on event tickets."
       },
-      "bundleIdentifier": "com.thucbui.captone"
+      "bundleIdentifier": "com.thucbui.captone",
+      "runtimeVersion": {
+        "policy": "sdkVersion"
+      }
     },
     "android": {
       "blockedPermissions": ["android.permission.RECORD_AUDIO"],
@@ -25,7 +28,8 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.thucbui.captone"
+      "package": "com.thucbui.captone",
+      "runtimeVersion": { "policy": "sdkVersion" }
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -34,6 +38,12 @@
       "eas": {
         "projectId": "7895ebe4-c50f-48ed-aa18-1b93129eecb8"
       }
+    },
+    "updates": {
+      "url": "https://u.expo.dev/7895ebe4-c50f-48ed-aa18-1b93129eecb8"
     }
-  }
+  },
+
+  "name": "HolidaySwap",
+  "displayName": "HolidaySwap"
 }

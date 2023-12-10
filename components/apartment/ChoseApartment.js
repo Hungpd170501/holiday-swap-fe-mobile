@@ -21,8 +21,6 @@ export default function ChoseApartment({ data }) {
     setVisible(!visible);
   };
 
-  console.log("Check data", apartmentDetail);
-
   const handleChangeDateRange = (value) => {
     setDateRange(value);
   };
@@ -68,7 +66,6 @@ export default function ChoseApartment({ data }) {
                 <TouchableOpacity
                   onPress={() =>
                     navigation.navigate("InputInfomationScreen", {
-                      dateRange: dateRange,
                       apartmentBooking: apartmentDetail,
                     })
                   }

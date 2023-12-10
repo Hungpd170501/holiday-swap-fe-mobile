@@ -1,5 +1,5 @@
 import { AntDesign, FontAwesome5 } from "@expo/vector-icons";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -9,7 +9,7 @@ import {
   Image,
   ActivityIndicator,
 } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import CarouselApartmentHome from "../apartment/CaroselApartmentHome";
 import axios from "axios";
 import CarouselApartmentImage from "../apartment/CarouselApartmentImage";
@@ -24,9 +24,11 @@ export default function TabViewHome(props) {
   const { loading, apartments } = useSelector((state) => state.apartments);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getApartments());
-  }, [dispatch]);
+  useFocusEffect(
+    useCallback(() => {
+      dispatch(getApartments());
+    }, [dispatch])
+  );
 
   const [selectedTab, setSelectedTab] = useState("");
   const [tabs, setTabs] = useState([]);
@@ -39,9 +41,6 @@ export default function TabViewHome(props) {
       setTabs(resortNames);
     }
   }, [apartments]);
-  useEffect(() => {
-    dispatch(getApartments());
-  }, [dispatch]);
 
   const navigation = useNavigation();
 
@@ -56,12 +55,14 @@ export default function TabViewHome(props) {
       param += `&${name}=${data}`;
     });
   };
+
   let config = {
     method: "get",
     maxBodyLength: Infinity,
     url: "",
     headers: {},
   };
+
   const fetchListApartmentForRent = async () => {
     param = `?locationName=${searchParam.locationName}&resortId=${searchParam.resortId}&checkIn=${searchParam.checkIn}&checkOut=${searchParam.checkOut}&min=${searchParam.min}&max=${searchParam.max}&guest=${searchParam.guest}&numberBedsRoom=${searchParam.numberBedsRoom}&numberBathRoom=${searchParam.numberBathRoom}&pageNo=${searchParam.pageNo}&pageSize=${searchParam.pageSize}&sortBy=${searchParam.sortBy}&sortDirection=${searchParam.sortDirection}`;
     loadArrayOfParram(

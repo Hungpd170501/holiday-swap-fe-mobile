@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { TouchableOpacity, ActivityIndicator } from "react-native";
 import { ScrollView, Image, Text, View } from "react-native";
-import { AntDesign, FontAwesome5 } from "@expo/vector-icons";
+import { AntDesign, FontAwesome5, MaterialIcons } from "@expo/vector-icons";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -67,15 +67,18 @@ export default function Wallet() {
             <View className="flex flex-row items-center justify-between">
               <Text className="text-[30px] font-bold">Point</Text>
               <View className="flex flex-row items-center">
-                <Text className="text-[20px] font-bold mr-2">{totalPoint}</Text>
+                <Text className="text-[20px] font-bold mr-2">
+                  {Number(totalPoint).toFixed(2)}
+                </Text>
                 <FontAwesome5 name="coins" size={20} color="orange" />
               </View>
             </View>
             <View className="w-full h-[1px] bg-gray-300 my-4"></View>
           </View>
+
+          {/* Top-up */}
           <View className="bg-white px-4 py-4 mt-3 flex flex-col items-center justify-center">
             <AntDesign name="creditcard" size={30} />
-            <Text>No credit cards</Text>
             <Text>You can add points to the application via vnpay</Text>
             <TouchableOpacity
               onPress={() => navigation.navigate("Recharge")}
@@ -84,6 +87,23 @@ export default function Wallet() {
               <Text className="text-white">Recharge</Text>
             </TouchableOpacity>
           </View>
+
+          {/* Tranfer */}
+          <View className="bg-white px-4 py-4 mt-3 flex flex-col items-center justify-center">
+            <MaterialIcons
+              name="published-with-changes"
+              size={30}
+              color="black"
+            />
+            <Text>You can tranfer point to other membership</Text>
+            <TouchableOpacity
+              onPress={() => navigation.navigate("Tranfer")}
+              className="bg-blue-500 px-6 rounded-md py-3 my-3"
+            >
+              <Text className="text-white">Tranfer</Text>
+            </TouchableOpacity>
+          </View>
+
           <View className="pr-6 pl-3 py-4 bg-white mt-3">
             <View className="flex flex-row justify-between mb-3">
               <View className="">

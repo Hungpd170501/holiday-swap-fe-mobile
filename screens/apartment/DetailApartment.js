@@ -1,5 +1,11 @@
-import React, { Fragment, useEffect, useState } from "react";
-import { Dimensions, Text, TouchableOpacity, View } from "react-native";
+import React, { Fragment, useCallback, useEffect, useState } from "react";
+import {
+  Dimensions,
+  SafeAreaView,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { ScrollView } from "react-native";
 import {
   FontAwesome5,
@@ -23,11 +29,23 @@ import CarouselApartmentImage from "../../components/apartment/CarouselApartment
 import index from "react-native-swipeable-carousel";
 import { useDispatch, useSelector } from "react-redux";
 import { getAparmentDetail } from "../../redux/actions/apartmentActions";
-import { format, parseISO } from "date-fns";
+import {
+  addDays,
+  addMonths,
+  differenceInDays,
+  format,
+  parseISO,
+  subDays,
+} from "date-fns";
 import { ActivityIndicator } from "react-native";
 import Loading from "../../components/Loading";
 import CarouselApartmentDetail from "../../components/apartment/CaroselApartmentDetail";
 import { StatusBar } from "expo-status-bar";
+import {
+  getDateRangeBooking,
+  getDateRangeDefault,
+  getDateRangeOut,
+} from "../../redux/actions/dateRangeActions";
 
 export default function DetailApartment() {
   const route = useRoute();
@@ -40,14 +58,41 @@ export default function DetailApartment() {
   const [availableTime, setAvailableTime] = useState({});
   const navigation = useNavigation();
   const [dateRange, setDateRange] = useState();
+  const [dateOut, setDateOut] = useState([]);
 
-  console.log("Check id", id);
+  const [checkInMap, setCheckInMap] = useState(new Map());
+  const [checkOutMap, setCheckOutMap] = useState(new Map());
 
-  useFocusEffect(
-    React.useCallback(() => {
-      dispatch(getAparmentDetail(id));
-    }, [dispatch, id])
-  );
+  useEffect(() => {
+    const updateCheckInAndOutMaps = () => {
+      const newCheckInMap = new Map();
+      const newCheckOutMap = new Map();
+
+      if (
+        apartment.timeHasBooked &&
+        Array.isArray(apartment.timeHasBooked) &&
+        apartment.timeHasBooked.length > 0
+      ) {
+        apartment.timeHasBooked.forEach((booking, index) => {
+          const checkInDate = new Date(booking.checkIn);
+          const checkOutDate = new Date(booking.checkOut);
+
+          newCheckInMap.set(format(checkInDate, "yyyy-MM-dd"), checkInDate);
+          newCheckOutMap.set(format(checkOutDate, "yyyy-MM-dd"), checkOutDate);
+        });
+      }
+
+      setCheckInMap(newCheckInMap);
+      setCheckOutMap(newCheckOutMap);
+    };
+
+    updateCheckInAndOutMaps();
+  }, [apartment.timeHasBooked]);
+
+  useEffect(() => {
+    dispatch(getAparmentDetail(id));
+  }, [dispatch, id]);
+
   useEffect(() => {
     if (apartment) {
       setApartmentImage(apartment?.property?.propertyImage);
@@ -55,30 +100,124 @@ export default function DetailApartment() {
     }
   }, [apartment]);
 
-  let config = {
-    method: "get",
-    maxBodyLength: Infinity,
-    url: `https://holiday-swap.click/api/v1/apartment-for-rent/${id}`,
-    headers: {},
-  };
-  const fetchDetailApartmentForRent = () => {
-    axios
-      .request(config)
-      .then((response) => {
-        setDetailAapartMentForRent(response.data);
-        setApartmentImage(response.data?.property?.propertyImage);
-        setAvailableTime(response.data?.availableTime);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
   const { width: screenWidth } = Dimensions.get("window");
   const itemWidthPercentage = 100;
 
   const itemWidth = (screenWidth * itemWidthPercentage) / 100;
   const startTime = apartment?.availableTime?.startTime;
   const endTime = apartment?.availableTime?.endTime;
+
+  const { dateRangeBooking } = useSelector((state) => state.dateRangeBooking);
+  const { dateRangeDefault } = useSelector((state) => state.dateRangeDefault);
+  const { dateRangeOut } = useSelector((state) => state.dateOut);
+
+  useFocusEffect(
+    useCallback(() => {
+      if (apartment) {
+        const startTimeBooking = apartment?.availableTime?.startTime;
+        const endTimeBooking = apartment?.availableTime?.endTime;
+        dispatch(getDateRangeBooking({ startTimeBooking, endTimeBooking }));
+      }
+    }, [dispatch, apartment])
+  );
+
+  useFocusEffect(
+    useCallback(() => {
+      const startTimeDefault = apartment?.availableTime?.startTime;
+      const endTimeDefault = apartment?.availableTime?.endTime;
+      dispatch(getDateRangeDefault({ startTimeDefault, endTimeDefault }));
+    }, [dispatch, apartment])
+  );
+
+  const getDatesOutsideDateRange = (dateRange) => {
+    const startDate = new Date(dateRange?.startTimeDefault);
+    const endDate = new Date(dateRange?.endTimeDefault);
+
+    const startDateOutsideDateRange = addDays(endDate, 1);
+    const endDateOutsideDateRange = subDays(addMonths(startDate, 30), 1);
+
+    const datesOutsideDateRange = [];
+    for (
+      let i = startDateOutsideDateRange.getTime();
+      i <= endDateOutsideDateRange.getTime();
+      i += 24 * 60 * 60 * 1000
+    ) {
+      datesOutsideDateRange.push(new Date(i));
+    }
+
+    if (
+      apartment.timeHasBooked &&
+      Array.isArray(apartment.timeHasBooked) &&
+      apartment.timeHasBooked.length > 0
+    ) {
+      apartment.timeHasBooked.forEach((booking) => {
+        const checkInDate = new Date(booking.checkIn);
+        const checkOutDate = new Date(booking.checkOut);
+
+        // console.log('Check difference', differenceInDays(checkOutDate, checkInDate));
+
+        if (differenceInDays(checkOutDate, checkInDate) < 2) {
+          checkInMap.forEach((checkInDate, key) => {
+            if (checkOutMap.has(format(checkInDate, "yyyy-MM-dd"))) {
+              datesOutsideDateRange.push(new Date(checkInDate));
+            } else {
+              // console.log('Ko có');
+            }
+          });
+
+          // Check if a date is beyond the general availability range
+          if (startDate) {
+            if (checkInMap.has(format(startDate, "yyyy-MM-dd"))) {
+              datesOutsideDateRange.push(new Date(startDate));
+            }
+          }
+
+          if (endDate) {
+            if (checkOutMap.has(format(endDate, "yyyy-MM-dd"))) {
+              datesOutsideDateRange.push(new Date(endDate));
+            }
+          }
+        } else {
+          for (
+            let i = checkInDate.getTime() + 24 * 60 * 60 * 1000;
+            i <= checkOutDate.getTime() - 24 * 60 * 60 * 1000;
+            i += 24 * 60 * 60 * 1000
+          ) {
+            checkInMap.forEach((checkInDate) => {
+              if (checkOutMap.has(format(checkInDate, "yyyy-MM-dd"))) {
+                datesOutsideDateRange.push(new Date(checkInDate));
+              } else {
+                // console.log('Ko có');
+              }
+            });
+
+            if (startDate) {
+              if (checkInMap.has(format(startDate, "yyyy-MM-dd"))) {
+                datesOutsideDateRange.push(new Date(startDate));
+              }
+            }
+
+            if (endDate) {
+              if (checkOutMap.has(format(endDate, "yyyy-MM-dd"))) {
+                datesOutsideDateRange.push(new Date(endDate));
+              }
+            }
+            datesOutsideDateRange.push(new Date(i));
+          }
+        }
+      });
+    }
+
+    return datesOutsideDateRange;
+  };
+
+  useFocusEffect(
+    useCallback(() => {
+      if (dateRangeDefault) {
+        dispatch(getDateRangeOut(getDatesOutsideDateRange(dateRangeDefault)));
+      }
+    }, [dispatch, dateRangeDefault])
+  );
 
   return (
     <Fragment>
@@ -88,11 +227,12 @@ export default function DetailApartment() {
         <Fragment>
           {/* <StatusBar style="dark" /> */}
           {apartment && (
-            <View className="flex-1 ">
+            <SafeAreaView className="flex-1 ">
+              <StatusBar style="dark" hidden={false} animated />
               <ScrollView>
                 <TouchableOpacity
                   onPress={() => navigation.goBack()}
-                  className="absolute top-2 left-2 z-10"
+                  className="absolute top-10 left-2 z-10"
                 >
                   <View className="bg-slate-50 rounded-full px-3 py-3 opacity-40">
                     <Ionicons name="arrow-back" size={25} />
@@ -265,10 +405,22 @@ export default function DetailApartment() {
                     Address
                   </Text>
 
-                  <View>
-                    {/* <MapApartmentDetail apartment={apartment} /> */}
-                  </View>
+                  {apartment ? (
+                    <View>
+                      <Text className="text-neutral-500 dark:text-neutral-400 py-4 px-3">
+                        {apartment?.resort?.locationFormattedName}
+                      </Text>
+                      <MapApartmentDetail
+                        latitude={apartment?.resort?.latitude}
+                        longitude={apartment?.resort?.longitude}
+                        apartment={apartment}
+                      />
+                    </View>
+                  ) : (
+                    <View></View>
+                  )}
                 </View>
+
                 <View className="px-4 bg-white mt-2 py-3">
                   {/* <View className="flex flex-row ">
             <Text className="text-[17px] font-bold">Acreage:</Text>
@@ -308,7 +460,9 @@ export default function DetailApartment() {
                                   {/* Content items */}
 
                                   {item?.inRoomAmenities?.map((item, index) => (
-                                    <Text>{item.inRoomAmenityName}</Text>
+                                    <Text key={index}>
+                                      {item.inRoomAmenityName}
+                                    </Text>
                                   ))}
                                 </View>
                               </View>
@@ -331,7 +485,9 @@ export default function DetailApartment() {
 
                                     {item?.inRoomAmenities?.map(
                                       (item, index) => (
-                                        <Text>{item.inRoomAmenityName}</Text>
+                                        <Text key={index}>
+                                          {item.inRoomAmenityName}
+                                        </Text>
                                       )
                                     )}
                                   </View>
@@ -366,7 +522,7 @@ export default function DetailApartment() {
                   </View>
                 </View>
               </ScrollView>
-            </View>
+            </SafeAreaView>
           )}
         </Fragment>
       )}

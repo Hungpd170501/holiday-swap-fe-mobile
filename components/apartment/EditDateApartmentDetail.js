@@ -11,6 +11,8 @@ import { ScrollView } from "react-native";
 import { Image } from "react-native";
 import InputDateComponents from "../dateInput/InputDateComponents";
 import { format } from "date-fns";
+import { useDispatch, useSelector } from "react-redux";
+import { getDateRangeBooking } from "../../redux/actions/dateRangeActions";
 
 const initialDateRange = {
   startDate: new Date(),
@@ -25,14 +27,16 @@ export default function EditDateApartmentDetail({
   const [visible, setVisible] = useState(false);
   const [searchText, setSearchText] = useState("");
   const [selectedLocation, setSelectedLocation] = useState(null);
-  const [dateRangeBooking, setDateRangeBooking] = useState({
-    startDate: dateRange?.startTime,
-    endDate: dateRange?.endTime,
-  });
+  // const [dateRangeBooking, setDateRangeBooking] = useState({
+  //   startDate: dateRange?.startTime,
+  //   endDate: dateRange?.endTime,
+  // });
 
-  const handleDateRange = (value) => {
-    setDateRangeBooking(value);
-  };
+  const { dateRangeBooking } = useSelector((state) => state.dateRangeBooking);
+  const dispatch = useDispatch();
+  // const handleDateRange = (value) => {
+  //   dispatch(getDateRangeBooking(value));
+  // };
 
   const toggleBottomNavigationView = () => {
     setVisible(!visible);
@@ -48,9 +52,12 @@ export default function EditDateApartmentDetail({
           <Text className="font-bold underline px-4 w-[100%]">
             {dateRangeBooking
               ? `${format(
-                  new Date(dateRangeBooking.startDate),
+                  new Date(dateRangeBooking.startTimeBooking),
                   "E, dd MMM"
-                )} - ${format(new Date(dateRangeBooking.endDate), "E, dd MMM")}`
+                )} - ${format(
+                  new Date(dateRangeBooking.endTimeBooking),
+                  "E, dd MMM"
+                )}`
               : "Time"}
           </Text>
         </TouchableOpacity>
@@ -69,11 +76,7 @@ export default function EditDateApartmentDetail({
             }}
           >
             <View className="flex-1 px-4">
-              <InputDateComponents
-                dateRange={dateRangeBooking}
-                handleDateRange={handleDateRange}
-                handleChangeDateRange={handleChangeDateRange}
-              />
+              <InputDateComponents dateRange={dateRangeBooking} />
             </View>
 
             <View className="pb-4 px-4  flex flex-row justify-end bg-white shadow-md">

@@ -1,6 +1,12 @@
 // walletReducers.js
 
 import {
+  TRANFER_FAIL,
+  TRANFER_REQUEST,
+  TRANFER_RESET,
+  TRANFER_SUCCESS,
+} from "../constants/tranferConstants";
+import {
   GET_TOTAL_POINT_FAIL,
   GET_TOTAL_POINT_SUCCESS,
   GET_TRANSACTION_HISTORY_FAIL,
@@ -13,7 +19,7 @@ const initialState = {
   error: null,
 };
 
-const walletReducers = (state = { wallet: initialState }, action) => {
+export const walletReducers = (state = { wallet: initialState }, action) => {
   switch (action.type) {
     case GET_TOTAL_POINT_SUCCESS:
       return {
@@ -45,4 +51,35 @@ const walletReducers = (state = { wallet: initialState }, action) => {
   }
 };
 
-export default walletReducers;
+export const tranferPointReducers = (state = { tranferPoint: {} }, action) => {
+  switch (action.type) {
+    case TRANFER_REQUEST:
+      return {
+        ...state,
+        tranferPoint: null,
+        success: false,
+      };
+    case TRANFER_SUCCESS:
+      return {
+        ...state,
+        tranferPoint: action.payload,
+        success: true,
+      };
+    case TRANFER_FAIL:
+      return {
+        ...state,
+        tranferPoint: null,
+        success: false,
+        error: action.payload,
+      };
+    case TRANFER_RESET:
+      return {
+        ...state,
+        tranferPoint: null,
+        success: false,
+        error: null,
+      };
+    default:
+      return state;
+  }
+};

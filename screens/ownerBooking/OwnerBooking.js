@@ -55,8 +55,13 @@ export default function YourTrip() {
           <>
             {ownerBooking && ownerBooking.length > 0 ? (
               ownerBooking.map((booking, index) => (
-                <View
+                <TouchableOpacity
                   key={index}
+                  onPress={() =>
+                    navigation.navigate("OwnerBookingDetail", {
+                      id: booking.bookingId,
+                    })
+                  }
                   className="px-4 py-3 border-b border-gray-300"
                 >
                   <Image
@@ -94,7 +99,7 @@ export default function YourTrip() {
                       <FontAwesome5 name="coins" size={15} color="orange" />
                     </View>
                   </View>
-                </View>
+                </TouchableOpacity>
               ))
             ) : (
               <View className="px-4">

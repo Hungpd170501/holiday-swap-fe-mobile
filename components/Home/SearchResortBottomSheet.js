@@ -1,22 +1,33 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { TouchableOpacity } from "react-native";
 import { StyleSheet } from "react-native";
 import { Text } from "react-native";
 import { View } from "react-native-animatable";
 import { BottomSheet } from "react-native-btr";
 import { AntDesign, EvilIcons, FontAwesome5 } from "@expo/vector-icons";
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { TextInput } from "react-native";
 import { ScrollView } from "react-native";
 import { Image } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import { getListResort } from "../../redux/actions/resortActions";
 
-export default function SearchResortBottomSheet() {
+export default function SearchResortBottomSheet({ handleChangeResort }) {
   const navigation = useNavigation();
   const [visible, setVisible] = useState(false);
   const [searchText, setSearchText] = useState("");
   const [selectedResort, setSelectedResort] = useState("");
+  const dispatch = useDispatch();
 
   const [selectedLocation, setSelectedLocation] = useState(null);
+
+  const { resorts } = useSelector((state) => state.resorts);
+
+  useFocusEffect(
+    useCallback(() => {
+      dispatch(getListResort());
+    }, [dispatch])
+  );
 
   const toggleBottomNavigationView = () => {
     setVisible(!visible);
@@ -62,48 +73,25 @@ export default function SearchResortBottomSheet() {
                       className="w-[100%]"
                     />
                   </View>
-                  <TouchableOpacity
-                    onPress={() => {
-                      setVisible();
-                      setSearchText("Landmark Resort");
-                      setSelectedResort("Landmark Resort, Ho Chi Minh");
-                    }}
-                    className="flex flex-row items-center gap-5"
-                  >
-                    <View className="bg-gray-200 rounded-lg flex flex-row justify-center items-center border border-gray-300  pb-1">
-                      <EvilIcons size={30} name="location" />
+                  {resorts?.content?.map((item, index) => (
+                    <View key={item.id}>
+                      <TouchableOpacity
+                        onPress={() => {
+                          setVisible();
+                          setSearchText(item.resortName);
+                          setSelectedResort(item.resortName);
+                          handleChangeResort(item.id);
+                        }}
+                        className="flex flex-row items-center gap-5"
+                      >
+                        <View className="bg-gray-200 rounded-lg flex flex-row justify-center items-center border border-gray-300  pb-1">
+                          <EvilIcons size={30} name="location" />
+                        </View>
+                        <Text>{item.resortName}</Text>
+                      </TouchableOpacity>
+                      <View className="bg-gray-300 h-[1px] w-full my-4"></View>
                     </View>
-                    <Text>Landmark Resort, Ho Chi Minh</Text>
-                  </TouchableOpacity>
-                  <View className="bg-gray-300 h-[1px] w-full my-4"></View>
-                  <TouchableOpacity
-                    onPress={() => {
-                      setVisible();
-                      setSearchText("Hoi An Resort ");
-                      setSelectedResort("Hoi An Resort, Da Nang");
-                    }}
-                    className="flex flex-row items-center gap-5"
-                  >
-                    <View className="bg-gray-200 rounded-lg flex flex-row justify-center items-center border border-gray-300  pb-1">
-                      <EvilIcons size={30} name="location" />
-                    </View>
-                    <Text>Hoi An Resort, Da Nang city</Text>
-                  </TouchableOpacity>
-                  <View className="bg-gray-300 h-[1px] w-full my-4"></View>
-                  <TouchableOpacity
-                    onPress={() => {
-                      setVisible();
-                      setSearchText("Hoan Kiem Resort ");
-                      setSelectedResort("Hoan Kiem Resort, Ha Noi");
-                    }}
-                    className="flex flex-row items-center gap-5"
-                  >
-                    <View className="bg-gray-200 rounded-lg flex flex-row justify-center items-center border border-gray-300  pb-1">
-                      <EvilIcons size={30} name="location" />
-                    </View>
-                    <Text>Hoan Kiem Resort, Ha Noi</Text>
-                  </TouchableOpacity>
-                  <View className="bg-gray-300 h-[1px] w-full my-4"></View>
+                  ))}
                 </ScrollView>
               </View>
             </View>
