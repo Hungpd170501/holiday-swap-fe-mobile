@@ -42,16 +42,12 @@ export default function BookingDetail() {
   const { userProfile } = useSelector((state) => state.user);
   const { success, error } = useSelector((state) => state.createRatingBooking);
   const navigation = useNavigation();
+
   useEffect(() => {
     dispatch(getBookingDetails(id));
     dispatch(getRatingBooking(id));
+    dispatch(loadUser());
   }, [dispatch, id]);
-
-  useFocusEffect(
-    React.useCallback(() => {
-      dispatch(loadUser());
-    }, [dispatch])
-  );
 
   const toggleBottomNavigationGuest = () => {
     setVisibleGuest(!visibleGuest);

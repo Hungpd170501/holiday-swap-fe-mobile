@@ -125,13 +125,13 @@ function Navigation() {
     }
   }, [user]);
 
-  // console.log("Check authen", authen);
-
-  const { decodedToken } = useJwt(authen);
-  if (decodedToken?.exp < Math.floor(Date.now() / 1000)) {
-    // Token has expired, remove it from SecureStore
-    removeToken();
-  }
+  useEffect(() => {
+    const { decodedToken } = useJwt(authen);
+    if (decodedToken?.exp < Math.floor(Date.now() / 1000)) {
+      // Token has expired, remove it from SecureStore
+      removeToken();
+    }
+  }, [authen]);
 
   return (
     <NavigationContainer>
@@ -140,7 +140,6 @@ function Navigation() {
           <Fragment>
             <Stack.Screen name="Loading" component={LoadingScreen} />
             <Stack.Screen name="root" component={TabNavigation} />
-            <Stack.Screen name="SignInScreen" component={SignInScreen} />
 
             <Stack.Screen name="Home" component={HomeScreen} />
             <Stack.Screen name="Profile" component={ProfileScreen} />
