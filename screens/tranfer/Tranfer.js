@@ -103,7 +103,11 @@ const Tranfer = () => {
           <Text className="text-lg font-bold">Source account</Text>
           <TextInput
             editable={false}
-            value={userProfile?.fullName}
+            value={
+              userProfile?.fullName
+                ? userProfile?.fullName
+                : userProfile?.username
+            }
             className="w-[100%] p-2 rounded-md border border-slate-400 text-black"
             placeholder="source account"
           />
