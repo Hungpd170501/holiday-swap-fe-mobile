@@ -28,10 +28,6 @@ export default function BlogDetail() {
   const { dislikeSuccess } = useSelector((state) => state.dislikePost);
 
   useEffect(() => {
-    dispatch(loadUser());
-  }, [dispatch]);
-
-  useEffect(() => {
     if (userProfile && (success || dislikeSuccess)) {
       dispatch(getBlogDetails(id, userProfile.userId));
     } else {

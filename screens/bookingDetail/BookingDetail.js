@@ -29,7 +29,6 @@ import {
   createRatingBooking,
   getRatingBooking,
 } from "../../redux/actions/ratingActions";
-import { loadUser } from "../../redux/actions/userActions";
 
 export default function BookingDetail() {
   const route = useRoute();
@@ -46,7 +45,6 @@ export default function BookingDetail() {
   useEffect(() => {
     dispatch(getBookingDetails(id));
     dispatch(getRatingBooking(id));
-    dispatch(loadUser());
   }, [dispatch, id]);
 
   const toggleBottomNavigationGuest = () => {

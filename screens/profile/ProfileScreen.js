@@ -22,15 +22,15 @@ export default function ProfileScreen() {
     (state) => state.user
   );
 
-  useFocusEffect(
-    React.useCallback(() => {
-      dispatch(loadUser());
-    }, [dispatch])
-  );
+  // useFocusEffect(
+  //   React.useCallback(() => {
+  //     dispatch(loadUser());
+  //   }, [dispatch])
+  // );
 
   const navigation = useNavigation();
-  const signOut = () => {
-    SecureStore.deleteItemAsync("secure_token")
+  const signOut = async () => {
+    await SecureStore.deleteItemAsync("secure_token")
       .then(navigation.navigate("SignInScreen"))
       .catch((error) => {
         console.log("Check error", error);

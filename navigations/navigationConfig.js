@@ -126,12 +126,18 @@ function Navigation() {
   }, [user]);
 
   useEffect(() => {
-    const { decodedToken } = useJwt(authen);
+    if (authen) {
+      dispatch(loadUser());
+    }
+  }, [authen]);
+
+  const { decodedToken } = useJwt(authen);
+  useEffect(() => {
     if (decodedToken?.exp < Math.floor(Date.now() / 1000)) {
       // Token has expired, remove it from SecureStore
       removeToken();
     }
-  }, [authen]);
+  }, [decodedToken]);
 
   return (
     <NavigationContainer>
@@ -233,6 +239,7 @@ function Navigation() {
               name="WelcomeBackScreen"
               component={WelcomeBackScreen}
             />
+            <Stack.Screen name="SignInScreen" component={SignInScreen} />
           </Fragment>
         ) : (
           <Fragment>

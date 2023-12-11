@@ -30,13 +30,11 @@ export default function ManageAccount() {
 
   const handleSaveProfile = () => {
     const userData = {
-      avatar: avatarSubmit ?? userProfile.avatar,
+      avatar: avatarSubmit ?? userProfile?.avatar,
       fullName: fullName,
       gender: gender,
       dob: dob,
     };
-
-    console.log("Check user data", userData);
 
     dispatch(updateProfile(userData));
   };

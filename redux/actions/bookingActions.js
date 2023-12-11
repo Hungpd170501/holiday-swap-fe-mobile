@@ -140,7 +140,7 @@ export const getBookingDetails = (id) => async (dispatch) => {
       type: GET_BOOKING_DETAIL_FAIL,
       payload: error.response.data.message,
     });
-    console.log("check eror", error);
+    console.log("check eror detail", error);
   }
 };
 

@@ -41,7 +41,6 @@ const Tranfer = () => {
 
   useFocusEffect(
     useCallback(() => {
-      dispatch(loadUser());
       dispatch(searchAllUser());
     }, [dispatch])
   );
