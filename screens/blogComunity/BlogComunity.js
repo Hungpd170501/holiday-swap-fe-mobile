@@ -63,7 +63,7 @@ export default function BlogCommunity({ navigation }) {
                         </Text>
                       </View>
                     </View>
-                    <TouchableOpacity
+                    {/* <TouchableOpacity
                       activeOpacity={0.8}
                       onPress={() => handleLikePost(blog.id)}
                       className="p-3 flex gap-1 flex-row items-center z-50"
@@ -74,7 +74,7 @@ export default function BlogCommunity({ navigation }) {
                       <View>
                         <Text>{blog.likes}</Text>
                       </View>
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
                   </View>
                   <View className="p-3">
                     <HTML

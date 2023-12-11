@@ -29,8 +29,6 @@ const YourApartment = () => {
     }
   }, [dispatch, userProfile]);
 
-  console.log("check ownership", ownerships);
-
   return (
     <View>
       <View className="bg-blue-500 w-full h-[100px]  flex flex-row items-center justify-start px-5">

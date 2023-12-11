@@ -7,6 +7,9 @@ import {
   CREATE_RATING_BOOKING_SUCCESS,
   CREATE_RATING_BOOKING_FAIL,
   CREATE_RATING_BOOKING_RESET,
+  GET_RATINGS_APARTMENT_REQUEST,
+  GET_RATINGS_APARTMENT_SUCCESS,
+  GET_RATINGS_APARTMENT_FAIL,
 } from "../constants/ratingConstant";
 import * as SecureStore from "expo-secure-store";
 
@@ -22,6 +25,24 @@ export const getRatingBooking = (bookingId) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: GET_RATINGS_BOOKING_FAILURE,
+      payload: error.response.data.message,
+    });
+  }
+};
+
+export const getRatingApartment = (propertyId, roomId) => async (dispatch) => {
+  try {
+    dispatch({ type: GET_RATINGS_APARTMENT_REQUEST });
+
+    const { data } = await axios.get(
+      `${apiUrl}?propertyId=${propertyId}&roomId=${roomId}&pageNo=0&pageSize=9999&sortDirection=asc&sortBy=id`
+    );
+
+    dispatch({ type: GET_RATINGS_APARTMENT_SUCCESS, payload: data });
+  } catch (error) {
+    console.log("Check error ", error.response.data.message);
+    dispatch({
+      type: GET_RATINGS_APARTMENT_FAIL,
       payload: error.response.data.message,
     });
   }

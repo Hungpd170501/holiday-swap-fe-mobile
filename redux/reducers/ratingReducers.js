@@ -8,22 +8,28 @@ import {
   CREATE_RATING_BOOKING_SUCCESS,
   CREATE_RATING_BOOKING_FAIL,
   CREATE_RATING_BOOKING_RESET,
+  GET_RATINGS_APARTMENT_REQUEST,
+  GET_RATINGS_APARTMENT_SUCCESS,
+  GET_RATINGS_APARTMENT_FAIL,
 } from "../constants/ratingConstant";
 
 export const ratingsReducer = (state = { ratings: {} }, action) => {
   switch (action.type) {
     case GET_RATINGS_BOOKING_REQUEST:
+    case GET_RATINGS_APARTMENT_REQUEST:
       return {
         ...state,
         loading: true,
       };
     case GET_RATINGS_BOOKING_SUCCESS:
+    case GET_RATINGS_APARTMENT_SUCCESS:
       return {
         loading: false,
         ratings: action.payload,
         error: "",
       };
     case GET_RATINGS_BOOKING_FAILURE:
+    case GET_RATINGS_APARTMENT_FAIL:
       return {
         loading: false,
         ratings: null,

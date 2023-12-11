@@ -29,6 +29,8 @@ import {
   createRatingBooking,
   getRatingBooking,
 } from "../../redux/actions/ratingActions";
+import Toast from "react-native-toast-message";
+import { CREATE_RATING_BOOKING_RESET } from "../../redux/constants/ratingConstant";
 
 export default function BookingDetail() {
   const route = useRoute();
@@ -78,6 +80,21 @@ export default function BookingDetail() {
     dispatch(createRatingBooking(userProfile.userId, id, data));
     setVisibleRating(false);
   };
+
+  useEffect(() => {
+    if (success) {
+      dispatch(getRatingBooking(id));
+    }
+
+    if (error) {
+      Toast.show({
+        type: "error",
+        text1: "Review",
+        text2: error,
+      });
+      dispatch({ type: CREATE_RATING_BOOKING_RESET });
+    }
+  }, [success, id, dispatch]);
   return (
     <Fragment>
       {loading ? (

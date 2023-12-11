@@ -169,6 +169,8 @@ export default function TabViewHome(props) {
                               onPress={() =>
                                 navigation.navigate("DetailApartment", {
                                   id: item.availableTime.id,
+                                  propertyId: item.coOwnerId.propertyId,
+                                  roomId: item.coOwnerId.roomId,
                                 })
                               }
                               className="mb-8"
@@ -181,7 +183,12 @@ export default function TabViewHome(props) {
                                     </Text>
                                     {item.property.rating && ( // Check if rating is available
                                       <View className="flex flex-row items-center gap-1">
-                                        <Text> {item.property.rating}</Text>
+                                        <Text>
+                                          {" "}
+                                          {Number(item.property.rating).toFixed(
+                                            1
+                                          )}
+                                        </Text>
                                         <AntDesign name="star" color="orange" />
                                       </View>
                                     )}

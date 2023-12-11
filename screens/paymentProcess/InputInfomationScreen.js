@@ -197,7 +197,6 @@ export default function InputInfomationScreen() {
   };
 
   useEffect(() => {
-    dispatch(loadUser());
     if (error) {
       setVisibleModal(false);
       console.log("Error booking", error);
@@ -464,12 +463,6 @@ export default function InputInfomationScreen() {
                 </View>
               </View>
             </BottomSheet>
-
-            <ModalConfirmBooking
-              modalVisible={visibleModal}
-              setModalVisible={setVisibleModal}
-            />
-
             <View className="mt-2">
               {/* <View className="bg-white mb-2 px-2 rounded-md mt-2">
             <View className="py-4">

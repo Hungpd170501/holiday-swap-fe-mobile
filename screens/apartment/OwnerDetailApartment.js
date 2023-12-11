@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { View, Text, ScrollView } from "react-native";
 import { getOwnershipDetails } from "../../redux/actions/ownershipActions";
@@ -14,11 +14,18 @@ export default function OwnerDetailApartment({ route }) {
   const dispatch = useDispatch();
   const { userId, propertyId, roomId } = route.params;
   const { owner } = useSelector((state) => state.detailOwnership);
-  useFocusEffect(
-    React.useCallback(() => {
+
+  React.useEffect(() => {
+    if (userId && propertyId && roomId) {
       dispatch(getOwnershipDetails(userId, propertyId, roomId));
-    }, [dispatch, userId, propertyId, roomId])
-  );
+    }
+  }, [dispatch, userId, propertyId, roomId]);
+
+  console.log("Check property id", propertyId);
+  console.log("Check user Id", userId);
+  console.log("check room Id", roomId);
+
+  console.log("Check owner", owner);
 
   return (
     <View className="flex-1">
@@ -29,56 +36,82 @@ export default function OwnerDetailApartment({ route }) {
         <Text className="ml-8 text-[20px] text-white">Your Apartment</Text>
       </View>
       <ScrollView>
-        <View className="px-3 mt-2 pb-10 h-full">
-          <Text className="text-[25px] font-bold">
-            {owner.property?.propertyName}
-          </Text>
-          <View className=" w-[80%] flex flex-row py-3 gap-1">
-            <Text>Resort:</Text>
-            <Text className="text-[18px] font-bold">
-              {owner.resort.resortName}
+        {owner && (
+          <View className="px-3 mt-2 pb-10 h-full">
+            <Text className="text-[25px] font-bold">
+              {owner?.property?.propertyName}
             </Text>
-          </View>
-          <View className="flex flex-row items-center gap-1 pb-3">
-            <Text>Status:</Text>
-            <Text className="text-[20px] text-green-500 font-bold">
-              {owner.status}
-            </Text>
-          </View>
-          <View className="flex flex-row items-center gap-1">
-            <Text>Apartment ID:</Text>
-            <Text className="text-[20px] font-bold">{owner.id.roomId}</Text>
-          </View>
-          {owner.endTime === null && owner.startTime === null ? (
-            <View className="flex flex-row items-center gap-1 pt-3">
-              <Text>Type owner:</Text>
-              <Text className="text-[20px] font-bold">Owner forever</Text>
+            <View className=" w-[80%] flex flex-row py-3 gap-1">
+              <Text>Resort:</Text>
+              <Text className="text-[18px] font-bold">
+                {owner?.resort?.resortName}
+              </Text>
             </View>
-          ) : (
-            <>
-              <Text className="py-3">
-                Start Time: {format(new Date(owner.startTime), "dd-MM-yyyy")}
+            <View className="flex flex-row items-center gap-1 pb-3">
+              <Text>Status:</Text>
+              <Text className="text-[20px] text-green-500 font-bold">
+                {owner?.status}
               </Text>
-              <Text>
-                End Time: {format(new Date(owner.endTime), "dd-MM-yyyy")}
+            </View>
+            <View className="flex flex-row items-center gap-1">
+              <Text>Apartment ID:</Text>
+              <Text className="text-[20px] font-bold">{owner?.id?.roomId}</Text>
+            </View>
+
+            {owner?.timeFrames?.map((item, index) => {
+              if (item?.startTime === null && item?.endTime === null) {
+                return (
+                  <View
+                    key={item.id}
+                    className="flex flex-row items-center gap-1 pt-3"
+                  >
+                    <Text>Type owner:</Text>
+                    <Text className="text-[20px] font-bold">Owner forever</Text>
+                  </View>
+                );
+              } else {
+                return (
+                  <Fragment key={item.id}>
+                    {item?.availableTimes?.map((available, index) => (
+                      <Fragment key={available.id}>
+                        <Text className="py-3">
+                          Start Time:{" "}
+                          {available?.startTime &&
+                            format(
+                              new Date(available?.startTime),
+                              "dd-MM-yyyy"
+                            )}
+                        </Text>
+                        <Text>
+                          End Time:{" "}
+                          {available?.endTime &&
+                            format(new Date(available?.endTime), "dd-MM-yyyy")}
+                        </Text>
+                      </Fragment>
+                    ))}
+                  </Fragment>
+                );
+              }
+            })}
+            <View className="flex flex-row items-center gap-1 pt-3">
+              <Text>Week Numbers:</Text>
+              <Text className="text-[20px] font-bold">
+                {owner?.timeFrames
+                  ?.map((timeFrame) => timeFrame.weekNumber)
+                  .join(", ")}
               </Text>
-            </>
-          )}
-          <View className="flex flex-row items-center gap-1 pt-3">
-            <Text>Week Numbers:</Text>
-            <Text className="text-[20px] font-bold">
-              {owner.timeFrames
-                .map((timeFrame) => timeFrame.weekNumber)
-                .join(", ")}
-            </Text>
+            </View>
+            <View className="flex flex-row items-center gap-1 mt-3">
+              {owner?.contractImages?.map((item, index) => (
+                <Image
+                  key={item.id}
+                  className="w-[50%] h-[300px] rounded-md mr-3"
+                  source={{ uri: item?.link }}
+                />
+              ))}
+            </View>
           </View>
-          <View className="flex flex-row items-center gap-1 mt-3">
-            <Image
-              className="w-[50%] h-[300px] rounded-md mr-3"
-              source={{ uri: owner?.contractImages[0].link }}
-            />
-          </View>
-        </View>
+        )}
         {/* <View>
           <Text> {owner.property?.propertyName}</Text>
         </View> */}

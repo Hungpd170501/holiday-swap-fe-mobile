@@ -17,7 +17,7 @@ export default function Recharge() {
   const [selectedView, setSelectedView] = useState(null);
   const [pricePoint, setPricePoint] = useState();
   const [amountTotal, setAmountTotal] = useState();
-  const [totalPoint, setTotalPoint] = useState();
+  const [totalPoint, setTotalPoint] = useState(100);
   const { deposit, statusDeposit } = useSelector((state) => state.deposit);
 
   useFocusEffect(
@@ -35,14 +35,19 @@ export default function Recharge() {
     setAmountTotal(Number(text) * Number(pricePoint));
   };
 
-  const handleViewSelect = (viewId) => {
+  const handleViewSelect = (viewId, selectedAmount) => {
     // Toggle selection on/off
     if (selectedView === viewId) {
       setSelectedView(null);
+      setTotalPoint(null);
+      setAmountTotal(null);
     } else {
       setSelectedView(viewId);
+      setTotalPoint(selectedAmount);
+      setAmountTotal(selectedAmount * pricePoint);
     }
   };
+
   const RechargeSubmit = () => {
     dispatch(
       depositPoint(
@@ -78,12 +83,12 @@ export default function Recharge() {
               className={`border py-4 px-10 ${
                 selectedView === 1 ? "border-red-500" : "border-gray-300"
               }`}
-              onPress={() => handleViewSelect(1)}
+              onPress={() => handleViewSelect(1, 100)}
             >
               <View>
-                <Text className="text-[15px] font-bold">20.000</Text>
+                <Text className="text-[15px] font-bold">100 point</Text>
                 <View className="flex flex-row items-center">
-                  <Text>18.000 </Text>
+                  <Text>{100 * pricePoint}đ </Text>
                   <FontAwesome5 name="coins" size={15} color="orange" />
                 </View>
               </View>
@@ -92,12 +97,12 @@ export default function Recharge() {
               className={`border py-4 px-10 ${
                 selectedView === 2 ? "border-red-500" : "border-gray-300"
               }`}
-              onPress={() => handleViewSelect(2)}
+              onPress={() => handleViewSelect(2, 200)}
             >
               <View>
-                <Text className="text-[15px] font-bold">50.000</Text>
+                <Text className="text-[15px] font-bold">200 point</Text>
                 <View className="flex flex-row items-center">
-                  <Text>18.000 </Text>
+                  <Text>{200 * pricePoint}đ </Text>
                   <FontAwesome5 name="coins" size={15} color="orange" />
                 </View>
               </View>
@@ -108,12 +113,12 @@ export default function Recharge() {
               className={`border py-4 px-10 ${
                 selectedView === 3 ? "border-red-500" : "border-gray-300"
               }`}
-              onPress={() => handleViewSelect(3)}
+              onPress={() => handleViewSelect(3, 500)}
             >
               <View>
-                <Text className="text-[15px] font-bold">100.000</Text>
+                <Text className="text-[15px] font-bold">500 point</Text>
                 <View className="flex flex-row items-center">
-                  <Text>18.000 </Text>
+                  <Text>{500 * pricePoint}đ </Text>
                   <FontAwesome5 name="coins" size={15} color="orange" />
                 </View>
               </View>
@@ -122,12 +127,12 @@ export default function Recharge() {
               className={`border py-4 px-10 ${
                 selectedView === 4 ? "border-red-500" : "border-gray-300"
               }`}
-              onPress={() => handleViewSelect(4)}
+              onPress={() => handleViewSelect(4, 800)}
             >
               <View>
-                <Text className="text-[15px] font-bold">200.000</Text>
+                <Text className="text-[15px] font-bold">800 point</Text>
                 <View className="flex flex-row items-center">
-                  <Text>18.000 </Text>
+                  <Text>{800 * pricePoint}đ </Text>
                   <FontAwesome5 name="coins" size={15} color="orange" />
                 </View>
               </View>
@@ -135,15 +140,6 @@ export default function Recharge() {
           </View>
         </View>
         <View className="bg-white  rounded-md">
-          <View className="flex flex-row items-center justify-center">
-            <Text className="text-[15px]">VN pay </Text>
-            <Checkbox
-              status={checked ? "checked" : "unchecked"}
-              onPress={() => {
-                setChecked(!checked);
-              }}
-            />
-          </View>
           <View className="bg-gray-200 h-[10px] w-full my-3"></View>
         </View>
         <View className="px-4 mt-3 rounded-md bg-white ">
@@ -155,14 +151,15 @@ export default function Recharge() {
               <Text>Enter the amount to deposit</Text>
               <TextInput
                 onChangeText={(text) => onInputchange(text)}
-                placeholder="0đ"
+                value={totalPoint}
+                placeholder="point"
                 className=" px-3 mt-2 rounded-lg py-3 border border-gray-300"
               />
               <View className="flex flex-row items-center justify-center gap-3 mt-4">
-                <Text>100.000vnd</Text>
+                <Text>{totalPoint ? `${totalPoint} point` : ""}</Text>
                 <Text>=</Text>
                 <View className="flex flex-row">
-                  <Text>80.000 </Text>
+                  <Text>{amountTotal} đ </Text>
                   <FontAwesome5 name="coins" size={15} color="orange" />
                 </View>
               </View>

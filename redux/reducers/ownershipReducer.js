@@ -99,6 +99,7 @@ export const ownershipDetailsReducer = (
       return {
         ...state,
         loading: false,
+        owner: null,
         error: action.payload,
       };
 

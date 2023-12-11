@@ -85,6 +85,18 @@ export default function YourTrip() {
                       <Text>Price: {booking.price}</Text>
                       <FontAwesome5 name="coins" size={15} color="orange" />
                     </View>
+                    <View className="flex flex-row items-center gap-1">
+                      <Text>Status:</Text>
+                      <Text
+                        className={`font-bold ${
+                          booking.status === "SUCCESS"
+                            ? "text-green-500"
+                            : "text-orange-500"
+                        }`}
+                      >
+                        {booking.status}
+                      </Text>
+                    </View>
                   </View>
                 </TouchableOpacity>
               ))

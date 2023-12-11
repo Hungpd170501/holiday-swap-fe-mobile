@@ -2,6 +2,7 @@ import React, { Fragment, useCallback, useEffect, useState } from "react";
 import {
   Dimensions,
   SafeAreaView,
+  StyleSheet,
   Text,
   TouchableOpacity,
   View,
@@ -14,6 +15,7 @@ import {
   MaterialIcons,
   FontAwesome,
   AntDesign,
+  Octicons,
 } from "@expo/vector-icons";
 import ChoseApartment from "../../components/apartment/ChoseApartment";
 import { Image } from "react-native";
@@ -46,12 +48,16 @@ import {
   getDateRangeDefault,
   getDateRangeOut,
 } from "../../redux/actions/dateRangeActions";
+import { getRatingApartment } from "../../redux/actions/ratingActions";
+import { BottomSheet } from "react-native-btr";
+import { XMarkIcon } from "react-native-heroicons/solid";
 
 export default function DetailApartment() {
   const route = useRoute();
-  const { id } = route.params;
+  const { id, propertyId, roomId } = route.params;
   const [showMore, setShowMore] = useState(false);
   const { apartment, loading } = useSelector((state) => state.apartmentDetail);
+  const { ratings } = useSelector((state) => state.ratings);
   const dispatch = useDispatch();
   const [detailAapartMentForRent, setDetailAapartMentForRent] = useState({});
   const [apartmentImage, setApartmentImage] = useState([]);
@@ -62,6 +68,7 @@ export default function DetailApartment() {
 
   const [checkInMap, setCheckInMap] = useState(new Map());
   const [checkOutMap, setCheckOutMap] = useState(new Map());
+  const [visibleRating, setVisibleRating] = useState(false);
 
   useEffect(() => {
     const updateCheckInAndOutMaps = () => {
@@ -91,7 +98,8 @@ export default function DetailApartment() {
 
   useEffect(() => {
     dispatch(getAparmentDetail(id));
-  }, [dispatch, id]);
+    dispatch(getRatingApartment(propertyId, roomId));
+  }, [dispatch, id, propertyId, roomId]);
 
   useEffect(() => {
     if (apartment) {
@@ -219,6 +227,10 @@ export default function DetailApartment() {
     }, [dispatch, dateRangeDefault])
   );
 
+  const toggleBottomNavigationRating = () => {
+    setVisibleRating(!visibleRating);
+  };
+
   return (
     <Fragment>
       {loading ? (
@@ -297,9 +309,19 @@ export default function DetailApartment() {
                 </View>
                 <View className="px-4 py-3 bg-white">
                   <View>
-                    <Text className="text-[20px] font-bold">
-                      {apartment?.property?.propertyName}
-                    </Text>
+                    <View className="flex flex-row justify-between items-center">
+                      <Text className="text-[20px] font-bold">
+                        {apartment?.property?.propertyName}
+                      </Text>
+                      <View className="flex flex-row gap-1 items-center">
+                        <AntDesign name="star" color="orange" />
+                        <Text className="text-[20px]">
+                          {apartment?.property?.rating
+                            ? Number(apartment?.property?.rating).toFixed(1)
+                            : ""}
+                        </Text>
+                      </View>
+                    </View>
 
                     <View className="w-full h-[1px] bg-gray-300 my-3"></View>
 
@@ -531,26 +553,79 @@ export default function DetailApartment() {
                       </View>
                     </View>
                   </View>
-                  <View>
-                    <Text className="font-bold text-[18px] py-4">Review</Text>
-                    {apartment?.property?.ratings?.content.map(
-                      (review, index) => (
-                        <View key={index} className="mb-5">
-                          <Text className="text-[16px] font-bold">
-                            Rating: {review.rating}
-                          </Text>
-                          <Text>
-                            {/* {format(parseISO(review.createDate), "yyyy-MM-dd")} */}
-                          </Text>
-                          <Text>{review.comment}</Text>
-                        </View>
-                      )
-                    )}
-                  </View>
+                  {ratings && (
+                    <TouchableOpacity
+                      activeOpacity={0.7}
+                      onPress={toggleBottomNavigationRating}
+                      className="flex flex-row justify-between items-center"
+                    >
+                      <Text className="font-bold text-[18px] py-4">Review</Text>
+                      <Octicons name="chevron-right" size={24} color="black" />
+                    </TouchableOpacity>
+                  )}
                 </View>
               </ScrollView>
             </SafeAreaView>
           )}
+
+          {/* Rating */}
+          <BottomSheet
+            visible={visibleRating}
+            onBackButtonPress={toggleBottomNavigationRating}
+            onBackdropPress={toggleBottomNavigationRating}
+          >
+            <View style={stylesRating.bottomNavigationView}>
+              <View>
+                <View className="py-3 border-b w-full border-gray-300 flex flex-row gap-9 items-center px-2">
+                  <XMarkIcon
+                    onPress={toggleBottomNavigationRating}
+                    size={30}
+                    color={"black"}
+                  />
+                  <Text className="text-xl font-bold text-black text-center">
+                    Review
+                  </Text>
+                </View>
+                {ratings && (
+                  <ScrollView className="pt-5 px-4">
+                    {ratings.content.map((item, index) => (
+                      <View key={item.id} className="pb-5">
+                        <View className="flex flex-row gap-3 items-center">
+                          <Image
+                            source={{ uri: item?.user?.avatar }}
+                            className="rounded-full h-20 w-20"
+                          />
+                          <View>
+                            <Text className="font-semibold text-base">
+                              {item.ratingType !== "PRIVATE"
+                                ? item?.user?.fullName
+                                : `Anymous user`}
+                            </Text>
+                            {item?.createDate ? (
+                              <Text>
+                                {format(
+                                  new Date(item?.createDate),
+                                  "dd/MM/yyyy 'at' h:mm a"
+                                )}
+                              </Text>
+                            ) : (
+                              ""
+                            )}
+                          </View>
+                        </View>
+
+                        <View className="pt-4">
+                          <Text className="text-lg font-semibold">
+                            {item?.comment}
+                          </Text>
+                        </View>
+                      </View>
+                    ))}
+                  </ScrollView>
+                )}
+              </View>
+            </View>
+          </BottomSheet>
         </Fragment>
       )}
     </Fragment>
@@ -577,3 +652,18 @@ const styles = {
     marginLeft: 10,
   },
 };
+
+const stylesRating = StyleSheet.create({
+  container: {},
+  bottomNavigationView: {
+    backgroundColor: "#fff",
+    width: "100%",
+    height: "100%",
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+  },
+  map: {
+    width: Dimensions.get("window").width,
+    height: "100%",
+  },
+});
