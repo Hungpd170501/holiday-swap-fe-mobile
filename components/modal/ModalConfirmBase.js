@@ -25,7 +25,17 @@ const ModalConfirmBase = ({
             <Text className="mb-4 text-center text-3xl font-black">
               {context}
             </Text>
-            <Button text={"Continue"} onPress={onPress} />
+            <View className="flex flex-row gap-3">
+              <Button text={"Continue"} onPress={onPress} />
+              <TouchableOpacity
+                onPress={() => setModalVisible(false)}
+                className="px-5 py-2 rounded-md bg-gray-300 flex my-4 mx-4"
+              >
+                <Text className="text-center justify-center font-bold text-black text-xl">
+                  Cancel
+                </Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
       </Modal>

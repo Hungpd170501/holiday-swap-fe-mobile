@@ -71,8 +71,10 @@ export default function SearchApartment(props) {
   console.log("Check in", checkIn);
 
   const onClearForm = () => {
-    dispatch({ type: SEARCH_APARTMENT_RESET });
-    setPageNo(0);
+    if (resortId || checkIn || checkOut || numberGuest) {
+      dispatch({ type: SEARCH_APARTMENT_RESET });
+      setPageNo(0);
+    }
   };
   return (
     <View className="bg-white flex-1">

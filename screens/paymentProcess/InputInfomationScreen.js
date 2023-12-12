@@ -26,6 +26,7 @@ import { Fragment } from "react";
 import Loading from "../../components/Loading";
 import validator from "validator";
 import ModalConfirmBase from "./../../components/modal/ModalConfirmBase";
+import Toast from "react-native-toast-message";
 
 export default function InputInfomationScreen() {
   const navigation = useNavigation();
@@ -199,7 +200,11 @@ export default function InputInfomationScreen() {
   useEffect(() => {
     if (error) {
       setVisibleModal(false);
-      console.log("Error booking", error);
+      Toast.show({
+        type: "error",
+        text1: "Booking",
+        text2: error,
+      });
     }
 
     if (success) {
@@ -216,7 +221,7 @@ export default function InputInfomationScreen() {
           ),
       });
     }
-  }, [error, success, dispatch, navigation]);
+  }, [error, success, dispatch, navigation, dateRangeRedux, apartmentBooking]);
 
   return (
     <Fragment>

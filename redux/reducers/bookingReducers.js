@@ -47,7 +47,7 @@ export const newBookingReducers = (state = { booking: {} }, action) => {
     case CREATE_BOOKING_RESET:
       return {
         ...state,
-        loading: true,
+        loading: false,
         success: false,
       };
 

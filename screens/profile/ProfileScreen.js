@@ -49,9 +49,9 @@ export default function ProfileScreen() {
       <View className="bg-blue-500 w-full h-[100px] justify-between flex flex-row items-center px-5">
         <View className="flex flex-row items-center gap-8">
           <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Ionicons name="arrow-back-outline" size={20} color="white" />
+            <Ionicons name="arrow-back-outline" size={25} color="white" />
           </TouchableOpacity>
-          <Text className="text-[20px] text-white">Profile</Text>
+          <Text className="text-2xl text-white">Profile</Text>
         </View>
         <TouchableOpacity onPress={() => navigation.navigate("HelpCenter")}>
           <AntDesign name="infocirlceo" size={20} color="white" />

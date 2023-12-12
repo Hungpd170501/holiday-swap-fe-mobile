@@ -31,6 +31,7 @@ import {
 } from "../../redux/actions/ratingActions";
 import Toast from "react-native-toast-message";
 import { CREATE_RATING_BOOKING_RESET } from "../../redux/constants/ratingConstant";
+import StarRating from "react-native-star-rating-widget";
 
 export default function BookingDetail() {
   const route = useRoute();
@@ -338,7 +339,11 @@ export default function BookingDetail() {
                   <View className="pt-5 px-4">
                     <View className="flex flex-row gap-3 items-center">
                       <Image
-                        source={{ uri: ratings?.user?.avatar }}
+                        source={
+                          ratings?.user?.avatar
+                            ? { uri: ratings?.user?.avatar }
+                            : require("../../assets/images/avatar.png")
+                        }
                         className="rounded-full h-20 w-20"
                       />
                       <View>
@@ -357,6 +362,9 @@ export default function BookingDetail() {
                         ) : (
                           ""
                         )}
+                        <View pointerEvents="none">
+                          <StarRating starSize={18} rating={ratings.rating} />
+                        </View>
                       </View>
                     </View>
 
