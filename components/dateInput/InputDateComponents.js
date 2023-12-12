@@ -41,19 +41,17 @@ export default function InputDateComponents({
   useEffect(() => {
     if (startDate) {
       let timeBooked = apartment.timeHasBooked;
+      const result = [];
       timeBooked.forEach((element) => {
         let checkIn = new Date(element.checkIn);
         let checkOut = new Date(element.checkOut);
-        if (new Date(startDate).getTime() > checkIn.getTime()) {
-          const result = dateRangeOut.filter(
-            (date) => date.getTime() != checkOut.getTime()
-          );
-          dispatch(getDateRangeOut([...result, checkIn]));
-        } else if (startDate < checkIn) {
-          const result = dateRangeOut.filter(
-            (date) => date.getTime() != checkIn.getTime()
-          );
-          dispatch(getDateRangeOut([...result, checkOut]));
+
+        if (startDate <= checkIn) {
+          result.push(checkOut);
+          dispatch(getDateRangeOut(result));
+        } else if (startDate >= checkIn) {
+          result.push(checkIn);
+          dispatch(getDateRangeOut(result));
         }
       });
     }
