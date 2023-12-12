@@ -51,6 +51,7 @@ import {
 import { getRatingApartment } from "../../redux/actions/ratingActions";
 import { BottomSheet } from "react-native-btr";
 import { XMarkIcon } from "react-native-heroicons/solid";
+import StarRating from "react-native-star-rating-widget";
 
 export default function DetailApartment() {
   const route = useRoute();
@@ -592,7 +593,11 @@ export default function DetailApartment() {
                       <View key={item.id} className="pb-5">
                         <View className="flex flex-row gap-3 items-center">
                           <Image
-                            source={{ uri: item?.user?.avatar }}
+                            source={
+                              item?.user?.avatar
+                                ? { uri: item?.user?.avatar }
+                                : require("../../assets/images/avatar.png")
+                            }
                             className="rounded-full h-20 w-20"
                           />
                           <View>
@@ -611,6 +616,9 @@ export default function DetailApartment() {
                             ) : (
                               ""
                             )}
+                            <View pointerEvents="none">
+                              <StarRating starSize={18} rating={item?.rating} />
+                            </View>
                           </View>
                         </View>
 
