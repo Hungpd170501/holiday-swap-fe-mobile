@@ -5,9 +5,9 @@ import { Text, View } from "react-native-animatable";
 import { useDispatch, useSelector } from "react-redux";
 import HTML from "react-native-render-html";
 import { getBlog, likePost } from "../../redux/actions/blogAction";
-import Loading from "../../components/loading/Loading";
 import { Image } from "react-native";
 import { format } from "date-fns";
+import Loading from "../../components/Loading";
 
 export default function BlogCommunity({ navigation }) {
   const dispatch = useDispatch();
@@ -92,7 +92,7 @@ export default function BlogCommunity({ navigation }) {
               </TouchableOpacity>
             ))
           ) : (
-            <View className="mb-[100%]">
+            <View className="pt-64">
               <Loading />
             </View>
           )}

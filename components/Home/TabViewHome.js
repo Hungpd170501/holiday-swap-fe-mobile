@@ -213,9 +213,7 @@ export default function TabViewHome(props) {
                                   <View className="max-w-[100%] overflow-hidden pb-2 flex flex-row gap-1">
                                     <Text className="font-bold">Owner by:</Text>
                                     <Text className="text-[15px] whitespace-nowrap overflow-ellipsis">
-                                      {item.user.fullName
-                                        ? item.user.fullName
-                                        : item.user.username}
+                                      {item?.user?.username}
                                     </Text>
                                   </View>
                                   <View className="flex flex-row gap-1 items-center mb-1">
