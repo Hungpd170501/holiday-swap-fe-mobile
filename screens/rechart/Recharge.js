@@ -43,7 +43,7 @@ export default function Recharge() {
       setAmountTotal(null);
     } else {
       setSelectedView(viewId);
-      setTotalPoint(selectedAmount);
+      setTotalPoint(selectedAmount.toString());
       setAmountTotal(selectedAmount * pricePoint);
     }
   };
@@ -78,7 +78,7 @@ export default function Recharge() {
 
       <ScrollView>
         <View className="px-4 bg-white  py-4">
-          <View className="flex flex-row items-center justify-center gap-20">
+          <View className="flex flex-row items-center justify-center gap-10 ">
             <TouchableOpacity
               className={`border py-4 px-10 ${
                 selectedView === 1 ? "border-red-500" : "border-gray-300"
@@ -153,7 +153,8 @@ export default function Recharge() {
                 onChangeText={(text) => onInputchange(text)}
                 value={totalPoint}
                 placeholder="point"
-                className=" px-3 mt-2 rounded-lg py-3 border border-gray-300"
+                keyboardType="numeric"
+                className="px-3 mt-2 rounded-lg py-3 border border-gray-300"
               />
               <View className="flex flex-row items-center justify-center gap-3 mt-4">
                 <Text>{totalPoint ? `${totalPoint} point` : ""}</Text>

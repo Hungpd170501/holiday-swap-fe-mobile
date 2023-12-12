@@ -63,13 +63,13 @@ export default function BlogDetail() {
           <View className="flex flex-row items-center justify-between">
             <View className="flex flex-row items-center gap-2">
               <Image
-                className="w-[50px] h-[50px]"
+                className="w-[50px] h-[50px] rounded-full"
                 source={{ uri: blog.avatar }}
               />
               <View>
                 <Text className="text-[18px] font-bold"> {blog.userName}</Text>
-                <Text className="text-[13px]">{blog?.datePosted}</Text>
-                {/* <Text>{format(new Date(blog?.datePosted), "dd-MM-yyyy")}</Text> */}
+                {/* <Text className="text-[13px]">{blog?.datePosted}</Text> */}
+                <Text>{format(new Date(blog?.datePosted), "dd-MM-yyyy")}</Text>
               </View>
             </View>
             <View className="flex flex-row items-center gap-3">
@@ -80,7 +80,7 @@ export default function BlogDetail() {
               >
                 <AntDesign
                   name="like2"
-                  size={30}
+                  size={25}
                   color={blog.liked === true ? "blue" : "gray"}
                 />
                 <Text className="text-lg">{blog.likes}</Text>
@@ -93,14 +93,14 @@ export default function BlogDetail() {
               >
                 <AntDesign
                   name="dislike2"
-                  size={30}
+                  size={25}
                   color={blog.disliked === true ? "red" : "gray"}
                 />
                 <Text className="text-lg">{blog.dislikes}</Text>
               </TouchableOpacity>
             </View>
           </View>
-          <Text className="py-5">Title: {blog.title}</Text>
+          <Text className="pt-5 text-[20px] font-bold">{blog.title}</Text>
           <View className="mb-5">
             <HTML source={{ html: blog.content }} />
           </View>
