@@ -67,6 +67,7 @@ import { stompContext, StompEventTypes, withSocket } from "../services/socket";
 import * as Notifications from "expo-notifications";
 import ChangePassword from "../screens/changePassword/ChangePassword";
 import OwnerBookingDetail from "../screens/ownerBookingDetail/OwnerBookingDetail";
+import useLogout from "../hooks/useLogout";
 
 const Stack = createStackNavigator();
 
@@ -83,6 +84,8 @@ function Navigation() {
   const dispatch = useDispatch();
   const [wsState, setWsState] = useState("Not Connected");
   const [loading, setLoading] = useState(true);
+  const logout = useLogout();
+  const isLogout = logout.isLogout;
 
   const setToken = (token) => {
     return SecureStore.setItemAsync("secure_token", token);
@@ -139,6 +142,12 @@ function Navigation() {
     }
   }, [decodedToken]);
 
+  useEffect(() => {
+    if (isLogout === true) {
+      logout.onLogoutReset();
+    }
+  }, [isLogout]);
+
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
@@ -187,6 +196,9 @@ function Navigation() {
             <Stack.Screen name="VerifyOTP" component={VerifyOPTScreen} />
             <Stack.Screen name="BookingConfirm" component={BookingConfirm} />
             <Stack.Screen name="DetailProperty" component={DetailProperty} />
+            {isLogout && (
+              <Stack.Screen name="SignInScreen" component={SignInScreen} />
+            )}
             <Stack.Screen name="Landing" component={Landing} />
             <Stack.Screen name="StepAdd1" component={StepAdd1} />
             <Stack.Screen name="WellcomeBackAdd" component={WellcomeBackAdd} />
@@ -239,7 +251,6 @@ function Navigation() {
               name="WelcomeBackScreen"
               component={WelcomeBackScreen}
             />
-            <Stack.Screen name="SignInScreen" component={SignInScreen} />
           </Fragment>
         ) : (
           <Fragment>

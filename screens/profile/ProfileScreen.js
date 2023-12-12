@@ -15,12 +15,14 @@ import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { useSelector } from "react-redux";
 import * as SecureStore from "expo-secure-store";
 import { loadUser } from "../../redux/actions/userActions";
+import useLogout from "../../hooks/useLogout";
 
 export default function ProfileScreen() {
   const dispatch = useDispatch();
   const { user, userProfile, loading, error, isAuthenticated } = useSelector(
     (state) => state.user
   );
+  const logout = useLogout();
 
   // useFocusEffect(
   //   React.useCallback(() => {
@@ -29,9 +31,12 @@ export default function ProfileScreen() {
   // );
 
   const navigation = useNavigation();
-  const signOut = async () => {
-    await SecureStore.deleteItemAsync("secure_token")
-      .then(navigation.navigate("SignInScreen"))
+  const signOut = () => {
+    SecureStore.deleteItemAsync("secure_token")
+      .then(() => {
+        logout.onLogout();
+        navigation.navigate("SignInScreen");
+      })
       .catch((error) => {
         console.log("Check error", error);
       });

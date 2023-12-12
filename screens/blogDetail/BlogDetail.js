@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Text, TouchableOpacity, Image, ScrollView } from "react-native"; // Import Image component for displaying avatars
 import { View } from "react-native-animatable";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,7 +8,11 @@ import {
   likePost,
 } from "../../redux/actions/blogAction";
 import { AntDesign, Ionicons } from "@expo/vector-icons";
-import { useNavigation, useRoute } from "@react-navigation/native";
+import {
+  useFocusEffect,
+  useNavigation,
+  useRoute,
+} from "@react-navigation/native";
 import HTML from "react-native-render-html";
 import { format } from "date-fns";
 import { loadUser } from "../../redux/actions/userActions";
@@ -27,13 +31,15 @@ export default function BlogDetail() {
 
   const { dislikeSuccess } = useSelector((state) => state.dislikePost);
 
-  useEffect(() => {
-    if (userProfile && (success || dislikeSuccess)) {
-      dispatch(getBlogDetails(id, userProfile.userId));
-    } else {
-      dispatch(getBlogDetails(id));
-    }
-  }, [dispatch, id, userProfile, success, dislikeSuccess]);
+  useFocusEffect(
+    useCallback(() => {
+      if (userProfile) {
+        dispatch(getBlogDetails(id, userProfile.userId));
+      } else {
+        dispatch(getBlogDetails(id));
+      }
+    }, [dispatch, id, userProfile, success, dislikeSuccess])
+  );
 
   const handleLikeClick = () => {
     dispatch(likePost(blog.id));

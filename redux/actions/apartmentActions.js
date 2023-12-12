@@ -5,6 +5,9 @@ import {
   APARTMENT_DETAIL_REQUEST,
   APARTMENT_DETAIL_SUCCESS,
   APARTMENT_DETAIL_FAIL,
+  SEARCH_APARTMENT_REQUEST,
+  SEARCH_APARTMENT_SUCCESS,
+  SEARCH_APARTMENT_FAIL,
 } from "../constants/apartmentConstants";
 import axios from "axios";
 import * as SecureStore from "expo-secure-store";
@@ -22,7 +25,7 @@ export const getApartments =
         },
       };
 
-      let link = `https://holiday-swap.click/api/v1/apartment-for-rent?pageNo=0&pageSize=9999&sortBy=id&sortDirection=asc`;
+      let link = `https://holiday-swap.click/api/v1/apartment-for-rent?pageNo=0&pageSize=9999&sortBy=startTime&sortDirection=asc`;
 
       if (resortId) {
         link += `&resortId=${resortId}`;
@@ -61,3 +64,26 @@ export const getAparmentDetail = (availableId) => async (dispatch) => {
     });
   }
 };
+
+export const getSearchApartmentParams =
+  (resortId, checkIn, checkOut, numberOfGuest, resortName) =>
+  async (dispatch) => {
+    try {
+      dispatch({ type: SEARCH_APARTMENT_REQUEST });
+
+      const data = {
+        resortId: resortId,
+        checkIn: checkIn,
+        checkOut: checkOut,
+        numberOfGuest: numberOfGuest,
+        resortName: resortName,
+      };
+
+      dispatch({ type: SEARCH_APARTMENT_SUCCESS, payload: data });
+    } catch (error) {
+      dispatch({
+        type: SEARCH_APARTMENT_FAIL,
+        payload: error.resposne.data.message,
+      });
+    }
+  };

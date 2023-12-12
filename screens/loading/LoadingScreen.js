@@ -1,19 +1,21 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { Text, View, StatusBar } from "react-native";
 import Loading from "../../components/loading/Loading";
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { ScrollView } from "react-native";
 
 export default function LoadingScreen({ navigation }) {
   // const navigation = useNavigation();
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      navigation.navigate("root");
-    }, 1000);
+  useFocusEffect(
+    useCallback(() => {
+      const timer = setTimeout(() => {
+        navigation.navigate("root");
+      }, 1000);
 
-    return () => clearTimeout(timer);
-  }, []);
+      return () => clearTimeout(timer);
+    }, [])
+  );
 
   return (
     <View className="h-full bg-sky-500">

@@ -18,26 +18,48 @@ import { Button } from "react-native-paper";
 import { useDispatch, useSelector } from "react-redux";
 import { submitSearchParamApartmentForRent } from "../../redux/actions/searchParamActions";
 import { getListResort } from "../../redux/actions/resortActions";
-import { getApartments } from "../../redux/actions/apartmentActions";
+import {
+  getApartments,
+  getSearchApartmentParams,
+} from "../../redux/actions/apartmentActions";
+import { SEARCH_APARTMENT_RESET } from "../../redux/constants/apartmentConstants";
 
 export default function SearchApartment(props) {
   const navigation = useNavigation();
   const [selectedLocation, setSelectedLocation] = useState(null);
   const [searchText, setSearchText] = useState("");
   const dispatch = useDispatch();
-  const { searchParam } = useSelector((state) => state.searchParam);
   const handlerChamge = () => {};
   const [locationName, setLocationName] = useState("");
-  const [resortId, setResortId] = useState();
-  const [checkIn, setCheckIn] = useState("");
-  const [checkOut, setCheckOut] = useState("");
-  const [numberGuest, setNumberGuest] = useState("");
+  const { searchParams } = useSelector((state) => state.searchApartmentParams);
+  const [resortId, setResortId] = useState(searchParams.resortId);
+  const [checkIn, setCheckIn] = useState(searchParams.checkIn);
+  const [checkOut, setCheckOut] = useState(searchParams.checkOut);
+  const [numberGuest, setNumberGuest] = useState(searchParams.numberOfGuest);
   const [pageNo, setPageNo] = useState(0);
   const { aparments } = useSelector((state) => state.apartments);
+
   const submitSearch = () => {
-    dispatch(getApartments(resortId, checkIn, checkOut, numberGuest));
-    navigation.navigate("root");
+    if (searchParams) {
+      dispatch(
+        getApartments(
+          searchParams?.resortId,
+          searchParams?.checkIn,
+          searchParams?.checkOut,
+          searchParams?.numberOfGuest
+        )
+      );
+      navigation.navigate("root");
+    }
   };
+
+  useEffect(() => {
+    if (resortId || checkIn || checkOut || numberGuest) {
+      dispatch(
+        getSearchApartmentParams(resortId, checkIn, checkOut, numberGuest)
+      );
+    }
+  }, [resortId, checkIn, checkOut, numberGuest]);
 
   const handleChangeResort = (value) => {
     setResortId(value);
@@ -45,12 +67,11 @@ export default function SearchApartment(props) {
 
   console.log("Check resortId ", resortId);
   console.log("Check guest", numberGuest);
+  console.log("Check out", checkOut);
+  console.log("Check in", checkIn);
 
   const onClearForm = () => {
-    setLocationName("");
-    setCheckIn("");
-    setCheckOut("");
-    setNumberGuest("");
+    dispatch({ type: SEARCH_APARTMENT_RESET });
     setPageNo(0);
   };
   return (

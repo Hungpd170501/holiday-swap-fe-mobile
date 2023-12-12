@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { TouchableOpacity } from "react-native";
 import { StyleSheet } from "react-native";
 import { Text } from "react-native";
@@ -11,12 +11,14 @@ import { ScrollView } from "react-native";
 import { Image } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { getListResort } from "../../redux/actions/resortActions";
+import { getSearchApartmentParams } from "../../redux/actions/apartmentActions";
 
 export default function SearchResortBottomSheet({ handleChangeResort }) {
   const navigation = useNavigation();
   const [visible, setVisible] = useState(false);
   const [searchText, setSearchText] = useState("");
-  const [selectedResort, setSelectedResort] = useState("");
+  const { searchParams } = useSelector((state) => state.searchApartmentParams);
+  const [selectedResort, setSelectedResort] = useState(searchParams.resortName);
   const dispatch = useDispatch();
 
   const [selectedLocation, setSelectedLocation] = useState(null);
@@ -28,6 +30,8 @@ export default function SearchResortBottomSheet({ handleChangeResort }) {
       dispatch(getListResort());
     }, [dispatch])
   );
+
+  console.log("Check reosrt name", searchParams.resortName);
 
   const toggleBottomNavigationView = () => {
     setVisible(!visible);
@@ -79,6 +83,15 @@ export default function SearchResortBottomSheet({ handleChangeResort }) {
                         onPress={() => {
                           setVisible();
                           setSearchText(item.resortName);
+                          dispatch(
+                            getSearchApartmentParams(
+                              searchParams.resortId,
+                              searchParams.checkIn,
+                              searchParams.checkOut,
+                              searchParams.numberOfGuest,
+                              item.resortName
+                            )
+                          );
                           setSelectedResort(item.resortName);
                           handleChangeResort(item.id);
                         }}

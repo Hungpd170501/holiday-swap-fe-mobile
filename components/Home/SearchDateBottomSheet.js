@@ -12,17 +12,23 @@ import { Image } from "react-native";
 import InputDateComponents from "../dateInput/InputDateComponents";
 import { format } from "date-fns";
 import InputDateSearch from "./InputDateSearch";
-
-const initialDateRange = {
-  startDate: new Date(),
-  endDate: new Date(new Date().getTime() + 24 * 60 * 60 * 1000),
-};
+import { useSelector } from "react-redux";
 
 export default function SearchDateBottomSheet(props) {
   const navigation = useNavigation();
   const [visible, setVisible] = useState(false);
   const [searchText, setSearchText] = useState("");
   const [selectedLocation, setSelectedLocation] = useState(null);
+  const { searchParams } = useSelector((state) => state.searchApartmentParams);
+
+  const initialDateRange = {
+    startDate: searchParams.checkIn
+      ? new Date(searchParams.checkIn)
+      : new Date(),
+    endDate: searchParams.checkOut
+      ? new Date(searchParams.checkOut)
+      : new Date(new Date().getTime() + 24 * 60 * 60 * 1000),
+  };
   const [dateRange, setDateRange] = useState(initialDateRange);
 
   const handleDateRange = (value) => {

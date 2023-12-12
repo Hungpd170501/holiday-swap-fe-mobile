@@ -10,6 +10,7 @@ import { searchParamReducers } from "./reducers/searchParamReducers";
 import {
   apartmentDetailReducers,
   apartmentReducers,
+  searchApartmentParamsReducers,
 } from "./reducers/apartmentReducers";
 import {
   bookingDetailsReducer,
@@ -82,6 +83,7 @@ export const store = configureStore({
     searchAllUsers: searchAllUserReducers,
     tranferPoint: tranferPointReducers,
     cancelBooking: cancelBookingReducer,
+    searchApartmentParams: searchApartmentParamsReducers,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

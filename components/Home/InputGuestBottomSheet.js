@@ -1,16 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TouchableOpacity } from "react-native";
 import { StyleSheet } from "react-native";
 import { Text, View } from "react-native";
 import { BottomSheet } from "react-native-btr";
 import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { useDispatch, useSelector } from "react-redux";
+import { getSearchApartmentParams } from "../../redux/actions/apartmentActions";
 
 export default function InputGuestBottomSheet(props) {
   const navigation = useNavigation();
   const [visible, setVisible] = useState(false);
   const [searchText, setSearchText] = useState("");
   const [selectedLocation, setSelectedLocation] = useState(null);
+  const { searchParams } = useSelector((state) => state.searchApartmentParams);
+  const [adultCount, setAdultCount] = useState(
+    searchParams?.numberOfGuest || 0
+  );
+  const dispatch = useDispatch();
 
   const [showGuestCount, setShowGuestCount] = useState(false);
 
@@ -31,13 +38,30 @@ export default function InputGuestBottomSheet(props) {
     setPetCount(0);
   };
 
-  const [adultCount, setAdultCount] = useState(0);
   const incrementAdultCount = () => {
     setAdultCount(adultCount + 1);
+    dispatch(
+      getSearchApartmentParams(
+        searchParams.resortId,
+        searchParams.checkIn,
+        searchParams.checkOut,
+        adultCount + 1,
+        searchParams.resortName
+      )
+    );
   };
   const decrementAdultCount = () => {
     if (adultCount > 0) {
       setAdultCount(adultCount - 1);
+      dispatch(
+        getSearchApartmentParams(
+          searchParams.resortId,
+          searchParams.checkIn,
+          searchParams.checkOut,
+          adultCount - 1,
+          searchParams.resortName
+        )
+      );
     }
   };
 
@@ -78,7 +102,10 @@ export default function InputGuestBottomSheet(props) {
 
   return (
     <View style={styles.container}>
-      <View style={styles.shadow} className="bg-white rounded-xl px-5 py-5 mt-5 ">
+      <View
+        style={styles.shadow}
+        className="bg-white rounded-xl px-5 py-5 mt-5 "
+      >
         <TouchableOpacity onPress={toggleBottomNavigationView}>
           <View className="flex flex-row justify-between">
             <Text>Guest:</Text>
@@ -87,7 +114,10 @@ export default function InputGuestBottomSheet(props) {
               {isChildCountChanged ? `Children: ${childCount} ` : ""}
               {isBabyCountChanged ? `Baby: ${babyCount} ` : ""}
               {isPetCountChanged ? `Pet: ${petCount}` : ""}
-              {!isAdultCountChanged && !isChildCountChanged && !isBabyCountChanged && !isPetCountChanged
+              {!isAdultCountChanged &&
+              !isChildCountChanged &&
+              !isBabyCountChanged &&
+              !isPetCountChanged
                 ? "Add guest"
                 : ""}
             </Text>
@@ -97,16 +127,21 @@ export default function InputGuestBottomSheet(props) {
       <BottomSheet
         visible={visible}
         onBackButtonPress={toggleBottomNavigationView}
-        onBackdropPress={toggleBottomNavigationView}>
+        onBackdropPress={toggleBottomNavigationView}
+      >
         <View style={styles.bottomNavigationView}>
           <View className="flex-1 flex-col justify-between">
             <View className="px-4">
-              <View style={styles.shadow} className="bg-white rounded-xl px-5 mt-5 py-4">
-                <Text style={{ fontSize: 20, fontWeight: "bold" }}>Who's coming?</Text>
+              <View
+                style={styles.shadow}
+                className="bg-white rounded-xl px-5 mt-5 py-4"
+              >
+                <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+                  Who's coming?
+                </Text>
                 <View className="flex flex-row items-center justify-between mt-5">
                   <View>
-                    <Text className="text-[17px]">Adult</Text>
-                    <Text className="text-gray-500">From 13 years old and up</Text>
+                    <Text className="text-[17px]">Guest</Text>
                   </View>
                   <View className="flex flex-row items-center gap-5">
                     <TouchableOpacity onPress={decrementAdultCount}>
@@ -175,11 +210,19 @@ export default function InputGuestBottomSheet(props) {
             </View>
             <View className="px-4 border-t border-gray-400 py-3">
               <View className="flex flex-row items-center justify-between">
-                <TouchableOpacity onPress={resetCounts} style={{ fontSize: 18, fontWeight: "bold" }}>
+                <TouchableOpacity
+                  onPress={resetCounts}
+                  style={{ fontSize: 18, fontWeight: "bold" }}
+                >
                   <Text className="font-bold underline">Clear All</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={applyChanges} className=" bg-blue-500 px-10 py-3 rounded-xl">
-                  <Text className=" text-[16px] font-bold text-white">Apply</Text>
+                <TouchableOpacity
+                  onPress={applyChanges}
+                  className=" bg-blue-500 px-10 py-3 rounded-xl"
+                >
+                  <Text className=" text-[16px] font-bold text-white">
+                    Apply
+                  </Text>
                 </TouchableOpacity>
               </View>
             </View>

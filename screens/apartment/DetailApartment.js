@@ -586,9 +586,9 @@ export default function DetailApartment() {
                     Review
                   </Text>
                 </View>
-                {ratings && (
+                {ratings ? (
                   <ScrollView className="pt-5 px-4">
-                    {ratings.content.map((item, index) => (
+                    {ratings?.content?.map((item, index) => (
                       <View key={item.id} className="pb-5">
                         <View className="flex flex-row gap-3 items-center">
                           <Image
@@ -622,6 +622,10 @@ export default function DetailApartment() {
                       </View>
                     ))}
                   </ScrollView>
+                ) : (
+                  <View>
+                    <Text className="text-lg font-bold">No have reviews</Text>
+                  </View>
                 )}
               </View>
             </View>

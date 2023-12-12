@@ -13,6 +13,10 @@ import { View } from "react-native-animatable";
 import UploadImage from "../../components/addApartment/UploadImage";
 import UploadImageProfile from "./UploadImageProfile";
 import { launchImageLibrary } from "react-native-image-picker";
+import DateTimePicker, {
+  DateTimePickerAndroid,
+} from "@react-native-community/datetimepicker";
+import { format } from "date-fns";
 
 export default function ManageAccount() {
   const { user, userProfile, loading, error, isAuthenticated } = useSelector(
@@ -21,10 +25,13 @@ export default function ManageAccount() {
 
   const { success, isUpdated } = useSelector((state) => state.profile);
 
+  const [date, setDate] = useState(new Date(1598051730000));
+  const [show, setShow] = useState(false);
+
   const dispatch = useDispatch();
   const [avatar, setAvatar] = useState(userProfile?.avatar);
   const [avatarSubmit, setAvatarSubmit] = useState();
-  const [fullName, setFullName] = useState(userProfile?.fullName);
+  const [fullName, setFullName] = useState(userProfile?.fullName || null);
   const [dob, setDob] = useState(userProfile?.dob);
   const [gender, setGender] = useState(userProfile?.gender);
 
@@ -33,7 +40,7 @@ export default function ManageAccount() {
       avatar: avatarSubmit ?? userProfile?.avatar,
       fullName: fullName,
       gender: gender,
-      dob: dob,
+      dob: format(new Date(date), "yyyy-MM-dd"),
     };
 
     dispatch(updateProfile(userData));
@@ -56,6 +63,28 @@ export default function ManageAccount() {
 
   console.log("Check avatar", avatar);
 
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate;
+    setDate(currentDate);
+  };
+
+  const showMode = (currentMode) => {
+    DateTimePickerAndroid.open({
+      value: date,
+      onChange,
+      mode: currentMode,
+      is24Hour: true,
+    });
+  };
+
+  const showDatepicker = () => {
+    showMode("date");
+  };
+
+  const showTimepicker = () => {
+    showMode("time");
+  };
+
   return (
     <View className="flex-1">
       <View className="bg-blue-500 w-full h-[100px]  flex flex-row items-center justify-start px-5">
@@ -70,7 +99,11 @@ export default function ManageAccount() {
           <View className="flex flex-row items-center py-5 gap-5">
             <Image
               className="w-16 h-16 rounded-full"
-              source={{ uri: avatar["0"]["uri"] || userProfile?.avatar }}
+              source={
+                userProfile.avatar || avatar["0"]["uri"]
+                  ? { uri: avatar["0"]["uri"] || userProfile?.avatar }
+                  : require("../../assets/images/avatar.png")
+              }
             />
 
             <TextInput
@@ -98,8 +131,8 @@ export default function ManageAccount() {
               // onChangeText={handleInputChange}
               keyboardType="numbers-and-punctuation"
               className=" bg-transparent w-[100%] border-b border-gray-400"
-              value={dob}
-              onChangeText={(text) => setDob(text)}
+              value={format(new Date(date), "dd-MM-yyyy")}
+              onPressIn={showDatepicker}
             />
           </View>
 
@@ -141,6 +174,16 @@ export default function ManageAccount() {
             Save
           </Text>
         </TouchableOpacity>
+
+        {show && (
+          <DateTimePicker
+            testID="dateTimePicker"
+            value={date}
+            mode={mode}
+            is24Hour={true}
+            onChange={onChange}
+          />
+        )}
       </ScrollView>
     </View>
   );

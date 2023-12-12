@@ -24,11 +24,9 @@ export default function TabViewHome(props) {
   const { loading, apartments } = useSelector((state) => state.apartments);
   const dispatch = useDispatch();
 
-  useFocusEffect(
-    useCallback(() => {
-      dispatch(getApartments());
-    }, [dispatch])
-  );
+  useEffect(() => {
+    dispatch(getApartments());
+  }, [dispatch]);
 
   const [selectedTab, setSelectedTab] = useState("");
   const [tabs, setTabs] = useState([]);
@@ -213,7 +211,7 @@ export default function TabViewHome(props) {
                                     </Text>
                                   </View> */}
                                   <View className="max-w-[100%] overflow-hidden pb-2 flex flex-row gap-1">
-                                    <Text>Owner by:</Text>
+                                    <Text className="font-bold">Owner by:</Text>
                                     <Text className="text-[15px] whitespace-nowrap overflow-ellipsis">
                                       {item.user.username}
                                     </Text>
