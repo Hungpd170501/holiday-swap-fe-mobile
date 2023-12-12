@@ -467,7 +467,7 @@ export default function DetailApartment() {
                           }}
                         />
                         <View>
-                          <Text>{apartment?.user?.fullName}</Text>
+                          <Text>{apartment?.user?.username}</Text>
                           <Text className="text-[12px] text-green-500">
                             Email verified
                           </Text>
