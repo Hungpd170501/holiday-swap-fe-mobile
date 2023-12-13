@@ -5,14 +5,17 @@ import { store } from "./redux/store";
 import { ViewPropTypes } from "deprecated-react-native-prop-types";
 import { LogBox } from "react-native"; // Import LogBox once
 import Toast from "react-native-toast-message";
+import {GestureHandlerRootView} from "react-native-gesture-handler";
 
 function App() {
   LogBox.ignoreAllLogs(); // Ignore all log notifications
 
   return (
     <Provider store={store}>
-      <Navigation />
-      <Toast />
+        <GestureHandlerRootView style={{flex: 1}}>
+          <Navigation />
+          <Toast />
+        </GestureHandlerRootView>
     </Provider>
   );
 }

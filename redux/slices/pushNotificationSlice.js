@@ -43,7 +43,15 @@ export const pushNotificationSlice = createSlice({
         },
         readAllNotifications: (state) => {
             state.data = state.data.map((item) => ({ ...item, isRead: true }));
-        }
+        },
+        readNotificationById: (state, action) => {
+            state.data = state.data.map((item) => {
+                if (item.notificationId === action.payload) {
+                    return { ...item, isRead: true };
+                }
+                return item;
+            });
+        },
     },
     extraReducers: (builder) => {
         // Add reducers for additional action types here, and handle loading state as needed
@@ -62,5 +70,10 @@ export const pushNotificationSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { addNotification, setNotificationLoading, fetchNotifications,removeNotifications , readAllNotifications} = pushNotificationSlice.actions;
+export const { addNotification,
+    setNotificationLoading,
+    fetchNotifications,
+    removeNotifications ,
+    readAllNotifications,
+    readNotificationById} = pushNotificationSlice.actions;
 export default pushNotificationSlice.reducer;
