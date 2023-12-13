@@ -154,7 +154,18 @@ function Navigation() {
         {authen ? (
           <Fragment>
             <Stack.Screen name="Loading" component={LoadingScreen} />
-            <Stack.Screen name="root" component={TabNavigation} />
+            <Stack.Screen
+              name="root"
+              component={TabNavigation}
+              options={({ navigation }) => {
+                if (decodedToken?.exp < Math.floor(Date.now() / 1000)) {
+                  // Token has expired, remove it from SecureStore
+                  removeToken();
+                  logout.onLogout();
+                  navigation.navigate("SignInScreen");
+                }
+              }}
+            />
 
             <Stack.Screen name="Home" component={HomeScreen} />
             <Stack.Screen name="Profile" component={ProfileScreen} />

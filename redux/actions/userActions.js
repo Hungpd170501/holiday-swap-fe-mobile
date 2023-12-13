@@ -20,6 +20,7 @@ import {
   RESET_PASSWORD_FAIL,
 } from "../constants/userConstants";
 import * as SecureStore from "expo-secure-store";
+import { format } from "date-fns";
 
 // Login
 export const login = (email, password) => async (dispatch) => {
@@ -90,8 +91,12 @@ export const updateProfile = (userData) => async (dispatch) => {
     });
     formData.append("fullName", userData.fullName);
     formData.append("gender", userData.gender);
-    formData.append("dob", userData.dob);
 
+    if (userData.dob) {
+      console.log("Check dob in data", userData.dob);
+
+      formData.append("dob", format(new Date(userData.dob), "yyyy-MM-dd"));
+    }
     console.log("Check userdata", formData);
 
     const data = await axios

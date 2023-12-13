@@ -31,15 +31,13 @@ export default function BlogDetail() {
 
   const { dislikeSuccess } = useSelector((state) => state.dislikePost);
 
-  useFocusEffect(
-    useCallback(() => {
-      if (userProfile) {
-        dispatch(getBlogDetails(id, userProfile.userId));
-      } else {
-        dispatch(getBlogDetails(id));
-      }
-    }, [dispatch, id, userProfile, success, dislikeSuccess])
-  );
+  useEffect(() => {
+    if (userProfile) {
+      dispatch(getBlogDetails(id, userProfile.userId));
+    } else {
+      dispatch(getBlogDetails(id));
+    }
+  }, [dispatch, id, userProfile, success, dislikeSuccess]);
 
   const handleLikeClick = () => {
     dispatch(likePost(blog.id));
@@ -69,7 +67,11 @@ export default function BlogDetail() {
               <View>
                 <Text className="text-[18px] font-bold"> {blog.userName}</Text>
                 {/* <Text className="text-[13px]">{blog?.datePosted}</Text> */}
-                <Text>{format(new Date(blog?.datePosted), "dd-MM-yyyy")}</Text>
+                {blog?.datePosted && (
+                  <Text>
+                    {format(new Date(blog?.datePosted), "dd-MM-yyyy")}
+                  </Text>
+                )}
               </View>
             </View>
             <View className="flex flex-row items-center gap-3">

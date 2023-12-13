@@ -53,9 +53,6 @@ export default function ProfileScreen() {
           </TouchableOpacity>
           <Text className="text-2xl text-white">Profile</Text>
         </View>
-        <TouchableOpacity onPress={() => navigation.navigate("HelpCenter")}>
-          <AntDesign name="infocirlceo" size={20} color="white" />
-        </TouchableOpacity>
       </View>
       <ScrollView>
         <View className="flex flex-col h-[200px] w-full absolute bg-blue-500 items-center">
@@ -244,9 +241,9 @@ export default function ProfileScreen() {
               <Octicons name="chevron-right" size={24} color="black" />
             </TouchableOpacity>
           </View> */}
-          <Text className="text-3xl font-bold mb-3 mt-6">Partner</Text>
+          {/* <Text className="text-3xl font-bold mb-3 mt-6">Partner</Text> */}
           <View className=" flex flex-col gap-1">
-            <TouchableOpacity
+            {/* <TouchableOpacity
               activeOpacity={0.7}
               onPress={() => navigation.navigate("Landing")}
               className="flex flex-row items-center justify-between py-4 pl-2"
@@ -256,7 +253,7 @@ export default function ProfileScreen() {
                 <Text className="text-lg">Add apartment</Text>
               </View>
               <Octicons name="chevron-right" size={24} color="black" />
-            </TouchableOpacity>
+            </TouchableOpacity> */}
             <TouchableOpacity
               onPress={signOut}
               className="flex flex-row items-center gap-3"

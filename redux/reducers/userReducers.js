@@ -123,6 +123,7 @@ export const profileReducer = (state = {}, action) => {
         ...state,
         isUpdated: false,
         success: false,
+        error: null,
       };
 
     default:
