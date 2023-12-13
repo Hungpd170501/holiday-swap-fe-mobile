@@ -10,9 +10,13 @@ import { ScrollView } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../redux/actions/userActions";
 import Toast from "react-native-toast-message";
+import * as SecureStore from "expo-secure-store";
 
 export default function SignInScreen() {
   const [isGreen, setIsGreen] = useState(false);
+  const [isRemember, setIsRemmember] = useState(false);
+  const [storeAccountEmail, setStoreAccountEmail] = useState();
+  const [storeAccountPassword, setStoreAccountPassword] = useState();
   const dispatch = useDispatch();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -24,13 +28,41 @@ export default function SignInScreen() {
 
   const navigation = useNavigation();
 
-  const toggleColor = () => {
+  const toggleColor = async () => {
     setIsGreen(!isGreen);
+    setIsGreen(!isRemember);
   };
 
   const LoginSubmit = () => {
     dispatch(login(email, password));
   };
+
+  useEffect(() => {
+    const storeAccount = async () => {
+      if (isRemember) {
+        await SecureStore.setItemAsync("emailStore", email);
+        await SecureStore.setItemAsync("passwordStore", password);
+      } else {
+        await SecureStore.setItemAsync("emailStore", null);
+        await SecureStore.setItemAsync("passwordStore", null);
+      }
+    };
+    storeAccount();
+  }, [isRemember, email, password]);
+
+  useEffect(() => {
+    const getAccountRemmber = async () => {
+      const emailStore = await SecureStore.getItemAsync("emailStore");
+      const passwordStore = await SecureStore.getItemAsync("passwordStore");
+      if (emailStore && passwordStore) {
+        setStoreAccountEmail(emailStore);
+        setStoreAccountPassword(passwordStore);
+        setEmail(emailStore);
+        setPassword(passwordStore);
+      }
+    };
+    getAccountRemmber();
+  }, [SecureStore]);
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -71,7 +103,11 @@ export default function SignInScreen() {
             <View className="flex-row items-center mr-[80px]">
               <TouchableOpacity
                 className=" mr-[5px] border-[0.5px] border-collapse border-black w-[15] h-[15] rounded-full"
-                style={[{ backgroundColor: isGreen ? "#2196F3" : "#fff" }]}
+                style={[
+                  {
+                    backgroundColor: isRemember ? "#2196F3" : "#fff",
+                  },
+                ]}
                 onPress={toggleColor}
               ></TouchableOpacity>
               <Text>Remember me</Text>

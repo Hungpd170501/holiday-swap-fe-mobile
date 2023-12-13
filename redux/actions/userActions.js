@@ -147,9 +147,13 @@ export const forgotPassword = (email) => async (dispatch) => {
 
     const config = { headers: { "Content-Type": "application/json" } };
 
-    const { data } = await axios.post(`/api/v1/password/forgot`, email, config);
-
-    dispatch({ type: FORGOT_PASSWORD_SUCCESS, payload: data });
+    await axios
+      .post(
+        `https://holiday-swap.click/api/v1/auth/verification-code/google?email=${email}`
+      )
+      .then(() => {
+        dispatch({ type: FORGOT_PASSWORD_SUCCESS, payload: true });
+      });
   } catch (error) {
     dispatch({
       type: FORGOT_PASSWORD_FAIL,

@@ -86,7 +86,6 @@ export default function OwnerBookingDetail() {
   const handleStarPress = (selectedRating) => {
     setRating(selectedRating);
   };
-  console.log("Check rating", id);
 
   const handleSubmitReview = () => {
     const data = {
@@ -215,7 +214,7 @@ export default function OwnerBookingDetail() {
                 <Octicons name="chevron-right" size={24} color="black" />
               </TouchableOpacity> */}
 
-              {booking?.canCancel && (
+              {booking?.canCancel === true && (
                 <TouchableOpacity
                   activeOpacity={0.8}
                   onPress={handleCancelBooking}

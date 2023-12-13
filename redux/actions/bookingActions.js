@@ -185,7 +185,7 @@ export const cancelBooking = (id) => async (dispatch) => {
       },
     };
 
-    const { data } = await axios.get(
+    const { data } = await axios.put(
       `https://holiday-swap.click/api/booking/cancel/${id}`,
       config
     );

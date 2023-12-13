@@ -41,7 +41,7 @@ const OTPInputField = ({ setPinReady, code, setCode, maxLength }) => {
   return (
     <View className="justify-center items-center mx-8">
       <Pressable
-        className="w-[70%] flex-row justify-between"
+        className=" flex-row justify-between gap-2"
         onPress={handleOnPress}
       >
         {codeDigitsArray.map(toCodeDigitInput)}

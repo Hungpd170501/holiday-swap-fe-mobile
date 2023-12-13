@@ -204,7 +204,6 @@ function Navigation() {
             <Stack.Screen name="DetailApartment" component={DetailApartment} />
             <Stack.Screen name="Rating" component={Rating} />
             <Stack.Screen name="ManageAccount" component={ManageAccount} />
-            <Stack.Screen name="VerifyOTP" component={VerifyOPTScreen} />
             <Stack.Screen name="BookingConfirm" component={BookingConfirm} />
             <Stack.Screen name="DetailProperty" component={DetailProperty} />
             {isLogout && (
@@ -275,6 +274,7 @@ function Navigation() {
               name="CreateNewPassword"
               component={CreateNewPassword}
             />
+            <Stack.Screen name="VerifyOTP" component={VerifyOPTScreen} />
           </Fragment>
         )}
       </Stack.Navigator>

@@ -23,6 +23,7 @@ import {
   SEARCH_ALL_USER_SUCCESS,
   SEARCH_ALL_USER_FAIL,
   RESET_PASSWORD_RESET,
+  FORGOT_PASSWORD_RESET,
 } from "../constants/userConstants";
 
 export const userReducers = (state = { user: {}, userProfile: {} }, action) => {
@@ -145,7 +146,7 @@ export const forgotPasswordReducer = (state = {}, action) => {
       return {
         ...state,
         loading: false,
-        message: action.payload,
+        message: "An OTP code is sent to your email. Please check your email.",
       };
     case RESET_PASSWORD_SUCCESS:
       return {
@@ -166,9 +167,16 @@ export const forgotPasswordReducer = (state = {}, action) => {
         ...state,
         loading: false,
         success: false,
+        message: null,
         error: action.payload,
       };
 
+    case FORGOT_PASSWORD_RESET:
+      return {
+        loading: false,
+        message: null,
+        error: null,
+      };
     default:
       return state;
   }
