@@ -11,6 +11,7 @@ const Input = ({
   secure,
   onFocus,
   keyboardAppearance,
+  editable,
 }) => {
   return (
     <View className="py-2">
@@ -19,6 +20,7 @@ const Input = ({
       </Text>
       <TextInput
         placeholder={placeholder}
+        editable={editable}
         value={value}
         onChangeText={onChangeText}
         onFocus={onFocus}

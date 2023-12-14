@@ -4,6 +4,7 @@ import {
   profileReducer,
   searchAllUserReducers,
   userReducers,
+  verifyOtpReducers,
 } from "./reducers/userReducers";
 import { depositReducers } from "./reducers/depositReducers";
 import { searchParamReducers } from "./reducers/searchParamReducers";
@@ -84,6 +85,7 @@ export const store = configureStore({
     tranferPoint: tranferPointReducers,
     cancelBooking: cancelBookingReducer,
     searchApartmentParams: searchApartmentParamsReducers,
+    verifyOtp: verifyOtpReducers,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

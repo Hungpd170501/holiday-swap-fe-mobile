@@ -24,7 +24,7 @@ const ForgotPasswordScreen = () => {
 
   useEffect(() => {
     if (message) {
-      navigation.navigate("VerifyOTP");
+      navigation.navigate("VerifyOTP", { email: email });
       Toast.show({
         type: "success",
         text1: "Forgot password",
@@ -43,7 +43,6 @@ const ForgotPasswordScreen = () => {
     }
   }, [message, success, navigation, error, dispatch]);
 
-  console.log("Check success", message);
   return (
     <View className="flex-1">
       <StatusBar style="dark" />
@@ -76,7 +75,7 @@ const ForgotPasswordScreen = () => {
           <Button
             text={"Continue"}
             style={{ marginTop: 40 }}
-            onPress={() => navigation.navigate("VerifyOTP")}
+            onPress={handleForgotPassword}
           />
         </ScrollView>
       </SafeAreaView>

@@ -24,6 +24,13 @@ import {
   SEARCH_ALL_USER_FAIL,
   RESET_PASSWORD_RESET,
   FORGOT_PASSWORD_RESET,
+  VERIFY_OTP_REQUEST,
+  VERIFY_OTP_SUCCESS,
+  VERIFY_OTP_FAIL,
+  RESET_PASSWORD_OTP_REQUEST,
+  RESET_PASSWORD_OTP_SUCCESS,
+  RESET_PASSWORD_OTP_RESET,
+  RESET_PASSWORD_OTP_FAIL,
 } from "../constants/userConstants";
 
 export const userReducers = (state = { user: {}, userProfile: {} }, action) => {
@@ -135,7 +142,7 @@ export const profileReducer = (state = {}, action) => {
 export const forgotPasswordReducer = (state = {}, action) => {
   switch (action.type) {
     case FORGOT_PASSWORD_REQUEST:
-    case RESET_PASSWORD_REQUEST:
+    case RESET_PASSWORD_OTP_REQUEST:
       return {
         ...state,
         loading: true,
@@ -148,13 +155,13 @@ export const forgotPasswordReducer = (state = {}, action) => {
         loading: false,
         message: "An OTP code is sent to your email. Please check your email.",
       };
-    case RESET_PASSWORD_SUCCESS:
+    case RESET_PASSWORD_OTP_SUCCESS:
       return {
         ...state,
         loading: false,
         success: true,
       };
-    case RESET_PASSWORD_RESET:
+    case RESET_PASSWORD_OTP_RESET:
       return {
         ...state,
         loading: false,
@@ -162,7 +169,7 @@ export const forgotPasswordReducer = (state = {}, action) => {
         error: null,
       };
     case FORGOT_PASSWORD_FAIL:
-    case RESET_PASSWORD_FAIL:
+    case RESET_PASSWORD_OTP_FAIL:
       return {
         ...state,
         loading: false,
@@ -201,6 +208,33 @@ export const searchAllUserReducers = (state = { usersSearch: [] }, action) => {
         ...state,
         loading: false,
         usersSearch: null,
+        error: action.payload,
+      };
+
+    default:
+      return state;
+  }
+};
+
+export const verifyOtpReducers = (state = { verifyOtp: {} }, action) => {
+  switch (action.type) {
+    case VERIFY_OTP_REQUEST:
+      return {
+        loading: true,
+        success: false,
+      };
+
+    case VERIFY_OTP_SUCCESS:
+      return {
+        loading: false,
+        success: true,
+        verifyOtp: action.payload,
+      };
+
+    case VERIFY_OTP_FAIL:
+      return {
+        loading: false,
+        success: false,
         error: action.payload,
       };
 
