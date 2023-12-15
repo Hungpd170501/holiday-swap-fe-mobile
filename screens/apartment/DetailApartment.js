@@ -577,15 +577,17 @@ export default function DetailApartment() {
           >
             <View style={stylesRating.bottomNavigationView}>
               <View>
-                <View className="py-3 border-b w-full border-gray-300 flex flex-row gap-9 items-center px-2">
+                <View className="py-3 border-b w-full border-gray-300 flex flex-row px-2">
                   <XMarkIcon
                     onPress={toggleBottomNavigationRating}
                     size={30}
                     color={"black"}
                   />
-                  <Text className="text-xl font-bold text-black text-center">
-                    Review
-                  </Text>
+                  <View className="flex flex-row w-[85%] items-center justify-center">
+                    <Text className="text-xl text-center font-bold text-black ">
+                      Review
+                    </Text>
+                  </View>
                 </View>
                 {ratings ? (
                   <ScrollView className="pt-5 px-4">
@@ -670,7 +672,7 @@ const stylesRating = StyleSheet.create({
   bottomNavigationView: {
     backgroundColor: "#fff",
     width: "100%",
-    height: "100%",
+    height: "70%",
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
   },

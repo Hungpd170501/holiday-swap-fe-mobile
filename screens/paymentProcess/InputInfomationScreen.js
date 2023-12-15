@@ -241,7 +241,7 @@ export default function InputInfomationScreen() {
             <Text className="ml-8 text-[20px] text-white">Confirm and pay</Text>
           </View>
           <ScrollView className="flex-1">
-            <View className="flex flex-row gap-5 bg-white px-4 py-5">
+            <View className="flex flex-row gap-3 bg-white px-4 py-5">
               <Image
                 source={{
                   uri: `${apartmentBooking?.property?.propertyImage[0].link}`,
@@ -249,7 +249,7 @@ export default function InputInfomationScreen() {
                 className="h-40 w-44 rounded-lg"
               />
 
-              <View className="flex flex-col justify-evenly">
+              <View className="flex flex-col justify-evenly w-[50%]">
                 <View>
                   <Text className="text-[15px] font-bold ">Resort: </Text>
                   <Text className="w-[80%]">
@@ -492,7 +492,7 @@ export default function InputInfomationScreen() {
                       onPress={() => setVisibleGuest(!visibleGuest)}
                       className="w-[40%] p-4 bg-sky-500 rounded-md"
                     >
-                      <Text className="text-white text-lg text-center">
+                      <Text className="text-white text-lg  text-center">
                         Apply
                       </Text>
                     </TouchableOpacity>
@@ -673,14 +673,14 @@ const styles = StyleSheet.create({
   bottomNavigationViewCalendar: {
     backgroundColor: "#fff",
     width: "100%",
-    height: "100%",
+    height: "60%",
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
   },
   bottomNavigationViewGuest: {
     backgroundColor: "#fff",
     width: "100%",
-    height: "50%",
+    height: "60%",
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
   },

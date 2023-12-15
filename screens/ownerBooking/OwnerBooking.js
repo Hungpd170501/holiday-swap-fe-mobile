@@ -38,7 +38,7 @@ export default function YourTrip() {
   const navigation = useNavigation();
 
   return (
-    <View>
+    <View className="flex-1">
       <View className="bg-blue-500 w-full h-[100px] flex flex-row items-center justify-start px-5">
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Ionicons name="arrow-back-outline" size={30} color="white" />
