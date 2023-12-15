@@ -69,10 +69,10 @@ export default function SignInScreen() {
       navigation.navigate("root");
     }
 
-    if (error) {
+    if (error && !error.includes("JWT token")) {
       Toast.show({
         type: "error",
-        text1: "Login fail",
+        text1: "Login",
         text2: error,
       });
     }
