@@ -52,15 +52,12 @@ export default function OwnerBookingDetail() {
     (state) => state.cancelBooking
   );
   const navigation = useNavigation();
-  useEffect(() => {
-    dispatch(getOwnerBookingDetails(id));
-    dispatch(getRatingBooking(id));
-  }, [dispatch, id]);
 
   useFocusEffect(
-    React.useCallback(() => {
-      dispatch(loadUser());
-    }, [dispatch])
+    useCallback(() => {
+      dispatch(getOwnerBookingDetails(id));
+      dispatch(getRatingBooking(id));
+    }, [dispatch, id])
   );
 
   const handleCancelBooking = () => {

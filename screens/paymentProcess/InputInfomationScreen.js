@@ -563,7 +563,9 @@ export default function InputInfomationScreen() {
                 <View className="bg-white px-2 rounded-md">
                   {guests.map((item, index) => (
                     <View key={index}>
-                      <Text className="pb-3 font-bold">{index + 1}</Text>
+                      <Text className="pb-3 font-bold" Ư>
+                        {index + 1}
+                      </Text>
                       <View className="mb-4">
                         <View className="flex flex-row">
                           <Text>Full Name</Text>
