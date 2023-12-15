@@ -38,18 +38,17 @@ export default function BookingConfirm() {
             className="w-36 h-28 rounded-xl "
           />
           <View className="flex flex-col">
-            <Text className="text-lg font-bold text-black w-[60%]">
+            <Text className="text-lg font-bold text-black w-[80%]">
               {apartmentBooking?.property?.propertyName}
             </Text>
-            <Text className="text-base text-slate-800">
+            <Text className="text-base text-slate-800 w-[65%] font-bold">
               {format(
                 new Date(dateRangeRedux?.startTimeBooking),
                 "EEE, d yyyy"
               )}{" "}
-              -{" "}
               {format(new Date(dateRangeRedux?.endTimeBooking), "EEE, d yyyy")}
             </Text>
-            <Text className="text-base text-slate-800">
+            <Text className="text-base text-slate-800 font-bold">
               {total} point total
             </Text>
           </View>

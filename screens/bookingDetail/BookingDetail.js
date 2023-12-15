@@ -164,7 +164,7 @@ export default function BookingDetail() {
                       <Text className="text base">{booking?.ownerEmail}</Text>
                     </View>
                   </View>
-                  <View className="flex flex-row items-center  justify-center w-[50%]">
+                  <View className="flex flex-row items-center  justify-center w-[40%]">
                     <TouchableOpacity className="bg-blue-500 px-5 py-2 rounded-md my-3">
                       <Text className="text-white">Contact</Text>
                     </TouchableOpacity>

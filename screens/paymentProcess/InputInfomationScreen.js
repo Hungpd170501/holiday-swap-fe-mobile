@@ -586,6 +586,7 @@ export default function InputInfomationScreen() {
                         </View>
                         <View className="mt-2">
                           <TextInput
+                            keyboardType="numeric"
                             onChangeText={(text) =>
                               handleGuestInfoChange(text, "phoneNumber", index)
                             }
