@@ -71,21 +71,33 @@ export default function YourTrip() {
                     <Text className="text-[20px] font-bold py-2">
                       {booking.propertyName}
                     </Text>
-                    <Text>Resort: {booking.resortName}</Text>
-                    <Text>Room: {booking.roomId}</Text>
-                    <Text>
-                      Check-in:{" "}
-                      {format(new Date(booking?.checkInDate), "dd-MM-yyyy")}
-                    </Text>
-                    <Text>
-                      Check-out:{" "}
-                      {format(new Date(booking.checkOutDate), "dd-MM-yyyy")}
-                    </Text>
+                    <View className="flex flex-row">
+                      <Text>Resort: </Text>
+                      <Text className="font-bold w-[85%]">
+                        {booking.resortName}
+                      </Text>
+                    </View>
+                    <View className="flex flex-row py-1">
+                      <Text>Room: </Text>
+                      <Text className="font-bold">{booking.roomId}</Text>
+                    </View>
+                    <View className="flex flex-row">
+                      <Text>Check-in: </Text>
+                      <Text className="font-bold">
+                        {format(new Date(booking?.checkInDate), "dd-MM-yyyy")}
+                      </Text>
+                    </View>
+                    <View className="flex flex-row py-1 ">
+                      <Text>Check-out: </Text>
+                      <Text className="font-bold">
+                        {format(new Date(booking.checkOutDate), "dd-MM-yyyy")}
+                      </Text>
+                    </View>
                     <View className="flex flex-row items-center gap-1">
                       <Text>Price: {booking.price}</Text>
                       <FontAwesome5 name="coins" size={15} color="orange" />
                     </View>
-                    <View className="flex flex-row items-center gap-1">
+                    <View className="flex flex-row items-center gap-1 pt-1">
                       <Text>Status:</Text>
                       <Text
                         className={`font-bold ${
