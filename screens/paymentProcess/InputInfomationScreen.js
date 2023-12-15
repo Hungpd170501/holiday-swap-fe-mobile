@@ -171,25 +171,25 @@ export default function InputInfomationScreen() {
   };
 
   const handleBooking = () => {
-    const isAllEmailValid = guests.every((guest) => isEmailValid(guest.email));
+    // const isAllEmailValid = guests.every((guest) => isEmailValid(guest.email));
 
-    if (!isAllEmailValid) {
-      // Hiển thị thông báo khi có ít nhất một email không hợp lệ
-      Alert.alert("Warning", "Please enter a valid email");
-      return;
-    }
-    const isPhoneNumberValid = guests.every((guest) =>
-      /^[0-9]{10}$/.test(guest.phoneNumber)
-    );
+    // if (!isAllEmailValid) {
+    //   // Hiển thị thông báo khi có ít nhất một email không hợp lệ
+    //   Alert.alert("Warning", "Please enter a valid email");
+    //   return;
+    // }
+    // const isPhoneNumberValid = guests.every((guest) =>
+    //   /^[0-9]{10}$/.test(guest.phoneNumber)
+    // );
 
-    if (!isPhoneNumberValid) {
-      // Display an alert if the phone number format is invalid
-      Alert.alert(
-        "Warning",
-        "Please enter a valid 10-digit phone number starting with 0"
-      );
-      return;
-    }
+    // if (!isPhoneNumberValid) {
+    //   // Display an alert if the phone number format is invalid
+    //   Alert.alert(
+    //     "Warning",
+    //     "Please enter a valid 10-digit phone number starting with 0"
+    //   );
+    //   return;
+    // }
 
     dispatch(
       createBooking(
@@ -576,6 +576,9 @@ export default function InputInfomationScreen() {
                             onChangeText={(text) =>
                               handleGuestInfoChange(text, "fullName", index)
                             }
+                            defaultValue={
+                              index === 0 ? userProfile?.fullName : ""
+                            }
                             className="border border-gray-500 px-2 py-3 rounded-md"
                             placeholder="Your name"
                           />
@@ -588,9 +591,11 @@ export default function InputInfomationScreen() {
                         </View>
                         <View className="mt-2">
                           <TextInput
+                            keyboardType="numeric"
                             onChangeText={(text) =>
                               handleGuestInfoChange(text, "phoneNumber", index)
                             }
+                            defaultValue={index === 0 ? userProfile?.phone : ""}
                             className="border border-gray-500 px-2 py-3 rounded-md"
                             placeholder="Phone number"
                           />
@@ -606,6 +611,7 @@ export default function InputInfomationScreen() {
                             onChangeText={(text) =>
                               handleGuestInfoChange(text, "email", index)
                             }
+                            defaultValue={index === 0 ? userProfile?.email : ""}
                             className="border border-gray-500 px-2 py-3 rounded-md"
                             placeholder="Email"
                           />

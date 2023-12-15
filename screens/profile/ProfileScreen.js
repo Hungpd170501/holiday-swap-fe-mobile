@@ -69,9 +69,7 @@ export default function ProfileScreen() {
           )}
 
           <Text className="text-[30px] font-bold text-white py-2">
-            {userProfile?.fullName
-              ? userProfile?.fullName
-              : userProfile?.username}
+            {userProfile?.username}
           </Text>
           {/* <Text className="text-yellow-400">{userProfile?.role.name}</Text> */}
         </View>

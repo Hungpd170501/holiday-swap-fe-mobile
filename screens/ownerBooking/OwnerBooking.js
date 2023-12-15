@@ -71,9 +71,11 @@ export default function YourTrip() {
                   <Text className="text-[20px] font-bold py-2">
                     {booking.propertyName}
                   </Text>
-                  <View className="flex flex-row items-center">
+                  <View className="flex flex-row ">
                     <Text>Resort: </Text>
-                    <Text className="font-bold">{booking.resortName}</Text>
+                    <Text className="font-bold w-[85%]">
+                      {booking.resortName}
+                    </Text>
                   </View>
                   <View className="flex flex-row items-center py-2">
                     <Text>Room:</Text>

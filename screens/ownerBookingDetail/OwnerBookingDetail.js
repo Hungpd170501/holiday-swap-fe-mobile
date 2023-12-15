@@ -232,9 +232,9 @@ export default function OwnerBookingDetail() {
                 <TouchableOpacity
                   activeOpacity={0.8}
                   onPress={() => setVisibleModal(true)}
-                  className="mt-2 rounded-md px-6 py-3 bg-black"
+                  className="mt-2 rounded-md px-6 py-3 my-5 border border-red-500"
                 >
-                  <Text className="text-lg text-white text-center">
+                  <Text className="text-lg text-red-500 text-center">
                     Cancel booking
                   </Text>
                 </TouchableOpacity>
