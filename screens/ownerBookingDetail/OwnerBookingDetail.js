@@ -145,7 +145,7 @@ export default function OwnerBookingDetail() {
               </TouchableOpacity>
               <View className="mt-8">
                 <Text className="text-4xl text-white font-bold">
-                  You are going to{" "}
+                  Your guests will arrive
                   <Text className="font-bold">{booking?.resortName}</Text>{" "}
                 </Text>
               </View>
@@ -274,7 +274,7 @@ export default function OwnerBookingDetail() {
                   {booking &&
                     booking.userOfBooking &&
                     booking.userOfBooking.length > 0 && (
-                      <View className="pt-5">
+                      <ScrollView className="pt-5">
                         <View className="flex flex-row">
                           <Text className="text-[16px]">Email: </Text>
 
@@ -298,7 +298,7 @@ export default function OwnerBookingDetail() {
                             {booking?.userOfBooking[0].phoneNumber}
                           </Text>
                         </View>
-                      </View>
+                      </ScrollView>
                     )}
                 </View>
 
@@ -452,7 +452,7 @@ const styles = StyleSheet.create({
   bottomNavigationView: {
     backgroundColor: "#fff",
     width: "100%",
-    height: "100%",
+    height: "80%",
 
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
