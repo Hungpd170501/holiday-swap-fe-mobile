@@ -148,17 +148,27 @@ export default function BookingDetail() {
                 </View>
               </View>
 
-              <View className="flex flex-row justify-between items-center px-6 pt-4 pb-4 border-b border-slate-300">
-                <View className="flex flex-col ">
-                  <Text className="text-lg font-bold">Owner's apartment</Text>
-                  <Text className="text base">{booking?.ownerEmail}</Text>
-                </View>
-
-                <View>
-                  <Image
-                    source={{ uri: booking?.propertyImage }}
-                    className="rounded-full w-10 h-10"
-                  />
+              <View className=" border-b border-slate-300 w-full">
+                <View className="flex flex-row  items-center  pt-4 pb-4">
+                  <View className="flex flex-row items-center gap-1">
+                    <View>
+                      <Image
+                        source={{ uri: booking?.propertyImage }}
+                        className="rounded-full w-10 h-10"
+                      />
+                    </View>
+                    <View className="flex flex-col ">
+                      <Text className="text-lg font-bold">
+                        Owner's apartment
+                      </Text>
+                      <Text className="text base">{booking?.ownerEmail}</Text>
+                    </View>
+                  </View>
+                  <View className="flex flex-row items-center  justify-center w-[50%]">
+                    <TouchableOpacity className="bg-blue-500 px-5 py-2 rounded-md my-3">
+                      <Text className="text-white">Contact</Text>
+                    </TouchableOpacity>
+                  </View>
                 </View>
               </View>
 
