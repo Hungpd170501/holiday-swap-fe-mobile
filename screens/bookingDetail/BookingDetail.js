@@ -198,7 +198,7 @@ export default function BookingDetail() {
               <TouchableOpacity
                 onPress={toggleBottomNavigationRating}
                 activeOpacity={0.7}
-                className="flex flex-row justify-between items-center px-6 pt-4"
+                className="flex flex-row justify-between items-center px-6 py-4"
               >
                 <View className="flex flex-col">
                   <Text className="text-lg font-bold">Rating</Text>
@@ -416,7 +416,7 @@ const styles = StyleSheet.create({
   bottomNavigationView: {
     backgroundColor: "#fff",
     width: "100%",
-    height: "100%",
+    height: "80%",
 
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
@@ -438,7 +438,7 @@ const stylesRating = StyleSheet.create({
   bottomNavigationView: {
     backgroundColor: "#fff",
     width: "100%",
-    height: "100%",
+    height: "80%",
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
   },

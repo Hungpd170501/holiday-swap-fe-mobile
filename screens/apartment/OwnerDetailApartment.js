@@ -33,7 +33,9 @@ export default function OwnerDetailApartment({ route }) {
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <AntDesign name="arrowleft" size={30} color="white" />
         </TouchableOpacity>
-        <Text className="ml-8 text-[20px] text-white">Your Apartment</Text>
+        <Text className="ml-8 text-[20px] text-white">
+          Your Apartment Detail
+        </Text>
       </View>
       <ScrollView>
         {owner && (
@@ -101,11 +103,11 @@ export default function OwnerDetailApartment({ route }) {
                   .join(", ")}
               </Text>
             </View>
-            <View className="flex flex-row items-center gap-1 mt-3">
+            <View className="">
               {owner?.contractImages?.map((item, index) => (
                 <Image
                   key={item.id}
-                  className="w-[50%] h-[300px] rounded-md mr-3"
+                  className="w-[100%] h-[500px] rounded-md mr-3"
                   source={{ uri: item?.link }}
                 />
               ))}
