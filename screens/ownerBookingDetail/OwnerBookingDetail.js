@@ -36,6 +36,7 @@ import {
 import { loadUser } from "../../redux/actions/userActions";
 import Toast from "react-native-toast-message";
 import { CANCEL_BOOKING_RESET } from "../../redux/constants/bookingConstants";
+import ModalConfirmBase from "../../components/modal/ModalConfirmBase";
 
 export default function OwnerBookingDetail() {
   const route = useRoute();
@@ -87,6 +88,8 @@ export default function OwnerBookingDetail() {
     setRating(selectedRating);
   };
 
+  const [visibleModal, setVisibleModal] = useState(false);
+
   const handleSubmitReview = () => {
     const data = {
       comment: comment,
@@ -99,7 +102,14 @@ export default function OwnerBookingDetail() {
 
   useEffect(() => {
     if (successCancel) {
+      Toast.show({
+        type: "success",
+        text1: "Cancel booking",
+        text2: "Cancel booking successfully!",
+      });
+      setVisibleModal(false);
       dispatch(getOwnerBookingDetails(id));
+      dispatch({ type: CANCEL_BOOKING_RESET });
     }
 
     if (errorCancel) {
@@ -108,6 +118,7 @@ export default function OwnerBookingDetail() {
         text1: "Cancel booking",
         text2: errorCancel,
       });
+      setVisibleModal(false);
       dispatch({ type: CANCEL_BOOKING_RESET });
     }
   }, [successCancel, errorCancel, dispatch]);
@@ -223,7 +234,7 @@ export default function OwnerBookingDetail() {
               {booking?.canCancel === true && (
                 <TouchableOpacity
                   activeOpacity={0.8}
-                  onPress={handleCancelBooking}
+                  onPress={() => setVisibleModal(true)}
                   className="mt-2 rounded-md px-6 py-3 bg-black"
                 >
                   <Text className="text-lg text-white text-center">
@@ -423,6 +434,13 @@ export default function OwnerBookingDetail() {
               </View>
             </View>
           </BottomSheet>
+
+          <ModalConfirmBase
+            context={"Are you sure want to cancel this booking?"}
+            modalVisible={visibleModal}
+            setModalVisible={setVisibleModal}
+            onPress={handleCancelBooking}
+          />
         </SafeAreaView>
       )}
     </Fragment>

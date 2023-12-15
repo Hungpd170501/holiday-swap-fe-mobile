@@ -17,6 +17,7 @@ import {
   GET_OWNER_BOOKING_DETAIL_FAIL,
   CANCEL_BOOKING_REQUEST,
   CANCEL_BOOKING_FAIL,
+  CANCEL_BOOKING_SUCCESS,
 } from "../constants/bookingConstants";
 import axios from "axios";
 import * as SecureStore from "expo-secure-store";
@@ -189,8 +190,9 @@ export const cancelBooking = (id) => async (dispatch) => {
       `https://holiday-swap.click/api/booking/cancel/${id}`,
       config
     );
+
     dispatch({
-      type: CREATE_BOOKING_SUCCESS,
+      type: CANCEL_BOOKING_SUCCESS,
       payload: data,
     });
   } catch (error) {
