@@ -33,7 +33,7 @@ import {
   createRatingBooking,
   getRatingBooking,
 } from "../../redux/actions/ratingActions";
-import { loadUser } from "../../redux/actions/userActions";
+import { loadUser, searchUserByEmail } from "../../redux/actions/userActions";
 import Toast from "react-native-toast-message";
 import { CANCEL_BOOKING_RESET } from "../../redux/constants/bookingConstants";
 import ModalConfirmBase from "../../components/modal/ModalConfirmBase";
@@ -46,7 +46,7 @@ export default function OwnerBookingDetail() {
   const dispatch = useDispatch();
   const { booking, loading } = useSelector((state) => state.bookingDetail);
   const { ratings } = useSelector((state) => state.ratings);
-  const { userProfile } = useSelector((state) => state.user);
+  const { userProfile, userEmail } = useSelector((state) => state.user);
   const { success, error } = useSelector((state) => state.createRatingBooking);
   const { successCancel, error: errorCancel } = useSelector(
     (state) => state.cancelBooking
@@ -58,6 +58,14 @@ export default function OwnerBookingDetail() {
       dispatch(getOwnerBookingDetails(id));
       dispatch(getRatingBooking(id));
     }, [dispatch, id])
+  );
+
+  useFocusEffect(
+    useCallback(() => {
+      if (booking) {
+        dispatch(searchUserByEmail(booking?.memberBookingEmail));
+      }
+    }, [booking, dispatch])
   );
 
   const handleCancelBooking = () => {
@@ -171,27 +179,40 @@ export default function OwnerBookingDetail() {
                 </View>
               </View>
 
-              <View className="flex flex-row justify-between items-center  pt-4 pb-4 border-b border-slate-300">
-                <View className="flex flex-row items-center gap-1">
-                  <View>
-                    <Image
-                      source={{ uri: booking?.propertyImage }}
-                      className="rounded-full w-10 h-10"
-                    />
+              {userEmail &&
+                userEmail.content &&
+                userEmail.content.length > 0 && (
+                  <View className="flex flex-row justify-between items-center  pt-4 pb-4 border-b border-slate-300">
+                    <View className="flex flex-row items-center gap-1">
+                      <View>
+                        <Image
+                          source={
+                            userEmail?.content[0]?.avatar
+                              ? { uri: userEmail?.content[0]?.avatar }
+                              : require("../../assets/images/avatar.png")
+                          }
+                          className="rounded-full w-10 h-10"
+                        />
+                      </View>
+                      <View className="flex flex-col ">
+                        <Text className="text-lg font-bold">
+                          Member's booking
+                        </Text>
+
+                        <Text className="text base">
+                          {userEmail?.content[0]?.fullName
+                            ? userEmail?.content[0]?.fullName
+                            : userEmail?.content[0]?.username}
+                        </Text>
+                      </View>
+                    </View>
+                    <View className="flex flex-row items-center  justify-center w-[42%]">
+                      <TouchableOpacity className="bg-blue-500 px-5 py-2 rounded-md my-3">
+                        <Text className="text-white">Contact</Text>
+                      </TouchableOpacity>
+                    </View>
                   </View>
-                  <View className="flex flex-col ">
-                    <Text className="text-lg font-bold">Member's booking</Text>
-                    <Text className="text base">
-                      {booking?.memberBookingEmail}
-                    </Text>
-                  </View>
-                </View>
-                <View className="flex flex-row items-center  justify-center w-[42%]">
-                  <TouchableOpacity className="bg-blue-500 px-5 py-2 rounded-md my-3">
-                    <Text className="text-white">Contact</Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
+                )}
 
               <View className="flex flex-col px-6 pt-4 pb-4 border-b border-slate-300">
                 <Text className="text-lg font-bold">Name property</Text>

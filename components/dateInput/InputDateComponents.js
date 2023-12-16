@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { View } from "react-native";
 import Calendar from "react-native-calendar-range-picker";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,6 +8,7 @@ import {
 } from "../../redux/actions/dateRangeActions";
 import { format } from "date-fns";
 import CalendarPicker from "react-native-calendar-picker";
+import { useFocusEffect } from "@react-navigation/native";
 
 export default function InputDateComponents({
   handleDateRange,
@@ -25,11 +26,11 @@ export default function InputDateComponents({
   const { apartment, loading } = useSelector((state) => state.apartmentDetail);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+  const [smallestDay, setSmallestDay] = useState(null);
   const dispatch = useDispatch();
 
   // Function to handle date range changes
   const onDateRangeChange = (value, type) => {
-    let timeBooked = apartment.timeHasBooked;
     if (type === "END_DATE") {
       setEndDate(value);
     } else {
@@ -39,23 +40,51 @@ export default function InputDateComponents({
   };
 
   useEffect(() => {
+    let result = [];
     if (startDate) {
       let timeBooked = apartment.timeHasBooked;
-      const result = [];
+
       timeBooked.forEach((element) => {
         let checkIn = new Date(element.checkIn);
         let checkOut = new Date(element.checkOut);
 
         if (startDate <= checkIn) {
           result.push(checkOut);
-          dispatch(getDateRangeOut(result));
         } else if (startDate >= checkIn) {
           result.push(checkIn);
-          dispatch(getDateRangeOut(result));
         }
       });
+
+      let x = dateDiffIsGreaterTwo(apartment.timeHasBooked);
+
+      x.forEach((e) => {
+        result.push(new Date(e));
+      });
+
+      dispatch(getDateRangeOut(result));
     }
   }, [startDate, apartment]);
+
+  const dateDiffIsGreaterTwo = (array) => {
+    let arr = [];
+    array.forEach((element) => {
+      let checkIn = new Date(element.checkIn);
+      let checkOut = new Date(element.checkOut);
+      const timeDifference = checkOut.getTime() - checkIn.getTime();
+      const daysDifference = timeDifference / (1000 * 3600 * 24);
+
+      if (daysDifference > 1) {
+        let theDateStart = checkIn;
+        theDateStart = new Date(theDateStart.getTime() + 24 * 60 * 60 * 1000);
+        while (theDateStart.getTime() < checkOut.getTime()) {
+          arr.push(theDateStart);
+          theDateStart = new Date(theDateStart.getTime() + 24 * 60 * 60 * 1000);
+        }
+      }
+    });
+
+    return arr;
+  };
 
   useEffect(() => {
     if (startDate && endDate) {

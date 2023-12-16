@@ -210,6 +210,7 @@ export default function InputInfomationScreen() {
         text1: "Booking",
         text2: error,
       });
+      dispatch({ type: CREATE_BOOKING_RESET });
     }
 
     if (success) {

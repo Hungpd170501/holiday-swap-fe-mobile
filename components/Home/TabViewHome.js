@@ -125,7 +125,6 @@ export default function TabViewHome(props) {
     }
   };
 
-  console.log("Check loading", loading);
   const renderTabContent = () => {
     switch (selectedTab) {
       case "":

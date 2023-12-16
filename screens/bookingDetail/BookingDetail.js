@@ -32,6 +32,7 @@ import {
 import Toast from "react-native-toast-message";
 import { CREATE_RATING_BOOKING_RESET } from "../../redux/constants/ratingConstant";
 import StarRating from "react-native-star-rating-widget";
+import { searchUserByEmail } from "../../redux/actions/userActions";
 
 export default function BookingDetail() {
   const route = useRoute();
@@ -41,7 +42,7 @@ export default function BookingDetail() {
   const dispatch = useDispatch();
   const { booking, loading } = useSelector((state) => state.bookingDetail);
   const { ratings } = useSelector((state) => state.ratings);
-  const { userProfile } = useSelector((state) => state.user);
+  const { userProfile, userEmail } = useSelector((state) => state.user);
   const { success, error } = useSelector((state) => state.createRatingBooking);
   const navigation = useNavigation();
 
@@ -49,6 +50,12 @@ export default function BookingDetail() {
     dispatch(getBookingDetails(id));
     dispatch(getRatingBooking(id));
   }, [dispatch, id]);
+
+  useEffect(() => {
+    if (booking) {
+      dispatch(searchUserByEmail(booking?.ownerEmail));
+    }
+  }, [booking, dispatch]);
 
   const toggleBottomNavigationGuest = () => {
     setVisibleGuest(!visibleGuest);
@@ -96,6 +103,8 @@ export default function BookingDetail() {
       dispatch({ type: CREATE_RATING_BOOKING_RESET });
     }
   }, [success, id, dispatch]);
+
+  console.log("Check user email", userEmail);
   return (
     <Fragment>
       {loading ? (
@@ -148,29 +157,42 @@ export default function BookingDetail() {
                 </View>
               </View>
 
-              <View className=" border-b border-slate-300 w-full">
-                <View className="flex flex-row  items-center  pt-4 pb-4">
-                  <View className="flex flex-row items-center gap-1">
-                    <View>
-                      <Image
-                        source={{ uri: booking?.propertyImage }}
-                        className="rounded-full w-10 h-10"
-                      />
-                    </View>
-                    <View className="flex flex-col ">
-                      <Text className="text-lg font-bold">
-                        Owner's apartment
-                      </Text>
-                      <Text className="text base">{booking?.ownerEmail}</Text>
+              {userEmail &&
+                userEmail.content &&
+                userEmail.content.length > 0 && (
+                  <View className=" border-b border-slate-300 w-full">
+                    <View className="flex flex-row  items-center  pt-4 pb-4">
+                      <View className="flex flex-row items-center gap-1">
+                        <View>
+                          <Image
+                            source={
+                              userEmail?.content[0]?.avatar
+                                ? { uri: userEmail?.content[0]?.avatar }
+                                : require("../../assets/images/avatar.png")
+                            }
+                            className="rounded-full w-10 h-10"
+                          />
+                        </View>
+                        <View className="flex flex-col ">
+                          <Text className="text-lg font-bold">
+                            Owner's apartment
+                          </Text>
+
+                          <Text className="text base">
+                            {userEmail?.content[0]?.fullName
+                              ? userEmail?.content[0]?.fullName
+                              : userEmail?.content[0]?.username}
+                          </Text>
+                        </View>
+                      </View>
+                      <View className="flex flex-row items-center  justify-center w-[40%]">
+                        <TouchableOpacity className="bg-blue-500 px-5 py-2 rounded-md my-3">
+                          <Text className="text-white">Contact</Text>
+                        </TouchableOpacity>
+                      </View>
                     </View>
                   </View>
-                  <View className="flex flex-row items-center  justify-center w-[40%]">
-                    <TouchableOpacity className="bg-blue-500 px-5 py-2 rounded-md my-3">
-                      <Text className="text-white">Contact</Text>
-                    </TouchableOpacity>
-                  </View>
-                </View>
-              </View>
+                )}
 
               <View className="flex flex-col px-6 pt-4 pb-4 border-b border-slate-300">
                 <Text className="text-lg font-bold">Name property</Text>

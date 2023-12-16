@@ -21,6 +21,9 @@ import {
   RESET_PASSWORD_OTP_REQUEST,
   RESET_PASSWORD_OTP_SUCCESS,
   RESET_PASSWORD_OTP_FAIL,
+  SEARCH_USER_BY_EMAIL_REQUEST,
+  SEARCH_USER_BY_EMAIL_SUCCESS,
+  SEARCH_USER_BY_EMAIL_FAIL,
 } from "../constants/userConstants";
 import * as SecureStore from "expo-secure-store";
 import { format } from "date-fns";
@@ -65,6 +68,23 @@ export const loadUser = () => async (dispatch) => {
     dispatch({ type: LOAD_USER_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: LOAD_USER_FAIL, payload: error.response.data.message });
+  }
+};
+
+export const searchUserByEmail = (email) => async (dispatch) => {
+  try {
+    dispatch({ type: SEARCH_USER_BY_EMAIL_REQUEST });
+
+    const { data } = await axios.get(
+      `https://holiday-swap.click/api/v1/users/search?email=${email}&limit=20&offset=0&sortProps=id&sortDirection=asc`
+    );
+
+    dispatch({ type: SEARCH_USER_BY_EMAIL_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: SEARCH_USER_BY_EMAIL_FAIL,
+      payload: error.response.data.message,
+    });
   }
 };
 

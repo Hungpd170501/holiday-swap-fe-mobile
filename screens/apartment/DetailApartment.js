@@ -70,6 +70,7 @@ export default function DetailApartment() {
   const [checkInMap, setCheckInMap] = useState(new Map());
   const [checkOutMap, setCheckOutMap] = useState(new Map());
   const [visibleRating, setVisibleRating] = useState(false);
+  const [smallestDay, setSmallestDay] = useState(null);
 
   useEffect(() => {
     const updateCheckInAndOutMaps = () => {
@@ -231,6 +232,29 @@ export default function DetailApartment() {
   const toggleBottomNavigationRating = () => {
     setVisibleRating(!visibleRating);
   };
+
+  useFocusEffect(
+    useCallback(() => {
+      if (checkInMap && dateRangeDefault) {
+        checkInMap.forEach((checkIn, key) => {
+          if (
+            !smallestDay ||
+            (key < smallestDay &&
+              new Date(smallestDay) !== dateRangeDefault?.startTimeDefault)
+          ) {
+            setSmallestDay(key);
+          }
+        });
+      }
+
+      if (smallestDay) {
+        const startTimeBooking = dateRangeDefault?.startTimeDefault;
+        const endTimeBooking = new Date(smallestDay);
+
+        dispatch(getDateRangeBooking({ startTimeBooking, endTimeBooking }));
+      }
+    }, [checkInMap, dateRangeDefault, dispatch, smallestDay])
+  );
 
   return (
     <Fragment>

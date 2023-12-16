@@ -49,6 +49,7 @@ export const newBookingReducers = (state = { booking: {} }, action) => {
         ...state,
         loading: false,
         success: false,
+        error: null,
       };
 
     default:

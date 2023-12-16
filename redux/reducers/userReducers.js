@@ -31,13 +31,25 @@ import {
   RESET_PASSWORD_OTP_SUCCESS,
   RESET_PASSWORD_OTP_RESET,
   RESET_PASSWORD_OTP_FAIL,
+  SEARCH_USER_BY_EMAIL_REQUEST,
+  SEARCH_USER_BY_EMAIL_SUCCESS,
+  SEARCH_USER_BY_EMAIL_FAIL,
 } from "../constants/userConstants";
 
-export const userReducers = (state = { user: {}, userProfile: {} }, action) => {
+export const userReducers = (
+  state = { user: {}, userProfile: {}, userEmail: {} },
+  action
+) => {
   switch (action.type) {
     case LOGIN_REQUEST:
     case LOAD_USER_REQUEST:
       return { loading: true, isAuthenticated: false };
+
+    case SEARCH_USER_BY_EMAIL_REQUEST:
+      return {
+        loading: true,
+        userEmail: {},
+      };
 
     // Gửi login request, chưa đăng nhập nên authen = false
 
@@ -56,6 +68,12 @@ export const userReducers = (state = { user: {}, userProfile: {} }, action) => {
         userProfile: action.payload,
       };
 
+    case SEARCH_USER_BY_EMAIL_SUCCESS:
+      return {
+        loading: false,
+        userEmail: action.payload,
+      };
+
     case LOGIN_FAIL:
       return {
         loading: false,
@@ -69,6 +87,13 @@ export const userReducers = (state = { user: {}, userProfile: {} }, action) => {
         isAuthenticated: false,
         userProfile: null,
         error: action.payload,
+      };
+
+    case SEARCH_USER_BY_EMAIL_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+        userEmail: {},
       };
 
     default:
