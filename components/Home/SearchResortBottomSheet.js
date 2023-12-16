@@ -42,10 +42,10 @@ export default function SearchResortBottomSheet({ handleChangeResort }) {
         <View style={styles.shadow} className="bg-white rounded-xl px-5 mt-5 ">
           <TouchableOpacity
             onPress={() => toggleBottomNavigationView()}
-            className="py-5 flex flex-row justify-between"
+            className="py-5 flex flex-row justify-between overflow-hidden"
           >
             <Text>Resort: </Text>
-            <Text className="font-bold">
+            <Text className="font-bold ">
               {selectedResort ? selectedResort : ""}
             </Text>
           </TouchableOpacity>

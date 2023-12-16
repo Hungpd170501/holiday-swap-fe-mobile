@@ -22,11 +22,12 @@ const MessageBox = ({ message, users, currentUser }) => {
   const closeModal = () => {
     setModalVisible(false);
   };
+
   return (
     <View>
       {isOwn ? (
         <View className="flex flex-row mb-3 justify-end">
-          <View className="mr-[5%] ">
+          <View className="-mr-[8%]">
             {message.image && (
               <TouchableOpacity onPress={openModal}>
                 <View className="flex flex-row justify-end">
@@ -38,30 +39,43 @@ const MessageBox = ({ message, users, currentUser }) => {
                 </View>
               </TouchableOpacity>
             )}
-            <View className="flex flex-row justify-end">
+            <View className="flex flex-row justify-end w-[85%]">
               {message.text && (
-                <Text className="bg-blue-500 w-fit justify-end text-white py-2 rounded-tl-[20] rounded-tr-[20] rounded-bl-[20] px-3">
+                <Text className="bg-blue-500 w-fit justify-end text-white py-2 rounded-xl px-3">
                   {message.text}
                 </Text>
               )}
             </View>
-            <View className="flex flex-row justify-end">
-              <Text className="text-gray-400 text-[12px]">
+            <View className="flex flex-row justify-end mr-[15%]">
+              <Text className="text-gray-400 text-[12px] ">
                 {formatRelative(new Date(message.createdOn), new Date())}
               </Text>
             </View>
           </View>
           <Image
+            width={30}
+            height={30}
             className="w-[40px] h-[40px] rounded-full"
-            source={{ uri: user?.user?.avatar }}
+            source={
+              user?.user?.avatar
+                ? { uri: user.user.avatar }
+                : require("../../assets/images/avatar.png")
+            }
           />
         </View>
       ) : (
         <View className="flex flex-row mb-3">
           <Image
+            width={30}
+            height={30}
             className="w-[40px] h-[40px] rounded-full"
-            source={{ uri: user?.user?.avatar }}
+            source={
+              user?.user?.avatar
+                ? { uri: user.user.avatar }
+                : require("../../assets/images/avatar.png")
+            }
           />
+
           <View className="ml-[5%]">
             {message.image && (
               <TouchableOpacity onPress={openModal}>
@@ -74,9 +88,9 @@ const MessageBox = ({ message, users, currentUser }) => {
                 </View>
               </TouchableOpacity>
             )}
-            <View className="flex flex-row justify-start">
+            <View className="flex flex-row justify-start w-[90%]">
               {message.text && (
-                <Text className="bg-gray-200 w-fit text-gray-600 py-2 px-3 rounded-tl-[20] rounded-tr-[20] rounded-br-[20]">
+                <Text className="bg-gray-200 w-fit text-gray-600 py-2 px-3 rounded-xl">
                   {message.text}
                 </Text>
               )}

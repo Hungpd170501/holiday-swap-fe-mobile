@@ -486,9 +486,11 @@ export default function DetailApartment() {
                         <Image
                           className="rounded-full"
                           style={{ width: 40, height: 40 }}
-                          source={{
-                            uri: apartment?.user?.avatar,
-                          }}
+                          source={
+                            apartment?.user?.avatar
+                              ? { uri: apartment.user.avatar }
+                              : require("../../assets/images/avatar.png")
+                          }
                         />
                         <View>
                           <Text>{apartment?.user?.username}</Text>

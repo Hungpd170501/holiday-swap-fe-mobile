@@ -156,11 +156,11 @@ export default function TabViewMessageAndNotification() {
     switch (selectedTab) {
       case "Chats":
         return (
-          <View>
+          <View className="flex-1">
             <SearchBar onChangeText={setSearchText} searchText={searchText} />
             <ScrollView
               showsVerticalScrollIndicator={false}
-              className="w-[95%] py-3"
+              className="w-[95%] pt-3 pb-5"
             >
               {conversationList && conversationLoaded ? (
                 conversationList?.length !== 0 ? (

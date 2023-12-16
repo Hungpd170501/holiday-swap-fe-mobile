@@ -127,7 +127,7 @@ export default function BookingDetail() {
                 <Ionicons name="arrow-back-circle" size={50} color="white" />
               </TouchableOpacity>
               <View className="mt-8">
-                <Text className="text-4xl text-white font-bold">
+                <Text className="text-3xl text-white font-bold">
                   You are going to{" "}
                   <Text className="font-bold">{booking?.resortName}</Text>{" "}
                 </Text>

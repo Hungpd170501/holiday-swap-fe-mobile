@@ -149,8 +149,8 @@ export default function OwnerBookingDetail() {
                 <Ionicons name="arrow-back-circle" size={50} color="white" />
               </TouchableOpacity>
               <View className="mt-8">
-                <Text className="text-4xl text-white font-bold">
-                  Your guests will arrive
+                <Text className="text-2xl text-white font-bold">
+                  Your guests will arrive{" "}
                   <Text className="font-bold">{booking?.resortName}</Text>{" "}
                 </Text>
               </View>
@@ -198,7 +198,6 @@ export default function OwnerBookingDetail() {
                         <Text className="text-lg font-bold">
                           Member's booking
                         </Text>
-
                         <Text className="text base">
                           {userEmail?.content[0]?.fullName
                             ? userEmail?.content[0]?.fullName

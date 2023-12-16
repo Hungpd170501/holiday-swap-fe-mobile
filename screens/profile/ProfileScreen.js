@@ -180,7 +180,7 @@ export default function ProfileScreen() {
           </View>
 
           {/* Help */}
-          <Text className="text-3xl font-bold mb-3 mt-6">Help</Text>
+          {/* <Text className="text-3xl font-bold mb-3 mt-6">Help</Text>
           <View className=" flex flex-col gap-1">
             <TouchableOpacity
               activeOpacity={0.7}
@@ -193,7 +193,7 @@ export default function ProfileScreen() {
               </View>
               <Octicons name="chevron-right" size={24} color="black" />
             </TouchableOpacity>
-          </View>
+          </View> */}
 
           {/* Discover */}
           <Text className="text-3xl font-bold mb-3 mt-6">Discover</Text>

@@ -140,14 +140,9 @@ export default function ChatItemScreen() {
           />
           <Text className="ml-1 text-[20px]">{conversationName}</Text>
         </View>
-        <View>
-          <TouchableOpacity className="">
-            <MaterialCommunityIcons name="dots-vertical" size={20} />
-          </TouchableOpacity>
-        </View>
       </View>
       <ScrollView ref={scrollViewRef}>
-        <View className="px-4 py-4">
+        <View className="px-4 py-4 w-full">
           {messages &&
             messages
               ?.slice() // Create a shallow copy to avoid mutating the original array
@@ -164,13 +159,13 @@ export default function ChatItemScreen() {
       </ScrollView>
       <View className="px-4 py-3">
         <View className="bg-blue-100 border border-gray-300 rounded-3xl  px-2">
-          <View className="flex flex-row justify-between items-center">
+          <View className="flex flex-row justify-between items-center w-[70%]">
             <View className="flex flex-row items-center ">
               <TouchableOpacity className="border-r border-gray-400 pr-3">
                 <MaterialCommunityIcons size={30} name="attachment" />
               </TouchableOpacity>
               <TextInput
-                className="w-[70%] bg-transparent"
+                className="w-[100%] bg-transparent"
                 value={textMessage ?? ""}
                 placeholder="Write a message"
                 onChangeText={handleTextChange}
