@@ -33,10 +33,16 @@ import {
   createRatingBooking,
   getRatingBooking,
 } from "../../redux/actions/ratingActions";
-import { loadUser, searchUserByEmail } from "../../redux/actions/userActions";
+import {
+  createConversation,
+  getConversation,
+  loadUser,
+  searchUserByEmail,
+} from "../../redux/actions/userActions";
 import Toast from "react-native-toast-message";
 import { CANCEL_BOOKING_RESET } from "../../redux/constants/bookingConstants";
 import ModalConfirmBase from "../../components/modal/ModalConfirmBase";
+import { CREATE_CONVERSATION_RESET } from "../../redux/constants/userConstants";
 
 export default function OwnerBookingDetail() {
   const route = useRoute();
@@ -46,8 +52,21 @@ export default function OwnerBookingDetail() {
   const dispatch = useDispatch();
   const { booking, loading } = useSelector((state) => state.bookingDetail);
   const { ratings } = useSelector((state) => state.ratings);
-  const { userProfile, userEmail } = useSelector((state) => state.user);
+  const { userProfile } = useSelector((state) => state.user);
+  const { userEmail } = useSelector((state) => state.userEmail);
   const { success, error } = useSelector((state) => state.createRatingBooking);
+  const {
+    success: createConSuccess,
+    error: createConError,
+    conversation,
+  } = useSelector((state) => state.createConversation);
+
+  const {
+    success: getConSuccess,
+    error: getConError,
+    conversationUser,
+  } = useSelector((state) => state.getConversation);
+
   const { successCancel, error: errorCancel } = useSelector(
     (state) => state.cancelBooking
   );
@@ -127,6 +146,42 @@ export default function OwnerBookingDetail() {
       dispatch({ type: CANCEL_BOOKING_RESET });
     }
   }, [successCancel, errorCancel, dispatch]);
+
+  const handleCreateConversation = () => {
+    if (userEmail) {
+      dispatch(getConversation(userEmail?.content[0]?.userId));
+      dispatch(createConversation(userEmail?.content[0]?.userId));
+    }
+  };
+
+  useEffect(() => {
+    if (getConSuccess && createConError) {
+      dispatch({ type: CREATE_CONVERSATION_RESET });
+      navigation.navigate("ChatScreen");
+    }
+
+    if (getConError && createConSuccess) {
+      dispatch({ type: CREATE_CONVERSATION_RESET });
+      navigation.navigate("ChatScreen");
+    }
+
+    if (createConError && getConError) {
+      Toast.show({
+        type: "error",
+        text1: "Contact",
+        text2: createConError || getConError,
+      });
+      dispatch({ type: CREATE_CONVERSATION_RESET });
+    }
+  }, [
+    createConSuccess,
+    createConError,
+    dispatch,
+    navigation,
+    getConSuccess,
+    getConError,
+  ]);
+
   return (
     <Fragment>
       {loading ? (
@@ -206,7 +261,10 @@ export default function OwnerBookingDetail() {
                       </View>
                     </View>
                     <View className="flex flex-row items-center  justify-center w-[42%]">
-                      <TouchableOpacity className="bg-blue-500 px-5 py-2 rounded-md my-3">
+                      <TouchableOpacity
+                        onPress={handleCreateConversation}
+                        className="bg-blue-500 px-5 py-2 rounded-md my-3"
+                      >
                         <Text className="text-white">Contact</Text>
                       </TouchableOpacity>
                     </View>

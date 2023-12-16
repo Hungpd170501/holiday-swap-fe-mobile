@@ -19,7 +19,6 @@ export default function YourTrip() {
   const { ownerBooking, error, loading } = useSelector(
     (state) => state.ownerBooking
   );
-  console.log("check listboooking", ownerBooking);
 
   const [isDataLoaded, setDataLoaded] = useState(false);
 

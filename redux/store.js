@@ -1,8 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import {
+  createConversationReducers,
   forgotPasswordReducer,
+  getConversationReducers,
   profileReducer,
   searchAllUserReducers,
+  userEamilReducers,
   userReducers,
   verifyOtpReducers,
 } from "./reducers/userReducers";
@@ -52,6 +55,7 @@ import conversationReducer from "./slices/conversationSlice";
 export const store = configureStore({
   reducer: {
     user: userReducers,
+    userEmail: userEamilReducers,
     resorts: resortReducers,
     properties: propertiesReducers,
     deposit: depositReducers,
@@ -86,6 +90,8 @@ export const store = configureStore({
     cancelBooking: cancelBookingReducer,
     searchApartmentParams: searchApartmentParamsReducers,
     verifyOtp: verifyOtpReducers,
+    createConversation: createConversationReducers,
+    getConversation: getConversationReducers,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

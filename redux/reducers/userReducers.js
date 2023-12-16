@@ -34,22 +34,20 @@ import {
   SEARCH_USER_BY_EMAIL_REQUEST,
   SEARCH_USER_BY_EMAIL_SUCCESS,
   SEARCH_USER_BY_EMAIL_FAIL,
+  CREATE_CONVERSATION_REQUEST,
+  CREATE_CONVERSATION_SUCCESS,
+  CREATE_CONVERSATION_FAIL,
+  CREATE_CONVERSATION_RESET,
+  GET_CONVERSATION_REQUEST,
+  GET_CONVERSATION_SUCCESS,
+  GET_CONVERSATION_FAIL,
 } from "../constants/userConstants";
 
-export const userReducers = (
-  state = { user: {}, userProfile: {}, userEmail: {} },
-  action
-) => {
+export const userReducers = (state = { user: {}, userProfile: {} }, action) => {
   switch (action.type) {
     case LOGIN_REQUEST:
     case LOAD_USER_REQUEST:
       return { loading: true, isAuthenticated: false };
-
-    case SEARCH_USER_BY_EMAIL_REQUEST:
-      return {
-        loading: true,
-        userEmail: {},
-      };
 
     // Gửi login request, chưa đăng nhập nên authen = false
 
@@ -68,12 +66,6 @@ export const userReducers = (
         userProfile: action.payload,
       };
 
-    case SEARCH_USER_BY_EMAIL_SUCCESS:
-      return {
-        loading: false,
-        userEmail: action.payload,
-      };
-
     case LOGIN_FAIL:
       return {
         loading: false,
@@ -83,17 +75,38 @@ export const userReducers = (
       };
     case LOAD_USER_FAIL:
       return {
+        ...state,
         loading: false,
         isAuthenticated: false,
         userProfile: null,
         error: action.payload,
       };
 
+    default:
+      return state;
+  }
+};
+
+export const userEamilReducers = (state = { userEmail: {} }, action) => {
+  switch (action.type) {
+    case SEARCH_USER_BY_EMAIL_REQUEST:
+      return { loading: true, userEmail: {} };
+
+    // Gửi login request, chưa đăng nhập nên authen = false
+
+    case SEARCH_USER_BY_EMAIL_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        userEmail: action.payload,
+      };
+
     case SEARCH_USER_BY_EMAIL_FAIL:
       return {
+        ...state,
         loading: false,
+        userEmail: null,
         error: action.payload,
-        userEmail: {},
       };
 
     default:
@@ -121,6 +134,39 @@ export const tokenReducers = (state = { token: {} }, action) => {
         loading: false,
         token: null,
         error: action.payload,
+      };
+
+    default:
+      return state;
+  }
+};
+
+export const getConversationReducers = (
+  state = { conversationUser: {} },
+  action
+) => {
+  switch (action.type) {
+    case GET_CONVERSATION_REQUEST:
+      return {
+        loading: true,
+        success: false,
+        conversationUser: {},
+      };
+
+    case GET_CONVERSATION_SUCCESS:
+      return {
+        loading: false,
+        success: true,
+        conversationUser: action.payload,
+      };
+
+    case GET_CONVERSATION_FAIL:
+      return {
+        ...state,
+        loading: false,
+        success: false,
+        error: action.payload,
+        conversationUser: {},
       };
 
     default:
@@ -157,6 +203,44 @@ export const profileReducer = (state = {}, action) => {
         isUpdated: false,
         success: false,
         error: null,
+      };
+
+    default:
+      return state;
+  }
+};
+
+export const createConversationReducers = (
+  state = { conversation: {} },
+  action
+) => {
+  switch (action.type) {
+    case CREATE_CONVERSATION_REQUEST:
+      return {
+        ...state,
+        success: false,
+        loading: true,
+      };
+    case CREATE_CONVERSATION_SUCCESS:
+      return {
+        loading: false,
+        success: true,
+        conversation: action.payload,
+      };
+    case CREATE_CONVERSATION_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+        success: false,
+      };
+    case CREATE_CONVERSATION_RESET:
+      return {
+        ...state,
+        loading: false,
+        success: false,
+        error: null,
+        conversation: {},
       };
 
     default:

@@ -32,7 +32,12 @@ import {
 import Toast from "react-native-toast-message";
 import { CREATE_RATING_BOOKING_RESET } from "../../redux/constants/ratingConstant";
 import StarRating from "react-native-star-rating-widget";
-import { searchUserByEmail } from "../../redux/actions/userActions";
+import {
+  createConversation,
+  getConversation,
+  searchUserByEmail,
+} from "../../redux/actions/userActions";
+import { CREATE_CONVERSATION_RESET } from "../../redux/constants/userConstants";
 
 export default function BookingDetail() {
   const route = useRoute();
@@ -42,9 +47,21 @@ export default function BookingDetail() {
   const dispatch = useDispatch();
   const { booking, loading } = useSelector((state) => state.bookingDetail);
   const { ratings } = useSelector((state) => state.ratings);
-  const { userProfile, userEmail } = useSelector((state) => state.user);
+  const { userProfile } = useSelector((state) => state.user);
+  const { userEmail } = useSelector((state) => state.userEmail);
   const { success, error } = useSelector((state) => state.createRatingBooking);
+  const {
+    success: createConSuccess,
+    error: createConError,
+    conversation,
+  } = useSelector((state) => state.createConversation);
   const navigation = useNavigation();
+
+  const {
+    success: getConSuccess,
+    error: getConError,
+    conversationUser,
+  } = useSelector((state) => state.getConversation);
 
   useEffect(() => {
     dispatch(getBookingDetails(id));
@@ -77,7 +94,6 @@ export default function BookingDetail() {
   const handleStarPress = (selectedRating) => {
     setRating(selectedRating);
   };
-  console.log("Check rating", id);
 
   const handleSubmitReview = () => {
     const data = {
@@ -85,7 +101,7 @@ export default function BookingDetail() {
       rating: Number(rating),
       ratingType: value,
     };
-    dispatch(createRatingBooking(userProfile.userId, id, data));
+    dispatch(createRatingBooking(userProfile?.userId, id, data));
     setVisibleRating(false);
   };
 
@@ -104,7 +120,42 @@ export default function BookingDetail() {
     }
   }, [success, id, dispatch]);
 
-  console.log("Check user email", userEmail);
+  console.log("Check user email", userProfile);
+
+  const handleCreateConversation = () => {
+    if (userEmail) {
+      dispatch(getConversation(userEmail?.content[0]?.userId));
+      dispatch(createConversation(userEmail?.content[0]?.userId));
+    }
+  };
+
+  useEffect(() => {
+    if (getConSuccess && createConError) {
+      dispatch({ type: CREATE_CONVERSATION_RESET });
+      navigation.navigate("ChatScreen");
+    }
+
+    if (getConError && createConSuccess) {
+      dispatch({ type: CREATE_CONVERSATION_RESET });
+      navigation.navigate("ChatScreen");
+    }
+
+    if (createConError && getConError) {
+      Toast.show({
+        type: "error",
+        text1: "Contact",
+        text2: createConError || getConError,
+      });
+      dispatch({ type: CREATE_CONVERSATION_RESET });
+    }
+  }, [
+    createConSuccess,
+    createConError,
+    dispatch,
+    navigation,
+    getConSuccess,
+    getConError,
+  ]);
   return (
     <Fragment>
       {loading ? (
@@ -135,6 +186,16 @@ export default function BookingDetail() {
             </View>
 
             <View className="px-3">
+              <View className="w-full py-4 flex flex-row gap-3 items-center">
+                <Image
+                  source={{ uri: booking.qrcode }}
+                  className="w-28 h-28 rounded-md"
+                  alt="qrcode"
+                />
+                <Text className="text-lg font-semibold w-52">
+                  Give this code to the security staff to enter the apartment
+                </Text>
+              </View>
               <View className="flex flex-row justify-around pt-6 pb-3 border-b border-slate-300">
                 <View className="flex flex-col">
                   <Text className="font-bold text-base">Check-in</Text>
@@ -161,7 +222,7 @@ export default function BookingDetail() {
                 userEmail.content &&
                 userEmail.content.length > 0 && (
                   <View className=" border-b border-slate-300 w-full">
-                    <View className="flex flex-row  items-center  pt-4 pb-4">
+                    <View className="flex flex-row  items-center justify-between pt-4 pb-4">
                       <View className="flex flex-row items-center gap-1">
                         <View>
                           <Image
@@ -186,7 +247,10 @@ export default function BookingDetail() {
                         </View>
                       </View>
                       <View className="flex flex-row items-center  justify-center w-[40%]">
-                        <TouchableOpacity className="bg-blue-500 px-5 py-2 rounded-md my-3">
+                        <TouchableOpacity
+                          onPress={handleCreateConversation}
+                          className="bg-blue-500 px-5 py-2 rounded-md my-3"
+                        >
                           <Text className="text-white">Contact</Text>
                         </TouchableOpacity>
                       </View>

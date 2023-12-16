@@ -13,13 +13,13 @@ import {
 import { getHistoryBooking } from "../../redux/actions/historyBookingActions";
 import Loading from "../../components/Loading";
 import { format } from "date-fns";
+import { StatusBar } from "expo-status-bar";
 
 export default function YourTrip() {
   const dispatch = useDispatch();
   const { historyBooking, error, loading } = useSelector(
     (state) => state.historyBooking
   );
-  console.log("check listboooking", historyBooking);
 
   const [isDataLoaded, setDataLoaded] = useState(false);
 
@@ -39,6 +39,7 @@ export default function YourTrip() {
 
   return (
     <View className="flex-1">
+      <StatusBar style="light" animated hidden={false} />
       <View className="bg-blue-500 w-full h-[100px] flex flex-row items-center justify-start px-5">
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Ionicons name="arrow-back-outline" size={30} color="white" />

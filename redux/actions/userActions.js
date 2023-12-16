@@ -24,6 +24,12 @@ import {
   SEARCH_USER_BY_EMAIL_REQUEST,
   SEARCH_USER_BY_EMAIL_SUCCESS,
   SEARCH_USER_BY_EMAIL_FAIL,
+  CREATE_CONVERSATION_REQUEST,
+  CREATE_CONVERSATION_SUCCESS,
+  CREATE_CONVERSATION_FAIL,
+  GET_CONVERSATION_REQUEST,
+  GET_CONVERSATION_SUCCESS,
+  GET_CONVERSATION_FAIL,
 } from "../constants/userConstants";
 import * as SecureStore from "expo-secure-store";
 import { format } from "date-fns";
@@ -83,6 +89,57 @@ export const searchUserByEmail = (email) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: SEARCH_USER_BY_EMAIL_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
+
+export const createConversation = (userId) => async (dispatch) => {
+  try {
+    dispatch({ type: CREATE_CONVERSATION_REQUEST });
+
+    let token;
+    await SecureStore.getItemAsync("secure_token").then((value) => {
+      token = value;
+    });
+
+    const config = { headers: { Authorization: `Bearer ${token}` } };
+
+    const { data } = await axios.post(
+      `https://holiday-swap.click/api/v1/conversation/current-user/contact/${userId}`,
+      null,
+      config
+    );
+
+    dispatch({ type: CREATE_CONVERSATION_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: CREATE_CONVERSATION_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
+
+export const getConversation = (userId) => async (dispatch) => {
+  try {
+    dispatch({ type: GET_CONVERSATION_REQUEST });
+
+    let token;
+    await SecureStore.getItemAsync("secure_token").then((value) => {
+      token = value;
+    });
+
+    const config = { headers: { Authorization: `Bearer ${token}` } };
+
+    const { data } = await axios.get(
+      `https://holiday-swap.click/api/v1/conversation/current-user/contact/${userId}`,
+      config
+    );
+
+    dispatch({ type: GET_CONVERSATION_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: GET_CONVERSATION_FAIL,
       payload: error.response.data.message,
     });
   }

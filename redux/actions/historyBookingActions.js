@@ -38,8 +38,6 @@ export const getHistoryBooking = () => {
         }
       );
 
-      console.log("Booking History API Response:", response.data);
-
       dispatch({
         type: GET_HISTORY_BOOKING_SUCCESS,
         payload: response.data,

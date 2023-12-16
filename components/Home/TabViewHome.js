@@ -105,23 +105,33 @@ export default function TabViewHome(props) {
     }
   };
 
+  // const handleScroll = (event) => {
+  //   const { contentOffset, layoutMeasurement, contentSize } = event.nativeEvent;
+
+  //   // Calculate the current scroll position
+  //   const scrollY = contentOffset.y;
+
+  //   // Calculate the height of the ScrollView's visible area
+  //   const scrollViewHeight = layoutMeasurement.height;
+
+  //   // Calculate the height of the entire content
+  //   const contentHeight = contentSize.height;
+
+  //   // Check if the user has scrolled to the end
+  //   if (scrollY + scrollViewHeight >= contentHeight - 100) {
+  //     // User has reached the end of the ScrollView content
+  //     console.log("Scrolled to the end");
+  //     handleOnScrollEnd();
+  //   }
+  // };
+
   const handleScroll = (event) => {
-    const { contentOffset, layoutMeasurement, contentSize } = event.nativeEvent;
+    const { contentOffset } = event.nativeEvent;
 
-    // Calculate the current scroll position
-    const scrollY = contentOffset.y;
-
-    // Calculate the height of the ScrollView's visible area
-    const scrollViewHeight = layoutMeasurement.height;
-
-    // Calculate the height of the entire content
-    const contentHeight = contentSize.height;
-
-    // Check if the user has scrolled to the end
-    if (scrollY + scrollViewHeight >= contentHeight - 100) {
-      // User has reached the end of the ScrollView content
-      console.log("Scrolled to the end");
-      handleOnScrollEnd();
+    // Check if the user has scrolled to the top
+    if (contentOffset.y <= 0) {
+      // User has scrolled to the top, reload apartment data
+      dispatch(getApartments());
     }
   };
 
@@ -145,7 +155,7 @@ export default function TabViewHome(props) {
                 className="mt-5 w-full"
               >
                 <View>
-                  {filteredApartments.map((item, index) => {
+                  {filteredApartments?.map((item, index) => {
                     const startTime = new Date(item.availableTime?.startTime);
                     const endTime = new Date(item.availableTime?.endTime);
 

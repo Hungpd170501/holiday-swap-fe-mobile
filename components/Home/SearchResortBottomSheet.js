@@ -93,7 +93,7 @@ export default function SearchResortBottomSheet({ handleChangeResort }) {
                             )
                           );
                           setSelectedResort(item.resortName);
-                          handleChangeResort(item.id);
+                          handleChangeResort(item?.id);
                         }}
                         className="flex flex-row items-center gap-5"
                       >

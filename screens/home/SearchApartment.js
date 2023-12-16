@@ -71,10 +71,8 @@ export default function SearchApartment(props) {
   console.log("Check in", checkIn);
 
   const onClearForm = () => {
-    if (resortId || checkIn || checkOut || numberGuest) {
-      dispatch({ type: SEARCH_APARTMENT_RESET });
-      setPageNo(0);
-    }
+    dispatch({ type: SEARCH_APARTMENT_RESET });
+    setPageNo(0);
   };
   return (
     <View className="bg-white flex-1">
@@ -97,9 +95,9 @@ export default function SearchApartment(props) {
         </View>
       </ScrollView>
       <View className="flex flex-row items-center justify-between px-4 py-3 bg-white border-t border-gray-400 fixed w-full">
-        <TouchableOpacity onPress={() => onClearForm()}>
+        {/* <TouchableOpacity onPress={onClearForm}>
           <Text className="font-bold underline text-black">Clear all</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <TouchableOpacity
           onPress={() => submitSearch()}
           className="py-3 px-8 rounded-md bg-sky-500"
