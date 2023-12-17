@@ -194,7 +194,7 @@ export default function ManageAccount() {
               data={data}
               search
               maxHeight={270}
-              labelField="propertyName"
+              labelField="label"
               valueField="value"
               placeholder="Select gender"
               searchPlaceholder="Search..."
