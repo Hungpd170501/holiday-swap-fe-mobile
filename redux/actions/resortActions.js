@@ -13,7 +13,7 @@ export const getListResort = () => async (dispatch) => {
     dispatch({ type: GET_LIST_RESORT_REQUEST });
 
     const { data } = await axios.get(
-      `${API_URL}/resorts?pageNo=0&pageSize=999`
+      `${API_URL}/resorts?resortStatus=ACTIVE&pageNo=0&pageSize=999`
     );
 
     dispatch({ type: GET_LIST_RESORT_SUCCESS, payload: data });
