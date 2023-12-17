@@ -274,6 +274,12 @@ export default function DetailApartment() {
     return datesOutsideDateRange;
   };
 
+  const getAvatarSource = (name) => {
+    const defaultAvatar = `https://ui-avatars.com/api/?name=${name}`;
+
+    return defaultAvatar;
+  };
+
   useFocusEffect(
     useCallback(() => {
       if (dateRangeDefault) {
@@ -542,7 +548,9 @@ export default function DetailApartment() {
                           source={
                             apartment?.user?.avatar
                               ? { uri: apartment.user.avatar }
-                              : require("../../assets/images/avatar.png")
+                              : {
+                                  uri: getAvatarSource(apartment.user.username),
+                                }
                           }
                         />
                         <View>
