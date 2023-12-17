@@ -549,7 +549,9 @@ export default function DetailApartment() {
                             apartment?.user?.avatar
                               ? { uri: apartment.user.avatar }
                               : {
-                                  uri: getAvatarSource(apartment.user.username),
+                                  uri: getAvatarSource(
+                                    apartment?.user?.username
+                                  ),
                                 }
                           }
                         />

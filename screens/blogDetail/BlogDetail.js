@@ -31,6 +31,12 @@ export default function BlogDetail() {
 
   const { dislikeSuccess } = useSelector((state) => state.dislikePost);
 
+  const getAvatarSource = (name) => {
+    const defaultAvatar = `https://ui-avatars.com/api/?name=${name}`;
+
+    return defaultAvatar;
+  };
+
   useEffect(() => {
     if (userProfile) {
       dispatch(getBlogDetails(id, userProfile.userId));
@@ -62,7 +68,11 @@ export default function BlogDetail() {
             <View className="flex flex-row items-center gap-2">
               <Image
                 className="w-[50px] h-[50px] rounded-full"
-                source={{ uri: blog.avatar }}
+                source={
+                  blog?.avatar
+                    ? { uri: blog?.avatar }
+                    : { uri: getAvatarSource(blog?.userName) }
+                }
               />
               <View>
                 <Text className="text-[18px] font-bold"> {blog.userName}</Text>
