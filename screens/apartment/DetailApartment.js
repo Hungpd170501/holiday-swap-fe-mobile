@@ -52,6 +52,12 @@ import { getRatingApartment } from "../../redux/actions/ratingActions";
 import { BottomSheet } from "react-native-btr";
 import { XMarkIcon } from "react-native-heroicons/solid";
 import StarRating from "react-native-star-rating-widget";
+import {
+  createConversation,
+  getConversation,
+} from "../../redux/actions/userActions";
+import { CREATE_CONVERSATION_RESET } from "../../redux/constants/userConstants";
+import Toast from "react-native-toast-message";
 
 export default function DetailApartment() {
   const route = useRoute();
@@ -120,6 +126,53 @@ export default function DetailApartment() {
   const { dateRangeBooking } = useSelector((state) => state.dateRangeBooking);
   const { dateRangeDefault } = useSelector((state) => state.dateRangeDefault);
   const { dateRangeOut } = useSelector((state) => state.dateOut);
+
+  const {
+    success: createConSuccess,
+    error: createConError,
+    conversation,
+  } = useSelector((state) => state.createConversation);
+
+  const {
+    success: getConSuccess,
+    error: getConError,
+    conversationUser,
+  } = useSelector((state) => state.getConversation);
+
+  const handleCreateConversation = (userId) => {
+    if (userId) {
+      dispatch(getConversation(userId));
+      dispatch(createConversation(userId));
+    }
+  };
+
+  useEffect(() => {
+    if (getConSuccess && createConError) {
+      dispatch({ type: CREATE_CONVERSATION_RESET });
+      navigation.navigate("ChatScreen");
+    }
+
+    if (getConError && createConSuccess) {
+      dispatch({ type: CREATE_CONVERSATION_RESET });
+      navigation.navigate("ChatScreen");
+    }
+
+    if (createConError && getConError) {
+      Toast.show({
+        type: "error",
+        text1: "Contact",
+        text2: createConError || getConError,
+      });
+      dispatch({ type: CREATE_CONVERSATION_RESET });
+    }
+  }, [
+    createConSuccess,
+    createConError,
+    dispatch,
+    navigation,
+    getConSuccess,
+    getConError,
+  ]);
 
   useFocusEffect(
     useCallback(() => {
@@ -500,7 +553,12 @@ export default function DetailApartment() {
                         </View>
                       </View>
                       <View>
-                        <TouchableOpacity className="bg-blue-500 px-2 py-2 rounded-md">
+                        <TouchableOpacity
+                          onPress={() =>
+                            handleCreateConversation(apartment?.user?.userId)
+                          }
+                          className="bg-blue-500 px-2 py-2 rounded-md"
+                        >
                           <Text className="text-white">Contact with owner</Text>
                         </TouchableOpacity>
                       </View>

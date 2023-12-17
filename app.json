@@ -11,7 +11,9 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true,
       "infoPlist": {
@@ -23,7 +25,9 @@
       }
     },
     "android": {
-      "blockedPermissions": ["android.permission.RECORD_AUDIO"],
+      "blockedPermissions": [
+        "android.permission.RECORD_AUDIO"
+      ],
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -38,6 +42,11 @@
     },
     "updates": {
       "url": "https://u.expo.dev/7895ebe4-c50f-48ed-aa18-1b93129eecb8"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "7895ebe4-c50f-48ed-aa18-1b93129eecb8"
+      }
     }
   },
   "name": "HolidaySwap",

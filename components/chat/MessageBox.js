@@ -23,6 +23,12 @@ const MessageBox = ({ message, users, currentUser }) => {
     setModalVisible(false);
   };
 
+  const getAvatarSource = (name) => {
+    const defaultAvatar = `https://ui-avatars.com/api/?name=${name}`;
+
+    return defaultAvatar;
+  };
+
   return (
     <View>
       {isOwn ? (
@@ -72,7 +78,7 @@ const MessageBox = ({ message, users, currentUser }) => {
             source={
               user?.user?.avatar
                 ? { uri: user.user.avatar }
-                : require("../../assets/images/avatar.png")
+                : { uri: getAvatarSource(user.user.username) }
             }
           />
 
