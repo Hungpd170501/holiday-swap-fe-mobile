@@ -13,6 +13,12 @@ export default function BlogCommunity({ navigation }) {
   const dispatch = useDispatch();
   const { listBlog, error, loading } = useSelector((state) => state.blog);
 
+  const getAvatarSource = (name) => {
+    const defaultAvatar = `https://ui-avatars.com/api/?name=${name}`;
+
+    return defaultAvatar;
+  };
+
   useEffect(() => {
     dispatch(getBlog());
   }, [dispatch]);
@@ -52,7 +58,11 @@ export default function BlogCommunity({ navigation }) {
                     <View className="flex flex-row items-center gap-2 p-3">
                       <Image
                         className="w-[50px] h-[50px] rounded-full"
-                        source={{ uri: blog?.avatar }}
+                        source={
+                          blog?.avatar
+                            ? { uri: blog?.avatar }
+                            : { uri: getAvatarSource(blog.username) }
+                        }
                       />
                       <View>
                         <Text className="text-[20px] font-bold">
