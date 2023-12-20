@@ -68,6 +68,7 @@ import * as Notifications from "expo-notifications";
 import ChangePassword from "../screens/changePassword/ChangePassword";
 import OwnerBookingDetail from "../screens/ownerBookingDetail/OwnerBookingDetail";
 import useLogout from "../hooks/useLogout";
+import ListResort from "../screens/listResort/ListResort";
 
 const Stack = createStackNavigator();
 
@@ -169,6 +170,7 @@ function Navigation() {
 
             <Stack.Screen name="Home" component={HomeScreen} />
             <Stack.Screen name="Profile" component={ProfileScreen} />
+            <Stack.Screen name="ListResort" component={ListResort} />
 
             {/* <Stack.Screen name="Loading" component={LoadingScreen} /> */}
             <Stack.Screen

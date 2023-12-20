@@ -29,10 +29,11 @@ export default function TabViewHome(props) {
   }, [dispatch]);
 
   const [selectedTab, setSelectedTab] = useState("");
-  const [tabs, setTabs] = useState([]);
+  const [tabs, setTabs] = useState(["All"]);
   useEffect(() => {
     if (apartments && apartments.length > 0) {
       const resortNames = [
+        "All",
         ...new Set(apartments.map((item) => item.resort.resortName)),
       ];
       setSelectedTab(resortNames[0] || "");
@@ -137,6 +138,126 @@ export default function TabViewHome(props) {
 
   const renderTabContent = () => {
     switch (selectedTab) {
+      case "All":
+        return (
+          <Fragment>
+            <View style={styles.shadow} className="flex-1">
+              <ScrollView
+                showsVerticalScrollIndicator={false}
+                onScrollEndDrag={(event) => {
+                  handleScroll(event);
+                }}
+                className="mt-5 w-full"
+              >
+                <View>
+                  {apartments?.map((item, index) => {
+                    const startTime = new Date(item.availableTime?.startTime);
+                    const endTime = new Date(item.availableTime?.endTime);
+
+                    const timeDiff = endTime - startTime;
+                    const nights = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+
+                    return (
+                      <View className="flex-1" key={index}>
+                        <View>
+                          <CarouselApartmentImage
+                            image={item.property.propertyImage}
+                          />
+                          <TouchableOpacity
+                            activeOpacity={0.8}
+                            onPress={() =>
+                              navigation.navigate("DetailApartment", {
+                                id: item.availableTime.id,
+                                propertyId: item.coOwnerId.propertyId,
+                                roomId: item.coOwnerId.roomId,
+                              })
+                            }
+                            className="mb-8"
+                          >
+                            <View className="">
+                              <View className="">
+                                <View className="flex flex-row items-center justify-between">
+                                  <Text className="underline pb-3 w-[80%] text-[18px] font-bold pt-2">
+                                    {item.property.propertyName}
+                                  </Text>
+                                  {item.property.rating && ( // Check if rating is available
+                                    <View className="flex flex-row items-center gap-1">
+                                      <Text>
+                                        {" "}
+                                        {Number(item.property.rating).toFixed(
+                                          1
+                                        )}
+                                      </Text>
+                                      <AntDesign name="star" color="orange" />
+                                    </View>
+                                  )}
+                                </View>
+                                <View className="flex flex-row gap-2 ">
+                                  <Text className="font-bold">Resort:</Text>
+                                  <Text>{item.resort.resortName}</Text>
+                                </View>
+                                <View className="flex flex-row gap-2 py-2">
+                                  <Text className="font-bold">Type:</Text>
+                                  <Text>
+                                    {
+                                      item.property.propertyType
+                                        .propertyTypeName
+                                    }
+                                  </Text>
+                                </View>
+
+                                {/* <View className="max-w-[100%] overflow-hidden pb-2">
+                                    <Text className="text-[15px] whitespace-nowrap overflow-ellipsis">
+                                      {item.property.propertyDescription}
+                                    </Text>
+                                  </View> */}
+                                <View className="max-w-[100%] overflow-hidden pb-2 flex flex-row gap-1">
+                                  <Text className="font-bold">Owner by:</Text>
+                                  <Text className="text-[15px] whitespace-nowrap overflow-ellipsis">
+                                    {item?.user?.fullName
+                                      ? item?.user?.fullName
+                                      : item?.user?.username}
+                                  </Text>
+                                </View>
+                                <View className="flex flex-row gap-1 items-center mb-1">
+                                  <Text className="text-[20px] font-bold">
+                                    {item.availableTime.pricePerNight}
+                                  </Text>
+
+                                  <FontAwesome5
+                                    name="coins"
+                                    size={15}
+                                    color="orange"
+                                  />
+                                  <Text className="font-bold">/ night</Text>
+                                </View>
+
+                                <View className="flex flex-row items-center ">
+                                  <Text className="font-bold mb-1">
+                                    {nights} nights
+                                  </Text>
+                                </View>
+                                <View className="flex flex-row items-center ">
+                                  <Text className="font-bold">
+                                    {startTime.toDateString()} -{" "}
+                                    {endTime.toDateString()}
+                                  </Text>
+                                </View>
+                              </View>
+                            </View>
+                          </TouchableOpacity>
+                        </View>
+                      </View>
+                    );
+                  })}
+                </View>
+              </ScrollView>
+              {/* <View className="w-full absolute  flex h-full flex-col justify-end ">
+                  <MapHome />
+                </View> */}
+            </View>
+          </Fragment>
+        );
       case "":
         return null;
       default:
