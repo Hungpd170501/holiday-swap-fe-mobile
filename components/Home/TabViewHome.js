@@ -34,7 +34,11 @@ export default function TabViewHome(props) {
     if (apartments && apartments.length > 0) {
       const resortNames = [
         "All",
-        ...new Set(apartments.map((item) => item.resort.resortName)),
+        ...new Set(
+          apartments.map(
+            (item) => item.availableTime.coOwner.property.resort.resortName
+          )
+        ),
       ];
       setSelectedTab(resortNames[0] || "");
       setTabs(resortNames);
@@ -91,7 +95,9 @@ export default function TabViewHome(props) {
         setData(response.data);
         {
           // Get the property values from the data array.
-          const propertyList = response.data.content.map((obj) => obj.property);
+          const propertyList = response.data.content.map(
+            (obj) => obj.availableTime.coOwner.property
+          );
         }
       })
       .catch((error) => {
@@ -161,7 +167,9 @@ export default function TabViewHome(props) {
                       <View className="flex-1" key={index}>
                         <View>
                           <CarouselApartmentImage
-                            image={item.property.propertyImage}
+                            image={
+                              item.availableTime.coOwner.property.propertyImages
+                            }
                           />
                           <TouchableOpacity
                             activeOpacity={0.8}
@@ -178,15 +186,20 @@ export default function TabViewHome(props) {
                               <View className="">
                                 <View className="flex flex-row items-center justify-between">
                                   <Text className="underline pb-3 w-[80%] text-[18px] font-bold pt-2">
-                                    {item.property.propertyName}
+                                    {
+                                      item.availableTime.coOwner.property
+                                        .propertyName
+                                    }
                                   </Text>
-                                  {item.property.rating && ( // Check if rating is available
+                                  {item.availableTime.coOwner.property
+                                    .rating && ( // Check if rating is available
                                     <View className="flex flex-row items-center gap-1">
                                       <Text>
                                         {" "}
-                                        {Number(item.property.rating).toFixed(
-                                          1
-                                        )}
+                                        {Number(
+                                          item.availableTime.coOwner.property
+                                            .rating
+                                        ).toFixed(1)}
                                       </Text>
                                       <AntDesign name="star" color="orange" />
                                     </View>
@@ -194,14 +207,19 @@ export default function TabViewHome(props) {
                                 </View>
                                 <View className="flex flex-row gap-2 ">
                                   <Text className="font-bold">Resort:</Text>
-                                  <Text>{item.resort.resortName}</Text>
+                                  <Text>
+                                    {
+                                      item.availableTime.coOwner.property.resort
+                                        .resortName
+                                    }
+                                  </Text>
                                 </View>
                                 <View className="flex flex-row gap-2 py-2">
                                   <Text className="font-bold">Type:</Text>
                                   <Text>
                                     {
-                                      item.property.propertyType
-                                        .propertyTypeName
+                                      item.availableTime.coOwner.property
+                                        .propertyType.propertyTypeName
                                     }
                                   </Text>
                                 </View>
@@ -262,7 +280,9 @@ export default function TabViewHome(props) {
         return null;
       default:
         const filteredApartments = apartments?.filter(
-          (item) => item.resort.resortName === selectedTab
+          (item) =>
+            item.availableTime.coOwner.property.resort.resortName ===
+            selectedTab
         );
 
         return (
@@ -287,7 +307,9 @@ export default function TabViewHome(props) {
                       <View className="flex-1" key={index}>
                         <View>
                           <CarouselApartmentImage
-                            image={item.property.propertyImage}
+                            image={
+                              item.availableTime.coOwner.property.propertyImage
+                            }
                           />
                           <TouchableOpacity
                             activeOpacity={0.8}
@@ -304,15 +326,20 @@ export default function TabViewHome(props) {
                               <View className="">
                                 <View className="flex flex-row items-center justify-between">
                                   <Text className="underline pb-3 w-[80%] text-[18px] font-bold pt-2">
-                                    {item.property.propertyName}
+                                    {
+                                      item.availableTime.coOwner.property
+                                        .propertyName
+                                    }
                                   </Text>
-                                  {item.property.rating && ( // Check if rating is available
+                                  {item.availableTime.coOwner.property
+                                    .rating && ( // Check if rating is available
                                     <View className="flex flex-row items-center gap-1">
                                       <Text>
                                         {" "}
-                                        {Number(item.property.rating).toFixed(
-                                          1
-                                        )}
+                                        {Number(
+                                          item.availableTime.coOwner.property
+                                            .rating
+                                        ).toFixed(1)}
                                       </Text>
                                       <AntDesign name="star" color="orange" />
                                     </View>
@@ -320,14 +347,19 @@ export default function TabViewHome(props) {
                                 </View>
                                 <View className="flex flex-row gap-2 ">
                                   <Text className="font-bold">Resort:</Text>
-                                  <Text>{item.resort.resortName}</Text>
+                                  <Text>
+                                    {
+                                      item.availableTime.coOwner.property.resort
+                                        .resortName
+                                    }
+                                  </Text>
                                 </View>
                                 <View className="flex flex-row gap-2 py-2">
                                   <Text className="font-bold">Type:</Text>
                                   <Text>
                                     {
-                                      item.property.propertyType
-                                        .propertyTypeName
+                                      item.availableTime.coOwner.property
+                                        .propertyType.propertyTypeName
                                     }
                                   </Text>
                                 </View>
