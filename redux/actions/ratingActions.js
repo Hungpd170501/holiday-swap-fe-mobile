@@ -35,7 +35,7 @@ export const getRatingApartment = (propertyId, roomId) => async (dispatch) => {
     dispatch({ type: GET_RATINGS_APARTMENT_REQUEST });
 
     const { data } = await axios.get(
-      `${apiUrl}?propertyId=${propertyId}&roomId=${roomId}&pageNo=0&pageSize=9999&sortDirection=asc&sortBy=id`
+      `${apiUrl}?propertyId=${propertyId}&roomId=${roomId}&pageNo=0&pageSize=9999&sortDirection=desc`
     );
 
     dispatch({ type: GET_RATINGS_APARTMENT_SUCCESS, payload: data });

@@ -33,13 +33,13 @@ export default function BookingConfirm() {
         <View className="flex flex-row px-5 py-5 bg-white gap-4 items-center">
           <Image
             source={{
-              uri: `${apartmentBooking?.property?.propertyImage[0]?.link}`,
+              uri: `${apartmentBooking?.availableTime?.coOwner?.property?.propertyImages[0]?.link}`,
             }}
             className="w-36 h-28 rounded-xl "
           />
           <View className="flex flex-col">
             <Text className="text-lg font-bold text-black w-[80%]">
-              {apartmentBooking?.property?.propertyName}
+              {apartmentBooking?.availableTime?.coOwner?.property?.propertyName}
             </Text>
             <Text className="text-base text-slate-800 w-[65%] font-bold">
               {format(

@@ -157,8 +157,16 @@ export default function TabViewHome(props) {
               >
                 <View>
                   {apartments?.map((item, index) => {
-                    const startTime = new Date(item.availableTime?.startTime);
-                    const endTime = new Date(item.availableTime?.endTime);
+                    const startTime = new Date(
+                      item.availableTime?.startTime[0],
+                      item.availableTime?.startTime[1] - 1,
+                      item.availableTime?.startTime[2]
+                    );
+                    const endTime = new Date(
+                      item.availableTime?.endTime[0],
+                      item.availableTime?.endTime[1] - 1,
+                      item.availableTime?.endTime[2]
+                    );
 
                     const timeDiff = endTime - startTime;
                     const nights = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
@@ -176,8 +184,9 @@ export default function TabViewHome(props) {
                             onPress={() =>
                               navigation.navigate("DetailApartment", {
                                 id: item.availableTime.id,
-                                propertyId: item.coOwnerId.propertyId,
-                                roomId: item.coOwnerId.roomId,
+                                propertyId:
+                                  item.availableTime.coOwner.property.id,
+                                roomId: item.availableTime.coOwner.roomId,
                               })
                             }
                             className="mb-8"
@@ -232,9 +241,9 @@ export default function TabViewHome(props) {
                                 <View className="max-w-[100%] overflow-hidden pb-2 flex flex-row gap-1">
                                   <Text className="font-bold">Owner by:</Text>
                                   <Text className="text-[15px] whitespace-nowrap overflow-ellipsis">
-                                    {item?.user?.fullName
-                                      ? item?.user?.fullName
-                                      : item?.user?.username}
+                                    {item?.coOwner?.user?.fullName
+                                      ? item?.coOwner?.user?.fullName
+                                      : item?.coOwner?.user?.username}
                                   </Text>
                                 </View>
                                 <View className="flex flex-row gap-1 items-center mb-1">
@@ -297,8 +306,16 @@ export default function TabViewHome(props) {
               >
                 <View>
                   {filteredApartments?.map((item, index) => {
-                    const startTime = new Date(item.availableTime?.startTime);
-                    const endTime = new Date(item.availableTime?.endTime);
+                    const startTime = new Date(
+                      item.availableTime?.startTime[0],
+                      item.availableTime?.startTime[1] - 1,
+                      item.availableTime?.startTime[2]
+                    );
+                    const endTime = new Date(
+                      item.availableTime?.endTime[0],
+                      item.availableTime?.endTime[1] - 1,
+                      item.availableTime?.endTime[2]
+                    );
 
                     const timeDiff = endTime - startTime;
                     const nights = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
@@ -316,8 +333,9 @@ export default function TabViewHome(props) {
                             onPress={() =>
                               navigation.navigate("DetailApartment", {
                                 id: item.availableTime.id,
-                                propertyId: item.coOwnerId.propertyId,
-                                roomId: item.coOwnerId.roomId,
+                                propertyId:
+                                  item.availableTime.coOwner.property.id,
+                                roomId: item.availableTime.coOwner.roomId,
                               })
                             }
                             className="mb-8"
@@ -372,9 +390,9 @@ export default function TabViewHome(props) {
                                 <View className="max-w-[100%] overflow-hidden pb-2 flex flex-row gap-1">
                                   <Text className="font-bold">Owner by:</Text>
                                   <Text className="text-[15px] whitespace-nowrap overflow-ellipsis">
-                                    {item?.user?.fullName
-                                      ? item?.user?.fullName
-                                      : item?.user?.username}
+                                    {item?.coOwner?.user?.fullName
+                                      ? item?.coOwner?.user?.fullName
+                                      : item?.coOwner?.user?.username}
                                   </Text>
                                 </View>
                                 <View className="flex flex-row gap-1 items-center mb-1">

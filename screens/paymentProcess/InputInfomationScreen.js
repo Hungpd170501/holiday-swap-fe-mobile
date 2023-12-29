@@ -245,7 +245,7 @@ export default function InputInfomationScreen() {
             <View className="flex flex-row gap-3 bg-white px-4 py-5">
               <Image
                 source={{
-                  uri: `${apartmentBooking?.property?.propertyImage[0].link}`,
+                  uri: `${apartmentBooking?.availableTime?.coOwner?.property?.propertyImages[0].link}`,
                 }}
                 className="h-40 w-44 rounded-lg"
               />
@@ -254,18 +254,26 @@ export default function InputInfomationScreen() {
                 <View>
                   <Text className="text-[15px] font-bold ">Resort: </Text>
                   <Text className="w-[80%]">
-                    {apartmentBooking?.property?.resort.resortName}
+                    {
+                      apartmentBooking?.availableTime?.coOwner?.property?.resort
+                        .resortName
+                    }
                   </Text>
                 </View>
                 <View>
                   <Text className="text-[15px] font-bold">Property:</Text>
                   <Text className=" w-[90%]">
-                    {apartmentBooking?.property?.propertyName}
+                    {
+                      apartmentBooking?.availableTime?.coOwner?.property
+                        ?.propertyName
+                    }
                   </Text>
                 </View>
                 <View className="flex flex-row items-center">
                   <Text className="font-bold">Apartment ID: </Text>
-                  <Text className="">{apartmentBooking?.coOwnerId.roomId}</Text>
+                  <Text className="">
+                    {apartmentBooking?.availableTime?.coOwner?.id}
+                  </Text>
                 </View>
                 {/* <Text className=" font-normal">
                   {apartmentBooking?.property?.propertyDescription}

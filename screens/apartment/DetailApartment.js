@@ -111,7 +111,9 @@ export default function DetailApartment() {
 
   useEffect(() => {
     if (apartment) {
-      setApartmentImage(apartment?.property?.propertyImage);
+      setApartmentImage(
+        apartment?.availableTime?.coOwner?.property?.propertyImages
+      );
       setAvailableTime(apartment?.availableTime);
     }
   }, [apartment]);
@@ -120,8 +122,17 @@ export default function DetailApartment() {
   const itemWidthPercentage = 100;
 
   const itemWidth = (screenWidth * itemWidthPercentage) / 100;
-  const startTime = apartment?.availableTime?.startTime;
-  const endTime = apartment?.availableTime?.endTime;
+  const startTime = new Date(
+    apartment?.availableTime?.startTime[0],
+    apartment?.availableTime?.startTime[1] - 1,
+    apartment?.availableTime?.startTime[2]
+  );
+
+  const endTime = new Date(
+    apartment?.availableTime?.endTime[0],
+    apartment?.availableTime?.endTime[1] - 1,
+    apartment?.availableTime?.endTime[2]
+  );
 
   const { dateRangeBooking } = useSelector((state) => state.dateRangeBooking);
   const { dateRangeDefault } = useSelector((state) => state.dateRangeDefault);
@@ -177,8 +188,18 @@ export default function DetailApartment() {
   useFocusEffect(
     useCallback(() => {
       if (apartment) {
-        const startTimeBooking = apartment?.availableTime?.startTime;
-        const endTimeBooking = apartment?.availableTime?.endTime;
+        const startTimeBooking = new Date(
+          apartment?.availableTime?.startTime[0],
+          apartment?.availableTime?.startTime[1] - 1,
+          apartment?.availableTime?.startTime[2]
+        );
+
+        const endTimeBooking = new Date(
+          apartment?.availableTime?.endTime[0],
+          apartment?.availableTime?.endTime[1] - 1,
+          apartment?.availableTime?.endTime[2]
+        );
+
         dispatch(getDateRangeBooking({ startTimeBooking, endTimeBooking }));
       }
     }, [dispatch, apartment])
@@ -186,8 +207,17 @@ export default function DetailApartment() {
 
   useFocusEffect(
     useCallback(() => {
-      const startTimeDefault = apartment?.availableTime?.startTime;
-      const endTimeDefault = apartment?.availableTime?.endTime;
+      const startTimeDefault = new Date(
+        apartment?.availableTime?.startTime[0],
+        apartment?.availableTime?.startTime[1] - 1,
+        apartment?.availableTime?.startTime[2]
+      );
+
+      const endTimeDefault = new Date(
+        apartment?.availableTime?.endTime[0],
+        apartment?.availableTime?.endTime[1] - 1,
+        apartment?.availableTime?.endTime[2]
+      );
       dispatch(getDateRangeDefault({ startTimeDefault, endTimeDefault }));
     }, [dispatch, apartment])
   );
@@ -336,7 +366,10 @@ export default function DetailApartment() {
                 </TouchableOpacity>
                 <View className=" bg-white relative">
                   <CarouselApartmentDetail
-                    image={apartment?.property?.propertyImage}
+                    image={
+                      apartment?.availableTime?.coOwner?.property
+                        ?.propertyImages
+                    }
                   />
                 </View>
                 <View className="px-4 py-3 bg-white">
@@ -354,7 +387,11 @@ export default function DetailApartment() {
                         />
                       </View>
                       <Text className="mt-1">
-                        {apartment?.property?.numberBedsRoom} Beds room
+                        {
+                          apartment?.availableTime?.coOwner?.property
+                            ?.numberBedsRoom
+                        }{" "}
+                        Beds room
                       </Text>
                     </View>
                     <View className="flex flex-col items-center">
@@ -366,7 +403,8 @@ export default function DetailApartment() {
                         />
                       </View>
                       <Text className="mt-1">
-                        {apartment?.property?.roomSize} meters
+                        {apartment?.availableTime?.coOwner?.property?.roomSize}{" "}
+                        meters
                       </Text>
                     </View>
                     <View className="flex flex-col items-center">
@@ -395,13 +433,19 @@ export default function DetailApartment() {
                   <View>
                     <View className="flex flex-row justify-between items-center">
                       <Text className="text-[20px] font-bold">
-                        {apartment?.property?.propertyName}
+                        {
+                          apartment?.availableTime?.coOwner?.property
+                            ?.propertyName
+                        }
                       </Text>
                       <View className="flex flex-row gap-1 items-center">
                         <AntDesign name="star" color="orange" />
                         <Text className="text-[20px]">
-                          {apartment?.property?.rating
-                            ? Number(apartment?.property?.rating).toFixed(1)
+                          {apartment?.availableTime?.coOwner?.property?.rating
+                            ? Number(
+                                apartment?.availableTime?.coOwner?.property
+                                  ?.rating
+                              ).toFixed(1)
                             : ""}
                         </Text>
                       </View>
@@ -455,7 +499,8 @@ export default function DetailApartment() {
                       <Image
                         style={{ width: "100%", height: 300 }}
                         source={{
-                          uri: apartment.property?.propertyImage[0]?.link,
+                          uri: apartment?.availableTime?.coOwner?.property
+                            ?.propertyImages[0]?.link,
                         }}
                       />
                     </TouchableOpacity>
@@ -471,7 +516,8 @@ export default function DetailApartment() {
                         <Image
                           style={{ width: "100%", height: 300 / 2 }}
                           source={{
-                            uri: apartment.property?.propertyImage[1]?.link,
+                            uri: apartment?.availableTime?.coOwner?.property
+                              ?.propertyImages[1]?.link,
                           }}
                         />
                       </TouchableOpacity>
@@ -486,7 +532,8 @@ export default function DetailApartment() {
                         <Image
                           style={{ width: "96%", height: 300 / 2 }}
                           source={{
-                            uri: apartment.property?.propertyImage[2]?.link,
+                            uri: apartment?.availableTime?.coOwner?.property
+                              ?.propertyImages[2]?.link,
                           }}
                         />
                       </TouchableOpacity>
@@ -517,8 +564,12 @@ export default function DetailApartment() {
                         {apartment?.resort?.locationFormattedName}
                       </Text>
                       <MapApartmentDetail
-                        latitude={apartment?.resort?.latitude}
-                        longitude={apartment?.resort?.longitude}
+                        latitude={
+                          apartment?.availableTime?.property?.resort?.latitude
+                        }
+                        longitude={
+                          apartment?.availableTime?.property?.resort?.longitude
+                        }
                         apartment={apartment}
                       />
                     </View>
@@ -535,7 +586,12 @@ export default function DetailApartment() {
                   <View className="w-full bg-gray-300 h-[1px] my-4"></View>
                   <View>
                     <Text className="text-[17px] font-bold my-2">Describe</Text>
-                    <Text>{apartment?.property?.propertyDescription}</Text>
+                    <Text>
+                      {
+                        apartment?.availableTime?.coOwner?.property
+                          ?.propertyDescription
+                      }
+                    </Text>
                   </View>
                   <View className="w-full bg-gray-300 h-[1px] my-4"></View>
                   <View className="w-full">
@@ -590,7 +646,7 @@ export default function DetailApartment() {
                       <View className=" bg-white mt-2 py-3">
                         <View style={styles.container}>
                           {/* {apartment.property?.inRoomAmenityType?.map((item, index) => ( */}
-                          {apartment?.property?.inRoomAmenityType
+                          {apartment?.availableTime?.coOwner?.property?.inRoomAmenityType
                             ?.slice(0, 2)
                             .map((item, index) => (
                               <View key={index} style={styles.column}>
@@ -614,7 +670,7 @@ export default function DetailApartment() {
                         </View>
                         {showMore ? (
                           <View style={styles.container}>
-                            {apartment?.property?.inRoomAmenityType
+                            {apartment?.availableTime?.coOwner?.property?.inRoomAmenityType
                               ?.slice(2)
                               .map((item, index) => (
                                 <View key={index} style={styles.column}>
