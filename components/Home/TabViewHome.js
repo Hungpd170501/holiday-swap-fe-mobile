@@ -325,7 +325,7 @@ export default function TabViewHome(props) {
                         <View>
                           <CarouselApartmentImage
                             image={
-                              item.availableTime.coOwner.property.propertyImage
+                              item.availableTime.coOwner.property.propertyImages
                             }
                           />
                           <TouchableOpacity
