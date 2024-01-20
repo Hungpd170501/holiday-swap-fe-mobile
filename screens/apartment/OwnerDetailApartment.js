@@ -12,18 +12,14 @@ import { useFocusEffect } from "@react-navigation/native";
 export default function OwnerDetailApartment({ route }) {
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const { userId, propertyId, roomId } = route.params;
+  const { coOwnerId } = route.params;
   const { owner } = useSelector((state) => state.detailOwnership);
 
   React.useEffect(() => {
-    if (userId && propertyId && roomId) {
-      dispatch(getOwnershipDetails(userId, propertyId, roomId));
+    if (coOwnerId) {
+      dispatch(getOwnershipDetails(coOwnerId));
     }
-  }, [dispatch, userId, propertyId, roomId]);
-
-  console.log("Check property id", propertyId);
-  console.log("Check user Id", userId);
-  console.log("check room Id", roomId);
+  }, [dispatch, coOwnerId]);
 
   console.log("Check owner", owner);
 
@@ -46,7 +42,7 @@ export default function OwnerDetailApartment({ route }) {
             <View className=" w-[80%] flex flex-row py-3 gap-1">
               <Text>Resort:</Text>
               <Text className="text-[18px] font-bold">
-                {owner?.resort?.resortName}
+                {owner?.property?.resort?.resortName}
               </Text>
             </View>
             <View className="flex flex-row items-center gap-1 pb-3">
@@ -57,7 +53,7 @@ export default function OwnerDetailApartment({ route }) {
             </View>
             <View className="flex flex-row items-center gap-1">
               <Text>Apartment ID:</Text>
-              <Text className="text-[20px] font-bold">{owner?.id?.roomId}</Text>
+              <Text className="text-[20px] font-bold">{owner?.roomId}</Text>
             </View>
 
             {owner?.timeFrames?.map((item, index) => {

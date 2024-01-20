@@ -53,9 +53,7 @@ const YourApartment = () => {
                     key={index}
                     onPress={() =>
                       navigation.navigate("OwnerDetailApartment", {
-                        roomId: item.id.roomId,
-                        userId: item.id.userId,
-                        propertyId: item.id.propertyId,
+                        coOwnerId: item.id,
                       })
                     }
                     className=" flex flex-row bg-white mt-3 justify-start  rounded-md py-2 px-2"

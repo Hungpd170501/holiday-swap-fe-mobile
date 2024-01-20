@@ -116,37 +116,35 @@ export const getListOwnership = (userId) => async (dispatch) => {
   }
 };
 
-export const getOwnershipDetails =
-  (userId, propertyId, roomId) => async (dispatch) => {
-    try {
-      dispatch({ type: GET_OWNERSHIP_DETAIL_REQUEST });
+export const getOwnershipDetails = (coOwnerId) => async (dispatch) => {
+  try {
+    dispatch({ type: GET_OWNERSHIP_DETAIL_REQUEST });
 
-      const accessToken = await SecureStore.getItemAsync("secure_token");
-      const config = {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      };
+    const accessToken = await SecureStore.getItemAsync("secure_token");
+    const config = {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    };
 
-      console.log("Check config", config);
+    console.log("Check config", config);
 
-      const { data } = await axios.get(
-        `https://holiday-swap.click/api/co-owners/detail?propertyId=${propertyId}&userId=${userId}&roomId=${roomId}`
-      );
+    const { data } = await axios.get(
+      `https://holiday-swap.click/api/co-owners/${coOwnerId}`
+    );
 
-      // console.log("Check data owner ship detail", data);
+    // console.log("Check data owner ship detail", data);
 
-      dispatch({
-        type: GET_OWNERSHIP_DETAIL_SUCCESS,
-        payload: data,
-      });
-    } catch (error) {
-      console.log("Check error ownership detail", error);
-      dispatch({
-        type: GET_OWNERSHIP_DETAIL_FAIL,
-        payload:
-          error.response.data.message ||
-          "An error occurred while fetching data.",
-      });
-    }
-  };
+    dispatch({
+      type: GET_OWNERSHIP_DETAIL_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    console.log("Check error ownership detail", error);
+    dispatch({
+      type: GET_OWNERSHIP_DETAIL_FAIL,
+      payload:
+        error.response.data.message || "An error occurred while fetching data.",
+    });
+  }
+};
