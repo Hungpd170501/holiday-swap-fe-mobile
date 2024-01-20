@@ -33,7 +33,7 @@ export default function TabViewHome(props) {
   useEffect(() => {
     if (apartments && apartments.length > 0) {
       const resortNames = [
-        "All",
+        "All Resort",
         ...new Set(
           apartments.map(
             (item) => item.availableTime.coOwner.property.resort.resortName
@@ -144,7 +144,7 @@ export default function TabViewHome(props) {
 
   const renderTabContent = () => {
     switch (selectedTab) {
-      case "All":
+      case "All Resort":
         return (
           <Fragment>
             <View style={styles.shadow} className="flex-1">
