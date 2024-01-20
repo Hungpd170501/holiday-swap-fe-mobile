@@ -25,7 +25,7 @@ export const getApartments =
         },
       };
 
-      let link = `https://holiday-swap.click/api/v1/apartment-for-rent?pageNo=0&pageSize=9999&sortBy=startTime&sortDirection=asc`;
+      let link = `https://holiday-swap.click/api/v1/apartment-for-rent?pageNo=0&pageSize=9999&sortBy=id&sortDirection=desc`;
 
       if (resortId) {
         link += `&resortId=${resortId}`;
